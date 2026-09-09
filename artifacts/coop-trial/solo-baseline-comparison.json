@@ -1,0 +1,28 @@
+{
+  "baseline": "artifacts/combat-trial/candidate-development.json",
+  "current": "artifacts/coop-trial/continuous-evaluation.json",
+  "rows": 96,
+  "keys": [
+    "scenario",
+    "split",
+    "encounter",
+    "policy",
+    "mode",
+    "excluded",
+    "result",
+    "seconds",
+    "playerDamage",
+    "health",
+    "enemyDamage",
+    "collateralDamage",
+    "enemiesRemaining",
+    "casts",
+    "switches",
+    "dodges",
+    "reactions",
+    "damageRoutes",
+    "decisions"
+  ],
+  "differences": [],
+  "outcomeRule": "Every historical outcome key compared; new actor-tagged cast counters may be added."
+}

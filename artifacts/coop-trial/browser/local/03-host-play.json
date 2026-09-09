@@ -1,0 +1,743 @@
+{
+  "build": "0dd3b37adf775a9ccbdb909aeac556857258c251",
+  "sourceHashes": {
+    "src/network/session.ts": "0bcd0476de046b1cd714eaa11464fcd539775f6f574e16e05a811304b7a65eac",
+    "src/simulation/simulation.ts": "9784144705c2f746ad47ab6f354fee9ab32c10c5360532a2b6bc32ad6e8ef276",
+    "src/render/view.ts": "194563a9cf52171350c1be4a0f05d23333e5a2e61008bedda282dbead1f537be"
+  },
+  "config": {
+    "model": "primary-secondary",
+    "camera": "balanced",
+    "tempo": "balanced",
+    "scene": "trial",
+    "scenario": "open-near",
+    "encounterVersion": "candidate",
+    "seed": 123,
+    "moveSpeed": 5.6,
+    "dodgeDistance": 3.5,
+    "dodgeDuration": 0.22,
+    "dodgeRecovery": 0.8,
+    "castRecovery": 1,
+    "telegraph": 1.05,
+    "cameraDistance": 24,
+    "cameraPitch": 51,
+    "secondaryCapacity": 1,
+    "inputBuffer": 0.12,
+    "invulnerability": 0.17,
+    "castMoveMultiplier": 0.78
+  },
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "state": {
+    "actors": {
+      "mage-1": {
+        "activePrinciple": "Ember",
+        "aim": {
+          "x": 0,
+          "y": 0,
+          "z": -5,
+          "body": false,
+          "invalid": false
+        },
+        "primaryReady": 0,
+        "secondaryReady": 0,
+        "dodgeReady": 0,
+        "dodgeUntil": 0,
+        "invulnerableUntil": 0,
+        "dodgeDirection": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "castUntil": 0,
+        "verticalSpeed": 0,
+        "reviveProgress": 0
+      },
+      "mage-2": {
+        "activePrinciple": "Gale",
+        "aim": {
+          "x": 0,
+          "y": 0,
+          "z": -5,
+          "body": false,
+          "invalid": false
+        },
+        "primaryReady": 1.283333333333334,
+        "secondaryReady": 0,
+        "dodgeReady": 0,
+        "dodgeUntil": 0,
+        "invulnerableUntil": 0,
+        "dodgeDirection": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "castUntil": 0.9033333333333341,
+        "verticalSpeed": 0,
+        "reviveProgress": 0
+      }
+    },
+    "verticalSpeed": 0,
+    "reviveProgress": 0,
+    "time": 3.0833333333333273,
+    "tick": 185,
+    "seed": 123,
+    "entities": [
+      {
+        "id": "mage-1",
+        "kind": "player",
+        "label": "You",
+        "pos": {
+          "x": -4.653416156768799,
+          "y": 0.7196885943412781,
+          "z": 6.00019645690918
+        },
+        "velocity": {
+          "x": 0,
+          "y": -0.0047819954343140125,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "radius": 0.38,
+        "height": 1.4,
+        "mass": 2,
+        "hp": 86,
+        "maxHp": 100,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": false,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {
+          "damage": "encounter-0-sentinel-0"
+        },
+        "hitAt": 2.916666666666661
+      },
+      {
+        "id": "mage-2",
+        "kind": "player",
+        "label": "Partner",
+        "pos": {
+          "x": 4.254449844360352,
+          "y": 0.7192689776420593,
+          "z": 5.999975204467773
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0.005715233739465475,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "radius": 0.38,
+        "height": 1.4,
+        "mass": 2,
+        "hp": 100,
+        "maxHp": 100,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": false,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10
+      },
+      {
+        "id": "timber",
+        "kind": "wood",
+        "label": "Dry timber",
+        "pos": {
+          "x": -7,
+          "y": 0.8500000238418579,
+          "z": 1
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "radius": 0.6,
+        "height": 1.6,
+        "mass": 5,
+        "hp": 90,
+        "maxHp": 90,
+        "material": {
+          "wettable": true,
+          "flammable": true,
+          "structural": false,
+          "anchored": true
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10
+      },
+      {
+        "id": "ballast",
+        "kind": "heavy",
+        "label": "Heavy ballast",
+        "pos": {
+          "x": 7.002625465393066,
+          "y": 0.7998589873313904,
+          "z": 1.0021593570709229
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": -5.303973011905327e-7,
+          "y": 3.495155809218886e-8,
+          "z": 2.3469884524729423e-7,
+          "w": 1
+        },
+        "radius": 0.8,
+        "height": 1.6,
+        "mass": 18,
+        "hp": 100,
+        "maxHp": 100,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": true,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10
+      },
+      {
+        "id": "loose-1",
+        "kind": "loose",
+        "label": "Loose stone",
+        "pos": {
+          "x": -8.515702247619629,
+          "y": 0.37485799193382263,
+          "z": -7.232439041137695
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 1.539105625170123e-7,
+          "y": -0.04614514112472534,
+          "z": 4.934534914013966e-8,
+          "w": 0.9989347457885742
+        },
+        "radius": 0.38,
+        "height": 0.75,
+        "mass": 1,
+        "hp": 95,
+        "maxHp": 100,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": true,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 1.6833333333333331,
+        "sources": {
+          "force": "mage-2",
+          "damage": "mage-2"
+        },
+        "hitAt": 0.2833333333333333
+      },
+      {
+        "id": "encounter-0-sentinel-0",
+        "kind": "sentinel",
+        "label": "Sentinel",
+        "pos": {
+          "x": -4,
+          "y": 0.7999646663665771,
+          "z": -3.5
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "radius": 0.7,
+        "height": 1.6,
+        "mass": 6,
+        "hp": 152,
+        "maxHp": 180,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": true,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {
+          "damage": "mage-2"
+        },
+        "hitAt": 0.4833333333333333,
+        "ai": {
+          "enabled": true,
+          "phase": "telegraph",
+          "timer": 0.716666666666666,
+          "locked": {
+            "x": -4.653416156768799,
+            "y": 0.7197722792625427,
+            "z": 6.00019645690918
+          },
+          "started": 2.749999999999995,
+          "targetId": "mage-1"
+        }
+      },
+      {
+        "id": "encounter-0-sentinel-1",
+        "kind": "sentinel",
+        "label": "Sentinel",
+        "pos": {
+          "x": 4,
+          "y": 0.7999609112739563,
+          "z": -4.199999809265137
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "radius": 0.7,
+        "height": 1.6,
+        "mass": 6,
+        "hp": 180,
+        "maxHp": 180,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": true,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10,
+        "ai": {
+          "enabled": true,
+          "phase": "recover",
+          "timer": 0.049999999999999045,
+          "locked": {
+            "x": 4.254449844360352,
+            "y": 0.7192689776420593,
+            "z": 5.999975204467773
+          },
+          "started": 0.9833333333333347,
+          "targetId": "mage-2"
+        }
+      }
+    ],
+    "activePrinciple": "Ember",
+    "aim": {
+      "x": 0,
+      "y": 0,
+      "z": -5,
+      "body": false,
+      "invalid": false
+    },
+    "primaryReady": 0,
+    "secondaryReady": 0,
+    "dodgeReady": 0,
+    "dodgeUntil": 0,
+    "invulnerableUntil": 0,
+    "dodgeDirection": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "castUntil": 0,
+    "fields": [],
+    "bolts": [
+      {
+        "id": "enemy-8",
+        "source": "encounter-0-sentinel-1",
+        "originalSource": "encounter-0-sentinel-1",
+        "principle": "hostile",
+        "pos": {
+          "x": 4.183296988645564,
+          "y": 0.7418331946707308,
+          "z": 3.147714271587052
+        },
+        "velocity": {
+          "x": 0.1745685606148195,
+          "y": -0.05535973009831296,
+          "z": 6.9978229341449385
+        },
+        "life": 1.9500000000000037,
+        "radius": 0.3
+      }
+    ],
+    "pending": [],
+    "events": [
+      {
+        "id": 9,
+        "time": 2.916666666666661,
+        "type": "impact",
+        "source": "encounter-0-sentinel-0",
+        "pos": {
+          "x": -4.653416156768799,
+          "y": 0.7197722792625427,
+          "z": 6.00019645690918
+        },
+        "duration": 0.45,
+        "principle": "Ember"
+      }
+    ],
+    "serial": 9,
+    "sentinel": {
+      "enabled": false,
+      "phase": "idle",
+      "timer": 1.5,
+      "locked": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "started": 0
+    },
+    "mechanism": false,
+    "metrics": {
+      "damageRoutes": {
+        "[\"mage-2\",\"loose-1\",\"pressure\"]": {
+          "source": "mage-2",
+          "recipient": "loose-1",
+          "reason": "pressure",
+          "amount": 5
+        },
+        "[\"mage-2\",\"encounter-0-sentinel-0\",\"physical impact\"]": {
+          "source": "mage-2",
+          "recipient": "encounter-0-sentinel-0",
+          "reason": "physical impact",
+          "amount": 28
+        },
+        "[\"encounter-0-sentinel-0\",\"mage-1\",\"sentinel bolt\"]": {
+          "source": "encounter-0-sentinel-0",
+          "recipient": "mage-1",
+          "reason": "sentinel bolt",
+          "amount": 14
+        }
+      },
+      "outcomes": {
+        "mage-2:cast:Gale:primary": 2,
+        "stagger:loose-1": 1,
+        "mage-2:Gale:primary:hit": 1,
+        "mage-2:Gale:primary:miss": 1,
+        "encounter-0-sentinel-0:projectile:attempt": 1,
+        "encounter-0-sentinel-1:projectile:attempt": 1,
+        "projectile:encounter-0-sentinel-0:hit:mage-1": 1
+      },
+      "casts": {
+        "Gale:primary": 2
+      },
+      "inputs": {
+        "primary:keyboard-fallback": 2
+      },
+      "switches": 1,
+      "dodges": 0,
+      "stateApplications": 1,
+      "transformations": {
+        "physical impact": 1
+      },
+      "damage": {
+        "mage-2:pressure": 5,
+        "mage-2:physical impact": 28,
+        "encounter-0-sentinel-0:sentinel bolt": 14
+      },
+      "playerDamage": 14,
+      "blockedBolts": 0,
+      "sentinelDefeatTime": null,
+      "combatStartedAt": 0.4833333333333333,
+      "falls": 0
+    },
+    "trial": {
+      "status": "active",
+      "encounter": 0,
+      "isolated": false,
+      "scenario": "open-near",
+      "elapsed": 3.0833333333333273,
+      "started": 0,
+      "results": []
+    },
+    "terrain": [
+      {
+        "x": 0,
+        "y": -0.5,
+        "z": 0,
+        "w": 24,
+        "h": 1,
+        "d": 22
+      },
+      {
+        "x": -12.3,
+        "y": 0.8,
+        "z": 0,
+        "w": 0.6,
+        "h": 2.6,
+        "d": 22
+      },
+      {
+        "x": 12.3,
+        "y": 0.8,
+        "z": 0,
+        "w": 0.6,
+        "h": 2.6,
+        "d": 22
+      },
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -11.3,
+        "w": 24,
+        "h": 2.6,
+        "d": 0.6
+      },
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": 11.3,
+        "w": 24,
+        "h": 2.6,
+        "d": 0.6
+      }
+    ],
+    "party": {
+      "ready": [],
+      "epoch": 2
+    }
+  },
+  "network": {
+    "role": "host",
+    "status": "connected",
+    "message": "Connected · host · WebRTC",
+    "actorId": "mage-1",
+    "code": "RW-CJQPRQNK6LP8",
+    "strategy": "local",
+    "transport": "Trystero WebRTC data channel",
+    "peerId": "ZvoURZTvvPzMFQ3NhU5u",
+    "epoch": 2,
+    "paused": false,
+    "snapshotsReceived": 0,
+    "snapshotsSent": 125,
+    "bytesSent": 735690,
+    "remoteStale": false,
+    "remoteSequence": 198,
+    "rejectedInputs": 2,
+    "profile": {
+      "delayMs": 0,
+      "jitterMs": 0,
+      "seed": 123
+    },
+    "connections": [
+      {
+        "connection": "connected",
+        "ice": "connected"
+      }
+    ]
+  },
+  "metrics": {
+    "damageRoutes": {
+      "[\"mage-2\",\"loose-1\",\"pressure\"]": {
+        "source": "mage-2",
+        "recipient": "loose-1",
+        "reason": "pressure",
+        "amount": 5
+      },
+      "[\"mage-2\",\"encounter-0-sentinel-0\",\"physical impact\"]": {
+        "source": "mage-2",
+        "recipient": "encounter-0-sentinel-0",
+        "reason": "physical impact",
+        "amount": 28
+      },
+      "[\"encounter-0-sentinel-0\",\"mage-1\",\"sentinel bolt\"]": {
+        "source": "encounter-0-sentinel-0",
+        "recipient": "mage-1",
+        "reason": "sentinel bolt",
+        "amount": 14
+      }
+    },
+    "outcomes": {
+      "mage-2:cast:Gale:primary": 2,
+      "stagger:loose-1": 1,
+      "mage-2:Gale:primary:hit": 1,
+      "mage-2:Gale:primary:miss": 1,
+      "encounter-0-sentinel-0:projectile:attempt": 1,
+      "encounter-0-sentinel-1:projectile:attempt": 1,
+      "projectile:encounter-0-sentinel-0:hit:mage-1": 1
+    },
+    "casts": {
+      "Gale:primary": 2
+    },
+    "inputs": {
+      "primary:keyboard-fallback": 2
+    },
+    "switches": 1,
+    "dodges": 0,
+    "stateApplications": 1,
+    "transformations": {
+      "physical impact": 1
+    },
+    "damage": {
+      "mage-2:pressure": 5,
+      "mage-2:physical impact": 28,
+      "encounter-0-sentinel-0:sentinel bolt": 14
+    },
+    "playerDamage": 14,
+    "blockedBolts": 0,
+    "sentinelDefeatTime": null,
+    "combatStartedAt": 0.4833333333333333,
+    "falls": 0,
+    "render": {
+      "frameMs": 125.86495522388061,
+      "p95FrameMs": 233.39999999999782,
+      "drawCalls": 61,
+      "triangles": 1516,
+      "activeVfx": 1,
+      "geometries": 15,
+      "textures": 3,
+      "contextLost": false
+    },
+    "audio": {
+      "muted": false,
+      "context": "running",
+      "played": 3
+    },
+    "activeManifestations": 0
+  },
+  "rtc": [
+    [
+      {
+        "id": "CPaQz6Y8vf_dGcOPG8p",
+        "timestamp": 1788982308636.383,
+        "type": "candidate-pair",
+        "bytesDiscardedOnSend": 0,
+        "bytesReceived": 109333,
+        "bytesSent": 791760,
+        "consentRequestsSent": 6,
+        "currentRoundTripTime": 0.003,
+        "lastPacketReceivedTimestamp": 1788982308619,
+        "lastPacketSentTimestamp": 1788982308567,
+        "localCandidateId": "IaQz6Y8vf",
+        "nominated": true,
+        "packetsDiscardedOnSend": 0,
+        "packetsReceived": 533,
+        "packetsSent": 784,
+        "priority": 9079290933572287000,
+        "remoteCandidateId": "IdGcOPG8p",
+        "requestsReceived": 7,
+        "requestsSent": 7,
+        "responsesReceived": 7,
+        "responsesSent": 7,
+        "state": "succeeded",
+        "totalRoundTripTime": 0.012,
+        "transportId": "T01",
+        "writable": true
+      },
+      {
+        "id": "D1",
+        "timestamp": 1788982308636.383,
+        "type": "data-channel",
+        "bytesReceived": 78975,
+        "bytesSent": 749041,
+        "dataChannelIdentifier": 1,
+        "label": "data",
+        "messagesReceived": 207,
+        "messagesSent": 129,
+        "protocol": "",
+        "state": "open"
+      },
+      {
+        "id": "T01",
+        "timestamp": 1788982308636.383,
+        "type": "transport",
+        "bytesReceived": 109333,
+        "bytesSent": 791760,
+        "dtlsCipher": "TLS_AES_128_GCM_SHA256",
+        "dtlsRole": "server",
+        "dtlsState": "connected",
+        "iceLocalUsernameFragment": "qxZ3",
+        "iceRole": "controlling",
+        "iceState": "connected",
+        "localCertificateId": "CF58:AA:EB:E3:B6:CB:3C:2B:35:33:43:00:91:0E:D6:FD:59:D6:B6:64:30:8D:E3:C6:39:04:56:79:DC:BB:F5:8D",
+        "packetsReceived": 533,
+        "packetsSent": 784,
+        "remoteCertificateId": "CF9B:3A:D1:DB:1A:4A:F7:D7:58:5F:94:A8:AD:7F:36:76:47:55:92:0E:4B:76:9B:0A:5E:43:EB:E3:36:E7:F7:5A",
+        "selectedCandidatePairChanges": 1,
+        "selectedCandidatePairId": "CPaQz6Y8vf_dGcOPG8p",
+        "srtpCipher": "SRTP_AES128_CM_HMAC_SHA1_80",
+        "tlsVersion": "FEFC"
+      }
+    ]
+  ],
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+  "viewport": {
+    "w": 1440,
+    "h": 900
+  }
+}

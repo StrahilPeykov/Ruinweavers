@@ -1,5 +1,24 @@
 # Validation and limits
 
+## Co-op Trial 0.1
+
+Started from clean main at **10477de**, preserving the accepted Combat Trial baseline. Recoverable pointer: `codex/coop-trial-0.1-baseline`. Initial 30 unit tests and production build passed with the existing Rapier chunk warning; the earlier 11-browser pass was accepted from the reviewed milestone, not rerun before editing. Runtime checkpoints: **65102af** (actors/network), **0dd3b37** (lifecycle/evaluation/connection documentation).
+
+Final validation: **40 unit tests pass; all 16 browser journeys pass** (five new co-op plus eleven solo regressions); production build passes. The co-op set includes four two-client journeys over actual loopback-signaled WebRTC and one missing-room recovery journey. The public Nostr path also passed independent movement/selection/casting through actual WebRTC on this same machine. The full browser suite took 6.3 minutes in this software-rendered test environment.
+
+Coverage includes distinct actors/cameras/input, mouse and keyboard casting, independent cooldowns/dodges/fields, residual states, cross-player prime/transform and allied damage suppression, actual hostile targeting/down, held-E revive, encounter-clear restoration, both-ready transitions through all three encounters, victory/defeat/restart, shared Stone cover and guest Gale deflection. Paused host/guest state comparisons agree exactly on damage routes, metrics and event IDs; guests cannot advance gameplay simulation. Lifecycle tests explicitly reduce HP/disable extra enemies to reach transitions, then use real casts; these fixtures are not claims of human trial completion. Normal-pressure and normal-health browser cases are retained.
+
+Networking coverage: real ICE/DTLS/data-channel statistics; captured identity/role; 250 ms stale-input stop during an actual held keyboard action; focus release; disconnect freeze; missing-host 25-second timeout and return to solo. The synthetic case delays outbound input/snapshots by 80 ms ±20 ms with seed 42, then compares authoritative/replica events and metrics. Control messages are not delayed. This is application scheduling over WebRTC, not validated Internet latency or packet-loss emulation. Unit tests reject malformed/non-finite input, arbitrary movement headings, replayed sequences and stale encounter epochs.
+
+The old eight-strategy benchmark is byte-identical. All **96 matched continuous-motor solo rows** retain their historical result, time, damage, casts, routes, reactions, decisions and existing outcome counters; only new actor-tagged counters are added. Keyboard-motor results, pursuit measurements and 27 party comparison cases are separate files under `artifacts/coop-trial/`. Historical Combat Trial and Lab results are preserved. No tuning change followed these corrections.
+
+Iterations: the first WebRTC test exposed a relay lifetime problem during Vite configuration reload; a single development runner now owns relay/server. A test sent input before the guest received the new encounter epoch; it now waits for both clients to enter the encounter. Global AI fixture setup initially overwrote per-enemy enable overrides, causing two expected-shot waits to time out; setup now applies explicit per-enemy overrides last, and both journeys passed. Screenshot review prompted lowering the flattened downed model to the floor. These are transport/setup/presentation fixes, not balance changes.
+
+Evidence: `artifacts/coop-trial/browser/local`, `browser/public`, and `solo-regression`. Co-op capture JSON records build/source hashes, configuration, user agent, viewport, renderer, simulation, metrics and actual RTC stats. Earlier exploratory captures without this metadata are kept separately and are not final performance evidence. Chromium 153 at 1440×900, DPR 1, WebGL 2 / ANGLE SwiftShader on Windows: inspected shared/cover frames used 55–80 draw calls and roughly 1,040–2,986 triangles. Concurrent software-rendered frame means were roughly 149–260 ms; these are slow software test contexts, not recent-laptop GPU or 60 FPS claims.
+
+No physical second computer, remote-network reachability, human guest-latency judgment, trackpad comfort or keyboard rollover was validated. No TURN, migration, reconnect continuation, prediction or pose interpolation. Keep the host browser foreground to avoid background throttling. No OS settings changes, paid tooling, deployment or push. Connection instructions and remaining limitations: [COOP](COOP.md).
+
+
 ## Combat Trial 0.1
 
 Started from clean main at **b0590c2**, preserving the actual tree. Recoverable pointer: `codex/combat-trial-0.1-baseline`. Initial validation passed 22 unit tests, eight browser journeys and production build; no pre-existing failures. Stable runtime checkpoints: a68ff9c (trial/evaluator), 0341a00 (lifecycle/pursuit), a23f175 (dry-arena correction).

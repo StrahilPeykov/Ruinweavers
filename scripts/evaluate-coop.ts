@@ -103,6 +103,12 @@ writeFileSync(
         ]),
       ),
       policyVersion: "policies-1 + coop-roles-1",
+      seedRule: "123 + actorIndex * 71, matched across conditions",
+      horizonSeconds: 55,
+      observationDelaySeconds: 0.2,
+      headingMode: "keyboard",
+      model: "primary-secondary",
+      encounterVersion: "candidate",
       method:
         "Matched 3 layouts x 3 isolated encounters. Keyboard 8-direction movement, same delayed observations and aim error as policies-1. Pair roles choose a common midpoint target: primer Basin/Tide then binding Stone; striker Ember. No networking in this simulation batch. No HP scaling or Resonance.",
       rows,

@@ -1,0 +1,31 @@
+{
+  "milestone": "Co-op Trial 0.1",
+  "runtimeCommit": "0dd3b37adf775a9ccbdb909aeac556857258c251",
+  "baselineCommit": "10477de",
+  "checkpoint": "codex/coop-trial-0.1-baseline",
+  "validation": {
+    "unitTests": 40,
+    "browserJourneys": 16,
+    "publicSignaling": "independent-client journey passed; same physical Windows machine",
+    "build": "passed; existing Rapier large-chunk warning",
+    "legacyBenchmark": "byte-identical",
+    "continuousSoloComparison": "96 rows, no differences in historical metrics/outcomes"
+  },
+  "rendering": "Chromium 153, Windows, 1440x900, DPR 1, WebGL 2 ANGLE SwiftShader; software rendering, not laptop GPU performance",
+  "fixtures": "Lifecycle enemy health reduced/AI selectively disabled; actions tested use real controls. Initial hostile down uses actual enemy projectile.",
+  "syntheticNetwork": "80ms +/-20ms outgoing application input/snapshot delays, seed42, real WebRTC; control messages not delayed; not packet-loss or remote-network emulation",
+  "inspectedScreens": [
+    "browser/local/01-host-lobby.png",
+    "browser/local/05-shared-magic.png",
+    "browser/local/08-downed-guest.png",
+    "browser/local/10-victory-lifecycle-fixture.png",
+    "browser/local/12-partner-cover.png",
+    "browser/public/04-guest-play.png"
+  ],
+  "limits": [
+    "No physical remote-network test",
+    "No TURN/migration/reconnect continuation/prediction/pose interpolation",
+    "No subjective guest latency, physical trackpad or keyboard comfort validation",
+    "Exploratory policy comparisons, unchanged tuning, no new hold-out or co-op full-trial policy benchmark"
+  ]
+}
