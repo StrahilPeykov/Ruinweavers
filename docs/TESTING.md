@@ -82,6 +82,8 @@ Focused regression: text selection across live updates, actual clipboard copy/pa
 
 ## TURN configuration follow-up (2026-09-09)
 
+Subsequent free-only account review: Cloudflare provisioning requires payment details and explicitly bills overages; not activated. Open Relay's signup is labelled correctly, but the owner has no account, so its actual plan and TURN quota-exhaustion behavior remain unverified. The 500 MB commercial trial is excluded. See `docs/TURN.md`. No remote relay session, RTT or usage result is claimed. This review changed documentation only.
+
 45 unit tests pass, including five new credential/Worker tests. Five focused browser journeys pass (the three room-sharing regressions plus missing-relay/error handling). Production build and Wrangler deploy dry-run pass; existing Rapier bundle-size warning remains. Actual local Wrangler serves HTML 200, unconfigured POST `/api/turn` 200 with `configured:false` and no-store, GET 405, and cross-origin POST 403. No secret, account or public deployment was created.
 
 Inspected `artifacts/turn-setup/missing-credentials.png` and network state: the error is readable, and Return to solo permits starting the trial. Chromium, 1440×900, software WebGL; these are UI correctness checks, not performance claims. Provider-success responses are unit fixtures, not a live relay test. Authenticated TURN and the two remote laptops remain unverified pending owner credentials/deployment. Historical room-sharing captures are preserved.
