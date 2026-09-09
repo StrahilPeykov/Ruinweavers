@@ -36,4 +36,6 @@ Network inspection: `getNetworkState`, `getRtcStats`, `setNetworkProfile`, `sile
 
 `render/audio.ts` consumes event IDs after a user gesture. Its conservative WebAudio voices and mute state have no simulation authority. Diagnostics include audio context/cue counts. `?buffer=0` selects the unbuffered comparison; otherwise 120 ms is the default.
 
+`preferences.ts` wraps fallible local browser storage. Versioned mute/controls keys store only device preferences, never room codes or credentials. Input restores only complete, conflict-free bindings; Ctrl/Cmd/Alt are reserved for shortcuts (including the previously API-accepted ControlLeft binding). Shift bindings remain supported. UI feedback selects events/buffers by local actor; rejection throttling is per source. Configuration trims newest-per-owner capacity only when capacity itself changes, never during camera configuration.
+
 No external assets or accounts. The largest bundle dependency is embedded Rapier WASM. Dependencies are pinned by the lockfile.

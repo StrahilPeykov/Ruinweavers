@@ -114,9 +114,20 @@ async function boot() {
       !!patch.encounterVersion;
     Object.assign(config, patch);
     if (patch.scene) config.scene = patch.scene.replace("magic-lab/", "");
-    while (sim.state.fields.length > config.secondaryCapacity)
-      sim.state.fields.shift();
-    sim.physics.syncFields(sim.state.fields);
+    if (patch.secondaryCapacity !== undefined) {
+      const counts = new Map<string, number>();
+      // Keep each actor's newest fields; camera-only changes never touch them.
+      sim.state.fields = sim.state.fields
+        .slice()
+        .reverse()
+        .filter((field) => {
+          const count = (counts.get(field.source) ?? 0) + 1;
+          counts.set(field.source, count);
+          return count <= config.secondaryCapacity;
+        })
+        .reverse();
+      sim.physics.syncFields(sim.state.fields);
+    }
     if (shouldReset) reset();
     view.render(sim.state, 0);
     ui.sync();
@@ -176,7 +187,8 @@ async function boot() {
     export: exportData,
     quality: (value) => view.setQuality(value),
     getQuality: () => view.quality,
-    mute: () => (audio.muted = !audio.muted),
+    mute: () => audio.toggleMute(),
+    getMuted: () => audio.muted,
   });
   net = new CoopSession(
     sim,

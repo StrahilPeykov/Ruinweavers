@@ -4,7 +4,7 @@
 
 Run `npm install` once, then `npm run dev`. Open http://127.0.0.1:5173/. **Start trial / E** plays solo. Defaults remain Model A, balanced camera/tempo, 120 ms Secondary buffer, one field per mage. Instruments start collapsed.
 
-For two people on separate computers, open the same deployed build, or run this checkout locally on each computer. Leave **Connection options → Public Nostr · internet** selected on both. One clicks **Create co-op**, clicks **Copy code** and shares the six-character code privately, and the other enters it and clicks **Join co-op**. Both press **Ready**. Both must be ready again between encounters and to restart after victory/defeat. The top Restart button during combat abandons the attempt and waits for the partner's readiness. Joining an active attempt is not supported.
+For two people on separate computers, open the same deployed build, or run this checkout locally on each computer. Leave **Connection options → Public Nostr · internet** selected on both. One clicks **Create co-op**, clicks **Copy code** and shares the six-character code privately, and the other enters it and presses **Enter** or clicks **Join co-op**. Both press **Ready**. Both must be ready again between encounters and to restart after victory/defeat. The top Restart button during combat abandons the attempt and waits for the partner's readiness. Joining an active attempt is not supported.
 
 For two windows on this computer, the same public path works, or choose **Local relay · same machine test** on both. `npm run dev` starts the official Trystero WebSocket signaling relay on loopback port 4174 alongside Vite on 5173. Local relay is not an internet/LAN hosting service. New rooms use six characters, without easily confused I/O/0/1. The join field accepts lowercase and whitespace, and still accepts legacy RW codes. The read-only share field supports native selection/copy; if clipboard permission is denied, Copy code selects it and shows the keyboard shortcut.
 
@@ -13,6 +13,8 @@ Public discovery uses external signaling/STUN. Direct connections need no TURN a
 WASD move; pointer aim; LMB/J Primary (hold repeats); RMB/F/K Secondary (discrete); 1–4 select; Tab/Q next/previous; Space dodge. **Hold E near a downed partner for 1.2 seconds** to restore 35 HP and brief invulnerability. Clearing an encounter also restores a downed partner. Both down ends the attempt. Health otherwise carries. Pause is shared; cameras and input profiles are local. Optional wheel cycling stays off by default.
 
 Try independent attacks first, then let one mage place Tide's Basin while the other heats its targets. Swap roles. Use a partner's Stone cover and Gale to redirect incoming projectiles. The same spell catalogue is available to both; these are play suggestions, not classes.
+
+Mute, input profile, bindings and optional wheel preference are saved in this browser on this site. The instruments show restored values. Choosing Desktop/Laptop restores default bindings; optional wheel remains an independent preference. Invalid stored controls fall back to defaults, and blocked/full storage leaves session controls usable. Ctrl/Cmd/Alt combinations are reserved for browser/OS shortcuts and clear held/pending gameplay input; press gameplay keys again after the shortcut. Shift remains available as a Secondary fallback. Camera changes preserve both players' manifestations; buffered/rejected-cast text belongs to the local mage.
 
 ## Shared-world rules
 

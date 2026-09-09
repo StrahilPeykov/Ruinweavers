@@ -3,6 +3,7 @@ import { Simulation } from "../../src/simulation/simulation";
 import { initPhysics } from "../../src/physics/world";
 import { configFromQuery } from "../../src/experiments/config";
 import { idleInput, vec } from "../../src/simulation/types";
+import { localCastFeedback } from "../../src/ui/cast-feedback";
 beforeAll(initPhysics);
 const setup = () => {
   const s = new Simulation(
@@ -13,6 +14,20 @@ const setup = () => {
   s.ready("mage-2");
   return s;
 };
+it("buffer and rejection feedback belong to each actor, including simultaneous failures", () => {
+  const s = setup();
+  s.state.actors["mage-2"].secondaryReady = s.state.time + 0.1;
+  s.withActor("mage-2", () => s.secondaryPress("keyboard-fallback"));
+  expect(localCastFeedback(s.state, "mage-2")).toBe("Secondary buffered");
+  expect(localCastFeedback(s.state, "mage-1")).toBeUndefined();
+  s.withActor("mage-1", () => s.reject("Recovering"));
+  expect(localCastFeedback(s.state, "mage-2")).toBe("Secondary buffered");
+  s.withActor("mage-2", () => s.reject("Out of range"));
+  expect(localCastFeedback(s.state, "mage-1")).toBe("Recovering");
+  expect(localCastFeedback(s.state, "mage-2")).toBe("Out of range");
+  expect(s.state.events.filter((e) => e.type === "rejected")).toHaveLength(2);
+  s.dispose();
+});
 it("actors independently move, cast, dodge, select and replace only their fields", () => {
   const s = setup();
   s.stepParty({

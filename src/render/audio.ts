@@ -1,9 +1,10 @@
 import type { State } from "../simulation/types";
+import { readPreference, writePreference } from "../preferences";
 
 /** Small local cues; audio never advances or changes simulation. */
 export class LabAudio {
   context?: AudioContext;
-  muted = false;
+  muted = readPreference("ruinweavers-muted-v1") === true;
   lastEvent = 0;
   played = 0;
   constructor() {
@@ -16,6 +17,11 @@ export class LabAudio {
   }
   reset() {
     this.lastEvent = 0;
+  }
+  toggleMute() {
+    this.muted = !this.muted;
+    writePreference("ruinweavers-muted-v1", this.muted);
+    return this.muted;
   }
   update(s: State) {
     const events = s.events.filter((e) => e.id > this.lastEvent);

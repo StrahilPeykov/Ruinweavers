@@ -418,7 +418,9 @@ export class Simulation {
     this.actor.bufferedCast = undefined;
   }
   reject(reason: string, pos = this.actor.aim) {
-    const last = this.state.events.filter((e) => e.type === "rejected").at(-1);
+    const last = this.state.events
+      .filter((e) => e.type === "rejected" && e.source === this.player.id)
+      .at(-1);
     if (!last || this.state.time - last.time > 0.2)
       this.event("rejected", this.player.id, pos, {
         target: reason,

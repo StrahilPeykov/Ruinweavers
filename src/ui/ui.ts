@@ -4,6 +4,7 @@ import { CAST, PRINCIPLES, SCENES, type Config } from "../experiments/config";
 import type { Input } from "../input/input";
 import type { State } from "../simulation/types";
 import type { View } from "../render/view";
+import { localCastFeedback } from "./cast-feedback";
 export class UI {
   root: HTMLElement;
   last = 0;
@@ -21,6 +22,7 @@ export class UI {
       quality: (value: "standard" | "lightweight") => void;
       getQuality: () => string;
       mute: () => boolean;
+      getMuted: () => boolean;
     },
   ) {
     this.root = document.createElement("div");
@@ -67,10 +69,13 @@ export class UI {
       actions.quality(quality.value as "standard" | "lightweight");
       this.unfocus();
     };
-    byId("mute").onclick = () => {
-      const muted = actions.mute();
+    const showMute = (muted: boolean) => {
       byId("mute").textContent = muted ? "Unmute" : "Mute";
       byId("mute").setAttribute("aria-pressed", String(muted));
+    };
+    showMute(actions.getMuted());
+    byId("mute").onclick = () => {
+      showMute(actions.mute());
       this.unfocus();
     };
     const toggle = () => {
@@ -110,10 +115,11 @@ export class UI {
       input.setProfile(
         (e.target as HTMLSelectElement).value as typeof input.profile,
       );
+      this.syncControls();
       this.unfocus();
     };
     (byId("wheel") as HTMLInputElement).onchange = (e) =>
-      (input.wheelEnabled = (e.target as HTMLInputElement).checked);
+      input.setWheelEnabled((e.target as HTMLInputElement).checked);
     for (const key of ["fallback", "cycle"])
       byId(key).onchange = (e) => {
         try {
@@ -126,8 +132,34 @@ export class UI {
         } catch (error) {
           byId("feedback").textContent = String(error);
         }
+        this.syncControls();
         this.unfocus();
       };
+    this.syncControls();
+  }
+  syncControls() {
+    const get = (id: string) =>
+      this.root.querySelector<HTMLSelectElement>(`#${id}`)!;
+    get("profile").value = this.input.profile;
+    (this.root.querySelector("#wheel") as HTMLInputElement).checked =
+      this.input.wheelEnabled;
+    for (const [id, value] of [
+      [
+        "fallback",
+        this.input.bindings.secondary.find(
+          (k) => k !== "Mouse2" && k !== "KeyK",
+        ),
+      ],
+      ["cycle", this.input.bindings.next[0]],
+    ]) {
+      const el = get(id!);
+      const selected = value ?? "custom";
+      if (!Array.from(el.options).some((o) => o.value === selected))
+        el.add(
+          new Option(value?.replace("Key", "") ?? "Custom bindings", selected),
+        );
+      el.value = selected;
+    }
   }
   unfocus() {
     (document.activeElement as HTMLElement)?.blur();
@@ -183,7 +215,7 @@ export class UI {
       );
       this.unfocus();
     };
-    get("join-room").onclick = () => {
+    const join = () => {
       this.config.scene = "trial";
       this.config.model = "primary-secondary";
       void net.connect(
@@ -192,6 +224,20 @@ export class UI {
         (get("signaling") as HTMLSelectElement).value,
       );
       this.unfocus();
+    };
+    get("join-room").onclick = join;
+    get("room-code").onkeydown = (e) => {
+      if (
+        e.key === "Enter" &&
+        !e.repeat &&
+        !e.isComposing &&
+        !e.ctrlKey &&
+        !e.metaKey &&
+        !e.altKey
+      ) {
+        e.preventDefault();
+        join();
+      }
     };
     get("disconnect").onclick = () => {
       void net.leave();
@@ -267,9 +313,7 @@ export class UI {
       labels["inspect"] =
         `${target.label} · ${Math.ceil(target.hp)} integrity${target.wet > 0.1 ? " · Wet" : ""}${target.heat > 25 ? " · Heated" : ""}${target.burning ? " · Burning" : ""}${target.cohesion < -0.25 ? " · Fractured" : ""}${target.cohesion > 0.25 ? " · Bound" : ""}${Math.hypot(target.velocity.x, target.velocity.z) > 1 ? " · Displaced" : ""}`;
     } else labels["inspect"] = "";
-    const recent = s.events
-      .filter((e) => e.type === "rejected" && s.time - e.time < 0.65)
-      .at(-1);
+    const localFeedback = localCastFeedback(s, player.id);
     const placement = view.simulation.withActor(view.actorId, () =>
       view.simulation.targeting(
         "secondary",
@@ -278,13 +322,11 @@ export class UI {
       ),
     );
     const field = s.fields.find((f) => f.source === player.id);
-    labels["cast-feedback"] = recent
-      ? recent.target!
-      : s.bufferedCast
-        ? "Secondary buffered"
-        : !placement.valid
-          ? placement.reason
-          : `${placement.clamped ? "Range-limited footprint · " : ""}RMB / F footprint${field ? ` · replaces ${field.principle} (${field.life.toFixed(1)}s)` : ""}`;
+    labels["cast-feedback"] =
+      localFeedback ??
+      (!placement.valid
+        ? placement.reason
+        : `${placement.clamped ? "Range-limited footprint · " : ""}RMB / F footprint${field ? ` · replaces ${field.principle} (${field.life.toFixed(1)}s)` : ""}`);
     const trial = s.trial,
       card = get("trial-card");
     card.hidden = !trial || trial.status === "active" || paused;

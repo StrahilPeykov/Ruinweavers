@@ -1,4 +1,5 @@
 import { PRINCIPLES } from "../experiments/config";
+import { readPreference, writePreference } from "../preferences";
 import { idleInput, type FrameInput, type Vec } from "../simulation/types";
 export type Action =
   | "up"
@@ -32,6 +33,48 @@ export const DEFAULT_BINDINGS: Record<Action, string[]> = {
   dodge: ["Space"],
   interact: ["KeyE"],
 };
+export function validBindings(
+  value: unknown,
+): value is Record<Action, string[]> {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const entries = Object.entries(value);
+  if (entries.length !== Object.keys(DEFAULT_BINDINGS).length) return false;
+  const used = new Set<string>();
+  return entries.every(
+    ([action, keys]) =>
+      Object.hasOwn(DEFAULT_BINDINGS, action) &&
+      Array.isArray(keys) &&
+      keys.length > 0 &&
+      keys.every((key: unknown) => {
+        if (
+          typeof key !== "string" ||
+          !/^((Key[A-Z])|(Digit[0-9])|Space|Tab|ShiftLeft|Mouse[02]|Arrow(Up|Down|Left|Right))$/.test(
+            key,
+          ) ||
+          used.has(key)
+        )
+          return false;
+        used.add(key);
+        return true;
+      }),
+  );
+}
+export function parseControlPreferences(value: unknown) {
+  if (!value || typeof value !== "object") return null;
+  const p = value as Record<string, unknown>;
+  if (
+    typeof p.profile !== "string" ||
+    !["desktop", "laptop", "custom"].includes(p.profile) ||
+    typeof p.wheelEnabled !== "boolean" ||
+    !validBindings(p.bindings)
+  )
+    return null;
+  return {
+    profile: p.profile as Profile,
+    wheelEnabled: p.wheelEnabled,
+    bindings: structuredClone(p.bindings),
+  };
+}
 export class Input {
   onClear = () => {};
   bindings = structuredClone(DEFAULT_BINDINGS);
@@ -44,7 +87,15 @@ export class Input {
   lastDevice = "mouse";
   wheel = 0;
   constructor(public canvas: HTMLCanvasElement) {
+    const saved = parseControlPreferences(
+      readPreference("ruinweavers-controls-v1"),
+    );
+    if (saved) Object.assign(this, saved);
     window.addEventListener("keydown", (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey || e.isComposing) {
+        this.clear();
+        return;
+      }
       if (this.editing(e.target)) return;
       const action = this.actionFor(e.code);
       if (action) {
@@ -64,6 +115,10 @@ export class Input {
       this.lastDevice = e.pointerType;
     });
     canvas.addEventListener("pointerdown", (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) {
+        this.clear();
+        return;
+      }
       e.preventDefault();
       canvas.focus();
       this.pointer = { x: e.clientX, y: e.clientY, active: true };
@@ -79,6 +134,7 @@ export class Input {
     canvas.addEventListener(
       "wheel",
       (e) => {
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
         if (this.wheelEnabled) {
           e.preventDefault();
           this.wheel += Math.sign(e.deltaY);
@@ -96,7 +152,8 @@ export class Input {
   editing(target: EventTarget | null) {
     return (
       target instanceof HTMLElement &&
-      !!target.closest("input,select,button,textarea,summary")
+      (target.isContentEditable ||
+        !!target.closest("input,select,button,textarea,summary"))
     );
   }
   actionFor(code: string) {
@@ -154,14 +211,27 @@ export class Input {
     this.profile = profile;
     if (profile !== "custom") this.bindings = structuredClone(DEFAULT_BINDINGS);
     this.clear();
+    this.save();
+  }
+  setWheelEnabled(enabled: boolean) {
+    this.wheelEnabled = enabled;
+    this.clear();
+    this.save();
+  }
+  save() {
+    writePreference("ruinweavers-controls-v1", {
+      profile: this.profile,
+      bindings: this.bindings,
+      wheelEnabled: this.wheelEnabled,
+    });
   }
   setBinding(action: Action, bindings: string[]) {
     if (
-      !(action in this.bindings) ||
+      !Object.hasOwn(this.bindings, action) ||
       !bindings.length ||
       bindings.some(
         (b) =>
-          !/^((Key[A-Z])|(Digit[0-9])|Space|Tab|ShiftLeft|ControlLeft|Mouse[02]|Arrow(Up|Down|Left|Right))$/.test(
+          !/^((Key[A-Z])|(Digit[0-9])|Space|Tab|ShiftLeft|Mouse[02]|Arrow(Up|Down|Left|Right))$/.test(
             b,
           ),
       )
@@ -176,5 +246,6 @@ export class Input {
     this.bindings[action] = [...new Set(bindings)];
     this.profile = "custom";
     this.clear();
+    this.save();
   }
 }
