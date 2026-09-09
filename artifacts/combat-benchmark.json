@@ -1,0 +1,151 @@
+[
+  {
+    "strategy": "Ember",
+    "seconds": 6.87,
+    "defeated": true,
+    "sentinelHp": 0,
+    "playerHp": 100,
+    "casts": {
+      "Ember:primary": 20
+    },
+    "transforms": {},
+    "damage": {
+      "mage-1:heat bolt": 180,
+      "sentinel:sentinel bolt": 14
+    },
+    "blocked": 0
+  },
+  {
+    "strategy": "Tide",
+    "seconds": 12.97,
+    "defeated": true,
+    "sentinelHp": 0,
+    "playerHp": 100,
+    "casts": {
+      "Tide:primary": 30
+    },
+    "transforms": {},
+    "damage": {
+      "mage-1:jet": 180,
+      "sentinel:sentinel bolt": 28
+    },
+    "blocked": 0
+  },
+  {
+    "strategy": "Gale",
+    "seconds": 15.72,
+    "defeated": true,
+    "sentinelHp": 0,
+    "playerHp": 100,
+    "casts": {
+      "Gale:primary": 31
+    },
+    "transforms": {
+      "deflect": 5
+    },
+    "damage": {
+      "mage-1:pressure": 152,
+      "mage-1:sentinel bolt": 28
+    },
+    "blocked": 0
+  },
+  {
+    "strategy": "Stone",
+    "seconds": 5.45,
+    "defeated": true,
+    "sentinelHp": 0,
+    "playerHp": 100,
+    "casts": {
+      "Stone:primary": 9
+    },
+    "transforms": {},
+    "damage": {
+      "mage-1:eruption": 180,
+      "sentinel:sentinel bolt": 14
+    },
+    "blocked": 0
+  },
+  {
+    "strategy": "Tide → Ember",
+    "seconds": 4.45,
+    "defeated": true,
+    "sentinelHp": 0,
+    "playerHp": 100,
+    "casts": {
+      "Tide:primary": 5,
+      "Ember:primary": 8
+    },
+    "transforms": {
+      "vaporize": 5,
+      "thermal fracture": 5,
+      "shatter impulse": 3
+    },
+    "damage": {
+      "mage-1:jet": 24,
+      "mage-1:steam": 69.6,
+      "mage-1:heat bolt": 72,
+      "mage-1:fracture impulse": 14.4,
+      "sentinel:sentinel bolt": 14
+    },
+    "blocked": 0
+  },
+  {
+    "strategy": "Fracture → Gale",
+    "seconds": 4.47,
+    "defeated": true,
+    "sentinelHp": 0,
+    "playerHp": 100,
+    "casts": {
+      "Stone:secondary": 3,
+      "Gale:primary": 9
+    },
+    "transforms": {
+      "shatter impulse": 3,
+      "deflect": 1
+    },
+    "damage": {
+      "mage-1:fracture": 36,
+      "mage-1:fracture impulse": 104,
+      "mage-1:pressure": 40
+    },
+    "blocked": 0
+  },
+  {
+    "strategy": "Basin + Ember",
+    "seconds": 2.68,
+    "defeated": true,
+    "sentinelHp": 0,
+    "playerHp": 100,
+    "casts": {
+      "Tide:secondary": 1,
+      "Ember:primary": 8
+    },
+    "transforms": {
+      "vaporize": 10,
+      "thermal fracture": 10,
+      "shatter impulse": 9
+    },
+    "damage": {
+      "mage-1:steam": 76.52166666666665,
+      "mage-1:heat bolt": 72,
+      "mage-1:fracture impulse": 31.478333333333367
+    },
+    "blocked": 0
+  },
+  {
+    "strategy": "Slab + Ember",
+    "seconds": 14.57,
+    "defeated": true,
+    "sentinelHp": 0,
+    "playerHp": 100,
+    "casts": {
+      "Stone:secondary": 2,
+      "Ember:primary": 42
+    },
+    "transforms": {},
+    "damage": {
+      "mage-1:heat bolt": 180
+    },
+    "blocked": 28
+  }
+]

@@ -1,0 +1,277 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+body {
+  background: #18252b;
+  color: #dfebe5;
+  font:
+    13px/1.5 system-ui,
+    sans-serif;
+}
+canvas {
+  display: block;
+  outline: none;
+  cursor: crosshair;
+}
+#ui {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+header {
+  position: absolute;
+  top: 24px;
+  left: 30px;
+  text-shadow: 0 2px 5px #162328;
+}
+h1 {
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  margin: 3px 0 7px;
+}
+h1 span {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #a4bbb9;
+}
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #aabfb8;
+}
+#status {
+  font-size: 11px;
+  color: #c0ccc7;
+}
+.top-actions {
+  position: absolute;
+  right: 24px;
+  top: 26px;
+  display: flex;
+  gap: 7px;
+}
+button,
+select,
+input,
+summary {
+  pointer-events: auto;
+}
+button,
+select {
+  color: #e0e8df;
+  background: #26393ded;
+  border: 1px solid #647b7980;
+  border-radius: 4px;
+  padding: 8px 11px;
+  font: inherit;
+}
+button:hover {
+  background: #3e5557;
+}
+button {
+  cursor: pointer;
+}
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid #d6e9bd;
+  outline-offset: 2px;
+}
+#panel {
+  pointer-events: auto;
+  position: absolute;
+  right: 24px;
+  top: 72px;
+  width: 310px;
+  max-height: calc(100% - 200px);
+  overflow: auto;
+  padding: 16px;
+  background: #1b2b30f5;
+  border: 1px solid #708b8266;
+  box-shadow: 0 15px 50px #0004;
+  border-radius: 6px;
+}
+.panel-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.panel-title button {
+  float: right;
+  padding: 0 7px;
+}
+label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 11px;
+  margin: 9px 0;
+}
+select {
+  max-width: 185px;
+  padding: 5px;
+  font-size: 11px;
+}
+input {
+  max-width: 150px;
+  accent-color: #b9d1b6;
+}
+input[type="number"] {
+  width: 50px;
+  background: #2e4346;
+  border: 1px solid #6c8580;
+  color: #fff;
+  padding: 4px;
+}
+details {
+  border-top: 1px solid #6c858044;
+  margin-top: 12px;
+  padding-top: 9px;
+}
+summary {
+  cursor: pointer;
+  color: #b5ccc3;
+}
+details p {
+  font-size: 11px;
+  color: #b7c5bf;
+}
+pre {
+  white-space: pre-wrap;
+  font: 10px/1.6 monospace;
+  color: #a9c5bc;
+}
+#feedback {
+  color: #ecc19a;
+  font-size: 11px;
+}
+footer {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  min-width: 640px;
+  text-shadow: 0 2px 4px #18252b;
+}
+#principles {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto 8px;
+}
+#principles > div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 14px;
+  border-bottom: 2px solid #82979260;
+  background: #203237ce;
+  border-radius: 3px;
+  min-width: 105px;
+  color: #a7b8b1;
+}
+#principles > div.active {
+  background: #435953e8;
+  color: #fff;
+  border-color: #d7e4bb;
+}
+kbd {
+  font: 11px monospace;
+  color: #c1d1c6;
+}
+#spell {
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.hint,
+#health {
+  font-size: 10px;
+  color: #b5c5bd;
+  margin-top: 5px;
+}
+#health {
+  color: #d0ddc2;
+}
+#inspect {
+  position: absolute;
+  bottom: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  background: #182b32b8;
+  border-radius: 3px;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+#inspect:empty {
+  display: none;
+}
+#notice {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 30px;
+  background: #182b32e8;
+  border: 1px solid #799087;
+  font-size: 18px;
+}
+.check {
+  justify-content: flex-start;
+}
+@media (max-width: 850px) {
+  header {
+    top: 15px;
+    left: 15px;
+  }
+  h1 {
+    font-size: 16px;
+  }
+  h1 span {
+    display: none;
+  }
+  .top-actions {
+    top: 17px;
+    right: 12px;
+  }
+  button {
+    font-size: 11px;
+    padding: 6px;
+  }
+  footer {
+    bottom: 12px;
+    min-width: 0;
+    width: 100%;
+  }
+  .hint {
+    font-size: 9px;
+  }
+  #principles > div {
+    min-width: 0;
+    padding: 5px 10px;
+    gap: 6px;
+  }
+  #panel {
+    right: 12px;
+    top: 60px;
+    max-height: calc(100% - 180px);
+  }
+  #inspect {
+    bottom: 140px;
+    max-width: 94%;
+    white-space: normal;
+  }
+}
+[hidden] {
+  display: none !important;
+}
