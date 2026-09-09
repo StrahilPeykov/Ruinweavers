@@ -1,0 +1,12 @@
+{
+  "date": "2026-09-09",
+  "source": "Visible development metrics read through Codex in-app browser computer-use tools",
+  "viewport": { "width": 1920, "height": 1080 },
+  "scene": "states",
+  "model": "primary-secondary",
+  "camera": "balanced",
+  "tempo": "balanced",
+  "idle": { "frameMs": 16.7, "drawCalls": 73 },
+  "afterThermalSequence": { "frameMs": 16.7, "drawCalls": 86, "vaporize": 2, "switches": 2, "majorFields": 1 },
+  "limitation": "Short observation. GPU identity not captured; no sustained hardware benchmark claim."
+}

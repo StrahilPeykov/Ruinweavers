@@ -1,7 +1,35 @@
 {
+  "build": "Magic Lab 1.1 / runtime de7563e",
+  "url": "http://127.0.0.1:5173/?scene=traversal&model=primary-secondary&camera=balanced&tempo=balanced&seed=123",
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "dpr": 1
+  },
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "config": {
+    "model": "primary-secondary",
+    "camera": "balanced",
+    "tempo": "balanced",
+    "scene": "traversal",
+    "seed": 123,
+    "moveSpeed": 5.6,
+    "dodgeDistance": 3.5,
+    "dodgeDuration": 0.22,
+    "dodgeRecovery": 0.8,
+    "castRecovery": 1,
+    "telegraph": 1.05,
+    "cameraDistance": 24,
+    "cameraPitch": 51,
+    "secondaryCapacity": 1,
+    "inputBuffer": 0.12,
+    "invulnerability": 0.17,
+    "castMoveMultiplier": 0.78
+  },
   "state": {
-    "time": 2.083333333333331,
-    "tick": 125,
+    "time": 8.216666666666654,
+    "tick": 493,
     "seed": 123,
     "entities": [
       {
@@ -9,14 +37,14 @@
         "kind": "player",
         "label": "You",
         "pos": {
-          "x": -4.000011444091797,
-          "y": 0.7187820672988892,
-          "z": 0.0000026609427550283726
+          "x": 5.999999523162842,
+          "y": 0.7194533944129944,
+          "z": 4.999998569488525
         },
         "velocity": {
           "x": 0,
-          "y": 0.005715233739465475,
-          "z": -0.000017528145690448582
+          "y": -0.00517027685418725,
+          "z": 0.00005449567470350303
         },
         "rotation": {
           "x": 0,
@@ -27,7 +55,7 @@
         "radius": 0.38,
         "height": 1.4,
         "mass": 2,
-        "hp": 100,
+        "hp": 90,
         "maxHp": 100,
         "material": {
           "wettable": true,
@@ -41,8 +69,10 @@
         "burning": false,
         "stagger": 0,
         "staggerReady": 0,
-        "sources": {},
-        "hitAt": -10
+        "sources": {
+          "damage": "world"
+        },
+        "hitAt": 5.716666666666652
       },
       {
         "id": "dummy",
@@ -147,7 +177,7 @@
         "radius": 0.6,
         "height": 1.6,
         "mass": 5,
-        "hp": 47.49999999999996,
+        "hp": 90,
         "maxHp": 90,
         "material": {
           "wettable": true,
@@ -155,17 +185,14 @@
           "structural": false,
           "anchored": true
         },
-        "heat": 29.6,
+        "heat": 0,
         "wet": 0,
         "cohesion": 0,
         "burning": false,
         "stagger": 0,
         "staggerReady": 0,
-        "sources": {
-          "heat": "mage-1",
-          "damage": "mage-1"
-        },
-        "hitAt": 1.3666666666666667
+        "sources": {},
+        "hitAt": -10
       },
       {
         "id": "column",
@@ -204,9 +231,7 @@
         "burning": false,
         "stagger": 0,
         "staggerReady": 0,
-        "sources": {
-          "heat": "mage-1"
-        },
+        "sources": {},
         "hitAt": -10
       },
       {
@@ -214,9 +239,9 @@
         "kind": "heavy",
         "label": "Heavy ballast",
         "pos": {
-          "x": 5.702625274658203,
-          "y": 0.7998589873313904,
-          "z": 1.0021593570709229
+          "x": 5.700789928436279,
+          "y": 0.7998592257499695,
+          "z": 1.0022172927856445
         },
         "velocity": {
           "x": 0,
@@ -224,9 +249,9 @@
           "z": 0
         },
         "rotation": {
-          "x": -5.303973011905327e-7,
-          "y": 3.495155809218886e-8,
-          "z": 2.3469884524729423e-7,
+          "x": -6.763337978554773e-8,
+          "y": -0.00002947632674477063,
+          "z": -1.299266561005652e-8,
           "w": 1
         },
         "radius": 0.8,
@@ -334,12 +359,12 @@
         "kind": "moving",
         "label": "Moving target",
         "pos": {
-          "x": -1.0087600946426392,
+          "x": -4.46140718460083,
           "y": 0.550000011920929,
           "z": -10
         },
         "velocity": {
-          "x": 0.12243133783340454,
+          "x": 0.8403233289718628,
           "y": 0,
           "z": 0
         },
@@ -370,16 +395,16 @@
         "hitAt": -10
       }
     ],
-    "activePrinciple": "Ember",
+    "activePrinciple": "Tide",
     "aim": {
-      "x": -4.949920739878695,
-      "y": 0.5431490576040972,
-      "z": -4.89999907252216,
-      "body": true,
+      "x": 10.609420735255688,
+      "y": 7.259718159957629e-9,
+      "z": 5.083902471469923,
+      "body": false,
       "invalid": false
     },
-    "primaryReady": 1.503333333333334,
-    "secondaryReady": 2.6499999999999977,
+    "primaryReady": 0,
+    "secondaryReady": 5.549999999999988,
     "dodgeReady": 0,
     "dodgeUntil": 0,
     "invulnerableUntil": 0,
@@ -388,143 +413,31 @@
       "y": 0,
       "z": 0
     },
-    "castUntil": 2.119999999999998,
-    "fields": [],
-    "bolts": [],
-    "pending": [],
-    "events": [
+    "castUntil": 5.019999999999988,
+    "fields": [
       {
-        "id": 1,
-        "time": 0.18333333333333332,
-        "type": "cast",
+        "id": "field-7",
         "source": "mage-1",
+        "principle": "Tide",
         "pos": {
-          "x": -4.000000476837158,
-          "y": 0.7192941308021545,
-          "z": -6.503761795784158e-8
+          "x": 12.69999977769038,
+          "y": -1.6689300519345807e-7,
+          "z": 1.7643890437568643e-7
         },
-        "duration": 0.2,
-        "principle": "Ember"
-      },
-      {
-        "id": 3,
-        "time": 0.36666666666666664,
-        "type": "impact",
-        "source": "mage-1",
-        "pos": {
-          "x": -5,
-          "y": 0.8500000238418579,
-          "z": -5.5
+        "end": {
+          "x": 14.621323671979754,
+          "y": -1.6689300519345807e-7,
+          "z": 0.5554409862762024
         },
-        "duration": 0.45,
-        "principle": "Ember"
-      },
-      {
-        "id": 4,
-        "time": 0.5166666666666666,
-        "type": "cast",
-        "source": "mage-1",
-        "pos": {
-          "x": -3.999999761581421,
-          "y": 0.7193940877914429,
-          "z": 0.0000017059727497326094
-        },
-        "duration": 0.2,
-        "principle": "Ember"
-      },
-      {
-        "id": 6,
-        "time": 0.7000000000000005,
-        "type": "impact",
-        "source": "mage-1",
-        "pos": {
-          "x": -5,
-          "y": 0.8500000238418579,
-          "z": -5.5
-        },
-        "duration": 0.45,
-        "principle": "Ember"
-      },
-      {
-        "id": 7,
-        "time": 0.850000000000001,
-        "type": "cast",
-        "source": "mage-1",
-        "pos": {
-          "x": -4.000002384185791,
-          "y": 0.718682050704956,
-          "z": 0.000001741893356665969
-        },
-        "duration": 0.2,
-        "principle": "Ember"
-      },
-      {
-        "id": 9,
-        "time": 1.0333333333333345,
-        "type": "impact",
-        "source": "mage-1",
-        "pos": {
-          "x": -5,
-          "y": 0.8500000238418579,
-          "z": -5.5
-        },
-        "duration": 0.45,
-        "principle": "Ember"
-      },
-      {
-        "id": 10,
-        "time": 1.183333333333334,
-        "type": "cast",
-        "source": "mage-1",
-        "pos": {
-          "x": -4.000006198883057,
-          "y": 0.7187820672988892,
-          "z": 0.0000011567556157388026
-        },
-        "duration": 0.2,
-        "principle": "Ember"
-      },
-      {
-        "id": 12,
-        "time": 1.3666666666666667,
-        "type": "impact",
-        "source": "mage-1",
-        "pos": {
-          "x": -5,
-          "y": 0.8500000238418579,
-          "z": -5.5
-        },
-        "duration": 0.45,
-        "principle": "Ember"
-      },
-      {
-        "id": 13,
-        "time": 1.9999999999999978,
-        "type": "cast",
-        "source": "mage-1",
-        "pos": {
-          "x": -4.000010967254639,
-          "y": 0.7187820076942444,
-          "z": 0.0000029212405934231356
-        },
-        "duration": 0.2,
-        "principle": "Ember"
-      },
-      {
-        "id": 14,
-        "time": 1.9999999999999978,
-        "type": "inverse",
-        "source": "mage-1",
-        "pos": {
-          "x": -4.949920739878695,
-          "y": 1.1920928910669204e-8,
-          "z": -4.89999907252216
-        },
-        "duration": 0.55,
-        "principle": "Ember"
+        "radius": 2.5,
+        "life": 8.6666666666665,
+        "nextPulse": 0.13333333333333336
       }
     ],
-    "serial": 14,
+    "bolts": [],
+    "pending": [],
+    "events": [],
+    "serial": 8,
     "sentinel": {
       "enabled": false,
       "phase": "idle",
@@ -539,60 +452,84 @@
     "mechanism": false,
     "metrics": {
       "casts": {
-        "Ember:primary": 4,
-        "Ember:secondary": 1
+        "Stone:secondary": 1,
+        "Tide:secondary": 1
       },
       "inputs": {
-        "principle1:keyboard": 1,
-        "primary:mouse": 4,
-        "secondary:keyboard": 1,
-        "secondary:keyboard-fallback": 1
+        "principle4:keyboard": 1,
+        "secondary:keyboard": 3,
+        "secondary:keyboard-fallback": 2,
+        "right:keyboard": 1,
+        "principle2:keyboard": 1
       },
-      "switches": 0,
+      "switches": 2,
       "dodges": 0,
-      "stateApplications": 6,
+      "stateApplications": 0,
       "transformations": {},
       "damage": {
-        "mage-1:heat bolt": 36,
-        "mage-1:burning": 6.499999999999994
+        "world:fall": 10
       },
-      "playerDamage": 0,
+      "playerDamage": 10,
       "blockedBolts": 0,
       "sentinelDefeatTime": null,
       "combatStartedAt": null,
-      "falls": 0
+      "falls": 1
+    }
+  },
+  "targeting": {
+    "primary": {
+      "pos": {
+        "x": 10.609420735255688,
+        "y": 0.7500000072597182,
+        "z": 5.083902471469923
+      },
+      "valid": true,
+      "clamped": false,
+      "reason": "",
+      "ground": false
+    },
+    "secondary": {
+      "pos": {
+        "x": 10.609420735255688,
+        "y": 1.1920928910669204e-8,
+        "z": 5.083902471469923
+      },
+      "valid": true,
+      "clamped": false,
+      "reason": "",
+      "ground": true
     }
   },
   "metrics": {
     "casts": {
-      "Ember:primary": 4,
-      "Ember:secondary": 1
+      "Stone:secondary": 1,
+      "Tide:secondary": 1
     },
     "inputs": {
-      "principle1:keyboard": 1,
-      "primary:mouse": 4,
-      "secondary:keyboard": 1,
-      "secondary:keyboard-fallback": 1
+      "principle4:keyboard": 1,
+      "secondary:keyboard": 3,
+      "secondary:keyboard-fallback": 2,
+      "right:keyboard": 1,
+      "principle2:keyboard": 1
     },
-    "switches": 0,
+    "switches": 2,
     "dodges": 0,
-    "stateApplications": 6,
+    "stateApplications": 0,
     "transformations": {},
     "damage": {
-      "mage-1:heat bolt": 36,
-      "mage-1:burning": 6.499999999999994
+      "world:fall": 10
     },
-    "playerDamage": 0,
+    "playerDamage": 10,
     "blockedBolts": 0,
     "sentinelDefeatTime": null,
     "combatStartedAt": null,
-    "falls": 0,
+    "falls": 1,
     "render": {
-      "frameMs": 114.74797297297297,
-      "p95FrameMs": 283.39999999999964,
+      "frameMs": 106.11007194244603,
+      "p95FrameMs": 266.6,
       "drawCalls": 79,
-      "triangles": 2052,
-      "activeVfx": 2,
+      "triangles": 1956,
+      "activeVfx": 0,
       "geometries": 16,
       "textures": 9,
       "contextLost": false
@@ -600,8 +537,8 @@
     "audio": {
       "muted": false,
       "context": "running",
-      "played": 19
+      "played": 6
     },
-    "activeManifestations": 0
+    "activeManifestations": 1
   }
 }

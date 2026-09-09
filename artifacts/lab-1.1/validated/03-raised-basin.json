@@ -1,7 +1,35 @@
 {
+  "build": "Magic Lab 1.1 / runtime de7563e",
+  "url": "http://127.0.0.1:5173/?scene=states&model=primary-secondary&camera=balanced&tempo=balanced&seed=123",
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "dpr": 1
+  },
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "config": {
+    "model": "primary-secondary",
+    "camera": "balanced",
+    "tempo": "balanced",
+    "scene": "states",
+    "seed": 123,
+    "moveSpeed": 5.6,
+    "dodgeDistance": 3.5,
+    "dodgeDuration": 0.22,
+    "dodgeRecovery": 0.8,
+    "castRecovery": 1,
+    "telegraph": 1.05,
+    "cameraDistance": 24,
+    "cameraPitch": 51,
+    "secondaryCapacity": 1,
+    "inputBuffer": 0.12,
+    "invulnerability": 0.17,
+    "castMoveMultiplier": 0.78
+  },
   "state": {
-    "time": 2.083333333333331,
-    "tick": 125,
+    "time": 10.433333333333431,
+    "tick": 626,
     "seed": 123,
     "entities": [
       {
@@ -9,14 +37,14 @@
         "kind": "player",
         "label": "You",
         "pos": {
-          "x": -4.000011444091797,
-          "y": 0.7187820672988892,
-          "z": 0.0000026609427550283726
+          "x": -7.5,
+          "y": 1.9200999736785889,
+          "z": -9
         },
         "velocity": {
           "x": 0,
-          "y": 0.005715233739465475,
-          "z": -0.000017528145690448582
+          "y": 0,
+          "z": 0
         },
         "rotation": {
           "x": 0,
@@ -49,9 +77,9 @@
         "kind": "dummy",
         "label": "Practice dummy",
         "pos": {
-          "x": 0,
+          "x": -5,
           "y": 0.6499999761581421,
-          "z": -4.5
+          "z": -9
         },
         "velocity": {
           "x": 0,
@@ -67,7 +95,7 @@
         "radius": 0.6,
         "height": 1.2,
         "mass": 5,
-        "hp": 1000,
+        "hp": 988,
         "maxHp": 1000,
         "material": {
           "wettable": true,
@@ -76,13 +104,17 @@
           "anchored": true
         },
         "heat": 0,
-        "wet": 0,
+        "wet": 0.9058333333333437,
         "cohesion": 0,
         "burning": false,
         "stagger": 0,
         "staggerReady": 0,
-        "sources": {},
-        "hitAt": -10
+        "sources": {
+          "wet": "mage-1",
+          "force": "mage-1",
+          "damage": "mage-1"
+        },
+        "hitAt": 6.683333333333315
       },
       {
         "id": "sentinel",
@@ -147,7 +179,7 @@
         "radius": 0.6,
         "height": 1.6,
         "mass": 5,
-        "hp": 47.49999999999996,
+        "hp": 41.06499999999996,
         "maxHp": 90,
         "material": {
           "wettable": true,
@@ -155,17 +187,19 @@
           "structural": false,
           "anchored": true
         },
-        "heat": 29.6,
-        "wet": 0,
+        "heat": 0,
+        "wet": 0.5258333333333525,
         "cohesion": 0,
         "burning": false,
         "stagger": 0,
-        "staggerReady": 0,
+        "staggerReady": 2.250000000000001,
         "sources": {
-          "heat": "mage-1",
-          "damage": "mage-1"
+          "wet": "mage-1",
+          "force": "mage-1",
+          "damage": "mage-1",
+          "heat": "mage-1"
         },
-        "hitAt": 1.3666666666666667
+        "hitAt": 3.483333333333326
       },
       {
         "id": "column",
@@ -190,7 +224,7 @@
         "radius": 0.65,
         "height": 2,
         "mass": 5,
-        "hp": 100,
+        "hp": 94,
         "maxHp": 100,
         "material": {
           "wettable": true,
@@ -199,15 +233,17 @@
           "anchored": true
         },
         "heat": 0,
-        "wet": 0,
+        "wet": 0.6058333333333437,
         "cohesion": 0.35,
         "burning": false,
         "stagger": 0,
         "staggerReady": 0,
         "sources": {
-          "heat": "mage-1"
+          "wet": "mage-1",
+          "force": "mage-1",
+          "damage": "mage-1"
         },
-        "hitAt": -10
+        "hitAt": 6.683333333333315
       },
       {
         "id": "ballast",
@@ -334,12 +370,12 @@
         "kind": "moving",
         "label": "Moving target",
         "pos": {
-          "x": -1.0087600946426392,
+          "x": -1.8355196714401245,
           "y": 0.550000011920929,
           "z": -10
         },
         "velocity": {
-          "x": 0.12243133783340454,
+          "x": 1.010479211807251,
           "y": 0,
           "z": 0
         },
@@ -370,16 +406,16 @@
         "hitAt": -10
       }
     ],
-    "activePrinciple": "Ember",
+    "activePrinciple": "Tide",
     "aim": {
-      "x": -4.949920739878695,
-      "y": 0.5431490576040972,
-      "z": -4.89999907252216,
-      "body": true,
+      "x": -9.999999966228273,
+      "y": 1.199999471549475,
+      "z": -11.000000667530102,
+      "body": false,
       "invalid": false
     },
-    "primaryReady": 1.503333333333334,
-    "secondaryReady": 2.6499999999999977,
+    "primaryReady": 7.103333333333315,
+    "secondaryReady": 9.383333333333347,
     "dodgeReady": 0,
     "dodgeUntil": 0,
     "invulnerableUntil": 0,
@@ -388,143 +424,58 @@
       "y": 0,
       "z": 0
     },
-    "castUntil": 2.119999999999998,
-    "fields": [],
+    "castUntil": 8.853333333333346,
+    "fields": [
+      {
+        "id": "field-22",
+        "source": "mage-1",
+        "principle": "Tide",
+        "pos": {
+          "x": -9.999999966228273,
+          "y": 1.2000000000000002,
+          "z": -11.000000667530102
+        },
+        "end": {
+          "x": -11.561737373465375,
+          "y": 1.2000000000000002,
+          "z": -12.249391027200105
+        },
+        "radius": 2.5,
+        "life": 10.283333333333248,
+        "nextPulse": 0.15000000000000002
+      }
+    ],
     "bolts": [],
     "pending": [],
     "events": [
       {
-        "id": 1,
-        "time": 0.18333333333333332,
+        "id": 21,
+        "time": 8.733333333333347,
         "type": "cast",
         "source": "mage-1",
         "pos": {
-          "x": -4.000000476837158,
-          "y": 0.7192941308021545,
-          "z": -6.503761795784158e-8
+          "x": -7.5,
+          "y": 1.9200999736785889,
+          "z": -9
         },
         "duration": 0.2,
-        "principle": "Ember"
+        "principle": "Tide"
       },
       {
-        "id": 3,
-        "time": 0.36666666666666664,
-        "type": "impact",
+        "id": 23,
+        "time": 8.733333333333347,
+        "type": "manifestation",
         "source": "mage-1",
         "pos": {
-          "x": -5,
-          "y": 0.8500000238418579,
-          "z": -5.5
+          "x": -9.999999966228273,
+          "y": 1.2000000000000002,
+          "z": -11.000000667530102
         },
-        "duration": 0.45,
-        "principle": "Ember"
-      },
-      {
-        "id": 4,
-        "time": 0.5166666666666666,
-        "type": "cast",
-        "source": "mage-1",
-        "pos": {
-          "x": -3.999999761581421,
-          "y": 0.7193940877914429,
-          "z": 0.0000017059727497326094
-        },
-        "duration": 0.2,
-        "principle": "Ember"
-      },
-      {
-        "id": 6,
-        "time": 0.7000000000000005,
-        "type": "impact",
-        "source": "mage-1",
-        "pos": {
-          "x": -5,
-          "y": 0.8500000238418579,
-          "z": -5.5
-        },
-        "duration": 0.45,
-        "principle": "Ember"
-      },
-      {
-        "id": 7,
-        "time": 0.850000000000001,
-        "type": "cast",
-        "source": "mage-1",
-        "pos": {
-          "x": -4.000002384185791,
-          "y": 0.718682050704956,
-          "z": 0.000001741893356665969
-        },
-        "duration": 0.2,
-        "principle": "Ember"
-      },
-      {
-        "id": 9,
-        "time": 1.0333333333333345,
-        "type": "impact",
-        "source": "mage-1",
-        "pos": {
-          "x": -5,
-          "y": 0.8500000238418579,
-          "z": -5.5
-        },
-        "duration": 0.45,
-        "principle": "Ember"
-      },
-      {
-        "id": 10,
-        "time": 1.183333333333334,
-        "type": "cast",
-        "source": "mage-1",
-        "pos": {
-          "x": -4.000006198883057,
-          "y": 0.7187820672988892,
-          "z": 0.0000011567556157388026
-        },
-        "duration": 0.2,
-        "principle": "Ember"
-      },
-      {
-        "id": 12,
-        "time": 1.3666666666666667,
-        "type": "impact",
-        "source": "mage-1",
-        "pos": {
-          "x": -5,
-          "y": 0.8500000238418579,
-          "z": -5.5
-        },
-        "duration": 0.45,
-        "principle": "Ember"
-      },
-      {
-        "id": 13,
-        "time": 1.9999999999999978,
-        "type": "cast",
-        "source": "mage-1",
-        "pos": {
-          "x": -4.000010967254639,
-          "y": 0.7187820076942444,
-          "z": 0.0000029212405934231356
-        },
-        "duration": 0.2,
-        "principle": "Ember"
-      },
-      {
-        "id": 14,
-        "time": 1.9999999999999978,
-        "type": "inverse",
-        "source": "mage-1",
-        "pos": {
-          "x": -4.949920739878695,
-          "y": 1.1920928910669204e-8,
-          "z": -4.89999907252216
-        },
-        "duration": 0.55,
-        "principle": "Ember"
+        "duration": 0.6,
+        "principle": "Tide"
       }
     ],
-    "serial": 14,
+    "serial": 23,
     "sentinel": {
       "enabled": false,
       "phase": "idle",
@@ -539,22 +490,26 @@
     "mechanism": false,
     "metrics": {
       "casts": {
-        "Ember:primary": 4,
-        "Ember:secondary": 1
+        "Tide:primary": 4,
+        "Ember:primary": 2,
+        "Tide:secondary": 1
       },
       "inputs": {
+        "principle2:keyboard": 2,
+        "primary:mouse": 6,
         "principle1:keyboard": 1,
-        "primary:mouse": 4,
-        "secondary:keyboard": 1,
-        "secondary:keyboard-fallback": 1
+        "secondary:mouse": 1
       },
-      "switches": 0,
+      "switches": 3,
       "dodges": 0,
-      "stateApplications": 6,
-      "transformations": {},
+      "stateApplications": 7,
+      "transformations": {
+        "vaporize": 2
+      },
       "damage": {
-        "mage-1:heat bolt": 36,
-        "mage-1:burning": 6.499999999999994
+        "mage-1:jet": 30,
+        "mage-1:steam": 18.93500000000004,
+        "mage-1:heat bolt": 18
       },
       "playerDamage": 0,
       "blockedBolts": 0,
@@ -563,24 +518,52 @@
       "falls": 0
     }
   },
+  "targeting": {
+    "primary": {
+      "pos": {
+        "x": -9.999999966228273,
+        "y": 1.949999471549475,
+        "z": -11.000000667530102
+      },
+      "valid": true,
+      "clamped": false,
+      "reason": "",
+      "ground": false
+    },
+    "secondary": {
+      "pos": {
+        "x": -9.999999966228273,
+        "y": 1.2000000000000002,
+        "z": -11.000000667530102
+      },
+      "valid": true,
+      "clamped": false,
+      "reason": "",
+      "ground": true
+    }
+  },
   "metrics": {
     "casts": {
-      "Ember:primary": 4,
-      "Ember:secondary": 1
+      "Tide:primary": 4,
+      "Ember:primary": 2,
+      "Tide:secondary": 1
     },
     "inputs": {
+      "principle2:keyboard": 2,
+      "primary:mouse": 6,
       "principle1:keyboard": 1,
-      "primary:mouse": 4,
-      "secondary:keyboard": 1,
-      "secondary:keyboard-fallback": 1
+      "secondary:mouse": 1
     },
-    "switches": 0,
+    "switches": 3,
     "dodges": 0,
-    "stateApplications": 6,
-    "transformations": {},
+    "stateApplications": 7,
+    "transformations": {
+      "vaporize": 2
+    },
     "damage": {
-      "mage-1:heat bolt": 36,
-      "mage-1:burning": 6.499999999999994
+      "mage-1:jet": 30,
+      "mage-1:steam": 18.93500000000004,
+      "mage-1:heat bolt": 18
     },
     "playerDamage": 0,
     "blockedBolts": 0,
@@ -588,11 +571,11 @@
     "combatStartedAt": null,
     "falls": 0,
     "render": {
-      "frameMs": 114.74797297297297,
-      "p95FrameMs": 283.39999999999964,
-      "drawCalls": 79,
-      "triangles": 2052,
-      "activeVfx": 2,
+      "frameMs": 108.47341040462426,
+      "p95FrameMs": 300,
+      "drawCalls": 84,
+      "triangles": 2530,
+      "activeVfx": 0,
       "geometries": 16,
       "textures": 9,
       "contextLost": false
@@ -600,8 +583,8 @@
     "audio": {
       "muted": false,
       "context": "running",
-      "played": 19
+      "played": 16
     },
-    "activeManifestations": 0
+    "activeManifestations": 1
   }
 }

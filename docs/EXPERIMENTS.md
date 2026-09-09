@@ -1,10 +1,21 @@
 # Experiments / current recommendation
 
-**Start with A · Primary/Secondary, balanced camera (51°), balanced tempo, capacity 1.** Keep direct 1–4 selection; use Tab/Q as an alternate route. Default Secondary remains RMB with F as its discoverable fallback, and K as an additional right-hand option. Optional wheel cycling is available but off by default. Both mouse bindings stay enabled in the laptop profile.
+**Magic Lab 1.1: start with A · Primary/Secondary, balanced camera (51°), balanced tempo, capacity 1 and 120 ms Secondary buffering.** Keep direct 1–4 selection; use Tab/Q as an alternate route. Default Secondary remains RMB with F as its discoverable fallback, and K as an additional right-hand option. Optional wheel cycling is available but off by default. Both mouse bindings stay enabled in the laptop profile.
 
 These are provisional design recommendations from implemented mechanics, automated real-input journeys and screenshot inspection. They are not a claim that an agent can establish subjective human fun or finger comfort.
 
-## What was compared
+## Bounded 1.1 findings
+
+No catalogue, damage, movement, dodge or preset rebalance. Baseline at c612606 passed 9 unit tests, 5 browser journeys and build before changes. The recoverable branch is `codex/magic-lab-1.1-baseline`; original evidence remains in `artifacts/lab-1.1/baseline/`.
+
+- Fixed: partial cursor surfaces; stale-height range clamp; missing footprint; Gale's rear/occluded projectile deflection; Tide/persistent-field vertical leakage; near-recovery Secondary losses. The explicit rules are in MAGIC.
+- Visual review caught an upper jet visibly clearing a ledge while a target-center obstruction check rejected its hit. The actual jet height now governs both. A separate low-shot regression still confirms ledge blocking.
+- Added quiet local sound/mute, state-onset cues, distinct heated/burning response and invalid/queued/replacement feedback. Thin previews remain visible over cover; slab geometry stays visible until physical expiry.
+- Already correct and retained: residual states survive replacement; keyboard Secondary is discrete; Primary holds repeat; mouse/keyboard alternatives coexist; capacity remains one. Removing support over the gap still causes a fall. This is a playtest concern, not a hidden capacity redesign.
+- 120 ms accepts presses near recovery completion; zero rejects them. Both mouse and keyboard were exercised. This proves execution consistency, not an optimal human buffer duration.
+- All eight benchmark times and health outcomes are unchanged, including Basin + Ember at 2.68 s. No universal verdict between A and B: they contain different abilities as well as different semantics.
+
+## What was compared in 1.0
 
 | Experiment                      | Observed evidence                                                                                                                                                                                                                  | Judgment / next human question                                                                                                                                                                                     |
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -50,7 +61,19 @@ Switching and Secondary can outperform the best naked Primary; there are no elem
 - Stone cover uses physical collision queries, stops low shots from both sides and has a low surrounding step. The traversal spawn was moved clear of the ballast after a real crossing test exposed overlap/pinning. A unit regression now checks the whole route.
 - Station labels enlarged after screenshot inspection; telegraph geometry is reused rather than rebuilt each frame. Frame metrics report uncapped wall time, while only simulation catch-up is capped.
 
-## Useful human playtest, about five minutes
+## Three-minute 1.1 handoff
+
+Open `http://127.0.0.1:5173/?scene=states` (A/balanced/120 ms defaults, pressure initially off, panel collapsed).
+
+1. Strafe and dodge while aiming at timber on the left. **2 + Primary** wets it; **1 + held Primary** produces steam. Try its body and feet. Switching retains normal Primary recovery.
+2. Walk to the circular ballast plate on the right; **E** toggles sentinel pressure. Move, dodge a red telegraph, then press **F** near dodge completion. Compare the footprint with the result.
+3. **3 + Primary** pushes loose stones/ballast. **4 + Secondary** creates cover; shoot from behind and above it. Over the gap, replacing/losing the slab removes your support. Reset freely.
+
+Experiments retains model/camera/tempo choices; Selected tunables contains the buffer slider, including zero. No configuration is required before playing.
+
+Human questions: Does 120 ms feel forgiving without unwanted late casts? Can the cursor/footprint and state/danger cues be read during movement? Is the warning sufficient before replacing or losing the slab underfoot? Trackpad comfort, palm rejection and keyboard rollover remain unvalidated.
+
+## Earlier exploratory sequence (optional)
 
 1. In **states**, wet timber with Tide, then heat it. Quench burning material. Compare B cooling after outgoing bolts finish.
 2. Try B fracture on the column or ballast, then Gale. Try Stone binding before pushing and observe the opposite effect.
