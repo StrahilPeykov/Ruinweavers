@@ -8,6 +8,7 @@ import { Physics } from "../physics/world";
 import { createState, PAD, WATER } from "./lab";
 import {
   vec,
+  type AimPoint,
   type Entity,
   type FrameInput,
   type MagicEvent,
@@ -85,7 +86,10 @@ export class Simulation {
     if (n >= 1) e.hitAt = this.state.time;
     e.sources.damage = source;
     inc(this.state.metrics.damage, `${source}:${reason}`, actual);
-    if (e.kind === "player") this.state.metrics.playerDamage += actual;
+    if (e.kind === "player") {
+      this.state.metrics.playerDamage += actual;
+      if (e.hp <= 0) this.cancelBufferedCast();
+    }
     if (e.hp <= 0) {
       this.event("shatter", source, e.pos, { target: e.id, duration: 0.8 });
       if (e.kind === "sentinel") {
@@ -100,7 +104,8 @@ export class Simulation {
     if (e.hp <= 0) return;
     const s = this.state;
     const oldHeat = e.heat,
-      oldWet = e.wet;
+      oldWet = e.wet,
+      oldCohesion = e.cohesion;
     if (op.water && e.material.wettable) {
       e.wet = Math.max(0, Math.min(1, e.wet + op.water));
       e.sources.wet = source;
@@ -154,6 +159,21 @@ export class Simulation {
     }
     if (op.damage) this.damage(e, op.damage, source, reason);
     e.burning = e.material.flammable && e.heat > 65 && e.wet < 0.15;
+    if (oldWet <= 0.1 && e.wet > 0.1)
+      this.event("wet", source, e.pos, {
+        principle: "Tide",
+        target: e.id,
+        duration: 0.4,
+      });
+    if (
+      (oldCohesion < 0.25 && e.cohesion >= 0.25) ||
+      (oldCohesion > -0.25 && e.cohesion <= -0.25)
+    )
+      this.event("structure", source, e.pos, {
+        principle: "Stone",
+        target: e.id,
+        duration: 0.5,
+      });
     s.metrics.stateApplications++;
   }
   nearby(pos: Vec, r: number, source = "mage-1") {
@@ -165,30 +185,156 @@ export class Simulation {
         Math.abs(e.pos.y - pos.y) < 3,
     );
   }
+  targeting(
+    action: "primary" | "secondary",
+    principle = this.state.activePrinciple,
+    aim = this.state.aim,
+  ) {
+    const p = this.player.pos,
+      range = CAST[principle].range;
+    const d = distance(p, aim),
+      ratio = Math.min(1, range / (d || 1));
+    const ground = action === "secondary" || principle === "Stone";
+    const point = vec(
+      p.x + (aim.x - p.x) * ratio,
+      aim.y,
+      p.z + (aim.z - p.z) * ratio,
+    );
+    if (!ground) {
+      point.y = p.y + (aim.y + (aim.body ? 0 : 0.75) - p.y) * ratio;
+      return {
+        pos: point,
+        valid: !aim.invalid,
+        clamped: d > range,
+        reason: aim.invalid ? "Aim at the room" : "",
+        ground,
+      };
+    }
+    const replaced =
+      action === "secondary" && this.config.model === "primary-secondary"
+        ? this.state.fields
+            .filter((f) => f.source === this.player.id)
+            .slice(
+              0,
+              Math.max(
+                0,
+                this.state.fields.length - this.config.secondaryCapacity + 1,
+              ),
+            )
+            .map((f) => f.id)
+        : [];
+    const surface = this.physics.surfaceAt(
+      { ...point, y: Math.max(aim.y, p.y) + 0.1 },
+      replaced,
+    );
+    const bridge =
+      principle === "Stone" &&
+      action === "secondary" &&
+      this.config.model === "primary-secondary" &&
+      point.x >= 8 &&
+      point.x <= 11 &&
+      Math.abs(point.z) < 4;
+    point.y = surface?.y ?? 0;
+    const valid = !aim.invalid && (!!surface || bridge);
+    return {
+      pos: point,
+      valid,
+      clamped: d > range,
+      reason: valid
+        ? d > range
+          ? "Range limit"
+          : ""
+        : "No supporting surface",
+      ground,
+    };
+  }
   targetPoint(range: number) {
     const p = this.player.pos,
-      a = this.state.aim;
-    const d = distance(p, a);
-    return vec(
-      p.x + (a.x - p.x) * Math.min(1, range / (d || 1)),
+      a = this.state.aim,
+      ratio = Math.min(1, range / (distance(p, a) || 1));
+    const point = vec(
+      p.x + (a.x - p.x) * ratio,
       a.y,
-      p.z + (a.z - p.z) * Math.min(1, range / (d || 1)),
+      p.z + (a.z - p.z) * ratio,
+    );
+    return (
+      this.physics.surfaceAt({ ...point, y: Math.max(p.y, a.y) + 0.1 }) ?? point
     );
   }
-  cast(action: "primary" | "secondary", device = "unknown") {
+  inGust(point: Vec, dir: Vec, radius = 0) {
+    const p = this.player.pos,
+      d = normalize(vec(point.x - p.x, 0, point.z - p.z));
+    return (
+      distance(point, p) < 6 + radius &&
+      Math.abs(point.y - p.y) < 3 &&
+      d.x * dir.x + d.z * dir.z > 0.72 &&
+      !this.physics.terrainHit(p, point)
+    );
+  }
+  contact(e: Entity, base: Vec, height = 0.65) {
+    return (
+      e.pos.y - e.height / 2 <= base.y + height &&
+      e.pos.y - e.height / 2 >= base.y - 0.2
+    );
+  }
+  fieldReaches(pos: Vec, target: Vec, height = 0.65) {
+    if (target.y < pos.y - 0.1 || target.y > pos.y + height) return false;
+    return !this.physics.terrainHit(vec(pos.x, pos.y + 0.15, pos.z), target);
+  }
+  cancelBufferedCast() {
+    this.state.bufferedCast = undefined;
+  }
+  reject(reason: string, pos = this.state.aim) {
+    const last = this.state.events.filter((e) => e.type === "rejected").at(-1);
+    if (!last || this.state.time - last.time > 0.2)
+      this.event("rejected", this.player.id, pos, {
+        target: reason,
+        duration: 0.4,
+      });
+  }
+  secondaryPress(device = "unknown") {
     const s = this.state,
-      p = this.player,
-      principle = s.activePrinciple;
+      remaining = Math.max(s.secondaryReady, s.dodgeUntil) - s.time;
+    this.cancelBufferedCast();
+    if (this.player.hp <= 0) return;
+    if (remaining > 0 && remaining <= this.config.inputBuffer + 1e-6) {
+      s.bufferedCast = {
+        principle: s.activePrinciple,
+        aim: { ...s.aim },
+        device,
+        expires: s.time + this.config.inputBuffer,
+      };
+      this.event("buffered", this.player.id, s.aim, {
+        principle: s.activePrinciple,
+        duration: 0.16,
+      });
+    } else if (remaining > 0) this.reject("Recovering");
+    else this.cast("secondary", device);
+  }
+  cast(
+    action: "primary" | "secondary",
+    device = "unknown",
+    principle = this.state.activePrinciple,
+    aim: AimPoint = this.state.aim,
+  ) {
+    const s = this.state,
+      p = this.player;
     if (p.hp <= 0 || s.time < s.dodgeUntil) return;
     if (s.time < (action === "primary" ? s.primaryReady : s.secondaryReady))
       return;
-    const pos = this.targetPoint(CAST[principle].range),
-      dir = normalize(vec(pos.x - p.pos.x, 0, pos.z - p.pos.z));
+    const target = this.targeting(action, principle, aim),
+      pos = target.pos;
+    if (!target.valid) {
+      this.reject(target.reason, pos);
+      return;
+    }
+    const dir = normalize(vec(pos.x - p.pos.x, 0, pos.z - p.pos.z));
     if (action === "primary")
       s.primaryReady =
         s.time + CAST[principle].cadence * this.config.castRecovery;
     else s.secondaryReady = s.time + 0.65 * this.config.castRecovery;
     s.castUntil = s.time + 0.12;
+    const applicationsBefore = s.metrics.stateApplications;
     inc(s.metrics.casts, `${principle}:${action}`);
     inc(s.metrics.inputs, `${action}:${device}`);
     this.event("cast", p.id, p.pos, { principle, duration: 0.2 });
@@ -243,6 +389,7 @@ export class Simulation {
         life: 12,
         nextPulse: 0,
       });
+      this.event("manifestation", p.id, pos, { principle, duration: 0.6 });
       this.physics.syncFields(s.fields);
       if (
         principle === "Stone" &&
@@ -263,7 +410,7 @@ export class Simulation {
         pos: vec(p.pos.x + dir.x * 0.6, p.pos.y, p.pos.z + dir.z * 0.6),
         velocity: vec(
           dir.x * 21,
-          ((pos.y + 0.75 - p.pos.y) / Math.max(1, distance(pos, p.pos))) * 21,
+          ((pos.y - p.pos.y) / Math.max(1, distance(pos, p.pos))) * 21,
           dir.z * 21,
         ),
         life: 0.56,
@@ -273,8 +420,18 @@ export class Simulation {
       const jetEnd =
         this.physics.terrainHit(
           p.pos,
-          vec(p.pos.x + dir.x * 8, p.pos.y, p.pos.z + dir.z * 8),
-        ) || vec(p.pos.x + dir.x * 8, p.pos.y, p.pos.z + dir.z * 8);
+          vec(
+            p.pos.x + dir.x * 8,
+            p.pos.y +
+              ((pos.y - p.pos.y) * 8) / Math.max(1, distance(pos, p.pos)),
+            p.pos.z + dir.z * 8,
+          ),
+        ) ||
+        vec(
+          p.pos.x + dir.x * 8,
+          p.pos.y + ((pos.y - p.pos.y) * 8) / Math.max(1, distance(pos, p.pos)),
+          p.pos.z + dir.z * 8,
+        );
       this.event("jet", p.id, vec(p.pos.x, p.pos.y, p.pos.z), {
         principle,
         end: jetEnd,
@@ -284,7 +441,18 @@ export class Simulation {
         if (
           e.id !== p.id &&
           e.hp > 0 &&
-          segmentDistance(e.pos, p.pos, jetEnd) < e.radius + 0.4
+          segmentDistance(e.pos, p.pos, jetEnd) < e.radius + 0.4 &&
+          Math.abs(
+            e.pos.y -
+              (p.pos.y +
+                (jetEnd.y - p.pos.y) *
+                  Math.min(
+                    1,
+                    distance(p.pos, e.pos) / (distance(p.pos, jetEnd) || 1),
+                  )),
+          ) <
+            e.height / 2 + 0.4 &&
+          !this.physics.terrainHit(p.pos, e.pos)
         )
           this.apply(
             e,
@@ -300,10 +468,7 @@ export class Simulation {
       });
       for (const e of this.nearby(p.pos, 6)) {
         const d = normalize(vec(e.pos.x - p.pos.x, 0, e.pos.z - p.pos.z));
-        if (
-          d.x * dir.x + d.z * dir.z > 0.72 &&
-          !this.physics.terrainHit(p.pos, e.pos)
-        )
+        if (this.inGust(e.pos, dir, e.radius))
           this.apply(
             e,
             { force: vec(d.x * 42, 7, d.z * 42), damage: 5 },
@@ -312,7 +477,7 @@ export class Simulation {
           );
       }
       for (const b of s.bolts)
-        if (b.source !== p.id && distance(b.pos, p.pos) < 6) {
+        if (b.source !== p.id && this.inGust(b.pos, dir)) {
           b.velocity = vec(dir.x * 11, 0, dir.z * 11);
           b.source = p.id;
           inc(s.metrics.transformations, "deflect");
@@ -321,6 +486,11 @@ export class Simulation {
       this.event("eruption-warning", p.id, pos, { principle, duration: 0.22 });
       s.pending.push({ source: p.id, pos, at: s.time + 0.18, principle });
     }
+    if (
+      (principle === "Tide" || principle === "Gale") &&
+      applicationsBefore === s.metrics.stateApplications
+    )
+      this.event("empty", p.id, pos, { duration: 0.3 });
   }
   step(input: FrameInput) {
     const s = this.state,
@@ -353,7 +523,14 @@ export class Simulation {
       this.event("dodge", p.id, p.pos, { duration: 0.3 });
     }
     if (input.primary) this.cast("primary", input.primaryDevice);
-    if (input.secondary) this.cast("secondary", input.secondaryDevice);
+    if (input.secondary) this.secondaryPress(input.secondaryDevice);
+    const buffered = s.bufferedCast;
+    if (p.hp <= 0 || (buffered && s.time > buffered.expires + 1e-6))
+      this.cancelBufferedCast();
+    else if (buffered && s.time >= Math.max(s.secondaryReady, s.dodgeUntil)) {
+      this.cancelBufferedCast();
+      this.cast("secondary", buffered.device, buffered.principle, buffered.aim);
+    }
     if (input.interact && distance(p.pos, vec(PAD.x, 0, PAD.z)) < 3) {
       s.sentinel.enabled = !s.sentinel.enabled;
       this.event("interact", p.id, p.pos);
@@ -363,7 +540,18 @@ export class Simulation {
         principle: "Stone",
         duration: 0.5,
       });
-      for (const e of this.nearby(pending.pos, 1.25, pending.source)) {
+      for (const e of this.nearby(pending.pos, 1.25, pending.source).filter(
+        (e) =>
+          this.contact(e, pending.pos, 1.6) &&
+          !this.physics.terrainHit(
+            vec(pending.pos.x, pending.pos.y + 0.15, pending.pos.z),
+            vec(
+              e.pos.x,
+              Math.max(pending.pos.y + 0.15, e.pos.y - e.height / 2 + 0.1),
+              e.pos.z,
+            ),
+          ),
+      )) {
         this.apply(
           e,
           { cohesion: 0.6, damage: 20, force: vec(0, 8, 0) },
@@ -384,7 +572,19 @@ export class Simulation {
           f.principle === "Ember"
             ? segmentDistance(e.pos, f.pos, f.end) < 0.8 + e.radius
             : distance(e.pos, f.pos) < f.radius + e.radius;
-        if (!inside) continue;
+        const height =
+          f.principle === "Gale" ? 3 : f.principle === "Stone" ? 1.1 : 0.65;
+        if (!inside || !this.contact(e, f.pos, height)) continue;
+        const base =
+          f.principle === "Stone"
+            ? vec(f.pos.x, f.pos.y + 0.9, f.pos.z)
+            : f.pos;
+        const target = vec(
+          e.pos.x,
+          Math.max(base.y + 0.15, e.pos.y - e.height / 2 + 0.1),
+          e.pos.z,
+        );
+        if (!this.fieldReaches(base, target, height)) continue;
         if (f.principle === "Ember")
           this.apply(e, { heat: 18, damage: 2 }, f.source, "seam");
         if (f.principle === "Tide")
@@ -410,6 +610,12 @@ export class Simulation {
           this.apply(e, { cohesion: 0.1 }, f.source, "stabilize");
       }
     }
+    for (const f of s.fields.filter((f) => f.life <= 0))
+      this.event("dissolve", f.source, f.pos, {
+        principle: f.principle,
+        target: "Expired",
+        duration: 0.65,
+      });
     s.fields = s.fields.filter((f) => f.life > 0);
     this.physics.syncFields(s.fields);
     for (const b of s.bolts) {
@@ -417,7 +623,10 @@ export class Simulation {
       let slow = 1;
       if (
         s.fields.some(
-          (f) => f.principle === "Gale" && distance(f.pos, b.pos) < f.radius,
+          (f) =>
+            f.principle === "Gale" &&
+            distance(f.pos, b.pos) < f.radius &&
+            this.fieldReaches(f.pos, b.pos, 3),
         )
       )
         slow = 0.3;
@@ -456,7 +665,7 @@ export class Simulation {
     for (const e of s.entities.filter((e) => e.hp > 0)) {
       if (
         distance(e.pos, vec(WATER.x, 0, WATER.z)) < WATER.radius &&
-        e.pos.y < 2
+        this.contact(e, vec(WATER.x, 0, WATER.z), 0.25)
       ) {
         if (e.wet < 0.9) this.apply(e, { water: 0.08 }, "water", "saturation");
       }

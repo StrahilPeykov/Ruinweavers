@@ -1,7 +1,7 @@
 import * as T from "three";
 import { CAST, type Config, type Principle } from "../experiments/config";
 import { PAD, TERRAIN, WATER } from "../simulation/lab";
-import { distance } from "../simulation/simulation";
+import { distance, Simulation } from "../simulation/simulation";
 import { type Entity, type State, type Vec, vec } from "../simulation/types";
 export const COLORS: Record<Principle, number> = {
   Ember: 0xff9860,
@@ -23,6 +23,7 @@ export class View {
   effects = new Map<number, T.Group>();
   aim = new T.Group();
   danger = new T.Group();
+  placement = new T.Group();
   pad: T.Mesh;
   labels: { sprite: T.Sprite; pos: Vec }[] = [];
   raycaster = new T.Raycaster();
@@ -39,6 +40,7 @@ export class View {
   constructor(
     public canvas: HTMLCanvasElement,
     public config: Config,
+    public simulation: Simulation,
   ) {
     this.renderer = new T.WebGLRenderer({
       canvas,
@@ -101,7 +103,27 @@ export class View {
       ["BALLAST → PLATE", 5.7, 3.8],
     ] as [string, number, number][])
       this.label(label, vec(x, 0.08, z));
-    this.scene.add(this.aim, this.danger);
+    this.scene.add(this.aim, this.danger, this.placement);
+    const footprint = this.ring(2.5, 0xffffff, 0.55);
+    footprint.geometry = new T.RingGeometry(0.985, 1, 64);
+    footprint.material.depthTest = false;
+    footprint.renderOrder = 12;
+    this.placement.add(footprint);
+    for (const [w, d] of [
+      [6, 6],
+      [1.6, 4],
+    ]) {
+      const outline = new T.LineSegments(
+        new T.EdgesGeometry(new T.BoxGeometry(w, 0.02, d)),
+        new T.LineBasicMaterial({
+          color: 0xffffff,
+          transparent: true,
+          opacity: 0.45,
+          depthTest: false,
+        }),
+      );
+      this.placement.add(outline);
+    }
     this.aim.add(this.ring(0.42, 0xffffff));
     const dot = this.disc(0.07, 0xffffff);
     dot.position.y = 0.02;
@@ -110,6 +132,13 @@ export class View {
       this.line(vec(), vec(0, 0, 1), 0xff5c53, 0.2),
       this.ring(0.9, 0xff7864),
     );
+    this.danger.traverse((o) => {
+      if (o instanceof T.Mesh) {
+        o.material.depthTest = false;
+        o.material.depthWrite = false;
+        o.renderOrder = 20;
+      }
+    });
     canvas.addEventListener("webglcontextlost", (e) => {
       e.preventDefault();
       this.contextLost = true;
@@ -282,34 +311,16 @@ export class View {
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(w, h);
   }
-  aimFromPointer(x: number, y: number): Vec {
+  aimFromPointer(x: number, y: number) {
     this.raycaster.setFromCamera(
       new T.Vector2((x / innerWidth) * 2 - 1, (-y / innerHeight) * 2 + 1),
       this.camera,
     );
-    // Terrain surface intersections preserve elevated targeting; ignore entities to avoid cursor snapping.
-    let best: T.Vector3 | null = null;
-    for (const height of [0, 0.45, 1.2]) {
-      const hit = new T.Vector3();
-      if (
-        this.raycaster.ray.intersectPlane(
-          new T.Plane(new T.Vector3(0, 1, 0), -height),
-          hit,
-        )
-      ) {
-        if (
-          height === 0 ||
-          (height === 1.2 &&
-            hit.x > -13 &&
-            hit.x < -7 &&
-            hit.z < -7.5 &&
-            hit.z > -12.5)
-        ) {
-          if (!best || hit.y > best.y) best = hit;
-        }
-      }
-    }
-    return best ? vec(best.x, best.y, best.z) : vec();
+    return this.simulation.physics.pick(
+      this.raycaster.ray.origin,
+      this.raycaster.ray.direction,
+      this.simulation.player.id,
+    );
   }
   project(pos: Vec) {
     const v = new T.Vector3(pos.x, pos.y, pos.z).project(this.camera);
@@ -319,15 +330,20 @@ export class View {
     };
   }
   line(a: Vec, b: Vec, color: number, width = 0.09) {
-    const dx = b.x - a.x,
-      dz = b.z - a.z;
+    const v = new T.Vector3(b.x - a.x, b.y - a.y, b.z - a.z);
     const m = new T.Mesh(
       this.geometries.box,
-      new T.MeshBasicMaterial({ color, transparent: true, opacity: 0.8 }),
+      new T.MeshBasicMaterial({
+        color,
+        transparent: true,
+        opacity: 0.8,
+        depthWrite: false,
+      }),
     );
-    m.scale.set(width, 0.045, Math.hypot(dx, dz));
-    m.position.set((a.x + b.x) / 2, a.y + 0.04, (a.z + b.z) / 2);
-    m.rotation.y = Math.atan2(dx, dz);
+    m.scale.set(width, 0.045, v.length());
+    m.position.set((a.x + b.x) / 2, (a.y + b.y) / 2 + 0.04, (a.z + b.z) / 2);
+    if (v.lengthSq() > 0)
+      m.quaternion.setFromUnitVectors(new T.Vector3(0, 0, 1), v.normalize());
     return m;
   }
   destroy(group: T.Object3D) {
@@ -378,7 +394,12 @@ export class View {
         );
       g.getObjectByName("wet")!.visible = e.wet > 0.1;
       g.getObjectByName("heat")!.visible = e.heat > 30;
-      g.getObjectByName("heat")!.scale.setScalar(1 + Math.sin(t * 15) * 0.1);
+      const heat = g.getObjectByName("heat") as T.Mesh<
+        T.BufferGeometry,
+        T.MeshBasicMaterial
+      >;
+      heat.scale.setScalar(e.burning ? 1 + Math.sin(t * 15) * 0.1 : 0.65);
+      heat.material.opacity = e.burning ? 0.4 : 0.16;
       g.getObjectByName("crack")!.visible = e.cohesion < -0.25;
       g.getObjectByName("anchor")!.visible = e.cohesion > 0.25;
       const body = g.getObjectByName("body") as T.Mesh<
@@ -415,7 +436,7 @@ export class View {
           rim.position.y = 0.79;
           g.add(rim);
         } else if (f.principle === "Ember") {
-          const seam = this.box(0.55, 0.18, 4.6, color);
+          const seam = this.box(1.6, 0.12, 4, color);
           seam.rotation.y = Math.atan2(f.end.x - f.pos.x, f.end.z - f.pos.z);
           seam.position.set(
             (f.end.x - f.pos.x) / 2,
@@ -440,7 +461,11 @@ export class View {
       }
       g.position.set(f.pos.x, f.pos.y + 0.07, f.pos.z);
       if (f.principle === "Gale") g.rotation.y = t;
-      g.visible = f.life > 1 || Math.floor(t * 7) % 2 === 0;
+      // Solid cover never blinks out visually while it still has a collider.
+      const rim = g.children[g.children.length - 1] as T.Mesh;
+      if (rim.material && "opacity" in rim.material)
+        rim.material.opacity =
+          f.life < 2 ? 0.35 + 0.35 * Math.sin(t * 7) ** 2 : 0.7;
     }
     for (const [id, g] of this.fields)
       if (!s.fields.some((f) => f.id === id)) {
@@ -472,27 +497,39 @@ export class View {
       let g = this.effects.get(e.id);
       if (!g) {
         g = new T.Group();
-        const color = e.principle
-          ? COLORS[e.principle]
-          : e.type === "steam"
-            ? 0xdaeff0
-            : 0xf2ecda;
-        if (e.type === "jet" && e.end) {
+        const color =
+          e.type === "rejected"
+            ? 0xff6a66
+            : e.type === "buffered"
+              ? 0xecc879
+              : e.principle
+                ? COLORS[e.principle]
+                : e.type === "steam"
+                  ? 0xdaeff0
+                  : 0xf2ecda;
+        if (e.type === "rejected") {
+          g.add(
+            this.line(vec(-0.2, 0, -0.2), vec(0.2, 0, 0.2), color, 0.08),
+            this.line(vec(0.2, 0, -0.2), vec(-0.2, 0, 0.2), color, 0.08),
+          );
+        } else if (e.type === "empty") {
+          g.add(this.ring(0.2, 0x879597, 0.3));
+        } else if (e.type === "jet" && e.end) {
           g.add(
             this.line(
               vec(),
-              vec(e.end.x - e.pos.x, 0, e.end.z - e.pos.z),
+              vec(e.end.x - e.pos.x, e.end.y - e.pos.y, e.end.z - e.pos.z),
               color,
               0.32,
             ),
           );
         } else if (e.type === "fan" && e.end) {
           for (let i = -2; i <= 2; i++) {
-            const a = Math.atan2(e.end.x, e.end.z) + i * 0.16;
+            const a = Math.atan2(e.end.x, e.end.z) + i * (Math.acos(0.72) / 2);
             g.add(
               this.line(
                 vec(),
-                vec(Math.sin(a) * 5.5, 0, Math.cos(a) * 5.5),
+                vec(Math.sin(a) * 6, 0, Math.cos(a) * 6),
                 color,
                 0.07,
               ),
@@ -541,6 +578,13 @@ export class View {
               color,
             ),
           );
+        if (e.type === "rejected")
+          g.traverse((o) => {
+            if (o instanceof T.Mesh) {
+              o.material.depthTest = false;
+              o.renderOrder = 15;
+            }
+          });
         g.position.set(e.pos.x, Math.max(0.08, e.pos.y), e.pos.z);
         this.scene.add(g);
         this.effects.set(e.id, g);
@@ -549,7 +593,13 @@ export class View {
       if (e.type === "steam") {
         g.position.y = e.pos.y + age * 1.3;
         g.scale.setScalar(1 + age * 0.6);
-      } else if (["impact", "dodge", "shatter", "force"].includes(e.type))
+      } else if (e.type === "dissolve")
+        g.scale.setScalar(Math.max(0.1, 1 - age));
+      else if (
+        ["impact", "dodge", "shatter", "force", "wet", "structure"].includes(
+          e.type,
+        )
+      )
         g.scale.setScalar(1 + age * 2);
     }
     for (const [id, g] of this.effects)
@@ -557,19 +607,44 @@ export class View {
         this.destroy(g);
         this.effects.delete(id);
       }
-    const range = CAST[s.activePrinciple].range,
-      dist = distance(p.pos, s.aim),
-      ratio = Math.min(1, range / (dist || 1));
-    this.aim.position.set(
-      p.pos.x + (s.aim.x - p.pos.x) * ratio,
-      s.aim.y + 0.1,
-      p.pos.z + (s.aim.z - p.pos.z) * ratio,
-    );
+    const primary = this.simulation.targeting("primary"),
+      target = this.simulation.targeting("secondary");
+    this.aim.position.set(s.aim.x, s.aim.y + 0.08, s.aim.z);
     (
       this.aim.children[0] as T.Mesh<T.BufferGeometry, T.MeshBasicMaterial>
     ).material.color.setHex(
-      dist > range ? 0x929995 : COLORS[s.activePrinciple],
+      primary.valid ? COLORS[s.activePrinciple] : 0xff6a66,
     );
+    const color = !target.valid
+      ? 0xff6a66
+      : target.clamped
+        ? 0xecc879
+        : COLORS[s.activePrinciple];
+    this.placement.position.set(
+      target.pos.x,
+      target.pos.y + 0.08,
+      target.pos.z,
+    );
+    const inverse = this.config.model === "weave-unweave";
+    this.placement.children.forEach((o, i) => {
+      o.visible =
+        i ===
+        (inverse
+          ? 0
+          : s.activePrinciple === "Stone"
+            ? 1
+            : s.activePrinciple === "Ember"
+              ? 2
+              : 0);
+      (
+        o as T.Mesh<T.BufferGeometry, T.MeshBasicMaterial>
+      ).material.color.setHex(color);
+    });
+    this.placement.children[0].scale.setScalar(inverse ? 2.8 : 2.5);
+    this.placement.rotation.y =
+      s.activePrinciple === "Ember" && !inverse
+        ? Math.atan2(target.pos.x - p.pos.x, target.pos.z - p.pos.z)
+        : 0;
     const enemy = s.entities.find((e) => e.id === "sentinel")!;
     this.danger.visible =
       s.sentinel.phase === "telegraph" && s.sentinel.enabled && enemy.hp > 0;

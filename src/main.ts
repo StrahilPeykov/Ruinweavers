@@ -10,6 +10,7 @@ import { initPhysics } from "./physics/world";
 import { Simulation } from "./simulation/simulation";
 import { Input } from "./input/input";
 import { View } from "./render/view";
+import { LabAudio } from "./render/audio";
 import { UI } from "./ui/ui";
 import { idleInput } from "./simulation/types";
 
@@ -24,12 +25,15 @@ async function boot() {
   const config = configFromQuery(location.search);
   const sim = new Simulation(config),
     input = new Input(canvas),
-    view = new View(canvas, config);
+    view = new View(canvas, config, sim);
+  input.onClear = () => sim.cancelBufferedCast();
+  const audio = new LabAudio();
   let paused = false;
   const reset = () => {
     input.clear();
     sim.reset();
     view.reset();
+    audio.reset();
     view.center.set(sim.player.pos.x * 0.82, 0, sim.player.pos.z * 0.82);
     view.render(sim.state, 0);
     ui.last = 0;
@@ -52,6 +56,7 @@ async function boot() {
     if (patch.scene && !SCENES.includes(patch.scene.replace("magic-lab/", "")))
       throw Error("Invalid scene");
     const limits: Record<string, [number, number]> = {
+      inputBuffer: [0, 0.15],
       moveSpeed: [3, 8],
       dodgeDistance: [2, 5],
       dodgeDuration: [0.1, 0.4],
@@ -74,6 +79,7 @@ async function boot() {
         throw Error(`Invalid ${k}`);
     if (patch.secondaryCapacity && !Number.isInteger(patch.secondaryCapacity))
       throw Error("Capacity must be an integer");
+    input.clear();
     const shouldReset = !!patch.scene || !!patch.model;
     Object.assign(config, patch);
     if (patch.scene) config.scene = patch.scene.replace("magic-lab/", "");
@@ -123,15 +129,55 @@ async function boot() {
       ui.last = 0;
     },
     export: exportData,
+    mute: () => (audio.muted = !audio.muted),
   });
   const api = {
     getState: () => structuredClone(sim.state),
+    getTargeting: () => ({
+      primary: sim.targeting("primary"),
+      secondary: sim.targeting("secondary"),
+    }),
+    // Setup only: actions under test must still arrive through real inputs.
+    setupTestState: (patch: {
+      entities?: {
+        id: string;
+        pos?: { x: number; y: number; z: number };
+        wet?: number;
+        heat?: number;
+        cohesion?: number;
+      }[];
+      dodgeRemaining?: number;
+      secondaryRemaining?: number;
+      fieldLife?: number;
+    }) => {
+      if (!paused) throw Error("Pause before test setup");
+      for (const change of patch.entities ?? []) {
+        const entity = sim.state.entities.find((e) => e.id === change.id);
+        if (!entity) throw Error("Unknown entity");
+        Object.assign(entity, structuredClone(change));
+        sim.physics.teleport(entity);
+      }
+      if (patch.dodgeRemaining !== undefined)
+        sim.state.dodgeUntil = sim.state.time + patch.dodgeRemaining;
+      if (patch.secondaryRemaining !== undefined)
+        sim.state.secondaryReady = sim.state.time + patch.secondaryRemaining;
+      if (patch.fieldLife !== undefined)
+        sim.state.fields.forEach((f) => (f.life = patch.fieldLife!));
+      sim.physics.world.step();
+      view.center.set(sim.player.pos.x * 0.82, 0, sim.player.pos.z * 0.82);
+      view.render(sim.state, 0);
+    },
     getPlayerState: () => structuredClone(sim.player),
     getActivePrinciple: () => sim.state.activePrinciple,
     getWorldStates: () => structuredClone(sim.state.entities),
     getMetrics: () => ({
       ...structuredClone(sim.state.metrics),
       render: view.metrics(),
+      audio: {
+        muted: audio.muted,
+        context: audio.context?.state ?? "locked",
+        played: audio.played,
+      },
       activeManifestations: sim.state.fields.length,
     }),
     getExperimentConfig: () => ({ ...config }),
@@ -182,6 +228,7 @@ async function boot() {
       }
     } else accumulator = 0;
     view.render(sim.state, rawElapsed);
+    audio.update(sim.state);
     ui.update(sim.state, view, paused);
     requestAnimationFrame(frame);
   }

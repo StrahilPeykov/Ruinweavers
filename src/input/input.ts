@@ -33,6 +33,7 @@ export const DEFAULT_BINDINGS: Record<Action, string[]> = {
   interact: ["KeyE"],
 };
 export class Input {
+  onClear = () => {};
   bindings = structuredClone(DEFAULT_BINDINGS);
   profile: Profile = "desktop";
   wheelEnabled = false;
@@ -48,6 +49,8 @@ export class Input {
       const action = this.actionFor(e.code);
       if (action) {
         e.preventDefault();
+        // Focus/menu cancellation must not turn an OS repeat into a fresh press.
+        if (e.repeat) return;
         if (!this.held.has(e.code)) {
           this.pressed.add(e.code);
           this.triggers.push(`${action}:keyboard`);
@@ -138,6 +141,7 @@ export class Input {
     return out;
   }
   clear() {
+    this.onClear();
     this.held.clear();
     this.pressed.clear();
     this.triggers = [];

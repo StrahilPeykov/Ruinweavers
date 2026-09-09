@@ -1,6 +1,6 @@
 import RAPIER from "@dimforge/rapier3d-compat";
 import { TERRAIN } from "../simulation/lab";
-import type { Entity, State, Vec, Field } from "../simulation/types";
+import type { Entity, State, Vec, Field, AimPoint } from "../simulation/types";
 let ready: Promise<void> | undefined;
 export const initPhysics = () => (ready ??= RAPIER.init());
 export class Physics {
@@ -74,6 +74,50 @@ export class Physics {
           z: a.z + d.z * hit.timeOfImpact,
         }
       : null;
+  }
+  // Only authoritative colliders participate: never VFX, labels or state rings.
+  pick(origin: Vec, direction: Vec, playerId: string): AimPoint {
+    const ray = new RAPIER.Ray(origin, direction);
+    const hit = this.world.castRayAndGetNormal(
+      ray,
+      150,
+      true,
+      undefined,
+      undefined,
+      this.colliders.get(playerId),
+    );
+    if (hit) {
+      const point = ray.pointAt(hit.timeOfImpact);
+      const body = this.actorColliders.has(hit.collider.handle);
+      return { ...point, body, invalid: !body && hit.normal.y < 0.7 };
+    }
+    // The existing traversal gap is a deliberate Stone construction plane.
+    const point = ray.pointAt(-origin.y / direction.y);
+    return {
+      ...point,
+      invalid: !(point.x >= 8 && point.x <= 11 && Math.abs(point.z) < 4),
+    };
+  }
+  surfaceAt(point: Vec, excludedFields: string[] = []): Vec | null {
+    const ray = new RAPIER.Ray(
+      { x: point.x, y: point.y + 0.1, z: point.z },
+      { x: 0, y: -1, z: 0 },
+    );
+    const excluded = new Set(
+      excludedFields.map((id) => this.slabs.get(id)?.handle),
+    );
+    const hit = this.world.castRayAndGetNormal(
+      ray,
+      30,
+      false,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      (c) =>
+        !this.actorColliders.has(c.handle) && !excluded.has(c.parent()?.handle),
+    );
+    return hit && hit.normal.y > 0.7 ? ray.pointAt(hit.timeOfImpact) : null;
   }
   impulse(id: string, v: Vec) {
     this.bodies.get(id)?.applyImpulse(v, true);

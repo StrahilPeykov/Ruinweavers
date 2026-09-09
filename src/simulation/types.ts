@@ -5,6 +5,10 @@ export interface Vec {
   z: number;
 }
 export const vec = (x = 0, y = 0, z = 0): Vec => ({ x, y, z });
+export interface AimPoint extends Vec {
+  body?: boolean;
+  invalid?: boolean;
+}
 export type Kind =
   | "player"
   | "dummy"
@@ -105,7 +109,13 @@ export interface State {
   seed: number;
   entities: Entity[];
   activePrinciple: Principle;
-  aim: Vec;
+  aim: AimPoint;
+  bufferedCast?: {
+    principle: Principle;
+    aim: AimPoint;
+    expires: number;
+    device: string;
+  };
   primaryReady: number;
   secondaryReady: number;
   dodgeReady: number;
@@ -131,7 +141,7 @@ export interface State {
 export interface FrameInput {
   moveX: number;
   moveZ: number;
-  aim: Vec;
+  aim: AimPoint;
   primary: boolean;
   secondary: boolean;
   dodge: boolean;

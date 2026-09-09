@@ -46,6 +46,7 @@ export interface Config {
   castMoveMultiplier: number;
   cameraDistance: number;
   cameraPitch: number;
+  inputBuffer: number;
 }
 export const CAMERAS = {
   tactical: { cameraDistance: 27, cameraPitch: 64 },
@@ -78,6 +79,7 @@ export function configFromQuery(query = ""): Config {
     ...TEMPOS[tempo in TEMPOS ? tempo : "balanced"],
     ...CAMERAS[camera in CAMERAS ? camera : "balanced"],
     secondaryCapacity: 1,
+    inputBuffer: q.get("buffer") === "0" ? 0 : 0.12,
     invulnerability: 0.17,
     castMoveMultiplier: 0.78,
   };

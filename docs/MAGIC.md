@@ -6,10 +6,10 @@
 | --------- | ---------------------------------------------------- | ------------------------------------------- | ----------------------------------------------------- |
 | Ember     | Fast heat bolt; first intersecting target            | Narrow persistent cinder seam               | Remove 100 heat in an aimed area                      |
 | Tide      | Piercing saturating jet with modest impulse          | Saturating basin with directional current   | Drain saturation and draw targets toward caster       |
-| Gale      | Immediate pressure fan; deflect nearby hostile bolts | Updraft: lift and gather bodies, slow bolts | Pull bodies toward cursor                             |
+| Gale      | Immediate pressure fan; deflect visible forward hostile bolts | Updraft: lift and gather bodies, slow bolts | Pull bodies toward cursor                             |
 | Stone     | Delayed local eruption; damage and bind structures   | Traversable slab, cover and bridge          | Reduce cohesion, chip structure; dissolve nearby slab |
 
-Model B is a pragmatic comparison, not a perfectly symmetric algebra. Its Stone Primary binds existing structure rather than creating a persistent bridge. This loss of traversal utility is evidence against making inverse semantics mandatory for every secondary slot. Retain it for human comparison.
+Model B is a pragmatic comparison, not a perfectly symmetric algebra. Its Stone Primary binds existing structure rather than creating a persistent bridge. The variants contain different abilities as well as different semantics; this comparison cannot establish that one grammar is universally better. Retain both for human comparison.
 
 ## Small rule vocabulary
 
@@ -22,10 +22,23 @@ All target operations carry actor/source IDs. Heat and wetness retain distinct p
 
 ## Cadence and commitment
 
-No mana. Primary repeat uses the same action/cadence as tapping. Secondary is edge-triggered, including keyboard input. Dodge overrides casting; presses made during dodge are not buffered. Cast movement is 78% for .12 seconds. Primaries have .32/.42/.50/.64-second base cadences. Secondary recovery is .65 seconds. The balanced dodge travels 3.5 units over .22 seconds with .17 seconds of invulnerability and .8 seconds between starts.
+No mana. Primary repeat uses the same action/cadence as tapping. Secondary is edge-triggered, including keyboard input. Dodge overrides casting. Secondary presses in the final 120 ms of dodge/Secondary recovery are buffered once; the instrument slider (0–150 ms) includes zero. The most recent press replaces pending intent and captures its Principle and world point, not a tracked target. Execution revalidates support/range from the current player position. Pending intent clears on expiry, reset, death, focus loss, input-profile/binding changes, pause, experiment-panel toggle and configuration changes. Held Secondary never repeats, including OS key repeats after cancellation. Cast movement is 78% for .12 seconds. Primaries have .32/.42/.50/.64-second base cadences. Secondary recovery is .65 seconds. The balanced dodge travels 3.5 units over .22 seconds with .17 seconds of invulnerability and .8 seconds between starts.
 
 One major field per actor by default, configurable 1–3; new fields replace the oldest. Fields expire after 12 seconds; residual target states survive replacement. A slab blocks low bolts from either side, including yours. Updraft slows hostile and friendly bolts. Heat seams can hurt the caster. Consistency creates costs worth testing.
 
 Repeated stagger is capped at .4 seconds with 1.4 seconds between accepted staggers per entity. Without this gate, repeated steam suppressed the sentinel indefinitely. This is a general interrupt recovery rule, not elemental immunity.
 
-This is a deliberately coarse simulation: saturation lives on entities/fields, not fluid cells; jets/cones use planar targeting, and structures do not generate arbitrary debris meshes. See TESTING for limitations.
+## Targeting contract (1.1)
+
+- The camera ray queries Rapier terrain, stairs, slabs and coarse body hulls; never VFX, labels or state indicators. The small cursor marks the hit point. No target lock or center snapping. Pointing at a body aims bolts/jets at that height; pointing at terrain aims .75 units above its surface so aiming at feet remains useful.
+- The thin Secondary footprint is the execution position and shape. Horizontal range clamps to the visible amber footprint and resamples support there. Red means unsupported/invalid: rejection costs no cast recovery and preserves the old field. Vertical faces are invalid placements. No arbitrary airborne placement.
+- Ground placement uses support beneath the aimed body point. At capacity, preview and execution exclude the outgoing slab: a new field cannot depend on a surface it removes. Stone alone retains the original zero-height construction plane across the existing gap. Ground manifestations can be created at a visible supported point beyond cover; their pulses cannot pass through it.
+- Tide is a pitched, terrain-clipped jet with a generous .4-unit hit margin and target-center terrain visibility. Gale is a horizontal 6-unit forward fan, cosine half-angle .72 (about 44 degrees), with a generous 3-unit center-height tolerance. Entities and deflected projectiles use the same cone and terrain-occlusion predicate. Entity radii soften the outer range edge. The fan VFX now uses the actual angle/range.
+- Basin and seam affect feet from .2 below to .65 above their surface; terrain/slabs block propagation. Updraft reaches 3 units above its base and uses the same obstruction rule for bodies and bolt slowing. Stone stabilization reaches 1.1 units; eruption reaches 1.6. A target on another floor cannot be affected merely because its X/Z overlaps. Residual states are independent of fields.
+- Cover and your own platform edge can obstruct low shots. Standing near an edge permits a downward jet that would strike the ledge from farther back. Replacing or expiring a slab removes support immediately; over the gap this still causes the existing fall/reset penalty. Capacity/lifetime were not redesigned.
+
+## Feedback
+
+Small cast pulses, impact rings, wet-onset rings, structure-change rings and rising steam distinguish stages. Quiet synthesized cues separate cast/impact/transformation; Mute is always available. Heated material glows softly; burning uses a larger flickering cone. Red attack telegraphs render above effects. Slab rims pulse during the final two seconds but solid geometry stays visible until removal. The compact footprint caption reports replacement/lifetime, range limiting, buffering or rejection. Empty instant casts use a dim small ring; no damage number cloud.
+
+Saturation remains on entities/fields, not fluid cells. Coarse hulls and contact bands are intentional approximations; no general spell-collision engine or arbitrary debris generation. See TESTING for limitations.

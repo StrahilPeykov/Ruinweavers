@@ -10,14 +10,20 @@
 
 ## Inspection
 
-Read: `getState`, `getPlayerState`, `getActivePrinciple`, `getWorldStates`, `getMetrics`, `getExperimentConfig`, `getInputProfile`, `getBindings`, `projectWorld`.
+Read: `getState`, `getPlayerState`, `getActivePrinciple`, `getWorldStates`, `getMetrics`, `getExperimentConfig`, `getInputProfile`, `getBindings`, `projectWorld`, `getTargeting`.
 
-Setup: `resetLab`, `resetCombatStation`, `setExperimentConfig`, `setCameraPreset`, `setInputProfile`, `setBinding`, `setPaused`. `step(n)` permits at most 600 fixed ticks while paused. Getters return copies. Export observations downloads a local JSON record.
+Setup: `resetLab`, `resetCombatStation`, `setExperimentConfig`, `setCameraPreset`, `setInputProfile`, `setBinding`, `setPaused`. `step(n)` permits at most 600 fixed ticks while paused. `setupTestState` requires pause and only adjusts existing entity positions/states, remaining recovery or field lifetime for reproducible browser conditions. It cannot cast. Getters return copies. Export observations downloads a local JSON record.
 
 Named states: `?scene=magic-lab/free|ergonomics|states|combat|traversal|input-compatibility`. Model, camera, tempo and seed also accept query parameters. All use the same Lab; states change start position and pressure. Ergonomics/input compatibility deliberately retain the normal input implementation.
 
 ## Future boundaries
 
 There is one locally controlled actor now, but stable entity IDs, field ownership and actor-tagged operations avoid renderer-owned or anonymous state. No prediction, rooms, transports or replication. JSON is an inspection snapshot, not yet a complete restore format: a future save/network implementation must also capture Rapier contact state or rebuild it at a known boundary. Fixed inputs replay deterministically in the tested runtime; cross-browser physics determinism is not promised.
+
+## Reliability boundaries (1.1)
+
+`Physics.pick` and `surfaceAt` query actual colliders. `Simulation.targeting` supplies both the renderer footprint and cast execution; range/support checks are not duplicated in the view. Directional collision and field contact bands remain small, explicit methods in Simulation. `bufferedCast` is one serializable Secondary intent, separate from delayed Stone eruptions (`pending`). Input clearing cancels it through a callback; DOM state never decides cast correctness.
+
+`render/audio.ts` consumes event IDs after a user gesture. Its conservative WebAudio voices and mute state have no simulation authority. Diagnostics include audio context/cue counts. `?buffer=0` selects the unbuffered comparison; otherwise 120 ms is the default.
 
 No external assets or accounts. The largest bundle dependency is embedded Rapier WASM. Dependencies are pinned by the lockfile.
