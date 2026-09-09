@@ -17,3 +17,5 @@ Open **Experiments** for both casting models, three cameras/tempos, input profil
 
 See [experiments](docs/EXPERIMENTS.md) for evidence and open questions, [testing](docs/TESTING.md) for limitations, and [AGENTS.md](AGENTS.md) for the repository guide.
 
+Cloudflare build settings and dry-run validation: [deployment configuration](docs/DEPLOYMENT.md).
+

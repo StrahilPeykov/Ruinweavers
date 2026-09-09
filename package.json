@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",
+    "deploy:check": "wrangler deploy --dry-run",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "test:e2e": "playwright test",
@@ -15,6 +16,11 @@
     "@dimforge/rapier3d-compat": "^0.20.0",
     "three": "^0.186.0"
   },
+  "overrides": {
+    "miniflare": {
+      "sharp": "0.35.4"
+    }
+  },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.5.0",
@@ -23,6 +29,7 @@
     "tsx": "^4.23.13",
     "typescript": "^7.0.2",
     "vite": "^8.2.2",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.0",
+    "wrangler": "4.130.0"
   }
 }
