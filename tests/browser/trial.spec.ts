@@ -158,3 +158,73 @@ test("real casts clear reduced-health lifecycle fixtures, carry health and resta
   await page.locator("#trial-action").click();
   expect((await state(page)).entities[0].hp).toBe(100);
 });
+
+test("mouse casts combine and control normal-health pursuers while strafing", async ({
+  page,
+}) => {
+  await page.goto("/?scene=trial/mixed&scenario=open-near");
+  await page.waitForFunction(() => !!window.__RUINWEAVERS__);
+  await page.getByRole("button", { name: "Start trial", exact: true }).click();
+  await page.evaluate(() => {
+    const a = window.__RUINWEAVERS__;
+    a.setPaused(true);
+    const s = a.getState();
+    a.setupTestState({
+      entities: [
+        { id: "mage-1", pos: { x: 0, y: 0.75, z: 4 } },
+        ...s.entities
+          .filter((e: any) => e.kind === "pursuer")
+          .map((e: any, i: number) => ({
+            id: e.id,
+            pos: { x: 2 + i, y: 0.6, z: 2 },
+          })),
+      ],
+    });
+    a.setPaused(false);
+  });
+  await page.keyboard.press("2");
+  await aim(page, { x: 2, y: 0, z: 2 });
+  await page.mouse.down({ button: "right" });
+  await page.mouse.up({ button: "right" });
+  await ticks(page, 8);
+  await page.keyboard.press("1");
+  await page.mouse.down();
+  await page.keyboard.down("a");
+  for (let i = 0; i < 8; i++) {
+    const s = await state(page),
+      e = s.entities.find((e: any) => e.kind === "pursuer" && e.hp > 0);
+    if (!e) break;
+    await aim(page, e.pos);
+    await ticks(page, 8);
+  }
+  await page.mouse.up();
+  await page.keyboard.up("a");
+  expect((await state(page)).metrics.transformations.vaporize).toBeGreaterThan(
+    0,
+  );
+  await page.keyboard.press("3");
+  await page.keyboard.down("d");
+  await ticks(page, 24);
+  await page.keyboard.up("d");
+  const s = await state(page),
+    p = s.entities[0],
+    e = s.entities
+      .filter((e: any) => e.ai && e.hp > 0)
+      .sort(
+        (a: any, b: any) =>
+          Math.hypot(a.pos.x - p.pos.x, a.pos.z - p.pos.z) -
+          Math.hypot(b.pos.x - p.pos.x, b.pos.z - p.pos.z),
+      )[0];
+  await aim(page, e.pos);
+  await page.mouse.down();
+  await ticks(page, 2);
+  await page.mouse.up();
+  expect((await state(page)).metrics.casts["Gale:primary"]).toBeGreaterThan(0);
+  expect(
+    Object.values((await state(page)).metrics.damageRoutes).some(
+      (r: any) =>
+        r.reason === "pressure" && r.recipient.startsWith("encounter-"),
+    ),
+  ).toBe(true);
+  await capture(page, "03-mouse-reaction-control", true);
+});

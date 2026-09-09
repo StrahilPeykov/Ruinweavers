@@ -1,5 +1,9 @@
 # Decisions
 
+- **Combat Trial 0.1:** The user's pleasant movement/casting report retains the control baseline without claiming balance. Expand only to ranged, pursuit and mixed encounters with health carry; keep the Lab and Model B. The earlier questionnaire is not a gate. No roguelite or multiplayer work follows automatically.
+- **Combat Trial 0.1:** Compare frozen local policies with matched exact/delayed observations, development/held-out layouts and restricted actions. Preserve original benchmark and pre-correction data. Retain one bounded pursuit change (4.8→6 speed, 70% advance during wind-up); no spell/player tuning. EVALUATION records both supporting evidence and weak/non-monotonic effects.
+- **Combat Trial 0.1:** Fix deflection-only Gale feedback and invisible inherited Lab water. Keep independent per-enemy AI, source/recipient damage accounting and physics-backed local steering; no AI framework or engine rewrite. Stable defaults stay A/balanced/balanced/capacity 1/120 ms.
+
 - **2026-09-09:** Keep requested TypeScript/Vite/vanilla Three.js/WebGL stack. Rapier is justified by mass-sensitive force, movable ballast, loose-body impacts, elevation and bridge traversal. No engine/editor or asset pipeline needed.
 - **2026-09-09:** Use four families: thermal, moisture, cohesion, momentum. Burning is a derived thermal/material condition. No spell-pair lookup table.
 - **2026-09-09:** Default A, balanced camera and tempo, one field. Keep B and all camera/tempo alternatives. Preserve differing cast geometry.

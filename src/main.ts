@@ -12,6 +12,7 @@ import { Input } from "./input/input";
 import { View } from "./render/view";
 import { LabAudio } from "./render/audio";
 import { UI } from "./ui/ui";
+import { SCENARIOS } from "./simulation/trial";
 import { idleInput } from "./simulation/types";
 
 async function boot() {
@@ -79,8 +80,19 @@ async function boot() {
         throw Error(`Invalid ${k}`);
     if (patch.secondaryCapacity && !Number.isInteger(patch.secondaryCapacity))
       throw Error("Capacity must be an integer");
+    if (patch.scenario && !(patch.scenario in SCENARIOS))
+      throw Error("Invalid scenario");
+    if (
+      patch.encounterVersion &&
+      !["baseline", "candidate"].includes(patch.encounterVersion)
+    )
+      throw Error("Invalid encounter version");
     input.clear();
-    const shouldReset = !!patch.scene || !!patch.model;
+    const shouldReset =
+      !!patch.scene ||
+      !!patch.model ||
+      !!patch.scenario ||
+      !!patch.encounterVersion;
     Object.assign(config, patch);
     if (patch.scene) config.scene = patch.scene.replace("magic-lab/", "");
     while (sim.state.fields.length > config.secondaryCapacity)

@@ -2,6 +2,12 @@
 
 `src/simulation/` owns plain serializable state, fixed-step timing, actors, operations, events, materials, projectiles and AI. No DOM or Three.js imports. `lab.ts` defines physical layout and stable entity IDs.
 
+`trial.ts` defines six reproducible arena configurations, two small enemy lineups plus their mixed encounter, and baseline/candidate enemy tuning. Trial enemies each own `Entity.ai`; the legacy singleton is retained only for the old Lab sentinel. `State.trial` owns ready/active/between/victory/defeat, stage results and elapsed combat time. Between encounters, positions and temporary manifestations reset while player health carries. Physics is rebuilt only at that boundary. Lab-only water/plate behavior is excluded from the trial.
+
+Default scene is `trial`; isolated scenes are `trial/ranged`, `trial/pursuit`, `trial/mixed`. Query `scenario=cross-cover` and `encounterVersion=baseline|candidate` reproduce variations. Changing either through the inspection API validates and resets the encounter. `advanceTrial()` uses the same transition as E/the DOM button; paused `setupTestState` also accepts existing-entity HP for explicitly labelled lifecycle fixtures.
+
+`diagnostics/policies.ts` supplies local scripted inputs; `scripts/evaluate-encounters.ts` steps the actual Simulation/Rapier without rendering. Damage routes retain source, recipient and reason. Projectile counters distinguish original emitter from current damage owner after deflection. These counters are observations, not counterfactual damage prevention.
+
 `src/physics/` owns Rapier's world, capsule character controller, rigid bodies and slab colliders. It consumes movement/impulses and writes positions, velocities and rotations back to simulation state. Y is up; one unit is approximately one meter; entity positions are body centers. The character steps onto low forms and uses gravity over gaps.
 
 `src/render/` adapts simulation into primitive meshes, state indicators, event VFX, lighting, camera and world cursor. Rendering never decides damage. Shared primitive geometry is retained; transient resources are disposed. `src/input/` maps multiple physical inputs into semantic commands. `src/ui/` contains a small DOM HUD and collapsible instruments. `src/experiments/` centralizes gameplay tunables and named presets.

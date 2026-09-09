@@ -39,6 +39,8 @@ Repeated stagger is capped at .4 seconds with 1.4 seconds between accepted stagg
 
 ## Feedback
 
+Combat Trial 0.1 preserves spell catalogue and tuning. A Gale cast that only redirects a projectile now counts as useful and does not emit the empty-cast cue. Independent enemies share material/state rules, without elemental immunities. Ranged enemies approach if out of reach/behind cover; pursuers chase, telegraph a ground strike, lock its point for the final .3 s, then recover. Cover blocks both low bolts and melee contact; Gale/stagger affect pursuers through existing force/interrupt rules.
+
 Small cast pulses, impact rings, wet-onset rings, structure-change rings and rising steam distinguish stages. Quiet synthesized cues separate cast/impact/transformation; Mute is always available. Heated material glows softly; burning uses a larger flickering cone. Red attack telegraphs render above effects. Slab rims pulse during the final two seconds but solid geometry stays visible until removal. The compact footprint caption reports replacement/lifetime, range limiting, buffering or rejection. Empty instant casts use a dim small ring; no damage number cloud.
 
 Saturation remains on entities/fields, not fluid cells. Coarse hulls and contact bands are intentional approximations; no general spell-collision engine or arbitrary debris generation. See TESTING for limitations.

@@ -4,7 +4,7 @@ import { execFileSync } from "node:child_process";
 const runtimeCommit = execFileSync("git", ["rev-parse", "--short", "HEAD"])
   .toString()
   .trim();
-const dir = "artifacts/lab-1.1/validated";
+const dir = "artifacts/combat-trial/validation/reliability";
 const state = (p: Page) => p.evaluate(() => window.__RUINWEAVERS__.getState());
 async function ticks(p: Page, n: number) {
   const t = (await state(p)).tick;
@@ -35,7 +35,7 @@ async function capture(p: Page, name: string) {
       gl = document.querySelector("canvas")!.getContext("webgl2")!,
       ext = gl.getExtension("WEBGL_debug_renderer_info");
     return {
-      build: `Magic Lab 1.1 / runtime ${runtimeCommit}`,
+      build: `Combat Trial 0.1 legacy regression / runtime ${runtimeCommit}`,
       url: location.href,
       browser: navigator.userAgent,
       viewport: {
@@ -52,7 +52,7 @@ async function capture(p: Page, name: string) {
       metrics: a.getMetrics(),
     };
   }, runtimeCommit);
-  data.build = `Magic Lab 1.1 / runtime ${runtimeCommit}`;
+  data.build = `Combat Trial 0.1 legacy regression / runtime ${runtimeCommit}`;
   writeFileSync(`${dir}/${name}.json`, JSON.stringify(data, null, 2));
 }
 

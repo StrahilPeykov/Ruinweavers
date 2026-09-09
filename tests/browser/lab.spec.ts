@@ -1,5 +1,6 @@
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
+mkdirSync("artifacts/combat-trial/validation/lab", { recursive: true });
 
 test("pause at reset displays resume and preserves a ready handoff", async ({
   page,
@@ -145,8 +146,10 @@ test("actual movement, independent aim, all essential input paths, reset and res
     (await page.evaluate(() => window.__RUINWEAVERS__.getInputProfile()))
       .wheelOptional,
   ).toBe(false);
-  mkdirSync("artifacts", { recursive: true });
-  await page.screenshot({ path: "artifacts/inputs.png" });
+  mkdirSync("artifacts/combat-trial/validation/lab", { recursive: true });
+  await page.screenshot({
+    path: "artifacts/combat-trial/validation/lab/inputs.png",
+  });
   await page.getByRole("button", { name: "Reset lab", exact: true }).click();
   await ticks(page, 5);
   s = await state(page);
@@ -157,7 +160,9 @@ test("actual movement, independent aim, all essential input paths, reset and res
   await ticks(page, 10);
   await aim(page, 0, -4.5);
   await ticks(page, 5);
-  await page.screenshot({ path: "artifacts/compact.png" });
+  await page.screenshot({
+    path: "artifacts/combat-trial/validation/lab/compact.png",
+  });
   expect(await page.locator("canvas").boundingBox()).toMatchObject({
     width: 860,
     height: 640,
@@ -188,17 +193,23 @@ test("real state priming and transformation, models and camera evidence", async 
   expect((await state(page)).metrics.transformations.vaporize).toBeGreaterThan(
     0,
   );
-  await page.screenshot({ path: "artifacts/thermal-states.png" });
+  await page.screenshot({
+    path: "artifacts/combat-trial/validation/lab/thermal-states.png",
+  });
   await page.getByRole("button", { name: "Experiments", exact: true }).click();
   await page.locator("#camera").selectOption("tactical");
   await page.getByRole("button", { name: "×", exact: true }).click();
   await ticks(page, 10);
-  await page.screenshot({ path: "artifacts/camera-tactical.png" });
+  await page.screenshot({
+    path: "artifacts/combat-trial/validation/lab/camera-tactical.png",
+  });
   await page.evaluate(() =>
     window.__RUINWEAVERS__.setCameraPreset("cinematic"),
   );
   await ticks(page, 10);
-  await page.screenshot({ path: "artifacts/camera-cinematic.png" });
+  await page.screenshot({
+    path: "artifacts/combat-trial/validation/lab/camera-cinematic.png",
+  });
   await page.evaluate(() =>
     window.__RUINWEAVERS__.setExperimentConfig({
       model: "weave-unweave",
@@ -222,7 +233,7 @@ test("real state priming and transformation, models and camera evidence", async 
   expect(cooled.heat).toBeLessThan(heatBefore - 90);
   expect(cooled.burning).toBe(false);
   writeFileSync(
-    "artifacts/browser-state.json",
+    "artifacts/combat-trial/validation/lab/browser-state.json",
     JSON.stringify(
       {
         state: await state(page),
@@ -250,7 +261,9 @@ test("combat pressure, dodge, field placement and traversal", async ({
   await page.keyboard.press("f");
   await ticks(page, 10);
   expect((await state(page)).fields).toHaveLength(1);
-  await page.screenshot({ path: "artifacts/combat.png" });
+  await page.screenshot({
+    path: "artifacts/combat-trial/validation/lab/combat.png",
+  });
   await page.evaluate(() =>
     window.__RUINWEAVERS__.setExperimentConfig({ scene: "traversal" }),
   );
@@ -265,5 +278,7 @@ test("combat pressure, dodge, field placement and traversal", async ({
   const s = await state(page);
   expect(s.entities[0].pos.x).toBeGreaterThan(11);
   expect(s.metrics.falls).toBe(0);
-  await page.screenshot({ path: "artifacts/traversal.png" });
+  await page.screenshot({
+    path: "artifacts/combat-trial/validation/lab/traversal.png",
+  });
 });

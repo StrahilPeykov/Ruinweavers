@@ -1,4 +1,4 @@
-# Ruinweavers · Magic Lab 1.1
+# Ruinweavers · Combat Trial 0.1
 
 Local experimental pre-production for a systemic 3D action roguelite.
 
@@ -7,17 +7,17 @@ npm install
 npm run dev
 ```
 
-Open [the ready Lab](http://127.0.0.1:5173/?scene=states). No account or paid services are needed. Local testing only; the pre-existing Git remote has not been pushed.
+Open [the combat trial](http://127.0.0.1:5173/). Press **E / Start trial**. Clear ranged pressure, pursuit pressure, then both; health carries between encounters. E continues after a clear. **Restart trial** restores the starting state after victory/defeat or from the top bar. No account or paid services; nothing has been pushed, published or redeployed.
 
-WASD move · pointer aim · LMB / J Primary (hold repeats) · RMB / F / K Secondary · 1–4 select · Tab next / Q previous · Space dodge · E toggles sentinel pressure near the plate. Wheel cycling is an optional checkbox, off by default.
+WASD move · pointer aim · LMB / J Primary (hold repeats) · RMB / F / K Secondary · 1–4 select · Tab next / Q previous · Space dodge · E start/continue. Wheel cycling is optional, off by default. Mute and Pause are in the top bar.
 
-Open **Experiments** for both casting models, three cameras/tempos, input profiles, named scenes, selected tunables and reset. Start with **A · Primary / Secondary**, **balanced** camera/tempo. Try wetting timber then heating it; fracture a structure and push it; bridge the right-hand gap with a Stone slab.
+Keep the default **A · Primary / Secondary**, **balanced** camera/tempo and collapsed instruments. Try moving and dodging while holding Ember; place a **Tide Basin (2 + RMB/F)** and follow with **Ember (1 + LMB)**; use **Gale (3 + LMB)** to gain space or **Stone (4 + RMB/F)** for cover. Cover stops your low bolts too.
 
-Secondary buffering defaults to 120 ms; zero is available under Selected tunables. Thin footprints preview placement: amber means range-limited, red means invalid. Mute is in the top bar. See the three-minute sequence in the experiments document.
+Secondary buffering remains 120 ms. Thin footprints preview placement: amber means range-limited, red means invalid. **Experiments** retains Model B, presets and the original Lab scenes. Isolated diagnostics: `?scene=trial/ranged`, `trial/pursuit`, `trial/mixed`. The original Lab remains at `?scene=states`.
 
-`npm test` · `npm run test:e2e` · `npm run benchmark` · `npm run build`. First-time browser installation: `npx playwright install chromium`.
+`npm test` · `npm run test:e2e` · `npm run benchmark` · `npm run evaluate` · `npm run build`. First-time browser installation: `npx playwright install chromium`.
 
-See [experiments](docs/EXPERIMENTS.md) for evidence and open questions, [testing](docs/TESTING.md) for limitations, and [AGENTS.md](AGENTS.md) for the repository guide.
+See [evaluation](docs/EVALUATION.md) for matched strategy results and limitations, [testing](docs/TESTING.md) for validation, and [AGENTS.md](AGENTS.md) for the repository guide. Scripted play does not establish balance, physical trackpad comfort or subjective fun. This milestone ends here; multiplayer and the roguelite are not implemented.
 
 Cloudflare build settings and dry-run validation: [deployment configuration](docs/DEPLOYMENT.md).
 

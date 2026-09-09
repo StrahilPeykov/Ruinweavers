@@ -1,6 +1,8 @@
-# Ruinweavers / Magic Lab
+# Ruinweavers / experimental pre-production
 
 Magic as craft in an ancient world. A few understandable properties should produce many situations. Future solo and two-player action roguelite, elevated 3/4 camera, keyboard/mouse first. This phase tests only base magic, movement, pressure, and environmental manipulation.
+
+Combat Trial 0.1 adds a short ranged → pursuit → mixed sequence with carried health. The user found movement/casting broadly pleasant and authorized this encounter milestone. That retains the control baseline; it does not validate balance. The former single-sentinel restriction is superseded. Stop at this trial; actual two-player validation should precede substantial classes, progression or content expansion.
 
 Four hypotheses: Ember (thermal energy), Tide (saturation/flow), Gale (force), Stone (cohesion/structure). Consistent intent, asymmetric behavior. No mana, Runes, classes, final art, networking, progression or generated levels.
 
