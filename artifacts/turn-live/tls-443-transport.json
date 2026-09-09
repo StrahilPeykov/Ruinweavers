@@ -1,0 +1,40 @@
+{
+  "at": "2026-09-09T20:35:43.253Z",
+  "scope": "Two RTCPeerConnections on ONE Windows machine; not remote laptop RTT or gameplay validation",
+  "result": {
+    "connected": true,
+    "received": 10,
+    "echoes": [
+      19,
+      7.699999999254942,
+      11.200000001117587,
+      9,
+      10.300000000745058,
+      11.399999998509884,
+      7.900000000372529,
+      11.200000001117587,
+      11.400000000372529,
+      11.200000001117587
+    ],
+    "peers": [
+      {
+        "state": "succeeded",
+        "localType": "relay",
+        "remoteType": "relay",
+        "relayProtocol": "tls",
+        "rttMs": 9,
+        "bytesSent": 3065,
+        "bytesReceived": 750
+      },
+      {
+        "state": "succeeded",
+        "localType": "relay",
+        "remoteType": "relay",
+        "relayProtocol": "tls",
+        "rttMs": 15,
+        "bytesSent": 750,
+        "bytesReceived": 3065
+      }
+    ]
+  }
+}
