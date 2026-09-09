@@ -1,4 +1,5 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { initPhysics } from "../src/physics/world";
 import { Simulation } from "../src/simulation/simulation";
@@ -16,12 +17,18 @@ const split = args.includes("--held-out") ? "held-out" : "development";
 const output =
   args.find((a) => a.startsWith("--output="))?.slice(9) ??
   `artifacts/combat-trial/${version}-${split}.json`;
+const motor =
+  args.find((a) => a.startsWith("--motor="))?.slice(8) ?? "reactive";
+const fullTrial = args.includes("--trial");
+const horizon = fullTrial ? 165 : 55;
 const restricted = args.includes("--restrictions");
 const rows: any[] = [];
 for (const [scenario, layout] of Object.entries(SCENARIOS).filter(
   ([, v]) => v.split === split,
 ))
-  for (const encounter of ["ranged", "pursuit", "mixed"])
+  for (const encounter of fullTrial
+    ? ["full-trial"]
+    : ["ranged", "pursuit", "mixed"])
     for (const mode of ["exact-state", "delayed-aim"] as const)
       for (const policy of POLICY_NAMES)
         for (const excluded of restricted &&
@@ -31,7 +38,7 @@ for (const [scenario, layout] of Object.entries(SCENARIOS).filter(
           : [undefined]) {
           const sim = new Simulation(
             configFromQuery(
-              `?scene=trial/${encounter}&scenario=${scenario}&encounterVersion=${version}`,
+              `?scene=${fullTrial ? "trial" : "trial/" + encounter}&scenario=${scenario}&encounterVersion=${version}`,
             ),
           );
           const agent = new ScriptedPolicy(
@@ -43,10 +50,15 @@ for (const [scenario, layout] of Object.entries(SCENARIOS).filter(
           sim.advanceTrial();
           for (
             let i = 0;
-            i < 60 * 55 && sim.state.trial?.status === "active";
+            i < 60 * horizon &&
+            ["active", "between"].includes(sim.state.trial!.status);
             i++
-          )
-            sim.step(agent.input(sim));
+          ) {
+            const input = agent.input(sim);
+            if (motor !== "reactive") input.dodge = false;
+            if (motor === "standing") input.moveX = input.moveZ = 0;
+            sim.step(input);
+          }
           const s = sim.state,
             enemyIds = new Set(s.entities.filter((e) => e.ai).map((e) => e.id)),
             routes = Object.values(s.metrics.damageRoutes);
@@ -68,13 +80,17 @@ for (const [scenario, layout] of Object.entries(SCENARIOS).filter(
             health: +sim.player.hp.toFixed(2),
             enemyDamage: +routes
               .filter(
-                (r) => r.source === sim.player.id && enemyIds.has(r.recipient),
+                (r) =>
+                  r.source === sim.player.id &&
+                  r.recipient.startsWith("encounter-"),
               )
               .reduce((n, r) => n + r.amount, 0)
               .toFixed(2),
             collateralDamage: +routes
               .filter(
-                (r) => r.source === sim.player.id && !enemyIds.has(r.recipient),
+                (r) =>
+                  r.source === sim.player.id &&
+                  !r.recipient.startsWith("encounter-"),
               )
               .reduce((n, r) => n + r.amount, 0)
               .toFixed(2),
@@ -97,6 +113,7 @@ writeFileSync(
   JSON.stringify(
     {
       schema: 1,
+      motor,
       policyVersion: POLICY_VERSION,
       runtimeCommit: execFileSync("git", ["rev-parse", "HEAD"])
         .toString()
@@ -105,7 +122,18 @@ writeFileSync(
       tuning: TRIAL_TUNING[version],
       split,
       seedRule: "123 + scenario index * 71",
-      horizonSeconds: 55,
+      horizonSeconds: horizon,
+      sourceHashes: Object.fromEntries(
+        [
+          "src/simulation/trial.ts",
+          "src/simulation/simulation.ts",
+          "src/diagnostics/policies.ts",
+          "scripts/evaluate-encounters.ts",
+        ].map((p) => [
+          p,
+          createHash("sha256").update(readFileSync(p)).digest("hex"),
+        ]),
+      ),
       observation:
         "10 Hz decisions; exact current state or 200ms delayed enemies/fields/bolts with deterministic 0.6-unit aim error. No AI timers. Shared reactive movement probes and dodge rules. Synthetic sensitivity, not human skill.",
       rows,

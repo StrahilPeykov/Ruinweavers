@@ -876,6 +876,13 @@ export class Simulation {
             ai.started = s.time;
           }
         } else {
+          if (tuning.windupAdvance > 0)
+            this.steerEnemy(
+              e,
+              ai.locked,
+              tuning.pursuitSpeed * tuning.windupAdvance,
+              dt,
+            );
           if (ai.timer > tuning.meleeLock) ai.locked = { ...this.player.pos };
           if (ai.timer <= 0) {
             this.outcome(`${e.id}:melee:attempt`);

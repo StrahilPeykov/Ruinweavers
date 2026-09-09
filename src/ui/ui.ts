@@ -22,7 +22,7 @@ export class UI {
     this.root = document.createElement("div");
     this.root.id = "ui";
     document.body.append(this.root);
-    this.root.innerHTML = `<header><div class="eyebrow">EXPERIMENTAL PRE-PRODUCTION · 1.1</div><h1>RUINWEAVERS <span>/ MAGIC LAB</span></h1><div id="status">Explore the rules. Reset freely.</div></header>
+    this.root.innerHTML = `<header><div class="eyebrow">EXPERIMENTAL PRE-PRODUCTION</div><h1>RUINWEAVERS <span>/ MAGIC LAB</span></h1><div id="status">Explore the rules. Reset freely.</div></header>
       <div class="top-actions"><button id="mute" aria-pressed="false">Mute</button><button id="pause">Pause</button><button id="reset">Reset lab</button><button id="experiments" aria-expanded="false">Experiments</button></div>
       <aside id="panel" hidden><div class="panel-title">Lab instruments <button id="close">×</button></div>
       <label>Casting model<select id="model"><option value="primary-secondary">A · Primary / Secondary</option><option value="weave-unweave">B · Weave / Unweave</option></select></label>

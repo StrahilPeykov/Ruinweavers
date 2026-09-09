@@ -62,6 +62,7 @@ export type ScenarioName = keyof typeof SCENARIOS;
 export const TRIAL_TUNING = {
   baseline: {
     pursuitSpeed: 4.8,
+    windupAdvance: 0,
     meleeWindup: 0.65,
     meleeLock: 0.3,
     meleeRadius: 1.45,
@@ -70,7 +71,8 @@ export const TRIAL_TUNING = {
     rangedLock: 0.45,
   },
   candidate: {
-    pursuitSpeed: 4.8,
+    pursuitSpeed: 6,
+    windupAdvance: 0.7,
     meleeWindup: 0.65,
     meleeLock: 0.3,
     meleeRadius: 1.45,

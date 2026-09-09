@@ -150,6 +150,7 @@ async function boot() {
         id: string;
         pos?: { x: number; y: number; z: number };
         wet?: number;
+        hp?: number;
         heat?: number;
         cohesion?: number;
       }[];

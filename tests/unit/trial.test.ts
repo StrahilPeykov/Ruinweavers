@@ -1,3 +1,5 @@
+import { ScriptedPolicy } from "../../src/diagnostics/policies";
+import { PRINCIPLES } from "../../src/experiments/config";
 import { beforeAll, expect, it } from "vitest";
 import { initPhysics } from "../../src/physics/world";
 import { Simulation } from "../../src/simulation/simulation";
@@ -98,4 +100,55 @@ it("damage routes keep collateral recipients distinct and death is restartable",
   expect(s.player.hp).toBe(100);
   expect(s.state.trial?.encounter).toBe(2);
   s.dispose();
+});
+
+it("melee wind-up is readable and cover blocks the strike", () => {
+  for (const cover of [false, true]) {
+    const s = new Simulation(
+      configFromQuery("?scene=trial/pursuit&scenario=cross-cover"),
+    );
+    s.advanceTrial();
+    const e = s.state.entities.find((e) => e.ai)!;
+    for (const other of s.state.entities.filter((x) => x.ai))
+      other.ai!.enabled = other === e;
+    s.player.pos = vec(cover ? -1.55 : 1.45, 0.75, 0);
+    e.pos = vec(cover ? -4.45 : 0, 0.55, 0);
+    s.physics.teleport(s.player);
+    s.physics.teleport(e);
+    e.ai!.phase = "telegraph";
+    e.ai!.timer = 0.65;
+    e.ai!.locked = { ...s.player.pos };
+    for (let i = 0; i < 12; i++) s.step(idleInput());
+    expect(s.player.hp).toBe(100);
+    for (let i = 0; i < 32; i++) s.step(idleInput());
+    expect(s.player.hp).toBe(cover ? 100 : 88);
+    s.dispose();
+  }
+});
+
+it("restricted policies adapt without issuing excluded casts; seeded runs repeat", () => {
+  const run = (excluded: any) => {
+    const s = new Simulation(
+      configFromQuery("?scene=trial/mixed&scenario=open-near"),
+    );
+    s.advanceTrial();
+    const policy = new ScriptedPolicy(
+      "state-aware",
+      "delayed-aim",
+      123,
+      excluded,
+    );
+    for (let i = 0; i < 240; i++) s.step(policy.input(s));
+    expect(
+      Object.keys(s.state.metrics.casts).every(
+        (k) => !k.startsWith(excluded + ":"),
+      ),
+    ).toBe(true);
+    expect(Object.keys(s.state.metrics.casts).length).toBeGreaterThan(0);
+    const result = JSON.stringify(s.state);
+    s.dispose();
+    return result;
+  };
+  for (const p of PRINCIPLES) run(p);
+  expect(run("Gale")).toBe(run("Gale"));
 });
