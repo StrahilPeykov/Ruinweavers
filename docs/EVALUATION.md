@@ -1,4 +1,4 @@
-# Combat Trial 0.1 evaluation
+# Encounter evaluation
 
 Default: Model A, balanced camera/tempo, 120 ms buffer, one manifestation, `scenario=cross-cover`. Three encounters: two sentinels; three pursuers; two of each. HP carries; between encounters positions, fields, projectiles and transient combat state reset. E/the card continues; Restart trial restores 100 HP. No rewards or progression.
 
@@ -46,11 +46,11 @@ State-aware policy adapts its primary fallback and Secondary choices when a fami
 | Gale | 6/6 | 10.4 | 4.3 |
 | Stone | 6/6 | 10.4 | 2.3 |
 
-Ember/Tide exclusions cost this heuristic time; Gale exclusion adds some damage. Stone exclusion changes nothing here: the cluster heuristic rarely selects it. That is inadequate evidence about Stone's usefulness, not a reason to remove it. No family is mandatory and no elemental immunity was added.
+Ember/Tide exclusions cost this heuristic time; Gale exclusion adds some damage. Stone exclusion changes nothing here: the cluster heuristic rarely selects its Primary and does not use slabs. That is inadequate evidence about Stone's usefulness, not a reason to remove it. No family is mandatory and no elemental immunity was added.
 
 ## Bounded changes and evidence
 
-Only one enemy-tuning hypothesis was retained: pursuers should close while the mage casts and continue approaching during their readable wind-up. Baseline speed 4.8 became 6; wind-up advance became 70% chase speed. The .65 s wind-up, final .3 s target lock, 12 damage, recovery, player movement/dodge and every spell number remain unchanged. Both enemy versions are reproducible by query.
+The earlier enemy-tuning hypothesis was that pursuers should close while the mage casts and continue approaching during their readable wind-up. The measurement below corrects the unsupported closing-speed interpretation. Baseline speed 4.8 became 6; wind-up advance became 70% chase speed. The .65 s wind-up, final .3 s target lock, 12 damage, recovery, player movement/dodge and every spell number remain unchanged. Both enemy versions are reproducible by query.
 
 The corrected matched no-dodge comparison raises attack/move mean damage from 26.5 to 34.8 HP in delayed mode; control/cover falls from 11.7 to 8.2. Reactive delayed attack/move is nearly unchanged (9.2 to 9.0). This modest evidence supports pressure with usable counterplay, not a claim that the adjustment universally increases difficulty. No additional tuning followed the held-out check. No Basin nerf or Gale damage equalization.
 
@@ -68,4 +68,21 @@ Rows include completion/defeat/timeout, elapsed time, HP damage, casts, switches
 2. Does Basin + Ember leave enough practical reasons for cover/control beyond these particular heuristics?
 3. Does Stone offer useful opportunities a better policy/person can exploit, including elevated cover, without a camping loophole?
 
-This finite milestone stops here. Actual two-player validation is next, before substantial classes/progression/content; it is not implemented or automatically started.
+The historical tables above use continuous headings. Co-op Trial evidence follows; no further phase is automatically authorized.
+
+## Co-op Trial corrections — unchanged tuning
+
+`--keyboard` restricts the existing motor to eight actual WASD headings; continuous mode is preserved and labelled. On the same 12 isolated development cases, all four policies clear 12/12 in both modes. Delayed-aim aggregate mean seconds / HP lost:
+
+| Policy | Legacy continuous | Keyboard |
+| --- | ---: | ---: |
+| attack-move | 16.6 / 9.0 | 17.1 / 9.0 |
+| basin-ember | 8.3 / 3.5 | 8.0 / 1.2 |
+| control-cover | 21.5 / 0.0 | 23.0 / 3.5 |
+| state-aware | 9.7 / 1.0 | 9.2 / 3.3 |
+
+The zero-damage control result depends on the synthetic motor. Continuous-mode reruns reproduce prior aggregate outcomes; historical files remain preserved. This correction does not establish human difficulty or require spell tuning.
+
+`npm run measure:pursuit` uses one real damped Rapier pursuer in a 2-second open lane, starting 8 units away. First .5 seconds and telegraphs are excluded from sampled chase speed; total gap includes all motion. Baseline/current steering settings 4.8/6 produce measured chase speeds **1.77/2.56 units/s**, respectively. Current end gaps are **3.15 stationary, 14.26 retreating, 13.20 retreating while casting Ember**. The pursuer closes on a stationary player, but not these retreating players. This is one unobstructed lane, not a full encounter or speed guarantee under force/contact. No tuning changed to match a label.
+
+The older Stone-exclusion finding concerns a heuristic that does not cast slabs. It cannot establish redundancy or measure cover/traversal usefulness. Co-op comparison and limitations are in [COOP](COOP.md); party damage is summed by recipient, enemy reactions exclude props/allies. JSON includes per-source/recipient routes and actual blocks/deflections, never assumed damage prevented.

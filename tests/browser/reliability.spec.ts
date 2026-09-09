@@ -4,7 +4,7 @@ import { execFileSync } from "node:child_process";
 const runtimeCommit = execFileSync("git", ["rev-parse", "--short", "HEAD"])
   .toString()
   .trim();
-const dir = "artifacts/combat-trial/validation/reliability";
+const dir = "artifacts/coop-trial/solo-regression/validation/reliability";
 const state = (p: Page) => p.evaluate(() => window.__RUINWEAVERS__.getState());
 async function ticks(p: Page, n: number) {
   const t = (await state(p)).tick;

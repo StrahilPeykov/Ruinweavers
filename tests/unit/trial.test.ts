@@ -167,3 +167,27 @@ it("the trial does not inherit invisible Lab water or mechanism", () => {
     s.dispose();
   }
 });
+
+it("keyboard evaluation emits only actual WASD directions", () => {
+  const s = new Simulation(
+    configFromQuery("?scene=trial/mixed&scenario=side-cover"),
+  );
+  s.advanceTrial();
+  const policy = new ScriptedPolicy(
+    "state-aware",
+    "delayed-aim",
+    123,
+    undefined,
+    "keyboard",
+  );
+  const directions = new Set<string>();
+  for (let i = 0; i < 600; i++) {
+    const input = policy.input(s);
+    expect([-1, 0, 1]).toContain(input.moveX);
+    expect([-1, 0, 1]).toContain(input.moveZ);
+    directions.add(`${input.moveX},${input.moveZ}`);
+    s.step(input);
+  }
+  expect(directions.size).toBeGreaterThan(1);
+  s.dispose();
+});

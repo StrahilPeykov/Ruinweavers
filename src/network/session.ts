@@ -96,6 +96,7 @@ export class CoopSession {
     this.lastReceive = performance.now();
     this.changed();
     const generation = this.generation;
+    let admittedPeer = "";
     try {
       const module =
         strategy === "local"
@@ -121,13 +122,15 @@ export class CoopSession {
             const hello = (await receive()).data as any;
             if (
               generation !== this.generation ||
-              this.peerId ||
+              (this.peerId && this.peerId !== _peer) ||
+              (admittedPeer && admittedPeer !== _peer) ||
               hello?.version !== 1 ||
               hello.role === role ||
               !["host", "guest"].includes(hello.role) ||
               (role === "host" && this.sim.state.trial?.status !== "ready")
             )
               throw Error("Room full, incompatible, or trial already started");
+            admittedPeer = _peer;
           },
           onJoinError: ({ error }) => {
             if (!this.peerId && generation === this.generation)

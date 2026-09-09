@@ -245,6 +245,10 @@ async function boot() {
       if (net.role === "guest") throw Error("Only host can arrange test state");
       if (!(net.active ? net.paused : paused))
         throw Error("Pause before test setup");
+      if (patch.enemyEnabled !== undefined)
+        sim.state.entities.forEach((e) => {
+          if (e.ai) e.ai.enabled = patch.enemyEnabled!;
+        });
       for (const change of patch.entities ?? []) {
         const entity = sim.state.entities.find((e) => e.id === change.id);
         if (!entity) throw Error("Unknown entity");
@@ -253,10 +257,6 @@ async function boot() {
         if (aiEnabled !== undefined && entity.ai) entity.ai.enabled = aiEnabled;
         sim.physics.teleport(entity);
       }
-      if (patch.enemyEnabled !== undefined)
-        sim.state.entities.forEach((e) => {
-          if (e.ai) e.ai.enabled = patch.enemyEnabled!;
-        });
       if (patch.dodgeRemaining !== undefined)
         localActor().dodgeUntil = sim.state.time + patch.dodgeRemaining;
       if (patch.secondaryRemaining !== undefined)

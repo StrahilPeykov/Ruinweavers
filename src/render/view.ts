@@ -433,7 +433,11 @@ export class View {
       const g = this.entities.get(e.id) || this.makeEntity(e);
       g.visible = e.hp > 0 || e.kind === "player";
       g.scale.y = e.kind === "player" && e.hp <= 0 ? 0.3 : 1;
-      g.position.set(e.pos.x, e.pos.y, e.pos.z);
+      g.position.set(
+        e.pos.x,
+        e.pos.y - (e.kind === "player" && e.hp <= 0 ? e.height * 0.35 : 0),
+        e.pos.z,
+      );
       if (e.kind === "player")
         g.rotation.y = Math.atan2(
           e.pos.x - s.actors[e.id].aim.x,

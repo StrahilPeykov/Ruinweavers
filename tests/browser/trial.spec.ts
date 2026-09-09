@@ -1,7 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
-const dir = "artifacts/combat-trial/browser";
+const dir = "artifacts/coop-trial/solo-regression/browser";
 const state = (p: Page) => p.evaluate(() => window.__RUINWEAVERS__.getState());
 async function ticks(p: Page, n: number) {
   const t = (await state(p)).tick;

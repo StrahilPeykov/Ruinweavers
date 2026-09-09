@@ -14,9 +14,10 @@ await initPhysics();
 const args = process.argv.slice(2),
   version = args.includes("--baseline") ? "baseline" : "candidate";
 const split = args.includes("--held-out") ? "held-out" : "development";
+const headingMode = args.includes("--keyboard") ? "keyboard" : "continuous";
 const output =
   args.find((a) => a.startsWith("--output="))?.slice(9) ??
-  `artifacts/combat-trial/${version}-${split}.json`;
+  `artifacts/coop-trial/${version}-${split}-${headingMode}.json`;
 const motor =
   args.find((a) => a.startsWith("--motor="))?.slice(8) ?? "reactive";
 const fullTrial = args.includes("--trial");
@@ -46,6 +47,7 @@ for (const [scenario, layout] of Object.entries(SCENARIOS).filter(
             mode,
             123 + Object.keys(SCENARIOS).indexOf(scenario) * 71,
             excluded,
+            headingMode,
           );
           sim.advanceTrial();
           for (
@@ -107,12 +109,13 @@ for (const [scenario, layout] of Object.entries(SCENARIOS).filter(
           });
           sim.dispose();
         }
-mkdirSync("artifacts/combat-trial", { recursive: true });
+mkdirSync("artifacts/coop-trial", { recursive: true });
 writeFileSync(
   output,
   JSON.stringify(
     {
       schema: 1,
+      headingMode,
       motor,
       policyVersion: POLICY_VERSION,
       runtimeCommit: execFileSync("git", ["rev-parse", "HEAD"])

@@ -18,7 +18,7 @@ Model B is a pragmatic comparison, not a perfectly symmetric algebra. Its Stone 
 - **Cohesion:** −1 to 1. Positive values resist impulse. Values below −.25 make force damaging, consuming the fracture. Fixed brittle structures can shatter; loose bodies move. Stone binds structures.
 - **Momentum:** Rapier mass, velocity and impulses. Heavy objects need more force. Moving loose/heavy bodies can damage structural targets. The plate senses mass occupying its area. Anchored objects retain fixed physical form until destroyed.
 
-All target operations carry actor/source IDs. Heat and wetness retain distinct provenance. Steam events identify the transforming actor; the priming actor remains in the target's state. There is no cross-player bonus or networking.
+All target operations carry actor/source IDs. Heat and wetness retain distinct provenance. Steam events identify the transforming actor and `primedBy`; damage routes identify recipient and source. Co-op uses the same operations with no cross-player bonus. See COOP for allied damage, down/revive and environmental interference rules.
 
 ## Cadence and commitment
 

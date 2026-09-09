@@ -1,6 +1,8 @@
 # Experiments / current recommendation
 
-**Current: Combat Trial 0.1.** Open `/` for the three-encounter trial, press E/Start, and carry health through ranged, pursuit and mixed pressure. Keep A, balanced camera/tempo, capacity 1 and 120 ms buffering. The experiment panel starts collapsed. Existing Lab scenes and Model B remain available. The user accepted movement/casting as broadly pleasant; controls are a working baseline, not proven balance. See [EVALUATION](EVALUATION.md) for current matched scenarios, supported tuning and limitations. Sections below preserve earlier Lab evidence.
+**Current: Co-op Trial 0.1.** Solo remains the default Start path; Create/Join adds one independent mage using host-authoritative WebRTC. Model A, balanced camera/tempo, capacity 1 per mage and 120 ms buffer remain unchanged. Public and loopback signaling passed same-machine real-browser tests, not remote-network validation. [COOP](COOP.md) records shared-world rules, connection steps and matched exploratory results. No tuning was changed. Earlier Lab and Combat Trial evidence below is historical.
+
+The keyboard-faithful motor preserves clears but removes the old control policy's zero-damage result (delayed mean 3.5 HP versus 0 with continuous headings). The current chase steering setting of 6 yields about 2.56 units/s in the measured damped lane; retreating/casting still increases the gap. Stone exclusion remains inadequate evidence about Stone: that heuristic never uses slabs. See EVALUATION corrections.
 
 **Magic Lab 1.1: start with A · Primary/Secondary, balanced camera (51°), balanced tempo, capacity 1 and 120 ms Secondary buffering.** Keep direct 1–4 selection; use Tab/Q as an alternate route. Default Secondary remains RMB with F as its discoverable fallback, and K as an additional right-hand option. Optional wheel cycling is available but off by default. Both mouse bindings stay enabled in the laptop profile.
 
@@ -83,4 +85,4 @@ Human questions: Does 120 ms feel forgiving without unwanted late casts? Can the
 4. Reset **combat**. Strafe, hold Primary, place a basin or updraft, and dodge after the red telegraph locks. Try standing on and behind cover.
 5. Repeat a short sequence with faster tempo, lower camera, then keyboard cycling and F Secondary. Decide which operations feel worth choosing, which keys cause finger conflicts, and whether the single sentinel provides enough pressure to judge the magic.
 
-The old questionnaire is no longer a gate: Combat Trial 0.1 was explicitly authorized. Its completion does not authorize another phase. No classes, progression or visual polish should conceal weak base actions.
+The old questionnaire is no longer a gate. Co-op Trial 0.1 is explicitly authorized; completion does not authorize another phase. No classes, progression or visual polish should conceal weak base actions.

@@ -15,3 +15,7 @@ Research informs hypotheses; the Lab must test them. No reference assets, layout
 No credible exact camera pitch, character footprint or cast timing measurements were established for the reference games. Do not invent those numbers. The Lab tests our own 37°/51°/64° camera pitches and three bounded tempo presets. Primary repeat avoids repeated clicking; no separate charged grammar is introduced.
 
 Selective research stopped once it supplied testable choices. Other listed references remain future resources, not a checklist to claim familiarity with.
+
+## Co-op API check (2026-09-09)
+
+Consulted current [official Trystero repository/API](https://github.com/dmotz/trystero) and [documentation](https://trystero.dev/docs/), then checked installed 0.25.4 source/types. `makeAction` returns `{send,onMessage}`; peer callbacks are assigned on Room; handshake callbacks validate version/host/guest before admission. Default Nostr offers account-free signaling, while the official ws-relay package provides a loopback signaling server for repeatable tests. Gameplay uses WebRTC data channels in both cases. No TURN is provisioned; STUN/signaling alone cannot guarantee restrictive-network reachability. No reference-game resurvey or external assets were needed.

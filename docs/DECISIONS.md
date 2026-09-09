@@ -1,5 +1,9 @@
 # Decisions
 
+- **Co-op Trial 0.1:** Explicitly authorized two-player work supersedes earlier solo-only phase restrictions. Preserve spells, controls, enemy HP and tuning. Use Trystero 0.25.4 public Nostr discovery plus an optional loopback relay; one authoritative host, one input-only guest with query colliders. Both ready at boundaries; no migration or reconnect continuation.
+- **Co-op rules:** No other-mage-attributed damage; states, interception, cover and support loss remain shared. Hold E within 2.2 units for 1.2 s restores 35 HP; clear restores a downed partner, both down defeats. No Resonance/scaling. Multi-target melee follows the displayed area. Scope and limitations are in COOP.
+- **Evaluation correction:** Keep continuous motor labelled; add actual eight-direction input. Measure damped chase displacement instead of treating steering speed as velocity. Neither corrected results nor initial pair policies justify further tuning. Stone exclusion did not test slabs.
+
 - **Combat Trial 0.1:** The user's pleasant movement/casting report retains the control baseline without claiming balance. Expand only to ranged, pursuit and mixed encounters with health carry; keep the Lab and Model B. The earlier questionnaire is not a gate. No roguelite or multiplayer work follows automatically.
 - **Combat Trial 0.1:** Compare frozen local policies with matched exact/delayed observations, development/held-out layouts and restricted actions. Preserve original benchmark and pre-correction data. Retain one bounded pursuit change (4.8→6 speed, 70% advance during wind-up); no spell/player tuning. EVALUATION records both supporting evidence and weak/non-monotonic effects.
 - **Combat Trial 0.1:** Fix deflection-only Gale feedback and invisible inherited Lab water. Keep independent per-enemy AI, source/recipient damage accounting and physics-backed local steering; no AI framework or engine rewrite. Stable defaults stay A/balanced/balanced/capacity 1/120 ms.

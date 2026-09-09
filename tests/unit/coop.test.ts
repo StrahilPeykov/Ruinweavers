@@ -105,3 +105,49 @@ it("enemies acquire the nearest living actor and retarget a downed actor", () =>
   expect(enemy.ai!.targetId).toBe("mage-1");
   s.dispose();
 });
+
+it("vertical state and query-only replica remain separate from the host", () => {
+  const s = setup();
+  s.players[0].pos = vec(-2, 4, 5);
+  s.players[1].pos = vec(2, 0.75, 5);
+  s.players.forEach((p) => s.physics.teleport(p));
+  for (let i = 0; i < 12; i++) s.stepParty({});
+  expect(s.state.actors["mage-1"].verticalSpeed).toBeLessThan(0);
+  expect(s.state.actors["mage-2"].verticalSpeed).not.toBe(
+    s.state.actors["mage-1"].verticalSpeed,
+  );
+  const replica = new Simulation(configFromQuery("?scene=trial"));
+  replica.acceptSnapshot(structuredClone(s.state));
+  expect(replica.state.tick).toBe(s.state.tick);
+  expect(() => replica.stepParty({})).toThrow();
+  expect(replica.state.tick).toBe(s.state.tick);
+  replica.dispose();
+  s.dispose();
+});
+
+it("the shown melee strike can hit both players with distinct damage recipients", () => {
+  const s = setup(),
+    enemy = s.state.entities.find((e) => e.kind === "pursuer")!;
+  for (const e of s.state.entities.filter((e) => e.ai)) e.ai!.enabled = false;
+  enemy.pos = vec(0, 0.55, 0);
+  s.physics.teleport(enemy);
+  s.players[0].pos = vec(-0.5, 0.75, 1);
+  s.players[1].pos = vec(0.5, 0.75, 1);
+  s.players.forEach((p) => s.physics.teleport(p));
+  Object.assign(enemy.ai!, {
+    enabled: true,
+    phase: "telegraph",
+    timer: 0,
+    locked: vec(0, 0.75, 1),
+    targetId: "mage-1",
+  });
+  s.tickEnemies(1 / 60);
+  expect(s.players.map((p) => p.hp)).toEqual([88, 88]);
+  expect(
+    Object.values(s.state.metrics.damageRoutes)
+      .filter((r) => r.reason === "melee strike")
+      .map((r) => r.recipient)
+      .sort(),
+  ).toEqual(["mage-1", "mage-2"]);
+  s.dispose();
+});
