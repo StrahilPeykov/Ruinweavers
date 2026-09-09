@@ -358,3 +358,41 @@ input:disabled,
 select:disabled {
   opacity: 0.45;
 }
+
+#room-share {
+  margin: 18px 0 10px;
+}
+#room-share label {
+  display: block;
+  font-size: 12px;
+}
+.room-share-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+#share-code {
+  min-width: 0;
+  width: 180px;
+  max-width: 55%;
+  padding: 9px;
+  border: 1px solid #6c8580;
+  border-radius: 4px;
+  background: #26393d;
+  color: #e0e8df;
+  font: 22px monospace;
+  letter-spacing: 3px;
+  text-align: center;
+}
+#trial-card #copy-code {
+  padding: 10px 14px;
+  white-space: nowrap;
+}
+#trial-card #copy-feedback {
+  font-size: 11px;
+  margin: 5px 0 0;
+}
+#copy-feedback:empty {
+  display: none;
+}

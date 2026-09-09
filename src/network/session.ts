@@ -77,9 +77,9 @@ export class CoopSession {
     this.role = role;
     this.actorId = role === "host" ? "mage-1" : "mage-2";
     this.strategy = strategy;
-    this.code = code.trim().toUpperCase();
-    if (!/^RW-[A-Z0-9]{12}$/.test(this.code)) {
-      this.fail("Use the complete RW room code.");
+    this.code = code.replace(/\s/g, "").toUpperCase();
+    if (!/^(?:[A-Z2-9]{6}|RW-[A-Z0-9]{12})$/.test(this.code)) {
+      this.fail("Enter the six-character room code.");
       return;
     }
     this.status = role === "host" ? "hosting" : "connecting";

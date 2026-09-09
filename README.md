@@ -9,7 +9,7 @@ npm run dev
 
 Open [the combat trial](http://127.0.0.1:5173/). Press **E / Start trial**. Clear ranged pressure, pursuit pressure, then both; health carries between encounters. E continues after a clear. **Restart trial** restores the starting state after victory/defeat or from the top bar. No account or paid services; nothing has been pushed, published or redeployed.
 
-For two players, each runs this same build locally. Leave **Public Nostr** selected; one clicks **Create co-op**, shares the RW code, and the other clicks **Join co-op**. Both press **Ready** at each transition. Hold **E** near a downed partner to revive; encounter clears also restore them. See [connection steps and limits](docs/COOP.md). Actual WebRTC was tested on this machine; remote-network connectivity is not yet verified.
+For two players, each runs this same build locally. Leave **Public Nostr** selected; one clicks **Create co-op**, uses **Copy code** to share the six-character room code, and the other clicks **Join co-op**. Both press **Ready** at each transition. Hold **E** near a downed partner to revive; encounter clears also restore them. See [connection steps and limits](docs/COOP.md). Actual WebRTC was tested on this machine; remote-network connectivity is not yet verified.
 
 WASD move · pointer aim · LMB / J Primary (hold repeats) · RMB / F / K Secondary · 1–4 select · Tab next / Q previous · Space dodge · E start/continue. Wheel cycling is optional, off by default. Mute and Pause are in the top bar.
 

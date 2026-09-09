@@ -73,3 +73,9 @@ WebAudio activation, cue counts and mute are inspected. Speaker/headphone loudne
 - No controller/touchscreen support, saved profiles, complete snapshot restore or final animation. WebGL 2 required. The live experiment panel clears input but does not pause combat; use Pause to inspect safely.
 - Passing checks demonstrates repeatable execution in this runtime, not subjective fun, comfortable ergonomics, universal A-over-B superiority, balanced combat or cross-browser physics determinism.
 
+
+## Room-sharing usability follow-up
+
+Reproduced disappearing selection with a real browser double-click on the lobby copy: unconditional HUD `textContent` writes cleared it before it could be copied. Labels now compose their final solo/party/network value and only update the DOM when that value changes. Room code lives in a stable read-only field with an explicit Copy code button and clipboard-denial/manual-copy fallback. New codes have six characters; legacy 12-character RW codes remain accepted. No gameplay or transport strategy changed.
+
+Focused regression: text selection across live updates, actual clipboard copy/paste into another browser client, six-character WebRTC join/start, lowercase/whitespace acceptance, and simulated clipboard permission denial followed by native Ctrl+C. Compact 860×640 and connected-lobby screenshots are in `artifacts/room-sharing/`. All three focused browser journeys and 40 unit tests pass; production build passes with the existing chunk warning. No public deployment or push is part of this fix.

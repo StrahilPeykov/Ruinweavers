@@ -1,0 +1,16 @@
+{
+  "baselineCommit": "f29c27ec92a87b483513831f5708070a5e0888de",
+  "sourceHashes": {
+    "src/ui/ui.ts": "50be320d47ab3b441750df31665580af3b4ad235440c274e3b0ba1b4f2e59b04",
+    "src/ui/style.css": "fdd9141bab0666d8df2987089d7318c18c648531b198b8d648ebad7fde0e4fc0",
+    "src/network/session.ts": "97c7f3baa8f9728e417851906f5349b64533ed856f172db02468c9ac248492c5"
+  },
+  "checks": {
+    "browserJourneys": 3,
+    "unitTests": 40,
+    "productionBuild": "passed; existing Rapier chunk warning"
+  },
+  "reproduction": "Double-clicked lobby copy lost selection before assertion under unconditional textContent writes; same journey passes after final-label/diff update.",
+  "visualReview": "Connected lobby and 860x640 manual-copy fallback inspected; code, button, focus/selection and feedback legible. Playwright Chromium/SwiftShader; no performance inference.",
+  "transport": "Actual local-signaled WebRTC between independent browser clients; copied and pasted six-character code; public deployment unchanged."
+}
