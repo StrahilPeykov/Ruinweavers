@@ -230,3 +230,46 @@ it("replacement preserves residual states and expiry drops the player onto remai
   expect(s.state.fields).toHaveLength(0);
   s.dispose();
 });
+
+it("placement capacity counts only the casting actor's manifestations", () => {
+  const s = make();
+  s.config.secondaryCapacity = 2;
+  slab(s);
+  for (let i = 0; i < 2; i++)
+    s.state.fields.push({
+      id: `other-${i}`,
+      source: "mage-2",
+      principle: "Tide",
+      pos: vec(-8, 0, 0),
+      end: vec(-8, 0, 0),
+      radius: 2.5,
+      life: 12,
+      nextPulse: 0,
+    });
+  s.state.activePrinciple = "Tide";
+  s.state.aim = vec(0, 0.85, 0);
+  expect(s.targeting("secondary").pos.y).toBeCloseTo(0.85, 2);
+  s.cast("secondary");
+  expect(s.state.fields.find((f) => f.id === "cover")).toBeDefined();
+  s.dispose();
+});
+
+it("Tide's visible upper jet can hit a body whose center is hidden by a ledge", () => {
+  const s = make();
+  s.player.pos = vec(-10, 1.95, -9);
+  s.physics.teleport(s.player);
+  const e = s.state.entities.find((e) => e.id === "dummy")!;
+  e.pos = vec(-5, 0.65, -9);
+  s.physics.teleport(e);
+  s.physics.world.step();
+  s.state.activePrinciple = "Tide";
+  s.state.aim = { ...vec(-5, 1.2, -9), body: true };
+  s.cast("primary");
+  expect(e.wet).toBeGreaterThan(0.5);
+  e.wet = 0;
+  s.state.primaryReady = 0;
+  s.state.aim = { ...vec(-5, 0.1, -9), body: true };
+  s.cast("primary");
+  expect(e.wet).toBe(0);
+  s.dispose();
+});

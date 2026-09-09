@@ -1,5 +1,9 @@
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+const runtimeCommit = execFileSync("git", ["rev-parse", "--short", "HEAD"])
+  .toString()
+  .trim();
 const dir = "artifacts/lab-1.1/validated";
 const state = (p: Page) => p.evaluate(() => window.__RUINWEAVERS__.getState());
 async function ticks(p: Page, n: number) {
@@ -26,12 +30,12 @@ async function boot(p: Page, scene = "states") {
 }
 async function capture(p: Page, name: string) {
   await p.screenshot({ path: `${dir}/${name}.png` });
-  const data = await p.evaluate(() => {
+  const data = await p.evaluate((runtimeCommit) => {
     const a = window.__RUINWEAVERS__,
       gl = document.querySelector("canvas")!.getContext("webgl2")!,
       ext = gl.getExtension("WEBGL_debug_renderer_info");
     return {
-      build: "Magic Lab 1.1 reliability pass",
+      build: `Magic Lab 1.1 / runtime ${runtimeCommit}`,
       url: location.href,
       browser: navigator.userAgent,
       viewport: {
@@ -47,7 +51,8 @@ async function capture(p: Page, name: string) {
       targeting: a.getTargeting(),
       metrics: a.getMetrics(),
     };
-  });
+  }, runtimeCommit);
+  data.build = `Magic Lab 1.1 / runtime ${runtimeCommit}`;
   writeFileSync(`${dir}/${name}.json`, JSON.stringify(data, null, 2));
 }
 
@@ -98,8 +103,8 @@ test("body and feet aiming, raised casts and preview execution through real poin
   await page.mouse.up();
   expect(
     (await state(page)).entities.find((e: any) => e.id === "dummy").wet,
-  ).toBe(0);
-  await capture(page, "02a-own-ledge-blocks-low-jet");
+  ).toBeGreaterThan(0.3);
+  await capture(page, "02a-upper-jet-clears-ledge");
   await page.evaluate(() => {
     const a = window.__RUINWEAVERS__;
     a.setPaused(true);
@@ -151,7 +156,7 @@ test("mouse and keyboard buffered Secondary capture intent without repeats; focu
   }
   let s = await state(page);
   expect(s.metrics.casts["Tide:secondary"]).toBe(2);
-  expect(s.events.some((e: any) => e.type === "buffered")).toBe(true);
+  expect(s.events.filter((e: any) => e.type === "buffered")).toHaveLength(2);
   expect(s.metrics.inputs["secondary:mouse"]).toBe(1);
   expect(s.metrics.inputs["secondary:keyboard-fallback"]).toBe(1);
   await page.getByRole("button", { name: "Mute", exact: true }).click();
@@ -189,6 +194,9 @@ test("mouse and keyboard buffered Secondary capture intent without repeats; focu
   await page.evaluate(() => window.dispatchEvent(new Event("blur")));
   const before = (await state(page)).metrics.casts["Tide:primary"];
   await ticks(page, 40);
+  // A second down while physically held is an OS-repeat event in Playwright.
+  await page.keyboard.down("j");
+  await ticks(page, 30);
   await page.keyboard.up("j");
   expect((await state(page)).metrics.casts["Tide:primary"]).toBe(before);
   await page.getByRole("button", { name: "Experiments", exact: true }).click();

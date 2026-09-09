@@ -210,16 +210,13 @@ export class Simulation {
         ground,
       };
     }
+    const own = this.state.fields.filter((f) => f.source === this.player.id);
     const replaced =
       action === "secondary" && this.config.model === "primary-secondary"
-        ? this.state.fields
-            .filter((f) => f.source === this.player.id)
+        ? own
             .slice(
               0,
-              Math.max(
-                0,
-                this.state.fields.length - this.config.secondaryCapacity + 1,
-              ),
+              Math.max(0, own.length - this.config.secondaryCapacity + 1),
             )
             .map((f) => f.id)
         : [];
@@ -247,19 +244,6 @@ export class Simulation {
         : "No supporting surface",
       ground,
     };
-  }
-  targetPoint(range: number) {
-    const p = this.player.pos,
-      a = this.state.aim,
-      ratio = Math.min(1, range / (distance(p, a) || 1));
-    const point = vec(
-      p.x + (a.x - p.x) * ratio,
-      a.y,
-      p.z + (a.z - p.z) * ratio,
-    );
-    return (
-      this.physics.surfaceAt({ ...point, y: Math.max(p.y, a.y) + 0.1 }) ?? point
-    );
   }
   inGust(point: Vec, dir: Vec, radius = 0) {
     const p = this.player.pos,
@@ -437,22 +421,24 @@ export class Simulation {
         end: jetEnd,
         duration: 0.22,
       });
+      const jetHeightAt = (point: Vec) => {
+        const dx = jetEnd.x - p.pos.x,
+          dz = jetEnd.z - p.pos.z;
+        const t =
+          ((point.x - p.pos.x) * dx + (point.z - p.pos.z) * dz) /
+          (dx * dx + dz * dz || 1);
+        return p.pos.y + (jetEnd.y - p.pos.y) * t;
+      };
       for (const e of s.entities)
         if (
           e.id !== p.id &&
           e.hp > 0 &&
           segmentDistance(e.pos, p.pos, jetEnd) < e.radius + 0.4 &&
-          Math.abs(
-            e.pos.y -
-              (p.pos.y +
-                (jetEnd.y - p.pos.y) *
-                  Math.min(
-                    1,
-                    distance(p.pos, e.pos) / (distance(p.pos, jetEnd) || 1),
-                  )),
-          ) <
-            e.height / 2 + 0.4 &&
-          !this.physics.terrainHit(p.pos, e.pos)
+          Math.abs(e.pos.y - jetHeightAt(e.pos)) < e.height / 2 + 0.4 &&
+          !this.physics.terrainHit(
+            p.pos,
+            vec(e.pos.x, jetHeightAt(e.pos), e.pos.z),
+          )
         )
           this.apply(
             e,
