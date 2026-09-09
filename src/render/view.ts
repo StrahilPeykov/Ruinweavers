@@ -22,7 +22,10 @@ export class View {
   bolts = new Map<string, T.Mesh>();
   effects = new Map<number, T.Group>();
   aim = new T.Group();
-  danger = new T.Group();
+  dangers = new Map<string, T.Group>();
+  terrainGroup = new T.Group();
+  terrainKey = "";
+  labDecor = new T.Group();
   placement = new T.Group();
   pad: T.Mesh;
   labels: { sprite: T.Sprite; pos: Vec }[] = [];
@@ -69,16 +72,17 @@ export class View {
     sun.shadow.bias = -0.0006;
     sun.shadow.normalBias = 0.035;
     this.scene.add(sun);
+    this.scene.add(this.terrainGroup, this.labDecor);
     for (const t of TERRAIN) {
       const mesh = this.box(t.w, t.h, t.d, t.name ? 0x667675 : 0x43545a);
       mesh.position.set(t.x, t.y, t.z);
-      this.scene.add(mesh);
+      this.terrainGroup.add(mesh);
     }
     const grid = new T.GridHelper(30, 30, 0x82928f, 0x5a6c70);
     grid.position.y = 0.012;
     grid.material.transparent = true;
     grid.material.opacity = 0.19;
-    this.scene.add(grid);
+    this.labDecor.add(grid);
     const water = new T.Mesh(
       new T.CircleGeometry(WATER.radius, 64),
       material(0x427d89, {
@@ -90,10 +94,10 @@ export class View {
     );
     water.rotation.x = -Math.PI / 2;
     water.position.set(WATER.x, 0.035, WATER.z);
-    this.scene.add(water);
+    this.labDecor.add(water);
     this.pad = this.disc(PAD.radius, 0x718485, 0.7);
     this.pad.position.set(PAD.x, 0.04, PAD.z);
-    this.scene.add(this.pad);
+    this.labDecor.add(this.pad);
     for (const [label, x, z] of [
       ["SATURATION", -7, 1.7],
       ["MATERIALS", -4.5, -8.7],
@@ -103,7 +107,7 @@ export class View {
       ["BALLAST → PLATE", 5.7, 3.8],
     ] as [string, number, number][])
       this.label(label, vec(x, 0.08, z));
-    this.scene.add(this.aim, this.danger, this.placement);
+    this.scene.add(this.aim, this.placement);
     const footprint = this.ring(2.5, 0xffffff, 0.55);
     footprint.geometry = new T.RingGeometry(0.985, 1, 64);
     footprint.material.depthTest = false;
@@ -128,17 +132,6 @@ export class View {
     const dot = this.disc(0.07, 0xffffff);
     dot.position.y = 0.02;
     this.aim.add(dot);
-    this.danger.add(
-      this.line(vec(), vec(0, 0, 1), 0xff5c53, 0.2),
-      this.ring(0.9, 0xff7864),
-    );
-    this.danger.traverse((o) => {
-      if (o instanceof T.Mesh) {
-        o.material.depthTest = false;
-        o.material.depthWrite = false;
-        o.renderOrder = 20;
-      }
-    });
     canvas.addEventListener("webglcontextlost", (e) => {
       e.preventDefault();
       this.contextLost = true;
@@ -234,6 +227,23 @@ export class View {
       const facing = this.box(0.12, 0.07, 0.65, 0xeff5d9);
       facing.position.set(0, -0.57, -0.62);
       group.add(facing);
+    } else if (kind === "pursuer") {
+      body = new T.Mesh(
+        new T.DodecahedronGeometry(0.58, 0),
+        material(0xba8264),
+      );
+      body.scale.set(1, 0.7, 1.15);
+      const muzzle = this.box(0.65, 0.2, 0.5, 0x593d38);
+      muzzle.position.set(0, 0.05, 0.45);
+      group.add(muzzle);
+      for (const side of [-1, 1]) {
+        const ear = new T.Mesh(
+          new T.ConeGeometry(0.15, 0.45, 4),
+          material(0xf1c698),
+        );
+        ear.position.set(side * 0.35, 0.35, 0);
+        group.add(ear);
+      }
     } else if (kind === "sentinel") {
       body = new T.Mesh(new T.OctahedronGeometry(0.8), material(0xb27e73));
       const eye = new T.Mesh(
@@ -300,6 +310,15 @@ export class View {
     anchor.name = "anchor";
     anchor.position.y = -e.height / 2 + 0.08;
     group.add(anchor);
+    if (e.ai) {
+      const back = this.box(1.3, 0.06, 0.12, 0x3b2729);
+      back.position.y = e.height / 2 + 0.38;
+      group.add(back);
+      const hp = this.box(1.28, 0.065, 0.13, 0xf3b79d);
+      hp.position.y = e.height / 2 + 0.38;
+      hp.name = "hp";
+      group.add(hp);
+    }
     this.scene.add(group);
     this.entities.set(e.id, group);
     return group;
@@ -363,10 +382,35 @@ export class View {
       map.clear();
     }
     this.center.set(0, 0, 0);
+    this.dangers.forEach((g) => this.destroy(g));
+    this.dangers.clear();
   }
   render(s: State, delta: number) {
     const p = s.entities[0],
       t = s.time;
+    const terrain = s.terrain ?? TERRAIN,
+      key = JSON.stringify(terrain);
+    if (key !== this.terrainKey) {
+      for (const child of [...this.terrainGroup.children]) this.destroy(child);
+      for (const box of terrain) {
+        const mesh = this.box(
+          box.w,
+          box.h,
+          box.d,
+          box.name ? 0x667675 : 0x43545a,
+        );
+        mesh.position.set(box.x, box.y, box.z);
+        this.terrainGroup.add(mesh);
+      }
+      this.terrainKey = key;
+    }
+    this.labDecor.visible = !s.trial;
+    this.labels.forEach((label) => (label.sprite.visible = !s.trial));
+    for (const [id, g] of this.entities)
+      if (!s.entities.some((e) => e.id === id)) {
+        this.destroy(g);
+        this.entities.delete(id);
+      }
     this.center.lerp(
       new T.Vector3(p.pos.x * 0.82, 0, p.pos.z * 0.82),
       1 - Math.exp(-delta * 12),
@@ -385,7 +429,14 @@ export class View {
       g.position.set(e.pos.x, e.pos.y, e.pos.z);
       if (e.kind === "player")
         g.rotation.y = Math.atan2(p.pos.x - s.aim.x, p.pos.z - s.aim.z);
-      else if (["heavy", "loose"].includes(e.kind))
+      else if (e.ai) {
+        g.rotation.y = Math.atan2(
+          e.ai.locked.x - e.pos.x,
+          e.ai.locked.z - e.pos.z,
+        );
+        const hp = g.getObjectByName("hp");
+        if (hp) hp.scale.x = 1.28 * Math.max(0, e.hp / e.maxHp);
+      } else if (["heavy", "loose"].includes(e.kind))
         g.quaternion.set(
           e.rotation.x,
           e.rotation.y,
@@ -498,7 +549,7 @@ export class View {
       if (!g) {
         g = new T.Group();
         const color =
-          e.type === "rejected"
+          e.type === "rejected" || e.type === "melee-strike"
             ? 0xff6a66
             : e.type === "buffered"
               ? 0xecc879
@@ -570,11 +621,13 @@ export class View {
         } else
           g.add(
             this.ring(
-              e.type === "inverse"
-                ? 2.8
-                : e.type === "eruption-warning"
-                  ? 1.25
-                  : 0.55,
+              e.type === "melee-strike"
+                ? 1.45
+                : e.type === "inverse"
+                  ? 2.8
+                  : e.type === "eruption-warning"
+                    ? 1.25
+                    : 0.55,
               color,
             ),
           );
@@ -645,18 +698,47 @@ export class View {
       s.activePrinciple === "Ember" && !inverse
         ? Math.atan2(target.pos.x - p.pos.x, target.pos.z - p.pos.z)
         : 0;
-    const enemy = s.entities.find((e) => e.id === "sentinel")!;
-    this.danger.visible =
-      s.sentinel.phase === "telegraph" && s.sentinel.enabled && enemy.hp > 0;
-    if (this.danger.visible) {
-      const a = enemy.pos,
-        b = s.sentinel.locked,
-        line = this.danger.children[0];
-      line.scale.set(0.2, 0.045, distance(a, b));
-      line.position.set((a.x + b.x) / 2, 0.08, (a.z + b.z) / 2);
-      line.rotation.y = Math.atan2(b.x - a.x, b.z - a.z);
-      this.danger.children[1].position.set(b.x, 0.08, b.z);
+    for (const e of s.entities) {
+      const ai = e.ai ?? (e.id === "sentinel" ? s.sentinel : undefined);
+      if (!ai) continue;
+      let g = this.dangers.get(e.id);
+      if (!g) {
+        g = new T.Group();
+        g.add(
+          this.line(vec(), vec(0, 0, 1), 0xff6657, 0.18),
+          this.ring(e.kind === "pursuer" ? 1.45 : 0.9, 0xff7864),
+        );
+        g.traverse((o) => {
+          if (o instanceof T.Mesh) {
+            o.material.depthTest = false;
+            o.material.depthWrite = false;
+            o.renderOrder = 20;
+          }
+        });
+        this.scene.add(g);
+        this.dangers.set(e.id, g);
+      }
+      g.visible =
+        ai.phase === "telegraph" &&
+        ai.enabled &&
+        e.hp > 0 &&
+        (!s.trial || s.trial.status === "active");
+      if (g.visible) {
+        const a = e.pos,
+          b = ai.locked,
+          line = g.children[0];
+        line.visible = e.kind !== "pursuer";
+        line.scale.set(0.18, 0.045, distance(a, b));
+        line.position.set((a.x + b.x) / 2, 0.08, (a.z + b.z) / 2);
+        line.rotation.y = Math.atan2(b.x - a.x, b.z - a.z);
+        g.children[1].position.set(b.x, 0.09, b.z);
+      }
     }
+    for (const [id, g] of this.dangers)
+      if (!s.entities.some((e) => e.id === id)) {
+        this.destroy(g);
+        this.dangers.delete(id);
+      }
     (this.pad.material as T.MeshBasicMaterial).color.setHex(
       s.mechanism ? 0xdbe8a0 : 0x718485,
     );

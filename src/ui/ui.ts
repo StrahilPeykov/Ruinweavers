@@ -1,3 +1,4 @@
+import { ENCOUNTERS } from "../simulation/trial";
 import { CAST, PRINCIPLES, SCENES, type Config } from "../experiments/config";
 import type { Input } from "../input/input";
 import type { State } from "../simulation/types";
@@ -9,6 +10,7 @@ export class UI {
     public config: Config,
     public input: Input,
     public actions: {
+      advance: () => void;
       reset: () => void;
       combat: () => void;
       configure: (patch: Partial<Config>) => void;
@@ -31,10 +33,15 @@ export class UI {
       <details><summary>Selected tunables</summary><label>Move speed<input id="moveSpeed" type="range" min="3" max="8" step=".1"></label><label>Dodge distance<input id="dodgeDistance" type="range" min="2" max="5" step=".1"></label><label>Dodge recovery<input id="dodgeRecovery" type="range" min=".4" max="1.4" step=".05"></label><label>Cast recovery multiplier<input id="castRecovery" type="range" min=".65" max="1.5" step=".05"></label><label>Secondary buffer (seconds; 0 disables)<input id="inputBuffer" type="range" min="0" max=".15" step=".01"></label><label>Secondary capacity<input id="secondaryCapacity" type="number" min="1" max="3"></label><label>Secondary fallback<select id="fallback"><option value="KeyF">F</option><option value="KeyR">R</option><option value="ShiftLeft">Left Shift</option></select></label><label>Next Principle<select id="cycle"><option value="Tab">Tab</option><option value="KeyC">C</option><option value="KeyR">R</option></select></label><label class="check"><input id="wheel" type="checkbox"> Optional wheel cycling</label></details>
       <details><summary>Controls & rules</summary><p>WASD moves; pointer aims independently. Hold LMB or J for Primary. RMB, F or K for discrete Secondary. 1–4 select; Tab next; Q previous. Space dodges. E toggles pressure near the ballast plate.</p><p>Heat + moisture → steam. Thermal shock weakens structure. Force moves mass and exploits fracture. Stone binds and stabilizes. The plate responds to weight.</p><p>Trackpad: aim with one finger, cast using J / F or K. Palm rejection and keyboard rollover require testing on your hardware. Both mouse bindings stay available.</p><p>One major field at a time. A new Secondary dissolves the old; residual target states remain. Stone slabs bridge the gap and obstruct low bolts. No mana.</p></details>
       <button id="combat-reset">Reset combat station</button> <button id="export">Export observations</button><pre id="metrics"></pre><p id="feedback" role="status"></p></aside>
-      <div id="inspect"></div><div id="cast-feedback" role="status"></div><div id="notice" hidden></div>
+      <section id="trial-card" hidden><div class="eyebrow">COMBAT TRIAL 0.1</div><h2 id="trial-title"></h2><p id="trial-copy"></p><button id="trial-action">Start trial</button><p class="trial-keys">E to continue · WASD move · LMB cast · RMB / F secondary · Space dodge</p></section><div id="inspect"></div><div id="cast-feedback" role="status"></div><div id="notice" hidden></div>
       <footer><div id="principles">${PRINCIPLES.map((p, i) => `<div data-principle="${p}"><kbd>${i + 1}</kbd><span>${p}</span></div>`).join("")}</div><div id="spell"></div><div class="hint">WASD move · LMB / J cast · RMB / F secondary · Space dodge · Tab / Q cycle</div><div id="health"></div></footer>`;
     const byId = (id: string) =>
       this.root.querySelector<HTMLElement>(`#${id}`)!;
+    byId("trial-action").onclick = () => {
+      input.clear();
+      actions.advance();
+      this.unfocus();
+    };
     byId("reset").onclick = () => {
       actions.reset();
       this.unfocus();
@@ -149,7 +156,8 @@ export class UI {
       `WASD move · ${pretty(this.input.bindings.primary)} cast · ${pretty(this.input.bindings.secondary)} secondary · Space dodge · ${pretty(this.input.bindings.next)} / ${pretty(this.input.bindings.previous)} cycle`;
     (get("profile") as HTMLSelectElement).value = this.input.profile;
     const player = s.entities[0],
-      enemy = s.entities.find((e) => e.id === "sentinel")!;
+      enemies = s.entities.filter((e) => e.ai && e.hp > 0),
+      enemy = s.entities.find((e) => e.id === "sentinel");
     for (const el of this.root.querySelectorAll<HTMLElement>(
       "[data-principle]",
     ))
@@ -162,7 +170,7 @@ export class UI {
     get("status").textContent =
       `${this.config.model === "primary-secondary" ? "A · Primary / Secondary" : "B · Weave / Unweave"}  ·  ${this.config.camera}  ·  ${this.config.tempo}  ·  ${this.config.scene}`;
     get("metrics").textContent =
-      `${view.metrics().frameMs.toFixed(1)} ms/frame · ${view.metrics().drawCalls} draws\nSentinel ${Math.ceil(enemy.hp)} / ${enemy.maxHp} · ${s.sentinel.enabled ? "pressure on" : "pressure off"}\n${s.metrics.switches} switches · ${s.metrics.dodges} dodges\n${Object.entries(
+      `${view.metrics().frameMs.toFixed(1)} ms/frame · ${view.metrics().drawCalls} draws\nSentinel ${enemy ? Math.ceil(enemy.hp) : enemies.length} / ${enemy ? enemy.maxHp : s.entities.filter((e) => e.ai).length} · ${s.sentinel.enabled ? "pressure on" : "pressure off"}\n${s.metrics.switches} switches · ${s.metrics.dodges} dodges\n${Object.entries(
         s.metrics.transformations,
       )
         .map(([k, v]) => `${k}: ${v}`)
@@ -200,8 +208,41 @@ export class UI {
         : !placement.valid
           ? placement.reason
           : `${placement.clamped ? "Range-limited footprint · " : ""}RMB / F footprint${field ? ` · replaces ${field.principle} (${field.life.toFixed(1)}s)` : ""}`;
+    const trial = s.trial,
+      card = get("trial-card");
+    card.hidden = !trial || trial.status === "active" || paused;
+    get("reset").textContent = trial ? "Restart trial" : "Reset lab";
+    this.root.querySelector("h1 span")!.textContent = trial
+      ? "/ COMBAT TRIAL"
+      : "/ MAGIC LAB";
+    if (trial) {
+      get("status").textContent =
+        `${trial.encounter + 1} / 3 · ${ENCOUNTERS[trial.encounter]} · ${enemies.length} remaining · Health carries forward`;
+      const title =
+        trial.status === "ready"
+          ? "Three encounters. One health bar."
+          : trial.status === "between"
+            ? `${ENCOUNTERS[trial.encounter]} cleared`
+            : trial.status === "victory"
+              ? "Trial complete"
+              : "Trial ended";
+      get("trial-title").textContent =
+        trial.isolated && trial.status === "ready"
+          ? ENCOUNTERS[trial.encounter]
+          : title;
+      get("trial-copy").textContent =
+        trial.status === "ready"
+          ? "Ranged pressure, pursuit, then both. Use the magic you know. Cover stops your bolts too."
+          : `${Math.ceil(player.hp)} integrity remaining · ${trial.elapsed.toFixed(1)} seconds fighting. ${trial.status === "between" ? "Your health carries into the next encounter." : "Restart for another attempt."}`;
+      get("trial-action").textContent =
+        trial.status === "ready"
+          ? "Start trial"
+          : trial.status === "between"
+            ? "Next encounter"
+            : "Restart trial";
+    }
     const notice = get("notice");
-    notice.hidden = !(paused || player.hp <= 0 || view.contextLost);
+    notice.hidden = !(paused || (!trial && player.hp <= 0) || view.contextLost);
     notice.textContent = view.contextLost
       ? "Graphics context lost. Waiting for recovery."
       : player.hp <= 0

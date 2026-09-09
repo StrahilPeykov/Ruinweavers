@@ -47,6 +47,8 @@ export interface Config {
   cameraDistance: number;
   cameraPitch: number;
   inputBuffer: number;
+  scenario: string;
+  encounterVersion: "baseline" | "candidate";
 }
 export const CAMERAS = {
   tactical: { cameraDistance: 27, cameraPitch: 64 },
@@ -54,6 +56,10 @@ export const CAMERAS = {
   cinematic: { cameraDistance: 22, cameraPitch: 37 },
 };
 export const SCENES = [
+  "trial",
+  "trial/ranged",
+  "trial/pursuit",
+  "trial/mixed",
   "free",
   "ergonomics",
   "states",
@@ -74,7 +80,10 @@ export function configFromQuery(query = ""): Config {
     tempo: tempo in TEMPOS ? tempo : "balanced",
     scene: SCENES.includes((q.get("scene") || "").replace("magic-lab/", ""))
       ? q.get("scene")!.replace("magic-lab/", "")
-      : "free",
+      : "trial",
+    scenario: q.get("scenario") || "cross-cover",
+    encounterVersion:
+      q.get("encounterVersion") === "baseline" ? "baseline" : "candidate",
     seed: Number(q.get("seed")) || 123,
     ...TEMPOS[tempo in TEMPOS ? tempo : "balanced"],
     ...CAMERAS[camera in CAMERAS ? camera : "balanced"],

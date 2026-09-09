@@ -287,3 +287,36 @@ kbd {
   pointer-events: none;
   white-space: nowrap;
 }
+
+#trial-card {
+  position: absolute;
+  left: 50%;
+  top: 43%;
+  transform: translate(-50%, -50%);
+  width: min(460px, 90vw);
+  padding: 24px 30px;
+  background: #182a30f2;
+  border: 1px solid #8aaca277;
+  border-radius: 8px;
+  text-align: center;
+  pointer-events: auto;
+  box-shadow: 0 20px 60px #0005;
+}
+#trial-card h2 {
+  font-weight: 500;
+  font-size: 23px;
+  margin: 8px 0;
+}
+#trial-card p {
+  color: #bacdc6;
+  font-size: 13px;
+}
+#trial-card button {
+  padding: 10px 24px;
+  background: #426556;
+  font-size: 15px;
+}
+#trial-card .trial-keys {
+  font-size: 11px;
+  margin-bottom: 0;
+}

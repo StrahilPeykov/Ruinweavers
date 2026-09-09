@@ -17,7 +17,7 @@ export class Physics {
     this.controller.enableSnapToGround(0.25);
     this.controller.setApplyImpulsesToDynamicBodies(true);
     this.controller.setCharacterMass(2);
-    for (const t of TERRAIN) {
+    for (const t of state.terrain ?? TERRAIN) {
       const b = this.world.createRigidBody(
         RAPIER.RigidBodyDesc.fixed().setTranslation(t.x, t.y, t.z),
       );
@@ -41,7 +41,7 @@ export class Physics {
       .setTranslation(e.pos.x, e.pos.y, e.pos.z)
       .setLinearDamping(3)
       .setAngularDamping(4);
-    if (e.kind === "sentinel") desc.lockRotations();
+    if (e.kind === "sentinel" || e.kind === "pursuer") desc.lockRotations();
     const b = this.world.createRigidBody(desc);
     const shape =
       e.kind === "player"

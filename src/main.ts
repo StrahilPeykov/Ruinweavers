@@ -119,7 +119,13 @@ async function boot() {
     reset();
     ui.sync();
   };
+  const advance = () => {
+    input.clear();
+    sim.advanceTrial();
+    ui.last = 0;
+  };
   const ui = new UI(config, input, {
+    advance,
     reset,
     combat: combatReset,
     configure,
@@ -132,6 +138,7 @@ async function boot() {
     mute: () => (audio.muted = !audio.muted),
   });
   const api = {
+    advanceTrial: advance,
     getState: () => structuredClone(sim.state),
     getTargeting: () => ({
       primary: sim.targeting("primary"),
@@ -209,6 +216,7 @@ async function boot() {
     },
   };
   if (import.meta.env.DEV) window.__RUINWEAVERS__ = api;
+  let previousTick = 0;
   let last = performance.now(),
     accumulator = 0;
   view.center.set(sim.player.pos.x * 0.82, 0, sim.player.pos.z * 0.82);
@@ -227,6 +235,11 @@ async function boot() {
         accumulator -= 1 / 60;
       }
     } else accumulator = 0;
+    if (sim.state.tick < previousTick) {
+      view.reset();
+      audio.reset();
+    }
+    previousTick = sim.state.tick;
     view.render(sim.state, rawElapsed);
     audio.update(sim.state);
     ui.update(sim.state, view, paused);

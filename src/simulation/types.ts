@@ -14,11 +14,13 @@ export type Kind =
   | "dummy"
   | "moving"
   | "sentinel"
+  | "pursuer"
   | "wood"
   | "brittle"
   | "heavy"
   | "loose";
 export interface Entity {
+  ai?: EnemyAI;
   id: string;
   kind: Kind;
   label: string;
@@ -44,6 +46,22 @@ export interface Entity {
   staggerReady: number;
   sources: Record<string, string>;
   hitAt: number;
+}
+export interface EnemyAI {
+  enabled: boolean;
+  phase: "idle" | "telegraph" | "recover" | "defeated";
+  timer: number;
+  locked: Vec;
+  started: number;
+}
+export interface TrialState {
+  status: "ready" | "active" | "between" | "victory" | "defeat";
+  encounter: number;
+  isolated: boolean;
+  scenario: string;
+  elapsed: number;
+  started: number;
+  results: { encounter: number; seconds: number; health: number }[];
 }
 export interface Operation {
   heat?: number;
@@ -75,6 +93,7 @@ export interface Field {
   nextPulse: number;
 }
 export interface Bolt {
+  originalSource?: string;
   id: string;
   source: string;
   principle: Principle | "hostile";
@@ -90,6 +109,11 @@ export interface Pending {
   principle: Principle;
 }
 export interface Metrics {
+  damageRoutes: Record<
+    string,
+    { source: string; recipient: string; reason: string; amount: number }
+  >;
+  outcomes: Record<string, number>;
   casts: Record<string, number>;
   inputs: Record<string, number>;
   switches: number;
@@ -104,6 +128,8 @@ export interface Metrics {
   falls: number;
 }
 export interface State {
+  trial?: TrialState;
+  terrain?: import("./lab").TerrainBox[];
   time: number;
   tick: number;
   seed: number;

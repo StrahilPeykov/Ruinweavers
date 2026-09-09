@@ -30,7 +30,7 @@ export const TERRAIN: TerrainBox[] = [
 ];
 export const WATER = { x: -7, z: -1.5, radius: 2.4 };
 export const PAD = { x: 5.7, z: -3, radius: 1.3 };
-function entity(
+export function entity(
   id: string,
   kind: Kind,
   label: string,
@@ -123,6 +123,8 @@ export function createState(config: Config): State {
     },
     mechanism: false,
     metrics: {
+      damageRoutes: {},
+      outcomes: {},
       casts: {},
       inputs: {},
       switches: 0,

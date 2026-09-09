@@ -4,6 +4,7 @@ import {
   type Config,
   type Principle,
 } from "../experiments/config";
+import { initializeTrial, prepareEncounter, TRIAL_TUNING } from "./trial";
 import { Physics } from "../physics/world";
 import { createState, PAD, WATER } from "./lab";
 import {
@@ -40,6 +41,7 @@ export class Simulation {
   physics: Physics;
   constructor(public config: Config) {
     this.state = createState(config);
+    if (config.scene.startsWith("trial")) initializeTrial(this.state, config);
     this.physics = new Physics(this.state);
   }
   get player() {
@@ -47,6 +49,7 @@ export class Simulation {
   }
   stagger(e: Entity, duration: number) {
     if (this.state.time >= e.staggerReady) {
+      this.outcome(`stagger:${e.id}`);
       e.stagger = Math.min(0.4, duration);
       e.staggerReady = this.state.time + 1.4;
     }
@@ -54,7 +57,33 @@ export class Simulation {
   reset() {
     this.physics.dispose();
     this.state = createState(this.config);
+    if (this.config.scene.startsWith("trial"))
+      initializeTrial(this.state, this.config);
     this.physics = new Physics(this.state);
+  }
+  advanceTrial() {
+    const s = this.state,
+      t = s.trial;
+    if (!t) return;
+    if (t.status === "victory" || t.status === "defeat") {
+      this.reset();
+      this.state.trial!.status = "active";
+      return;
+    }
+    if (t.status === "between") {
+      t.encounter++;
+      prepareEncounter(s, this.config);
+      this.physics.dispose();
+      this.physics = new Physics(s);
+    }
+    if (t.status === "ready" || t.status === "between") {
+      t.status = "active";
+      t.started = s.time;
+      this.cancelBufferedCast();
+    }
+  }
+  outcome(key: string, n = 1) {
+    inc(this.state.metrics.outcomes, key, n);
   }
   event(
     type: string,
@@ -77,8 +106,10 @@ export class Simulation {
   }
   damage(e: Entity, n: number, source: string, reason: string) {
     if (e.hp <= 0 || n <= 0) return;
-    if (e.kind === "player" && this.state.time < this.state.invulnerableUntil)
+    if (e.kind === "player" && this.state.time < this.state.invulnerableUntil) {
+      this.outcome(`invulnerable-contact:${source}`);
       return;
+    }
     if (this.state.metrics.combatStartedAt === null && e.kind === "sentinel")
       this.state.metrics.combatStartedAt = this.state.time;
     const actual = Math.min(e.hp, n);
@@ -86,13 +117,22 @@ export class Simulation {
     if (n >= 1) e.hitAt = this.state.time;
     e.sources.damage = source;
     inc(this.state.metrics.damage, `${source}:${reason}`, actual);
+    const route = JSON.stringify([source, e.id, reason]);
+    const record = (this.state.metrics.damageRoutes[route] ??= {
+      source,
+      recipient: e.id,
+      reason,
+      amount: 0,
+    });
+    record.amount += actual;
     if (e.kind === "player") {
       this.state.metrics.playerDamage += actual;
       if (e.hp <= 0) this.cancelBufferedCast();
     }
     if (e.hp <= 0) {
       this.event("shatter", source, e.pos, { target: e.id, duration: 0.8 });
-      if (e.kind === "sentinel") {
+      if (e.ai) e.ai.phase = "defeated";
+      if (e.id === "sentinel") {
         this.state.sentinel.phase = "defeated";
         this.state.metrics.sentinelDefeatTime =
           this.state.time -
@@ -303,7 +343,12 @@ export class Simulation {
   ) {
     const s = this.state,
       p = this.player;
-    if (p.hp <= 0 || s.time < s.dodgeUntil) return;
+    if (
+      p.hp <= 0 ||
+      s.time < s.dodgeUntil ||
+      (s.trial && s.trial.status !== "active")
+    )
+      return;
     if (s.time < (action === "primary" ? s.primaryReady : s.secondaryReady))
       return;
     const target = this.targeting(action, principle, aim),
@@ -319,6 +364,7 @@ export class Simulation {
     else s.secondaryReady = s.time + 0.65 * this.config.castRecovery;
     s.castUntil = s.time + 0.12;
     const applicationsBefore = s.metrics.stateApplications;
+    const deflectionsBefore = s.metrics.transformations.deflect || 0;
     inc(s.metrics.casts, `${principle}:${action}`);
     inc(s.metrics.inputs, `${action}:${device}`);
     this.event("cast", p.id, p.pos, { principle, duration: 0.2 });
@@ -352,6 +398,7 @@ export class Simulation {
       }
       const own = s.fields.filter((f) => f.source === p.id);
       while (own.length >= this.config.secondaryCapacity) {
+        this.outcome("field:replaced");
         const old = own.shift()!;
         s.fields = s.fields.filter((f) => f.id !== old.id);
         this.event("dissolve", p.id, old.pos, { principle: old.principle });
@@ -464,6 +511,8 @@ export class Simulation {
       }
       for (const b of s.bolts)
         if (b.source !== p.id && this.inGust(b.pos, dir)) {
+          b.originalSource ??= b.source;
+          this.outcome(`projectile:${b.originalSource}:deflected`);
           b.velocity = vec(dir.x * 11, 0, dir.z * 11);
           b.source = p.id;
           inc(s.metrics.transformations, "deflect");
@@ -472,9 +521,14 @@ export class Simulation {
       this.event("eruption-warning", p.id, pos, { principle, duration: 0.22 });
       s.pending.push({ source: p.id, pos, at: s.time + 0.18, principle });
     }
+    if (principle === "Tide" || principle === "Gale")
+      this.outcome(
+        `${p.id}:${principle}:primary:${s.metrics.stateApplications > applicationsBefore || (s.metrics.transformations.deflect || 0) > deflectionsBefore ? "hit" : "miss"}`,
+      );
     if (
       (principle === "Tide" || principle === "Gale") &&
-      applicationsBefore === s.metrics.stateApplications
+      applicationsBefore === s.metrics.stateApplications &&
+      deflectionsBefore === (s.metrics.transformations.deflect || 0)
     )
       this.event("empty", p.id, pos, { duration: 0.3 });
   }
@@ -482,6 +536,11 @@ export class Simulation {
     const s = this.state,
       p = this.player,
       dt = 1 / 60;
+    if (s.trial && s.trial.status !== "active") {
+      if (input.interact) this.advanceTrial();
+      return;
+    }
+    if (s.trial) s.trial.elapsed += dt;
     s.time += dt;
     s.tick++;
     s.aim = { ...input.aim };
@@ -517,7 +576,11 @@ export class Simulation {
       this.cancelBufferedCast();
       this.cast("secondary", buffered.device, buffered.principle, buffered.aim);
     }
-    if (input.interact && distance(p.pos, vec(PAD.x, 0, PAD.z)) < 3) {
+    if (
+      !s.trial &&
+      input.interact &&
+      distance(p.pos, vec(PAD.x, 0, PAD.z)) < 3
+    ) {
       s.sentinel.enabled = !s.sentinel.enabled;
       this.event("interact", p.id, p.pos);
     }
@@ -526,6 +589,7 @@ export class Simulation {
         principle: "Stone",
         duration: 0.5,
       });
+      const before = s.metrics.stateApplications;
       for (const e of this.nearby(pending.pos, 1.25, pending.source).filter(
         (e) =>
           this.contact(e, pending.pos, 1.6) &&
@@ -546,6 +610,9 @@ export class Simulation {
         );
         this.stagger(e, 0.25);
       }
+      this.outcome(
+        `${pending.source}:Stone:primary:${s.metrics.stateApplications > before ? "hit" : "miss"}`,
+      );
     }
     s.pending = s.pending.filter((a) => a.at > s.time);
     for (const f of s.fields) {
@@ -571,6 +638,7 @@ export class Simulation {
           e.pos.z,
         );
         if (!this.fieldReaches(base, target, height)) continue;
+        this.outcome(`field:${f.principle}:contact:${e.id}`);
         if (f.principle === "Ember")
           this.apply(e, { heat: 18, damage: 2 }, f.source, "seam");
         if (f.principle === "Tide")
@@ -624,6 +692,7 @@ export class Simulation {
       if (obstacle) {
         b.life = 0;
         s.metrics.blockedBolts++;
+        this.outcome(`projectile:${b.originalSource ?? b.source}:blocked`);
         this.event("impact", b.source, b.pos, { principle: "Stone" });
         continue;
       }
@@ -638,6 +707,7 @@ export class Simulation {
         .sort((a, c) => distance(a.pos, old) - distance(c.pos, old));
       if (hits.length) {
         const e = hits[0];
+        this.outcome(`projectile:${b.originalSource ?? b.source}:hit:${e.id}`);
         b.life = 0;
         if (b.principle === "hostile")
           this.damage(e, 14, b.source, "sentinel bolt");
@@ -647,6 +717,8 @@ export class Simulation {
         });
       }
     }
+    for (const b of s.bolts.filter((b) => b.life <= 0 && b.life !== 0))
+      this.outcome(`projectile:${b.originalSource ?? b.source}:expired`);
     s.bolts = s.bolts.filter((b) => b.life > 0);
     for (const e of s.entities.filter((e) => e.hp > 0)) {
       if (
@@ -657,6 +729,10 @@ export class Simulation {
       }
       e.heat = Math.max(0, e.heat - dt * 4);
       e.wet = Math.max(0, e.wet - dt * 0.025);
+      if (e.ai && e.stagger > 0)
+        this.outcome(`control:stagger-seconds:${e.id}`, dt);
+      if (e.ai && e.pos.y - e.height / 2 > 0.3)
+        this.outcome(`control:airborne-seconds:${e.id}`, dt);
       e.stagger = Math.max(0, e.stagger - dt);
       e.burning = e.material.flammable && e.heat > 65 && e.wet < 0.15;
       if (e.burning) {
@@ -673,7 +749,7 @@ export class Simulation {
         } else this.damage(e, e.hp, "world", "fall");
       }
     }
-    this.tickSentinel(dt);
+    this.tickEnemies(dt);
     const dashing = s.time < s.dodgeUntil;
     const speed = dashing
       ? this.config.dodgeDistance / this.config.dodgeDuration
@@ -714,47 +790,151 @@ export class Simulation {
         e.mass >= 10 &&
         distance(e.pos, vec(PAD.x, 0, PAD.z)) < PAD.radius,
     );
+    if (s.trial) {
+      if (p.hp <= 0) {
+        s.trial.status = "defeat";
+        this.cancelBufferedCast();
+      } else if (!s.entities.some((e) => e.ai && e.hp > 0)) {
+        s.trial.results.push({
+          encounter: s.trial.encounter,
+          seconds: s.time - s.trial.started,
+          health: p.hp,
+        });
+        s.trial.status =
+          s.trial.isolated || s.trial.encounter === 2 ? "victory" : "between";
+        s.bolts = [];
+        s.pending = [];
+        this.cancelBufferedCast();
+      }
+    }
     s.events = s.events
       .filter((e) => s.time - e.time < Math.max(2, e.duration))
       .slice(-180);
   }
-  tickSentinel(dt: number) {
-    const s = this.state,
-      ai = s.sentinel,
-      e = s.entities.find((e) => e.id === "sentinel")!;
-    if (
-      e.hp <= 0 ||
-      !ai.enabled ||
-      this.player.hp <= 0 ||
-      distance(e.pos, this.player.pos) > 15 ||
-      e.stagger > 0
-    )
-      return;
-    ai.timer -= dt;
-    if (ai.phase === "idle" || ai.phase === "recover") {
-      if (ai.timer <= 0) {
-        ai.phase = "telegraph";
-        ai.timer = this.config.telegraph;
-        ai.started = s.time;
-        ai.locked = { ...this.player.pos };
+  steerEnemy(e: Entity, target: Vec, speed: number, dt: number) {
+    if (e.stagger > 0 || e.pos.y - e.height / 2 > 0.3) return;
+    const goal = normalize(vec(target.x - e.pos.x, 0, target.z - e.pos.z));
+    const base = Math.atan2(goal.x, goal.z);
+    let best = vec(),
+      score = -Infinity;
+    for (const offset of [0, 0.65, -0.65, 1.25, -1.25, 1.8, -1.8, Math.PI]) {
+      const dir = vec(Math.sin(base + offset), 0, Math.cos(base + offset));
+      const end = vec(
+        e.pos.x + dir.x * 1.4,
+        e.pos.y - e.height / 2 + 0.2,
+        e.pos.z + dir.z * 1.4,
+      );
+      if (this.physics.terrainHit(vec(e.pos.x, end.y, e.pos.z), end)) continue;
+      const value = dir.x * goal.x + dir.z * goal.z;
+      if (value > score) {
+        score = value;
+        best = dir;
       }
-    } else if (ai.phase === "telegraph") {
-      if (ai.timer > 0.45) ai.locked = { ...this.player.pos };
-      if (ai.timer <= 0) {
-        const dir = normalize(
-          vec(ai.locked.x - e.pos.x, 0, ai.locked.z - e.pos.z),
-        );
-        s.bolts.push({
-          id: `enemy-${++s.serial}`,
-          source: e.id,
-          principle: "hostile",
-          pos: { ...e.pos },
-          velocity: vec(dir.x * 7, 0, dir.z * 7),
-          life: 3,
-          radius: 0.3,
-        });
-        ai.phase = "recover";
-        ai.timer = 1.1;
+    }
+    if (score === -Infinity) {
+      this.outcome(`navigation:blocked:${e.id}`);
+      return;
+    }
+    // Acceleration, not velocity replacement: force/lift/stagger retain their effect.
+    const amount = Math.min(1, dt * 5);
+    this.physics.impulse(
+      e.id,
+      vec(
+        (best.x * speed - e.velocity.x) * e.mass * amount,
+        0,
+        (best.z * speed - e.velocity.z) * e.mass * amount,
+      ),
+    );
+  }
+  tickEnemies(dt: number) {
+    const s = this.state,
+      tuning = TRIAL_TUNING[this.config.encounterVersion];
+    for (const e of s.entities) {
+      const ai = e.ai ?? (e.id === "sentinel" ? s.sentinel : undefined);
+      if (
+        !ai ||
+        e.hp <= 0 ||
+        !ai.enabled ||
+        this.player.hp <= 0 ||
+        e.stagger > 0
+      )
+        continue;
+      const d = distance(e.pos, this.player.pos);
+      if (!s.trial && d > 15) continue;
+      if (e.kind === "pursuer") {
+        ai.timer -= dt;
+        if (ai.phase !== "telegraph") {
+          ai.locked = { ...this.player.pos };
+          this.steerEnemy(e, this.player.pos, tuning.pursuitSpeed, dt);
+          if (
+            d < 2.1 &&
+            ai.timer <= 0 &&
+            Math.abs(e.pos.y - this.player.pos.y) < 1.3
+          ) {
+            ai.phase = "telegraph";
+            ai.timer = tuning.meleeWindup;
+            ai.started = s.time;
+          }
+        } else {
+          if (ai.timer > tuning.meleeLock) ai.locked = { ...this.player.pos };
+          if (ai.timer <= 0) {
+            this.outcome(`${e.id}:melee:attempt`);
+            const hit =
+              distance(this.player.pos, ai.locked) <
+                tuning.meleeRadius + this.player.radius &&
+              distance(e.pos, this.player.pos) < 3.3 &&
+              Math.abs(e.pos.y - this.player.pos.y) < 1.6 &&
+              !this.physics.terrainHit(e.pos, this.player.pos);
+            this.outcome(`${e.id}:melee:${hit ? "contact" : "miss"}`);
+            if (hit) this.damage(this.player, 12, e.id, "melee strike");
+            this.event("melee-strike", e.id, ai.locked, { duration: 0.3 });
+            ai.phase = "recover";
+            ai.timer = tuning.meleeRecovery;
+          }
+        }
+        continue;
+      }
+      if (
+        s.trial &&
+        (d > 12 || this.physics.terrainHit(e.pos, this.player.pos))
+      )
+        this.steerEnemy(e, this.player.pos, 2.4, dt);
+      ai.timer -= dt;
+      if (ai.phase === "idle" || ai.phase === "recover") {
+        if (ai.timer <= 0) {
+          ai.phase = "telegraph";
+          ai.timer = this.config.telegraph;
+          ai.started = s.time;
+          ai.locked = { ...this.player.pos };
+        }
+      } else if (ai.phase === "telegraph") {
+        if (ai.timer > (s.trial ? tuning.rangedLock : 0.45))
+          ai.locked = { ...this.player.pos };
+        if (ai.timer <= 0) {
+          const dir = normalize(
+            vec(ai.locked.x - e.pos.x, 0, ai.locked.z - e.pos.z),
+          );
+          this.outcome(`${e.id}:projectile:attempt`);
+          s.bolts.push({
+            id: `enemy-${++s.serial}`,
+            source: e.id,
+            originalSource: e.id,
+            principle: "hostile",
+            pos: { ...e.pos },
+            velocity: vec(
+              dir.x * 7,
+              s.trial
+                ? ((ai.locked.y - e.pos.y) * 7) /
+                    Math.max(1, distance(ai.locked, e.pos))
+                : 0,
+              dir.z * 7,
+            ),
+            life: 3,
+            radius: 0.3,
+          });
+          ai.phase = "recover";
+          ai.timer = s.trial ? tuning.rangedRecovery : 1.1;
+        }
       }
     }
   }
