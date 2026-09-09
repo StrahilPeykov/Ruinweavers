@@ -113,6 +113,25 @@ test("two real WebRTC clients have independent actors and cameras", async ({
     1.2,
   );
   expect(s.metrics.outcomes["mage-2:cast:Gale:primary"]).toBeGreaterThan(0);
+  await b.getByRole("button", { name: "Experiments", exact: true }).click();
+  await b.locator("#quality").selectOption("lightweight");
+  expect(
+    (await a.evaluate(() => window.__RUINWEAVERS__.getMetrics())).render
+      .quality,
+  ).toBe("standard");
+  const guestDiagnostics = await b.evaluate(() =>
+    window.__RUINWEAVERS__.getNetworkDiagnostics(),
+  );
+  expect(guestDiagnostics.role).toBe("guest");
+  expect(guestDiagnostics.snapshotIntervals.samples).toBeGreaterThan(0);
+  expect(guestDiagnostics.snapshotApply.samples).toBeGreaterThan(0);
+  expect(
+    guestDiagnostics.paths.some((p: any) => p.selected && p.bytesReceived > 0),
+  ).toBe(true);
+  expect(JSON.stringify(guestDiagnostics)).not.toMatch(
+    /username|credential|address|turn:/,
+  );
+  await b.locator("#close").click();
   await capture(a, "03-host-play");
   await capture(b, "04-guest-play");
   expect(errors).toEqual([]);

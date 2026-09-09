@@ -1,4 +1,5 @@
 import { loadTurnServers } from "./turn";
+import { summarizeRtc } from "../diagnostics/rtc";
 import type { Room, MessageAction, JoinRoom } from "@trystero-p2p/core";
 import { Simulation } from "../simulation/simulation";
 import { PRINCIPLES, type Config, type Principle } from "../experiments/config";
@@ -14,6 +15,11 @@ export class CoopSession {
   turnStatus = "not-configured";
   forceRelay = false;
   lastConnectionError = "";
+  snapshotIntervals: number[] = [];
+  snapshotApplyMs: number[] = [];
+  snapshotBytes = 0;
+  private snapshotEncoder = new TextEncoder();
+  previousSnapshotAt = 0;
   actorId = "mage-1";
   peerId = "";
   room?: Room;
@@ -83,6 +89,13 @@ export class CoopSession {
     this.strategy = strategy;
     this.turnStatus = strategy === "local" ? "local" : "loading";
     this.lastConnectionError = "";
+    this.snapshotIntervals = [];
+    this.snapshotApplyMs = [];
+    this.snapshotBytes = 0;
+    this.snapshotsSent = 0;
+    this.snapshotsReceived = 0;
+    this.bytesSent = 0;
+    this.previousSnapshotAt = 0;
     this.code = code.replace(/\s/g, "").toUpperCase();
     if (!/^(?:[A-Z2-9]{6}|RW-[A-Z0-9]{12})$/.test(this.code)) {
       this.fail("Enter the six-character room code.");
@@ -199,6 +212,11 @@ export class CoopSession {
           data.state.entities.length > 64
         )
           return;
+        const receivedAt = performance.now();
+        if (this.previousSnapshotAt)
+          this.snapshotIntervals.push(receivedAt - this.previousSnapshotAt);
+        if (this.snapshotIntervals.length > 120) this.snapshotIntervals.shift();
+        this.previousSnapshotAt = receivedAt;
         this.acceptedSnapshot = data.seq;
         this.lastReceive = performance.now();
         const before = this.epoch;
@@ -222,6 +240,8 @@ export class CoopSession {
           this.clearLocal();
         }
         this.changed();
+        this.snapshotApplyMs.push(performance.now() - receivedAt);
+        if (this.snapshotApplyMs.length > 120) this.snapshotApplyMs.shift();
       };
       this.controlAction.onMessage = (data, { peerId }) => {
         if (peerId !== this.peerId) return;
@@ -441,7 +461,10 @@ export class CoopSession {
           config: { ...this.sim.config },
           paused: this.paused,
         };
-        this.bytesSent += JSON.stringify(packet).length;
+        this.snapshotBytes = this.snapshotEncoder.encode(
+          JSON.stringify(packet),
+        ).byteLength;
+        this.bytesSent += this.snapshotBytes;
         this.snapshotsSent++;
         void this.schedule(() =>
           this.snapshotAction!.send(packet as any, { target: this.peerId }),
@@ -534,5 +557,42 @@ export class CoopSession {
         ),
       ),
     );
+  }
+  async diagnostics() {
+    const distribution = (values: number[]) => {
+      const sorted = [...values].sort((a, b) => a - b);
+      return {
+        samples: values.length,
+        meanMs: values.length
+          ? values.reduce((a, b) => a + b, 0) / values.length
+          : null,
+        p95Ms: sorted.length
+          ? sorted[
+              Math.min(sorted.length - 1, Math.floor(sorted.length * 0.95))
+            ]
+          : null,
+      };
+    };
+    let paths: ReturnType<typeof summarizeRtc>[] = [];
+    let statsAvailable = true;
+    try {
+      paths = (await this.rtcStats()).map(summarizeRtc);
+    } catch {
+      statsAvailable = false;
+    }
+    return {
+      role: this.role,
+      status: this.status,
+      forceRelay: this.forceRelay,
+      turnStatus: this.turnStatus,
+      snapshotsSent: this.snapshotsSent,
+      snapshotsReceived: this.snapshotsReceived,
+      lastOutgoingSnapshotJsonBytes: this.snapshotBytes || null,
+      scheduledSnapshotJsonBytes: this.bytesSent,
+      snapshotIntervals: distribution(this.snapshotIntervals),
+      snapshotApply: distribution(this.snapshotApplyMs),
+      statsAvailable,
+      paths,
+    };
   }
 }

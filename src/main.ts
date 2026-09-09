@@ -122,7 +122,8 @@ async function boot() {
     ui.sync();
     ui.last = 0;
   };
-  const exportData = () => {
+  const exportData = async () => {
+    const network = await net.diagnostics();
     const b = new Blob(
       [
         JSON.stringify(
@@ -131,6 +132,8 @@ async function boot() {
             input: { profile: input.profile, bindings: input.bindings },
             state: sim.state,
             render: view.metrics(),
+            network,
+            exportedAt: new Date().toISOString(),
           },
           null,
           2,
@@ -171,6 +174,8 @@ async function boot() {
       ui.last = 0;
     },
     export: exportData,
+    quality: (value) => view.setQuality(value),
+    getQuality: () => view.quality,
     mute: () => (audio.muted = !audio.muted),
   });
   net = new CoopSession(
@@ -200,6 +205,7 @@ async function boot() {
     advanceTrial: advance,
     getNetworkState: () => net.info(),
     getRtcStats: () => net.rtcStats(),
+    getNetworkDiagnostics: () => net.diagnostics(),
     setNetworkProfile: (profile: {
       delayMs: number;
       jitterMs: number;

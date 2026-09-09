@@ -18,6 +18,8 @@ export class UI {
       configure: (patch: Partial<Config>) => void;
       pause: () => void;
       export: () => void;
+      quality: (value: "standard" | "lightweight") => void;
+      getQuality: () => string;
       mute: () => boolean;
     },
   ) {
@@ -30,6 +32,7 @@ export class UI {
       <label>Casting model<select id="model"><option value="primary-secondary">A · Primary / Secondary</option><option value="weave-unweave">B · Weave / Unweave</option></select></label>
       <label>Camera<select id="camera">${["tactical", "balanced", "cinematic"].map((s) => `<option>${s}</option>`).join("")}</select></label>
       <label>Tempo<select id="tempo">${["deliberate", "balanced", "faster"].map((s) => `<option>${s}</option>`).join("")}</select></label>
+      <label>Rendering<select id="quality"><option value="standard">Standard</option><option value="lightweight">Lightweight</option></select></label><small>Lightweight lowers resolution and disables shadows on this device.</small>
       <label>Input profile<select id="profile"><option value="desktop">Desktop mouse</option><option value="laptop">Laptop · keyboard fallback</option><option value="custom">Custom / rebound</option></select></label>
       <label>Named scene<select id="scene">${SCENES.map((s) => `<option>${s}</option>`).join("")}</select></label>
       <details><summary>Selected tunables</summary><label>Move speed<input id="moveSpeed" type="range" min="3" max="8" step=".1"></label><label>Dodge distance<input id="dodgeDistance" type="range" min="2" max="5" step=".1"></label><label>Dodge recovery<input id="dodgeRecovery" type="range" min=".4" max="1.4" step=".05"></label><label>Cast recovery multiplier<input id="castRecovery" type="range" min=".65" max="1.5" step=".05"></label><label>Secondary buffer (seconds; 0 disables)<input id="inputBuffer" type="range" min="0" max=".15" step=".01"></label><label>Secondary capacity<input id="secondaryCapacity" type="number" min="1" max="3"></label><label>Secondary fallback<select id="fallback"><option value="KeyF">F</option><option value="KeyR">R</option><option value="ShiftLeft">Left Shift</option></select></label><label>Next Principle<select id="cycle"><option value="Tab">Tab</option><option value="KeyC">C</option><option value="KeyR">R</option></select></label><label class="check"><input id="wheel" type="checkbox"> Optional wheel cycling</label></details>
@@ -57,6 +60,13 @@ export class UI {
       this.unfocus();
     };
     byId("export").onclick = actions.export;
+    const quality = byId("quality") as HTMLSelectElement;
+    quality.value = actions.getQuality();
+    quality.onchange = () => {
+      input.clear();
+      actions.quality(quality.value as "standard" | "lightweight");
+      this.unfocus();
+    };
     byId("mute").onclick = () => {
       const muted = actions.mute();
       byId("mute").textContent = muted ? "Unmute" : "Mute";

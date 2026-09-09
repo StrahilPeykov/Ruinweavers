@@ -39,6 +39,8 @@ export class View {
     sphere: new T.IcosahedronGeometry(1, 1),
     ring: new T.RingGeometry(0.88, 1, 48),
   };
+  quality: "standard" | "lightweight" = "standard";
+  rendererIdentity = "unavailable";
   lastFrame = 0;
   intervals: number[] = [];
   contextLost = false;
@@ -52,8 +54,22 @@ export class View {
       antialias: true,
       powerPreference: "high-performance",
     });
+    const gl = this.renderer.getContext();
+    const rendererInfo = gl.getExtension("WEBGL_debug_renderer_info");
+    this.rendererIdentity = rendererInfo
+      ? String(gl.getParameter(rendererInfo.UNMASKED_RENDERER_WEBGL))
+      : String(gl.getParameter(gl.RENDERER));
+    let savedQuality: string | null = null;
+    try {
+      savedQuality = localStorage.getItem("ruinweavers-render-quality");
+    } catch {}
+    this.quality =
+      (new URLSearchParams(location.search).get("quality") ?? savedQuality) ===
+      "lightweight"
+        ? "lightweight"
+        : "standard";
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.enabled = this.quality === "standard";
     this.renderer.shadowMap.type = T.PCFSoftShadowMap;
     this.renderer.setClearColor(0x18252b);
     this.renderer.outputColorSpace = T.SRGBColorSpace;
@@ -330,6 +346,11 @@ export class View {
       h = innerHeight;
     this.camera.aspect = w / h;
     this.camera.updateProjectionMatrix();
+    const ratio =
+      this.quality === "lightweight"
+        ? Math.min(devicePixelRatio, 1, 1280 / w, 720 / h)
+        : Math.min(devicePixelRatio, 1.5);
+    this.renderer.setPixelRatio(ratio);
     this.renderer.setSize(w, h);
   }
   aimFromPointer(x: number, y: number) {
@@ -767,9 +788,33 @@ export class View {
       if (this.intervals.length > 300) this.intervals.shift();
     }
   }
+  setQuality(quality: "standard" | "lightweight") {
+    if (quality !== "standard" && quality !== "lightweight")
+      throw Error("Invalid rendering quality");
+    this.quality = quality;
+    this.renderer.shadowMap.enabled = quality === "standard";
+    this.scene.traverse((o) => {
+      if (o instanceof T.Mesh)
+        for (const m of Array.isArray(o.material) ? o.material : [o.material])
+          m.needsUpdate = true;
+    });
+    this.resize();
+    this.intervals.length = 0;
+    try {
+      localStorage.setItem("ruinweavers-render-quality", quality);
+    } catch {}
+  }
   metrics() {
     const a = [...this.intervals].sort((a, b) => a - b);
     return {
+      quality: this.quality,
+      browser: navigator.userAgent,
+      renderer: this.rendererIdentity,
+      viewport: { width: innerWidth, height: innerHeight },
+      drawingBuffer: { width: this.canvas.width, height: this.canvas.height },
+      pixelRatio: this.renderer.getPixelRatio(),
+      shadows: this.renderer.shadowMap.enabled,
+      samples: a.length,
       frameMs: a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0,
       p95FrameMs: a[Math.floor(a.length * 0.95)] || 0,
       drawCalls: this.renderer.info.render.calls,

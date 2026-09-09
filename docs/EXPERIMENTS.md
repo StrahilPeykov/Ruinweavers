@@ -86,3 +86,8 @@ Human questions: Does 120 ms feel forgiving without unwanted late casts? Can the
 5. Repeat a short sequence with faster tempo, lower camera, then keyboard cycling and F Secondary. Decide which operations feel worth choosing, which keys cause finger conflicts, and whether the single sentinel provides enough pressure to judge the magic.
 
 The old questionnaire is no longer a gate. Co-op Trial 0.1 is explicitly authorized; completion does not authorize another phase. No classes, progression or visual polish should conceal weak base actions.
+
+
+## Device rendering comparison (2026-09-09)
+
+Owner-reported remote co-op is smooth on the stronger host but choppy on the weaker laptop. Retain all gameplay defaults. Add one optional local Lightweight rendering mode (reduced resolution, shadows off); Standard remains default. This tests rendering cost without confounding combat or authority rules. Current export proves slow frames (~23 FPS), not a GPU, CPU or TURN diagnosis. New observation exports separate rendering context and selected ICE/snapshot statistics. Local structural/browser checks pass; remote FPS benefit remains unvalidated. See `TESTING.md` and `COOP.md`.
