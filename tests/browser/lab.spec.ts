@@ -155,6 +155,8 @@ test("actual movement, independent aim, all essential input paths, reset and res
   expect(s.entities[0].pos.x).toBeCloseTo(0, 1);
   await page.setViewportSize({ width: 860, height: 640 });
   await ticks(page, 10);
+  await aim(page, 0, -4.5);
+  await ticks(page, 5);
   await page.screenshot({ path: "artifacts/compact.png" });
   expect(await page.locator("canvas").boundingBox()).toMatchObject({
     width: 860,

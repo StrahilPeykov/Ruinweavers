@@ -267,7 +267,7 @@ kbd {
     max-height: calc(100% - 180px);
   }
   #inspect {
-    bottom: 140px;
+    bottom: 164px;
     max-width: 94%;
     white-space: normal;
   }
