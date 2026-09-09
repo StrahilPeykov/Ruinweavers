@@ -2,7 +2,11 @@
 
 The two remote laptops found each other through signaling and exchanged SDP, but could not establish a direct WebRTC path. Changing room codes does not repair that network limitation. TURN relays gameplay packets when direct connections fail; hosting static assets on Cloudflare alone does not provide this relay.
 
-## Free-only verification — 2026-09-09
+## Current authorization — 2026-09-09
+
+The owner subsequently chose Cloudflare TURN and explicitly accepted potential overage liability after clarification that a zero-limit Revolut card blocks payments, not accrued Cloudflare charges. This is a narrow exception to the earlier free-only/no-card constraint, not permission to buy other services. Open Relay is abandoned. The owner will personally enter payment details and activate Realtime; activation is not yet verified. Once active, continue the existing server-side credential exchange and bounded two-laptop relay validation. Do not treat the historical free-only gate below as requiring repeated approval for this accepted choice.
+
+## Historical free-only verification — 2026-09-09
 
 **Cloudflare does not qualify through this account's available provisioning flow.** Signed-in TURN navigation redirected to enrollment. Its review screen requires payment details and describes an automatically renewing usage-based subscription: 1,000 GB/month included, then $0.05 per additional GB. No hard-stop-at-free-quota control was shown. No payment information was entered, subscription activated, terms accepted or key created. The marketing table's free-plan column and allowance do not establish a hard-capped path available to this account. The [TURN FAQ](https://developers.cloudflare.com/realtime/turn/faq/) confirms overage pricing; SFU rate/session limits are not a TURN billing cap.
 
