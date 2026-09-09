@@ -1,0 +1,13 @@
+{
+  "milestone": "Combat Trial 0.1",
+  "runtime": "db0e106f428cca4d264bc03e0b1b4ad8dd86ae09",
+  "unitTests": 30,
+  "browserJourneys": 11,
+  "browserRuns": "6 reliability/trial + 5 legacy after capture-path fix",
+  "productionBuild": "pass; existing large Rapier chunk warning",
+  "legacyBenchmark": "byte-identical",
+  "browser": "Playwright Chromium 153 / ANGLE SwiftShader WebGL2",
+  "viewport": "1440x900 DPR1; compact legacy check 860x640",
+  "performanceScope": "software rendered under local load; not a hardware GPU benchmark",
+  "screenshots": "trial browser JSON records per-capture configuration and simulation state; legacy regression views are labelled by filename and companion state"
+}

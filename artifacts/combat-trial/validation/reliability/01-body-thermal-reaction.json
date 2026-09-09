@@ -1,0 +1,652 @@
+{
+  "build": "Combat Trial 0.1 legacy regression / runtime a23f175",
+  "url": "http://127.0.0.1:5173/?scene=states&model=primary-secondary&camera=balanced&tempo=balanced&seed=123",
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "dpr": 1
+  },
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "config": {
+    "model": "primary-secondary",
+    "camera": "balanced",
+    "tempo": "balanced",
+    "scene": "states",
+    "scenario": "cross-cover",
+    "encounterVersion": "candidate",
+    "seed": 123,
+    "moveSpeed": 5.6,
+    "dodgeDistance": 3.5,
+    "dodgeDuration": 0.22,
+    "dodgeRecovery": 0.8,
+    "castRecovery": 1,
+    "telegraph": 1.05,
+    "cameraDistance": 24,
+    "cameraPitch": 51,
+    "secondaryCapacity": 1,
+    "inputBuffer": 0.12,
+    "invulnerability": 0.17,
+    "castMoveMultiplier": 0.78
+  },
+  "state": {
+    "time": 2.799999999999995,
+    "tick": 168,
+    "seed": 123,
+    "entities": [
+      {
+        "id": "mage-1",
+        "kind": "player",
+        "label": "You",
+        "pos": {
+          "x": -4.000016212463379,
+          "y": 0.7192821502685547,
+          "z": 0.000001436687398381764
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0.005715233739465475,
+          "z": 0.00000802943486633012
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "radius": 0.38,
+        "height": 1.4,
+        "mass": 2,
+        "hp": 100,
+        "maxHp": 100,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": false,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10
+      },
+      {
+        "id": "dummy",
+        "kind": "dummy",
+        "label": "Practice dummy",
+        "pos": {
+          "x": 0,
+          "y": 0.6499999761581421,
+          "z": -4.5
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "radius": 0.6,
+        "height": 1.2,
+        "mass": 5,
+        "hp": 1000,
+        "maxHp": 1000,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": false,
+          "anchored": true
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10
+      },
+      {
+        "id": "sentinel",
+        "kind": "sentinel",
+        "label": "Sentinel",
+        "pos": {
+          "x": 5,
+          "y": 0.7999609112739563,
+          "z": -8
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "radius": 0.7,
+        "height": 1.6,
+        "mass": 6,
+        "hp": 180,
+        "maxHp": 180,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": true,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10
+      },
+      {
+        "id": "timber",
+        "kind": "wood",
+        "label": "Dry timber",
+        "pos": {
+          "x": -5,
+          "y": 0.8500000238418579,
+          "z": -5.5
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "radius": 0.6,
+        "height": 1.6,
+        "mass": 5,
+        "hp": 47.06499999999996,
+        "maxHp": 90,
+        "material": {
+          "wettable": true,
+          "flammable": true,
+          "structural": false,
+          "anchored": true
+        },
+        "heat": 22.108333333333206,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 2.3166666666666678,
+        "sources": {
+          "wet": "mage-1",
+          "force": "mage-1",
+          "damage": "mage-1",
+          "heat": "mage-1"
+        },
+        "hitAt": 1.2500000000000004
+      },
+      {
+        "id": "column",
+        "kind": "brittle",
+        "label": "Brittle column",
+        "pos": {
+          "x": -2.700000047683716,
+          "y": 1.0499999523162842,
+          "z": -7
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "radius": 0.65,
+        "height": 2,
+        "mass": 5,
+        "hp": 100,
+        "maxHp": 100,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": true,
+          "anchored": true
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0.35,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10
+      },
+      {
+        "id": "ballast",
+        "kind": "heavy",
+        "label": "Heavy ballast",
+        "pos": {
+          "x": 5.702625274658203,
+          "y": 0.7998589873313904,
+          "z": 1.0021593570709229
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": -5.303973011905327e-7,
+          "y": 3.495155809218886e-8,
+          "z": 2.3469884524729423e-7,
+          "w": 1
+        },
+        "radius": 0.8,
+        "height": 1.6,
+        "mass": 18,
+        "hp": 100,
+        "maxHp": 100,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": true,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10
+      },
+      {
+        "id": "loose-1",
+        "kind": "loose",
+        "label": "Loose stone",
+        "pos": {
+          "x": 2.4026570320129395,
+          "y": 0.37485766410827637,
+          "z": 1.0021151304244995
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": -0.0000011050418606828316,
+          "y": 1.4872617271066702e-7,
+          "z": 5.62769173484412e-7,
+          "w": 1
+        },
+        "radius": 0.38,
+        "height": 0.75,
+        "mass": 1,
+        "hp": 100,
+        "maxHp": 100,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": true,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10
+      },
+      {
+        "id": "loose-2",
+        "kind": "loose",
+        "label": "Loose stone",
+        "pos": {
+          "x": 3.402613401412964,
+          "y": 0.41985902190208435,
+          "z": 2.0021562576293945
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": -9.970906376111088e-7,
+          "y": 1.3091467110371013e-7,
+          "z": 4.0413132751382363e-7,
+          "w": 1
+        },
+        "radius": 0.42,
+        "height": 0.84,
+        "mass": 1.4,
+        "hp": 100,
+        "maxHp": 100,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": true,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10
+      },
+      {
+        "id": "moving",
+        "kind": "moving",
+        "label": "Moving target",
+        "pos": {
+          "x": -1.1369435787200928,
+          "y": 0.550000011920929,
+          "z": -10
+        },
+        "velocity": {
+          "x": -0.44399669766426086,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "radius": 0.5,
+        "height": 1,
+        "mass": 2,
+        "hp": 100,
+        "maxHp": 100,
+        "material": {
+          "wettable": true,
+          "flammable": false,
+          "structural": false,
+          "anchored": false
+        },
+        "heat": 0,
+        "wet": 0,
+        "cohesion": 0,
+        "burning": false,
+        "stagger": 0,
+        "staggerReady": 0,
+        "sources": {},
+        "hitAt": -10
+      }
+    ],
+    "activePrinciple": "Ember",
+    "aim": {
+      "x": -4.949924955563807,
+      "y": 1.4169399941708107,
+      "z": -4.900000550967285,
+      "body": true,
+      "invalid": false
+    },
+    "primaryReady": 1.3866666666666678,
+    "secondaryReady": 0,
+    "dodgeReady": 0,
+    "dodgeUntil": 0,
+    "invulnerableUntil": 0,
+    "dodgeDirection": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "castUntil": 1.1866666666666679,
+    "fields": [],
+    "bolts": [],
+    "pending": [],
+    "events": [
+      {
+        "id": 6,
+        "time": 0.9166666666666679,
+        "type": "steam",
+        "source": "mage-1",
+        "pos": {
+          "x": -5,
+          "y": 0.8500000238418579,
+          "z": -5.5
+        },
+        "duration": 1.2,
+        "target": "timber",
+        "value": 0.48
+      },
+      {
+        "id": 7,
+        "time": 0.9166666666666679,
+        "type": "impact",
+        "source": "mage-1",
+        "pos": {
+          "x": -5,
+          "y": 0.8500000238418579,
+          "z": -5.5
+        },
+        "duration": 0.45,
+        "principle": "Ember"
+      },
+      {
+        "id": 8,
+        "time": 1.0666666666666678,
+        "type": "cast",
+        "source": "mage-1",
+        "pos": {
+          "x": -4.000004768371582,
+          "y": 0.7187820672988892,
+          "z": 0.0000013794070810035919
+        },
+        "duration": 0.2,
+        "principle": "Ember"
+      },
+      {
+        "id": 10,
+        "time": 1.2500000000000004,
+        "type": "steam",
+        "source": "mage-1",
+        "pos": {
+          "x": -5,
+          "y": 0.8500000238418579,
+          "z": -5.5
+        },
+        "duration": 1.2,
+        "target": "timber",
+        "value": 0.19625000000000148
+      },
+      {
+        "id": 11,
+        "time": 1.2500000000000004,
+        "type": "impact",
+        "source": "mage-1",
+        "pos": {
+          "x": -5,
+          "y": 0.8500000238418579,
+          "z": -5.5
+        },
+        "duration": 0.45,
+        "principle": "Ember"
+      }
+    ],
+    "serial": 11,
+    "sentinel": {
+      "enabled": false,
+      "phase": "idle",
+      "timer": 1.5,
+      "locked": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "started": 0
+    },
+    "mechanism": false,
+    "metrics": {
+      "damageRoutes": {
+        "[\"mage-1\",\"timber\",\"jet\"]": {
+          "source": "mage-1",
+          "recipient": "timber",
+          "reason": "jet",
+          "amount": 6
+        },
+        "[\"mage-1\",\"timber\",\"steam\"]": {
+          "source": "mage-1",
+          "recipient": "timber",
+          "reason": "steam",
+          "amount": 18.93500000000004
+        },
+        "[\"mage-1\",\"timber\",\"heat bolt\"]": {
+          "source": "mage-1",
+          "recipient": "timber",
+          "reason": "heat bolt",
+          "amount": 18
+        }
+      },
+      "outcomes": {
+        "mage-1:Tide:primary:hit": 1,
+        "projectile:mage-1:hit:timber": 2,
+        "stagger:timber": 1
+      },
+      "casts": {
+        "Tide:primary": 1,
+        "Ember:primary": 2
+      },
+      "inputs": {
+        "principle2:keyboard": 1,
+        "primary:mouse": 3,
+        "principle1:keyboard": 1
+      },
+      "switches": 2,
+      "dodges": 0,
+      "stateApplications": 3,
+      "transformations": {
+        "vaporize": 2
+      },
+      "damage": {
+        "mage-1:jet": 6,
+        "mage-1:steam": 18.93500000000004,
+        "mage-1:heat bolt": 18
+      },
+      "playerDamage": 0,
+      "blockedBolts": 0,
+      "sentinelDefeatTime": null,
+      "combatStartedAt": null,
+      "falls": 0
+    }
+  },
+  "targeting": {
+    "primary": {
+      "pos": {
+        "x": -4.949924955563807,
+        "y": 1.4169399941708107,
+        "z": -4.900000550967285
+      },
+      "valid": true,
+      "clamped": false,
+      "reason": "",
+      "ground": false
+    },
+    "secondary": {
+      "pos": {
+        "x": -4.949924955563807,
+        "y": -2.7344081665603426e-8,
+        "z": -4.900000550967285
+      },
+      "valid": true,
+      "clamped": false,
+      "reason": "",
+      "ground": true
+    }
+  },
+  "metrics": {
+    "damageRoutes": {
+      "[\"mage-1\",\"timber\",\"jet\"]": {
+        "source": "mage-1",
+        "recipient": "timber",
+        "reason": "jet",
+        "amount": 6
+      },
+      "[\"mage-1\",\"timber\",\"steam\"]": {
+        "source": "mage-1",
+        "recipient": "timber",
+        "reason": "steam",
+        "amount": 18.93500000000004
+      },
+      "[\"mage-1\",\"timber\",\"heat bolt\"]": {
+        "source": "mage-1",
+        "recipient": "timber",
+        "reason": "heat bolt",
+        "amount": 18
+      }
+    },
+    "outcomes": {
+      "mage-1:Tide:primary:hit": 1,
+      "projectile:mage-1:hit:timber": 2,
+      "stagger:timber": 1
+    },
+    "casts": {
+      "Tide:primary": 1,
+      "Ember:primary": 2
+    },
+    "inputs": {
+      "principle2:keyboard": 1,
+      "primary:mouse": 3,
+      "principle1:keyboard": 1
+    },
+    "switches": 2,
+    "dodges": 0,
+    "stateApplications": 3,
+    "transformations": {
+      "vaporize": 2
+    },
+    "damage": {
+      "mage-1:jet": 6,
+      "mage-1:steam": 18.93500000000004,
+      "mage-1:heat bolt": 18
+    },
+    "playerDamage": 0,
+    "blockedBolts": 0,
+    "sentinelDefeatTime": null,
+    "combatStartedAt": null,
+    "falls": 0,
+    "render": {
+      "frameMs": 82.40370370370368,
+      "p95FrameMs": 250,
+      "drawCalls": 74,
+      "triangles": 1412,
+      "activeVfx": 0,
+      "geometries": 15,
+      "textures": 9,
+      "contextLost": false
+    },
+    "audio": {
+      "muted": false,
+      "context": "running",
+      "played": 8
+    },
+    "activeManifestations": 0
+  }
+}

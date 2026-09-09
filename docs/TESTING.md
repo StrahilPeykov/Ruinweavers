@@ -4,13 +4,15 @@
 
 Started from clean main at **b0590c2**, preserving the actual tree. Recoverable pointer: `codex/combat-trial-0.1-baseline`. Initial validation passed 22 unit tests, eight browser journeys and production build; no pre-existing failures. Stable runtime checkpoints: a68ff9c (trial/evaluator), 0341a00 (lifecycle/pursuit), a23f175 (dry-arena correction).
 
+Final validation: **30 unit tests pass; all 11 browser journeys pass** (six reliability/trial journeys and five legacy journeys rerun after separating capture paths); production build passes with the existing Rapier bundle-size warning.
+
 Current unit coverage adds Gale deflection-only feedback, explicit trial transitions/health carry/restart, independent enemy AI, pursuing telegraphs and damage, cover-blocked melee, separate damage recipients, restricted policy adaptation/repeatability, and exclusion of Lab-only water. Real browser journeys add default start, collapsed UI, keyboard/mouse casts during pressure, all three transitions using labelled reduced-health fixtures, defeat/restart, and a normal-health reaction/control sequence with positions arranged through the existing setup API. Casts/movement use actual browser inputs.
 
 Current evidence is under `artifacts/combat-trial/`: evaluator JSON with runtime/source hashes, labelled browser screenshots with state/config/renderer, and separate legacy-regression captures under `validation/`. Historical 1.1 artifacts remain preserved. Two initial full-suite failures were Windows screenshot overwrite errors, not failed gameplay assertions; the capture directories were separated before rerunning. A lifecycle fixture initially aimed Stone outside its range; a wait also needed to recognize that simulation stops at encounter clear. Both were test corrections, not timing/range changes.
 
 The initial trial inherited invisible Lab water. Its regression now confirms the arena stays dry; affected evaluation results are retained in `iterations/pre-dry-arena`, superseded by corrected root-level files. Tuning and policies froze before the held-out check; that check was repeated after this correctness fix and is not claimed to remain completely unseen. The legacy eight-strategy benchmark is byte-identical before/after. See EVALUATION for isolated/full-trial distinctions, motor ablations and restrictions.
 
-Captures use Chromium 153, 1440×900, WebGL 2 / ANGLE SwiftShader on Windows. A reaction/control frame reported 85 draw calls and 2,682 triangles; concurrent software-rendering times are not hardware GPU estimates. The original compact resize journey remains. No claim of physical trackpad comfort, hardware rollover, human skill modelling, universal Model A superiority or solved balance. No OS input changes, paid service, push or deployment.
+Captures use Chromium 153, 1440×900, WebGL 2 / ANGLE SwiftShader on Windows. A reaction/control frame reported 89 draw calls and 2,998 triangles; concurrent software-rendering times are not hardware GPU estimates. The original compact resize journey remains. No claim of physical trackpad comfort, hardware rollover, human skill modelling, universal Model A superiority or solved balance. No OS input changes, paid service, push or deployment.
 
 The following sections retain the historical 1.1 validation record.
 
