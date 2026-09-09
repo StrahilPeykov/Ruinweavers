@@ -320,3 +320,41 @@ kbd {
   font-size: 11px;
   margin-bottom: 0;
 }
+
+#trial-card {
+  max-height: 85vh;
+  overflow: auto;
+}
+#net-setup {
+  text-align: left;
+  margin-top: 16px;
+  font-size: 13px;
+}
+#net-setup p {
+  margin: 10px 0;
+}
+.net-buttons {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+#net-setup details {
+  margin-top: 12px;
+}
+#room-code {
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+#room-status {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+}
+#connection-status {
+  font-size: 12px;
+  color: #b9d3eb;
+}
+button:disabled,
+input:disabled,
+select:disabled {
+  opacity: 0.45;
+}

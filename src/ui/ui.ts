@@ -1,3 +1,4 @@
+import type { CoopSession } from "../network/session";
 import { ENCOUNTERS } from "../simulation/trial";
 import { CAST, PRINCIPLES, SCENES, type Config } from "../experiments/config";
 import type { Input } from "../input/input";
@@ -6,6 +7,7 @@ import type { View } from "../render/view";
 export class UI {
   root: HTMLElement;
   last = 0;
+  network?: CoopSession;
   constructor(
     public config: Config,
     public input: Input,
@@ -22,8 +24,8 @@ export class UI {
     this.root = document.createElement("div");
     this.root.id = "ui";
     document.body.append(this.root);
-    this.root.innerHTML = `<header><div class="eyebrow">EXPERIMENTAL PRE-PRODUCTION</div><h1>RUINWEAVERS <span>/ MAGIC LAB</span></h1><div id="status">Explore the rules. Reset freely.</div></header>
-      <div class="top-actions"><button id="mute" aria-pressed="false">Mute</button><button id="pause">Pause</button><button id="reset">Reset lab</button><button id="experiments" aria-expanded="false">Experiments</button></div>
+    this.root.innerHTML = `<header><div class="eyebrow">EXPERIMENTAL PRE-PRODUCTION</div><h1>RUINWEAVERS <span>/ MAGIC LAB</span></h1><div id="connection-status"></div><div id="status">Explore the rules. Reset freely.</div></header>
+      <div class="top-actions"><button id="disconnect" hidden>Leave co-op</button><button id="mute" aria-pressed="false">Mute</button><button id="pause">Pause</button><button id="reset">Reset lab</button><button id="experiments" aria-expanded="false">Experiments</button></div>
       <aside id="panel" hidden><div class="panel-title">Lab instruments <button id="close">×</button></div>
       <label>Casting model<select id="model"><option value="primary-secondary">A · Primary / Secondary</option><option value="weave-unweave">B · Weave / Unweave</option></select></label>
       <label>Camera<select id="camera">${["tactical", "balanced", "cinematic"].map((s) => `<option>${s}</option>`).join("")}</select></label>
@@ -33,7 +35,7 @@ export class UI {
       <details><summary>Selected tunables</summary><label>Move speed<input id="moveSpeed" type="range" min="3" max="8" step=".1"></label><label>Dodge distance<input id="dodgeDistance" type="range" min="2" max="5" step=".1"></label><label>Dodge recovery<input id="dodgeRecovery" type="range" min=".4" max="1.4" step=".05"></label><label>Cast recovery multiplier<input id="castRecovery" type="range" min=".65" max="1.5" step=".05"></label><label>Secondary buffer (seconds; 0 disables)<input id="inputBuffer" type="range" min="0" max=".15" step=".01"></label><label>Secondary capacity<input id="secondaryCapacity" type="number" min="1" max="3"></label><label>Secondary fallback<select id="fallback"><option value="KeyF">F</option><option value="KeyR">R</option><option value="ShiftLeft">Left Shift</option></select></label><label>Next Principle<select id="cycle"><option value="Tab">Tab</option><option value="KeyC">C</option><option value="KeyR">R</option></select></label><label class="check"><input id="wheel" type="checkbox"> Optional wheel cycling</label></details>
       <details><summary>Controls & rules</summary><p>WASD moves; pointer aims independently. Hold LMB or J for Primary. RMB, F or K for discrete Secondary. 1–4 select; Tab next; Q previous. Space dodges. E toggles pressure near the ballast plate.</p><p>Heat + moisture → steam. Thermal shock weakens structure. Force moves mass and exploits fracture. Stone binds and stabilizes. The plate responds to weight.</p><p>Trackpad: aim with one finger, cast using J / F or K. Palm rejection and keyboard rollover require testing on your hardware. Both mouse bindings stay available.</p><p>One major field at a time. A new Secondary dissolves the old; residual target states remain. Stone slabs bridge the gap and obstruct low bolts. No mana.</p></details>
       <button id="combat-reset">Reset combat station</button> <button id="export">Export observations</button><pre id="metrics"></pre><p id="feedback" role="status"></p></aside>
-      <section id="trial-card" hidden><div class="eyebrow">COMBAT TRIAL 0.1</div><h2 id="trial-title"></h2><p id="trial-copy"></p><button id="trial-action">Start trial</button><p class="trial-keys">E to continue · WASD move · LMB cast · RMB / F secondary · Space dodge</p></section><div id="inspect"></div><div id="cast-feedback" role="status"></div><div id="notice" hidden></div>
+      <section id="trial-card" hidden><div class="eyebrow">COMBAT TRIAL 0.1</div><h2 id="trial-title"></h2><p id="trial-copy"></p><button id="trial-action">Start trial</button><div id="net-setup"><hr><p>Or share this trial with one partner</p><label>Room code<input id="room-code" placeholder="RW-…" maxlength="15" autocomplete="off"></label><div class="net-buttons"><button id="create-room">Create co-op</button><button id="join-room">Join co-op</button></div><details><summary>Connection options</summary><label>Signaling<select id="signaling"><option value="public">Public Nostr · internet</option><option value="local">Local relay · same machine test</option></select></label><small>Both players use the same build and signaling option. No accounts or TURN service.</small></details></div><p id="room-status" role="status"></p><button id="leave-room" hidden>Return to solo</button><p class="trial-keys">E to continue · WASD move · LMB cast · RMB / F secondary · Space dodge</p></section><div id="inspect"></div><div id="cast-feedback" role="status"></div><div id="notice" hidden></div>
       <footer><div id="principles">${PRINCIPLES.map((p, i) => `<div data-principle="${p}"><kbd>${i + 1}</kbd><span>${p}</span></div>`).join("")}</div><div id="spell"></div><div class="hint">WASD move · LMB / J cast · RMB / F secondary · Space dodge · Tab / Q cycle</div><div id="health"></div></footer>`;
     const byId = (id: string) =>
       this.root.querySelector<HTMLElement>(`#${id}`)!;
@@ -137,6 +139,44 @@ export class UI {
         this.config[key as keyof Config],
       );
   }
+  bindNetwork(net: CoopSession) {
+    this.network = net;
+    const get = (id: string) => this.root.querySelector<HTMLElement>(`#${id}`)!;
+    get("create-room").onclick = () => {
+      const bytes = crypto.getRandomValues(new Uint8Array(12)),
+        alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      const code =
+        "RW-" +
+        Array.from(bytes, (b) => alphabet[b % alphabet.length]).join("");
+      (get("room-code") as HTMLInputElement).value = code;
+      this.config.scene = "trial";
+      this.config.model = "primary-secondary";
+      void net.connect(
+        "host",
+        code,
+        (get("signaling") as HTMLSelectElement).value,
+      );
+      this.unfocus();
+    };
+    get("join-room").onclick = () => {
+      this.config.scene = "trial";
+      this.config.model = "primary-secondary";
+      void net.connect(
+        "guest",
+        (get("room-code") as HTMLInputElement).value,
+        (get("signaling") as HTMLSelectElement).value,
+      );
+      this.unfocus();
+    };
+    get("disconnect").onclick = () => {
+      void net.leave();
+      this.unfocus();
+    };
+    get("leave-room").onclick = () => {
+      void net.leave();
+      this.unfocus();
+    };
+  }
   update(s: State, view: View, paused: boolean) {
     const now = performance.now() / 1000;
     if (now - this.last < 0.08) return;
@@ -155,18 +195,22 @@ export class UI {
     this.root.querySelector(".hint")!.textContent =
       `WASD move · ${pretty(this.input.bindings.primary)} cast · ${pretty(this.input.bindings.secondary)} secondary · Space dodge · ${pretty(this.input.bindings.next)} / ${pretty(this.input.bindings.previous)} cycle`;
     (get("profile") as HTMLSelectElement).value = this.input.profile;
-    const player = s.entities[0],
+    const player = s.entities.find((e) => e.id === view.actorId)!,
+      actor = s.actors[player.id],
       enemies = s.entities.filter((e) => e.ai && e.hp > 0),
       enemy = s.entities.find((e) => e.id === "sentinel");
     for (const el of this.root.querySelectorAll<HTMLElement>(
       "[data-principle]",
     ))
-      el.classList.toggle("active", el.dataset.principle === s.activePrinciple);
-    const p = CAST[s.activePrinciple];
+      el.classList.toggle(
+        "active",
+        el.dataset.principle === actor.activePrinciple,
+      );
+    const p = CAST[actor.activePrinciple];
     get("spell").textContent =
       `${p.primary}  /  ${this.config.model === "weave-unweave" ? p.inverse : p.secondary}`;
     get("health").textContent =
-      `Integrity ${Math.ceil(player.hp)} / 100  ·  Dodge ${s.time >= s.dodgeReady ? "ready" : (s.dodgeReady - s.time).toFixed(1) + "s"}  ·  Fields ${s.fields.length}/${this.config.secondaryCapacity}`;
+      `Integrity ${Math.ceil(player.hp)} / 100  ·  Dodge ${s.time >= actor.dodgeReady ? "ready" : (actor.dodgeReady - s.time).toFixed(1) + "s"}  ·  Fields ${s.fields.filter((f) => f.source === player.id).length}/${this.config.secondaryCapacity}`;
     get("status").textContent =
       `${this.config.model === "primary-secondary" ? "A · Primary / Secondary" : "B · Weave / Unweave"}  ·  ${this.config.camera}  ·  ${this.config.tempo}  ·  ${this.config.scene}`;
     get("metrics").textContent =
@@ -186,12 +230,12 @@ export class UI {
       .filter((e) => e.hp > 0 && e.id !== player.id)
       .sort(
         (a, b) =>
-          Math.hypot(a.pos.x - s.aim.x, a.pos.z - s.aim.z) -
-          Math.hypot(b.pos.x - s.aim.x, b.pos.z - s.aim.z),
+          Math.hypot(a.pos.x - actor.aim.x, a.pos.z - actor.aim.z) -
+          Math.hypot(b.pos.x - actor.aim.x, b.pos.z - actor.aim.z),
       )[0];
     if (
       target &&
-      Math.hypot(target.pos.x - s.aim.x, target.pos.z - s.aim.z) < 1.8
+      Math.hypot(target.pos.x - actor.aim.x, target.pos.z - actor.aim.z) < 1.8
     ) {
       get("inspect").textContent =
         `${target.label} · ${Math.ceil(target.hp)} integrity${target.wet > 0.1 ? " · Wet" : ""}${target.heat > 25 ? " · Heated" : ""}${target.burning ? " · Burning" : ""}${target.cohesion < -0.25 ? " · Fractured" : ""}${target.cohesion > 0.25 ? " · Bound" : ""}${Math.hypot(target.velocity.x, target.velocity.z) > 1 ? " · Displaced" : ""}`;
@@ -199,7 +243,13 @@ export class UI {
     const recent = s.events
       .filter((e) => e.type === "rejected" && s.time - e.time < 0.65)
       .at(-1);
-    const placement = view.simulation.targeting("secondary");
+    const placement = view.simulation.withActor(view.actorId, () =>
+      view.simulation.targeting(
+        "secondary",
+        actor.activePrinciple,
+        view.previewAim ?? actor.aim,
+      ),
+    );
     const field = s.fields.find((f) => f.source === player.id);
     get("cast-feedback").textContent = recent
       ? recent.target!
@@ -240,6 +290,58 @@ export class UI {
           : trial.status === "between"
             ? "Next encounter"
             : "Restart trial";
+    }
+    if (s.party) {
+      if (trial?.status === "ready")
+        get("trial-title").textContent = "Three encounters. Two mages.";
+      const partner = s.entities.find(
+        (e) => e.kind === "player" && e.id !== player.id,
+      )!;
+      get("health").textContent +=
+        ` · Partner ${Math.ceil(partner.hp)} · ${player.hp <= 0 ? "Downed — partner can revive you" : partner.hp <= 0 ? "Hold E nearby to revive" : "E: party ready"}${actor.reviveProgress > 0 ? ` · Reviving ${((actor.reviveProgress / 1.2) * 100).toFixed(0)}%` : ""}`;
+      get("trial-action").textContent = s.party.ready.includes(player.id)
+        ? "Waiting for partner"
+        : "Ready";
+      if (trial?.status !== "active")
+        get("trial-copy").textContent +=
+          ` Both players must be ready (${s.party.ready.length}/2).`;
+    }
+    const net = this.network;
+    if (net) {
+      get("net-setup").hidden =
+        (net.active && net.status !== "failed") ||
+        (!!trial && trial.status !== "ready" && net.status !== "failed");
+      get("leave-room").hidden = !net.active;
+      get("disconnect").hidden = !net.active;
+      get("room-status").textContent = net.active
+        ? `${net.code} · ${net.message}`
+        : "";
+      get("connection-status").textContent = net.active
+        ? `${net.actorId === "mage-1" ? "Mage 1 · Host" : "Mage 2 · Guest"} · ${net.status}`
+        : "";
+      get("trial-action").hidden = net.active && !net.connected;
+      if (net.active && !net.connected) {
+        card.hidden = false;
+        get("trial-title").textContent =
+          net.status === "failed" ? "Connection stopped" : "Co-op lobby";
+        get("trial-copy").textContent =
+          net.status === "hosting"
+            ? "Share the room code with your partner. Both press Ready once connected."
+            : "Use the same room code, build and signaling choice.";
+      }
+      for (const id of [
+        "model",
+        "tempo",
+        "scene",
+        "moveSpeed",
+        "dodgeDistance",
+        "dodgeRecovery",
+        "castRecovery",
+        "inputBuffer",
+        "secondaryCapacity",
+        "combat-reset",
+      ])
+        (get(id) as HTMLInputElement).disabled = net.active;
     }
     const notice = get("notice");
     notice.hidden = !(paused || (!trial && player.hp <= 0) || view.contextLost);

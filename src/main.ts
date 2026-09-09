@@ -1,3 +1,4 @@
+import { CoopSession } from "./network/session";
 import "./ui/style.css";
 import {
   CAMERAS,
@@ -27,10 +28,21 @@ async function boot() {
   const sim = new Simulation(config),
     input = new Input(canvas),
     view = new View(canvas, config, sim);
-  input.onClear = () => sim.cancelBufferedCast();
+  let net: CoopSession;
+  input.onClear = () => {
+    if (net?.active) net.release();
+    else sim.cancelBufferedCast();
+  };
+  const localPlayer = () =>
+    sim.state.entities.find((e) => e.id === view.actorId)!;
+  const localActor = () => sim.state.actors[view.actorId];
   const audio = new LabAudio();
   let paused = false;
   const reset = () => {
+    if (net?.active) {
+      net.restart();
+      return;
+    }
     input.clear();
     sim.reset();
     view.reset();
@@ -41,6 +53,13 @@ async function boot() {
     paused = false;
   };
   const configure = (patch: Partial<Config>) => {
+    if (
+      net?.active &&
+      Object.keys(patch).some(
+        (k) => !["camera", "cameraDistance", "cameraPitch"].includes(k),
+      )
+    )
+      throw Error("Gameplay configuration is fixed while connected");
     if (
       patch.model &&
       !["primary-secondary", "weave-unweave"].includes(patch.model)
@@ -133,7 +152,8 @@ async function boot() {
   };
   const advance = () => {
     input.clear();
-    sim.advanceTrial();
+    if (net?.active) net.ready();
+    else sim.advanceTrial();
     ui.last = 0;
   };
   const ui = new UI(config, input, {
@@ -142,6 +162,10 @@ async function boot() {
     combat: combatReset,
     configure,
     pause: () => {
+      if (net?.active) {
+        net.togglePause();
+        return;
+      }
       paused = !paused;
       input.clear();
       ui.last = 0;
@@ -149,12 +173,58 @@ async function boot() {
     export: exportData,
     mute: () => (audio.muted = !audio.muted),
   });
+  net = new CoopSession(
+    sim,
+    () => {
+      view.actorId = sim.state.actors[net.actorId] ? net.actorId : "mage-1";
+      paused = false;
+      ui.last = 0;
+    },
+    () => input.clear(),
+  );
+  ui.bindNetwork(net);
+  setInterval(() => {
+    if (!net.active) return;
+    const aim = input.pointer.active
+      ? view.aimFromPointer(input.pointer.x, input.pointer.y)
+      : localActor().aim;
+    const command =
+      !document.hidden && !view.contextLost
+        ? input.sample(aim)
+        : idleInput(aim);
+    net.tick(command);
+  }, 1000 / 60);
   const api = {
     advanceTrial: advance,
+    getNetworkState: () => net.info(),
+    getRtcStats: () => net.rtcStats(),
+    setNetworkProfile: (profile: {
+      delayMs: number;
+      jitterMs: number;
+      seed: number;
+    }) => {
+      if (
+        !Number.isFinite(profile.delayMs) ||
+        profile.delayMs < 0 ||
+        profile.delayMs > 250 ||
+        !Number.isFinite(profile.jitterMs) ||
+        profile.jitterMs < 0 ||
+        profile.jitterMs > 100 ||
+        !Number.isSafeInteger(profile.seed)
+      )
+        throw Error("Invalid network test profile");
+      net.profile = { ...profile };
+      net.scheduleCount = 0;
+    },
+    silenceNetworkInput: (ms: number) => {
+      if (!Number.isFinite(ms) || ms < 0 || ms > 8000)
+        throw Error("Invalid silence duration");
+      net.silenceUntil = performance.now() + ms;
+    },
     getState: () => structuredClone(sim.state),
     getTargeting: () => ({
-      primary: sim.targeting("primary"),
-      secondary: sim.targeting("secondary"),
+      primary: sim.withActor(view.actorId, () => sim.targeting("primary")),
+      secondary: sim.withActor(view.actorId, () => sim.targeting("secondary")),
     }),
     // Setup only: actions under test must still arrive through real inputs.
     setupTestState: (patch: {
@@ -165,30 +235,40 @@ async function boot() {
         hp?: number;
         heat?: number;
         cohesion?: number;
+        aiEnabled?: boolean;
       }[];
       dodgeRemaining?: number;
       secondaryRemaining?: number;
       fieldLife?: number;
+      enemyEnabled?: boolean;
     }) => {
-      if (!paused) throw Error("Pause before test setup");
+      if (net.role === "guest") throw Error("Only host can arrange test state");
+      if (!(net.active ? net.paused : paused))
+        throw Error("Pause before test setup");
       for (const change of patch.entities ?? []) {
         const entity = sim.state.entities.find((e) => e.id === change.id);
         if (!entity) throw Error("Unknown entity");
-        Object.assign(entity, structuredClone(change));
+        const { aiEnabled, ...values } = structuredClone(change);
+        Object.assign(entity, values);
+        if (aiEnabled !== undefined && entity.ai) entity.ai.enabled = aiEnabled;
         sim.physics.teleport(entity);
       }
+      if (patch.enemyEnabled !== undefined)
+        sim.state.entities.forEach((e) => {
+          if (e.ai) e.ai.enabled = patch.enemyEnabled!;
+        });
       if (patch.dodgeRemaining !== undefined)
-        sim.state.dodgeUntil = sim.state.time + patch.dodgeRemaining;
+        localActor().dodgeUntil = sim.state.time + patch.dodgeRemaining;
       if (patch.secondaryRemaining !== undefined)
-        sim.state.secondaryReady = sim.state.time + patch.secondaryRemaining;
+        localActor().secondaryReady = sim.state.time + patch.secondaryRemaining;
       if (patch.fieldLife !== undefined)
         sim.state.fields.forEach((f) => (f.life = patch.fieldLife!));
       sim.physics.world.step();
       view.center.set(sim.player.pos.x * 0.82, 0, sim.player.pos.z * 0.82);
       view.render(sim.state, 0);
     },
-    getPlayerState: () => structuredClone(sim.player),
-    getActivePrinciple: () => sim.state.activePrinciple,
+    getPlayerState: () => structuredClone(localPlayer()),
+    getActivePrinciple: () => localActor().activePrinciple,
     getWorldStates: () => structuredClone(sim.state.entities),
     getMetrics: () => ({
       ...structuredClone(sim.state.metrics),
@@ -217,11 +297,18 @@ async function boot() {
       input.setBinding(...args),
     projectWorld: (pos: Parameters<View["project"]>[0]) => view.project(pos),
     setPaused: (value: boolean) => {
-      paused = value;
+      if (net.role === "guest")
+        throw Error("Host controls deterministic pause");
+      if (net.active) {
+        net.paused = value;
+        sim.state.party!.epoch++;
+      } else paused = value;
       input.clear();
       ui.last = 0;
     },
     step: (ticks = 1) => {
+      if (net.active)
+        throw Error("Use host real-time play for networking journeys");
       if (!paused) throw Error("Pause before deterministic stepping");
       for (let i = 0; i < Math.min(ticks, 600); i++)
         sim.step(idleInput(sim.state.aim));
@@ -238,7 +325,7 @@ async function boot() {
     const rawElapsed = (now - last) / 1000;
     const elapsed = Math.min(rawElapsed, 0.1);
     last = now;
-    if (!paused && !document.hidden && !view.contextLost) {
+    if (!net.active && !paused && !document.hidden && !view.contextLost) {
       accumulator += elapsed;
       while (accumulator >= 1 / 60) {
         const aim = input.pointer.active
@@ -253,9 +340,13 @@ async function boot() {
       audio.reset();
     }
     previousTick = sim.state.tick;
+    view.previewAim =
+      net.active && input.pointer.active
+        ? view.aimFromPointer(input.pointer.x, input.pointer.y)
+        : undefined;
     view.render(sim.state, rawElapsed);
     audio.update(sim.state);
-    ui.update(sim.state, view, paused);
+    ui.update(sim.state, view, net.active ? net.paused : paused);
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);

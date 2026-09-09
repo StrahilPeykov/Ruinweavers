@@ -1,3 +1,4 @@
+import { actorState } from "./actors";
 import { vec, type Entity, type Kind, type State } from "./types";
 import type { Config } from "../experiments/config";
 export interface TerrainBox {
@@ -91,11 +92,14 @@ export function createState(config: Config): State {
     entity("loose-2", "loose", "Loose stone", 3.4, 2, 0.42, 0.84, 1.4),
     entity("moving", "moving", "Moving target", -3, -10, 0.5, 1, 2),
   ];
-  const player = entities[0];
+  const player = entities.find((e) => e.id === "mage-1")!;
   if (config.scene === "combat") player.pos = vec(4, 0.75, -1);
   if (config.scene === "traversal") player.pos = vec(6, 0.75, -1.2);
   if (config.scene === "states") player.pos = vec(-4, 0.75, 0);
   return {
+    actors: { "mage-1": actorState() },
+    verticalSpeed: 0,
+    reviveProgress: 0,
     time: 0,
     tick: 0,
     seed: config.seed,

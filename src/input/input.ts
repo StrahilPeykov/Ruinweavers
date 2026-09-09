@@ -125,6 +125,7 @@ export class Input {
     out.secondary = this.is("secondary", true);
     out.dodge = this.is("dodge", true);
     out.interact = this.is("interact", true);
+    out.revive = this.is("interact");
     for (let i = 0; i < 4; i++)
       if (this.is(`principle${i + 1}` as Action, true))
         out.select = PRINCIPLES[i];

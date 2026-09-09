@@ -1,3 +1,5 @@
+import { actorState, legacyActorAccessors } from "./actors";
+import { entity } from "./lab";
 import {
   CAST,
   PRINCIPLES,
@@ -9,6 +11,7 @@ import { Physics } from "../physics/world";
 import { createState, PAD, WATER } from "./lab";
 import {
   vec,
+  idleInput,
   type AimPoint,
   type Entity,
   type FrameInput,
@@ -38,14 +41,44 @@ export function segmentDistance(p: Vec, a: Vec, b: Vec) {
 }
 export class Simulation {
   state: State;
+  actorId = "mage-1";
+  replica = false;
+  acceptSnapshot(snapshot: State) {
+    const rebuild =
+      !this.replica ||
+      JSON.stringify(this.state.terrain) !== JSON.stringify(snapshot.terrain);
+    this.state = legacyActorAccessors(snapshot);
+    this.replica = true;
+    if (rebuild) {
+      this.physics.dispose();
+      this.physics = new Physics(this.state, true);
+    }
+    this.physics.updateSnapshot(this.state);
+  }
+  withActor<T>(id: string, work: () => T): T {
+    if (!this.state.actors[id]) throw Error("Unknown actor");
+    const previous = this.actorId;
+    this.actorId = id;
+    try {
+      return work();
+    } finally {
+      this.actorId = previous;
+    }
+  }
+  get actor() {
+    return this.state.actors[this.actorId];
+  }
+  get players() {
+    return this.state.entities.filter((e) => !!this.state.actors[e.id]);
+  }
   physics: Physics;
   constructor(public config: Config) {
-    this.state = createState(config);
+    this.state = legacyActorAccessors(createState(config));
     if (config.scene.startsWith("trial")) initializeTrial(this.state, config);
     this.physics = new Physics(this.state);
   }
   get player() {
-    return this.state.entities[0];
+    return this.state.entities.find((e) => e.id === this.actorId)!;
   }
   stagger(e: Entity, duration: number) {
     if (this.state.time >= e.staggerReady) {
@@ -55,11 +88,69 @@ export class Simulation {
     }
   }
   reset() {
+    this.replica = false;
     this.physics.dispose();
-    this.state = createState(this.config);
+    const ids = Object.keys(this.state.actors),
+      epoch = (this.state.party?.epoch ?? 0) + 1;
+    this.state = legacyActorAccessors(createState(this.config));
+    if (ids.length === 2) {
+      this.state.actors["mage-2"] = actorState();
+      this.state.entities.push(
+        entity("mage-2", "player", "Partner", 2, 6, 0.38, 1.4, 2),
+      );
+      this.state.party = { ready: [], epoch };
+    }
     if (this.config.scene.startsWith("trial"))
       initializeTrial(this.state, this.config);
     this.physics = new Physics(this.state);
+  }
+  addPartner() {
+    if (
+      !this.state.trial ||
+      this.state.trial.status !== "ready" ||
+      this.players.length !== 1
+    )
+      throw Error("Join before starting a trial");
+    this.state.actors["mage-2"] = actorState();
+    this.state.entities.push(
+      entity("mage-2", "player", "Partner", 2, 6, 0.38, 1.4, 2),
+    );
+    this.state.party = { ready: [], epoch: 1 };
+    prepareEncounter(this.state, this.config);
+    this.physics.dispose();
+    this.physics = new Physics(this.state);
+  }
+  ready(id: string) {
+    const s = this.state;
+    if (!s.actors[id] || s.trial?.status === "active") return;
+    if (!s.party) {
+      this.advanceTrial();
+      return;
+    }
+    if (!s.party.ready.includes(id)) s.party.ready.push(id);
+    if (Object.keys(s.actors).every((id) => s.party!.ready.includes(id))) {
+      this.advanceTrial();
+      if (this.state.party) {
+        this.state.party.ready = [];
+        this.state.party.epoch++;
+      }
+    }
+  }
+  revive(id: string, source: string) {
+    const p = this.players.find((p) => p.id === id);
+    if (!p || p.hp > 0) return;
+    p.hp = 35;
+    p.heat = 0;
+    p.wet = 0;
+    p.stagger = 0;
+    Object.assign(this.state.actors[id], {
+      bufferedCast: undefined,
+      verticalSpeed: 0,
+      invulnerableUntil: this.state.time + 1,
+    });
+    if (!this.physics.bodies.has(id)) this.physics.add(p);
+    this.event("revive", source, p.pos, { target: id, duration: 1 });
+    this.outcome(`revive:${source}:${id}`);
   }
   advanceTrial() {
     const s = this.state,
@@ -106,7 +197,19 @@ export class Simulation {
   }
   damage(e: Entity, n: number, source: string, reason: string) {
     if (e.hp <= 0 || n <= 0) return;
-    if (e.kind === "player" && this.state.time < this.state.invulnerableUntil) {
+    if (
+      this.state.party &&
+      e.kind === "player" &&
+      this.state.actors[source] &&
+      source !== e.id
+    ) {
+      this.outcome(`allied-damage-suppressed:${source}:${e.id}`);
+      return;
+    }
+    if (
+      e.kind === "player" &&
+      this.state.time < this.state.actors[e.id].invulnerableUntil
+    ) {
       this.outcome(`invulnerable-contact:${source}`);
       return;
     }
@@ -127,7 +230,7 @@ export class Simulation {
     record.amount += actual;
     if (e.kind === "player") {
       this.state.metrics.playerDamage += actual;
-      if (e.hp <= 0) this.cancelBufferedCast();
+      if (e.hp <= 0) this.state.actors[e.id].bufferedCast = undefined;
     }
     if (e.hp <= 0) {
       this.event("shatter", source, e.pos, { target: e.id, duration: 0.8 });
@@ -143,6 +246,8 @@ export class Simulation {
   apply(e: Entity, op: Operation, source: string, reason: string) {
     if (e.hp <= 0) return;
     const s = this.state;
+    const priorWetSource = e.sources.wet,
+      priorHeatSource = e.sources.heat;
     const oldHeat = e.heat,
       oldWet = e.wet,
       oldCohesion = e.cohesion;
@@ -165,7 +270,11 @@ export class Simulation {
       e.heat = Math.max(0, e.heat - consumed * 100);
       this.stagger(e, 0.4);
       inc(s.metrics.transformations, "vaporize");
+      const primedBy = op.heat ? priorWetSource : priorHeatSource;
+      if (s.actors[primedBy] && s.actors[source] && primedBy !== source)
+        this.outcome(`cross-reaction:${primedBy}:${source}:${e.id}`);
       this.event("steam", source, e.pos, {
+        primedBy,
         target: e.id,
         value: consumed,
         duration: 1.2,
@@ -227,8 +336,8 @@ export class Simulation {
   }
   targeting(
     action: "primary" | "secondary",
-    principle = this.state.activePrinciple,
-    aim = this.state.aim,
+    principle = this.actor.activePrinciple,
+    aim = this.actor.aim,
   ) {
     const p = this.player.pos,
       range = CAST[principle].range;
@@ -306,9 +415,9 @@ export class Simulation {
     return !this.physics.terrainHit(vec(pos.x, pos.y + 0.15, pos.z), target);
   }
   cancelBufferedCast() {
-    this.state.bufferedCast = undefined;
+    this.actor.bufferedCast = undefined;
   }
-  reject(reason: string, pos = this.state.aim) {
+  reject(reason: string, pos = this.actor.aim) {
     const last = this.state.events.filter((e) => e.type === "rejected").at(-1);
     if (!last || this.state.time - last.time > 0.2)
       this.event("rejected", this.player.id, pos, {
@@ -318,18 +427,19 @@ export class Simulation {
   }
   secondaryPress(device = "unknown") {
     const s = this.state,
-      remaining = Math.max(s.secondaryReady, s.dodgeUntil) - s.time;
+      remaining =
+        Math.max(this.actor.secondaryReady, this.actor.dodgeUntil) - s.time;
     this.cancelBufferedCast();
     if (this.player.hp <= 0) return;
     if (remaining > 0 && remaining <= this.config.inputBuffer + 1e-6) {
-      s.bufferedCast = {
-        principle: s.activePrinciple,
-        aim: { ...s.aim },
+      this.actor.bufferedCast = {
+        principle: this.actor.activePrinciple,
+        aim: { ...this.actor.aim },
         device,
         expires: s.time + this.config.inputBuffer,
       };
-      this.event("buffered", this.player.id, s.aim, {
-        principle: s.activePrinciple,
+      this.event("buffered", this.player.id, this.actor.aim, {
+        principle: this.actor.activePrinciple,
         duration: 0.16,
       });
     } else if (remaining > 0) this.reject("Recovering");
@@ -338,18 +448,23 @@ export class Simulation {
   cast(
     action: "primary" | "secondary",
     device = "unknown",
-    principle = this.state.activePrinciple,
-    aim: AimPoint = this.state.aim,
+    principle = this.actor.activePrinciple,
+    aim: AimPoint = this.actor.aim,
   ) {
     const s = this.state,
       p = this.player;
     if (
       p.hp <= 0 ||
-      s.time < s.dodgeUntil ||
+      s.time < this.actor.dodgeUntil ||
       (s.trial && s.trial.status !== "active")
     )
       return;
-    if (s.time < (action === "primary" ? s.primaryReady : s.secondaryReady))
+    if (
+      s.time <
+      (action === "primary"
+        ? this.actor.primaryReady
+        : this.actor.secondaryReady)
+    )
       return;
     const target = this.targeting(action, principle, aim),
       pos = target.pos;
@@ -359,13 +474,14 @@ export class Simulation {
     }
     const dir = normalize(vec(pos.x - p.pos.x, 0, pos.z - p.pos.z));
     if (action === "primary")
-      s.primaryReady =
+      this.actor.primaryReady =
         s.time + CAST[principle].cadence * this.config.castRecovery;
-    else s.secondaryReady = s.time + 0.65 * this.config.castRecovery;
-    s.castUntil = s.time + 0.12;
+    else this.actor.secondaryReady = s.time + 0.65 * this.config.castRecovery;
+    this.actor.castUntil = s.time + 0.12;
     const applicationsBefore = s.metrics.stateApplications;
     const deflectionsBefore = s.metrics.transformations.deflect || 0;
     inc(s.metrics.casts, `${principle}:${action}`);
+    this.outcome(`${p.id}:cast:${principle}:${action}`);
     inc(s.metrics.inputs, `${action}:${device}`);
     this.event("cast", p.id, p.pos, { principle, duration: 0.2 });
     if (action === "secondary") {
@@ -532,47 +648,61 @@ export class Simulation {
     )
       this.event("empty", p.id, pos, { duration: 0.3 });
   }
-  step(input: FrameInput) {
+  actorInput(input: FrameInput, dt: number) {
     const s = this.state,
-      p = this.player,
-      dt = 1 / 60;
-    if (s.trial && s.trial.status !== "active") {
-      if (input.interact) this.advanceTrial();
-      return;
-    }
-    if (s.trial) s.trial.elapsed += dt;
-    s.time += dt;
-    s.tick++;
-    s.aim = { ...input.aim };
+      p = this.player;
+    this.actor.aim = { ...input.aim };
     for (const key of input.triggers || []) inc(s.metrics.inputs, key);
-    const old = s.activePrinciple;
-    if (input.select) s.activePrinciple = input.select;
+    const old = this.actor.activePrinciple;
+    if (input.select) this.actor.activePrinciple = input.select;
     if (input.cycle)
-      s.activePrinciple =
+      this.actor.activePrinciple =
         PRINCIPLES[
-          (PRINCIPLES.indexOf(s.activePrinciple) + input.cycle + 4) % 4
+          (PRINCIPLES.indexOf(this.actor.activePrinciple) + input.cycle + 4) % 4
         ];
-    if (old !== s.activePrinciple) s.metrics.switches++;
+    if (old !== this.actor.activePrinciple) s.metrics.switches++;
     const direction = normalize(vec(input.moveX, 0, input.moveZ));
-    if (input.dodge && s.time >= s.dodgeReady && p.hp > 0) {
-      s.dodgeDirection =
+    if (input.dodge && s.time >= this.actor.dodgeReady && p.hp > 0) {
+      this.actor.dodgeDirection =
         input.moveX || input.moveZ
           ? direction
-          : normalize(vec(s.aim.x - p.pos.x, 0, s.aim.z - p.pos.z));
-      s.dodgeUntil = s.time + this.config.dodgeDuration;
-      s.invulnerableUntil =
+          : normalize(
+              vec(this.actor.aim.x - p.pos.x, 0, this.actor.aim.z - p.pos.z),
+            );
+      this.actor.dodgeUntil = s.time + this.config.dodgeDuration;
+      this.actor.invulnerableUntil =
         s.time +
         Math.min(this.config.invulnerability, this.config.dodgeDuration);
-      s.dodgeReady = s.time + this.config.dodgeRecovery;
+      this.actor.dodgeReady = s.time + this.config.dodgeRecovery;
       s.metrics.dodges++;
       this.event("dodge", p.id, p.pos, { duration: 0.3 });
     }
-    if (input.primary) this.cast("primary", input.primaryDevice);
-    if (input.secondary) this.secondaryPress(input.secondaryDevice);
-    const buffered = s.bufferedCast;
+    const downed = this.players.find(
+      (e) =>
+        e.id !== p.id &&
+        e.hp <= 0 &&
+        distance(e.pos, p.pos) < 2.2 &&
+        Math.abs(e.pos.y - p.pos.y) < 1.4 &&
+        !this.physics.terrainHit(p.pos, e.pos),
+    );
+    if (s.party && input.revive && p.hp > 0 && downed) {
+      this.actor.reviveProgress += dt;
+      if (this.actor.reviveProgress >= 1.2) {
+        this.revive(downed.id, p.id);
+        this.actor.reviveProgress = 0;
+      }
+    } else this.actor.reviveProgress = 0;
+    if (input.primary && !this.actor.reviveProgress)
+      this.cast("primary", input.primaryDevice);
+    if (input.secondary && !this.actor.reviveProgress)
+      this.secondaryPress(input.secondaryDevice);
+    const buffered = this.actor.bufferedCast;
     if (p.hp <= 0 || (buffered && s.time > buffered.expires + 1e-6))
       this.cancelBufferedCast();
-    else if (buffered && s.time >= Math.max(s.secondaryReady, s.dodgeUntil)) {
+    else if (
+      buffered &&
+      s.time >= Math.max(this.actor.secondaryReady, this.actor.dodgeUntil)
+    ) {
       this.cancelBufferedCast();
       this.cast("secondary", buffered.device, buffered.principle, buffered.aim);
     }
@@ -584,6 +714,40 @@ export class Simulation {
       s.sentinel.enabled = !s.sentinel.enabled;
       this.event("interact", p.id, p.pos);
     }
+    const dashing = s.time < this.actor.dodgeUntil;
+    const speed = dashing
+      ? this.config.dodgeDistance / this.config.dodgeDuration
+      : this.config.moveSpeed *
+        (s.time < this.actor.castUntil ? this.config.castMoveMultiplier : 1);
+    const movement = dashing ? this.actor.dodgeDirection : direction;
+    return p.hp > 0
+      ? vec(movement.x * speed * dt, 0, movement.z * speed * dt)
+      : vec();
+  }
+  step(input: FrameInput) {
+    this.stepParty({ [this.actorId]: input });
+  }
+  stepParty(inputs: Record<string, FrameInput>) {
+    if (this.replica) throw Error("A replica cannot advance gameplay");
+    const s = this.state,
+      p = this.player,
+      dt = 1 / 60;
+    if (s.trial && s.trial.status !== "active") {
+      for (const [id, input] of Object.entries(inputs))
+        if (input.interact) this.ready(id);
+      return;
+    }
+    if (s.trial) s.trial.elapsed += dt;
+    s.time += dt;
+    s.tick++;
+    const moves: Record<string, Vec> = {};
+    for (const id of Object.keys(s.actors))
+      this.withActor(id, () => {
+        moves[id] = this.actorInput(
+          inputs[id] ?? idleInput(this.actor.aim),
+          dt,
+        );
+      });
     for (const pending of s.pending.filter((a) => a.at <= s.time)) {
       this.event("eruption", pending.source, pending.pos, {
         principle: "Stone",
@@ -745,24 +909,13 @@ export class Simulation {
         if (e.kind === "player") {
           e.pos = vec(6, 0.9, 5);
           this.physics.teleport(e);
-          this.physics.verticalSpeed = 0;
+          s.actors[e.id].verticalSpeed = 0;
           this.damage(e, 10, "world", "fall");
         } else this.damage(e, e.hp, "world", "fall");
       }
     }
     this.tickEnemies(dt);
-    const dashing = s.time < s.dodgeUntil;
-    const speed = dashing
-      ? this.config.dodgeDistance / this.config.dodgeDuration
-      : this.config.moveSpeed *
-        (s.time < s.castUntil ? this.config.castMoveMultiplier : 1);
-    const movement = dashing ? s.dodgeDirection : direction;
-    this.physics.step(
-      s,
-      p.hp > 0
-        ? vec(movement.x * speed * dt, 0, movement.z * speed * dt)
-        : vec(),
-    );
+    this.physics.step(s, moves);
     // Material/momentum interaction: loose fast bodies can damage structural targets.
     for (const e of s.entities.filter(
       (e) => ["loose", "heavy"].includes(e.kind) && e.hp > 0,
@@ -794,10 +947,17 @@ export class Simulation {
           distance(e.pos, vec(PAD.x, 0, PAD.z)) < PAD.radius,
       );
     if (s.trial) {
-      if (p.hp <= 0) {
+      if (!this.players.some((p) => p.hp > 0)) {
         s.trial.status = "defeat";
+        if (s.party) {
+          s.party.ready = [];
+          s.party.epoch++;
+        }
+        for (const a of Object.values(s.actors)) a.bufferedCast = undefined;
         this.cancelBufferedCast();
       } else if (!s.entities.some((e) => e.ai && e.hp > 0)) {
+        for (const ally of this.players.filter((p) => p.hp <= 0))
+          this.revive(ally.id, "encounter-clear");
         s.trial.results.push({
           encounter: s.trial.encounter,
           seconds: s.time - s.trial.started,
@@ -807,6 +967,12 @@ export class Simulation {
           s.trial.isolated || s.trial.encounter === 2 ? "victory" : "between";
         s.bolts = [];
         s.pending = [];
+        if (s.party) {
+          s.party.ready = [];
+          s.party.epoch++;
+        }
+        for (const actor of Object.values(s.actors))
+          actor.bufferedCast = undefined;
         this.cancelBufferedCast();
       }
     }
@@ -854,25 +1020,27 @@ export class Simulation {
       tuning = TRIAL_TUNING[this.config.encounterVersion];
     for (const e of s.entities) {
       const ai = e.ai ?? (e.id === "sentinel" ? s.sentinel : undefined);
-      if (
-        !ai ||
-        e.hp <= 0 ||
-        !ai.enabled ||
-        this.player.hp <= 0 ||
-        e.stagger > 0
-      )
-        continue;
-      const d = distance(e.pos, this.player.pos);
+      const living = this.players.filter((p) => p.hp > 0);
+      const target =
+        (ai?.phase === "telegraph"
+          ? living.find((p) => p.id === ai.targetId)
+          : undefined) ??
+        living.sort(
+          (a, b) => distance(a.pos, e.pos) - distance(b.pos, e.pos),
+        )[0];
+      if (ai && target) ai.targetId = target.id;
+      if (!ai || e.hp <= 0 || !ai.enabled || !target || e.stagger > 0) continue;
+      const d = distance(e.pos, target.pos);
       if (!s.trial && d > 15) continue;
       if (e.kind === "pursuer") {
         ai.timer -= dt;
         if (ai.phase !== "telegraph") {
-          ai.locked = { ...this.player.pos };
-          this.steerEnemy(e, this.player.pos, tuning.pursuitSpeed, dt);
+          ai.locked = { ...target.pos };
+          this.steerEnemy(e, target.pos, tuning.pursuitSpeed, dt);
           if (
             d < 2.1 &&
             ai.timer <= 0 &&
-            Math.abs(e.pos.y - this.player.pos.y) < 1.3
+            Math.abs(e.pos.y - target.pos.y) < 1.3
           ) {
             ai.phase = "telegraph";
             ai.timer = tuning.meleeWindup;
@@ -886,17 +1054,21 @@ export class Simulation {
               tuning.pursuitSpeed * tuning.windupAdvance,
               dt,
             );
-          if (ai.timer > tuning.meleeLock) ai.locked = { ...this.player.pos };
+          if (ai.timer > tuning.meleeLock) ai.locked = { ...target.pos };
           if (ai.timer <= 0) {
             this.outcome(`${e.id}:melee:attempt`);
-            const hit =
-              distance(this.player.pos, ai.locked) <
-                tuning.meleeRadius + this.player.radius &&
-              distance(e.pos, this.player.pos) < 3.3 &&
-              Math.abs(e.pos.y - this.player.pos.y) < 1.6 &&
-              !this.physics.terrainHit(e.pos, this.player.pos);
-            this.outcome(`${e.id}:melee:${hit ? "contact" : "miss"}`);
-            if (hit) this.damage(this.player, 12, e.id, "melee strike");
+            const victims = living.filter(
+              (p) =>
+                distance(p.pos, ai.locked) < tuning.meleeRadius + p.radius &&
+                distance(e.pos, p.pos) < 3.3 &&
+                Math.abs(e.pos.y - p.pos.y) < 1.6 &&
+                !this.physics.terrainHit(e.pos, p.pos),
+            );
+            this.outcome(
+              `${e.id}:melee:${victims.length ? "contact" : "miss"}`,
+            );
+            for (const victim of victims)
+              this.damage(victim, 12, e.id, "melee strike");
             this.event("melee-strike", e.id, ai.locked, { duration: 0.3 });
             ai.phase = "recover";
             ai.timer = tuning.meleeRecovery;
@@ -904,22 +1076,19 @@ export class Simulation {
         }
         continue;
       }
-      if (
-        s.trial &&
-        (d > 12 || this.physics.terrainHit(e.pos, this.player.pos))
-      )
-        this.steerEnemy(e, this.player.pos, 2.4, dt);
+      if (s.trial && (d > 12 || this.physics.terrainHit(e.pos, target.pos)))
+        this.steerEnemy(e, target.pos, 2.4, dt);
       ai.timer -= dt;
       if (ai.phase === "idle" || ai.phase === "recover") {
         if (ai.timer <= 0) {
           ai.phase = "telegraph";
           ai.timer = this.config.telegraph;
           ai.started = s.time;
-          ai.locked = { ...this.player.pos };
+          ai.locked = { ...target.pos };
         }
       } else if (ai.phase === "telegraph") {
         if (ai.timer > (s.trial ? tuning.rangedLock : 0.45))
-          ai.locked = { ...this.player.pos };
+          ai.locked = { ...target.pos };
         if (ai.timer <= 0) {
           const dir = normalize(
             vec(ai.locked.x - e.pos.x, 0, ai.locked.z - e.pos.z),

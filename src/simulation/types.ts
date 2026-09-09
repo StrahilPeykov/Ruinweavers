@@ -48,6 +48,7 @@ export interface Entity {
   hitAt: number;
 }
 export interface EnemyAI {
+  targetId?: string;
   enabled: boolean;
   phase: "idle" | "telegraph" | "recover" | "defeated";
   timer: number;
@@ -75,6 +76,7 @@ export interface MagicEvent {
   time: number;
   type: string;
   source: string;
+  primedBy?: string;
   target?: string;
   principle?: Principle;
   pos: Vec;
@@ -127,13 +129,7 @@ export interface Metrics {
   combatStartedAt: number | null;
   falls: number;
 }
-export interface State {
-  trial?: TrialState;
-  terrain?: import("./lab").TerrainBox[];
-  time: number;
-  tick: number;
-  seed: number;
-  entities: Entity[];
+export interface ActorState {
   activePrinciple: Principle;
   aim: AimPoint;
   bufferedCast?: {
@@ -149,18 +145,24 @@ export interface State {
   invulnerableUntil: number;
   dodgeDirection: Vec;
   castUntil: number;
+  verticalSpeed: number;
+  reviveProgress: number;
+}
+export interface State extends ActorState {
+  actors: Record<string, ActorState>;
+  party?: { ready: string[]; epoch: number };
+  trial?: TrialState;
+  terrain?: import("./lab").TerrainBox[];
+  time: number;
+  tick: number;
+  seed: number;
+  entities: Entity[];
   fields: Field[];
   bolts: Bolt[];
   pending: Pending[];
   events: MagicEvent[];
   serial: number;
-  sentinel: {
-    enabled: boolean;
-    phase: "idle" | "telegraph" | "recover" | "defeated";
-    timer: number;
-    locked: Vec;
-    started: number;
-  };
+  sentinel: EnemyAI;
   mechanism: boolean;
   metrics: Metrics;
 }
@@ -172,13 +174,14 @@ export interface FrameInput {
   secondary: boolean;
   dodge: boolean;
   interact: boolean;
+  revive?: boolean;
   select?: Principle;
   cycle?: number;
   primaryDevice?: string;
   secondaryDevice?: string;
   triggers?: string[];
 }
-export const idleInput = (aim = vec(0, 0, -5)): FrameInput => ({
+export const idleInput = (aim: AimPoint = vec(0, 0, -5)): FrameInput => ({
   moveX: 0,
   moveZ: 0,
   aim,

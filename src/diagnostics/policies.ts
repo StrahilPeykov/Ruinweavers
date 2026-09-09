@@ -22,12 +22,16 @@ type Visible = {
   time: number;
   player: Entity;
   enemies: Entity[];
+  allies: Entity[];
   fields: State["fields"];
   bolts: State["bolts"];
 };
-const snapshot = (s: State): Visible => ({
+const snapshot = (s: State, actorId: string): Visible => ({
   time: s.time,
-  player: structuredClone(s.entities[0]),
+  player: structuredClone(s.entities.find((e) => e.id === actorId)!),
+  allies: structuredClone(
+    s.entities.filter((e) => !!s.actors[e.id] && e.id !== actorId),
+  ),
   enemies: s.entities
     .filter((e) => e.ai && e.hp > 0)
     .map((e) => ({
@@ -54,12 +58,14 @@ export class ScriptedPolicy {
     public mode: ObservationMode,
     public seed = 123,
     public excluded?: Principle,
+    public motor: "continuous" | "keyboard" = "continuous",
+    public role: "independent" | "primer" | "striker" = "independent",
   ) {}
   input(sim: Simulation): FrameInput {
     const s = sim.state;
     if (s.trial && s.trial.status !== "active")
       return { ...idleInput(), interact: true };
-    this.history.push(snapshot(s));
+    this.history.push(snapshot(s, sim.actorId));
     if (this.history.length > 24) this.history.shift();
     // Identical 10 Hz decisions and motor execution for every policy/profile.
     if (s.time + 1e-6 >= this.nextDecision) {
@@ -93,6 +99,16 @@ export class ScriptedPolicy {
       target =
         sorted.find((e) => e.wet > 0.2 && distance(e.pos, p.pos) < 10) ??
         target;
+    if (this.role !== "independent" && o.allies.length) {
+      const center = vec(
+        (p.pos.x + o.allies[0].pos.x) / 2,
+        0,
+        (p.pos.z + o.allies[0].pos.z) / 2,
+      );
+      target = [...o.enemies].sort(
+        (a, b) => distance(a.pos, center) - distance(b.pos, center),
+      )[0];
+    }
     this.lastTarget = target.id;
     const d = distance(target.pos, p.pos),
       toward = unit(target.pos.x - p.pos.x, target.pos.z - p.pos.z);
@@ -185,6 +201,13 @@ export class ScriptedPolicy {
       )
         secondary("Gale", vec(p.pos.x, 0, p.pos.z));
     }
+    if (this.role === "primer" && !f.secondary)
+      f.select = target.wet > 0.2 ? "Stone" : "Tide";
+    if (this.role === "striker") {
+      f.secondary = false;
+      f.primary = true;
+      f.select = "Ember";
+    }
     // Shared movement: keep range, strafe and repel close pursuers. Never teleport.
     const desired = f.select === "Gale" ? 4.4 : 6;
     const radial = d > desired + 1 ? 1 : d < desired - 1 ? -1 : 0;
@@ -202,7 +225,13 @@ export class ScriptedPolicy {
     const heading = Math.atan2(mx, mz),
       actual = sim.player.pos;
     let chosen = vec();
-    for (const turn of [0, 0.6, -0.6, 1.2, -1.2, 1.8, -1.8, Math.PI]) {
+    const turns =
+      this.motor === "keyboard"
+        ? Array.from({ length: 8 }, (_, i) => (i * Math.PI) / 4 - heading).sort(
+            (a, b) => Math.cos(b) - Math.cos(a),
+          )
+        : [0, 0.6, -0.6, 1.2, -1.2, 1.8, -1.8, Math.PI];
+    for (const turn of turns) {
       const v = vec(Math.sin(heading + turn), 0, Math.cos(heading + turn));
       const start = vec(actual.x, actual.y - 0.5, actual.z),
         end = vec(start.x + v.x * 1.3, start.y, start.z + v.z * 1.3);
@@ -211,8 +240,8 @@ export class ScriptedPolicy {
         break;
       }
     }
-    f.moveX = chosen.x;
-    f.moveZ = chosen.z;
+    f.moveX = this.motor === "keyboard" ? Math.round(chosen.x) : chosen.x;
+    f.moveZ = this.motor === "keyboard" ? Math.round(chosen.z) : chosen.z;
     return f;
   }
 }

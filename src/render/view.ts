@@ -21,6 +21,8 @@ export class View {
   fields = new Map<string, T.Group>();
   bolts = new Map<string, T.Mesh>();
   effects = new Map<number, T.Group>();
+  actorId = "mage-1";
+  previewAim?: import("../simulation/types").AimPoint;
   aim = new T.Group();
   dangers = new Map<string, T.Group>();
   terrainGroup = new T.Group();
@@ -338,7 +340,7 @@ export class View {
     return this.simulation.physics.pick(
       this.raycaster.ray.origin,
       this.raycaster.ray.direction,
-      this.simulation.player.id,
+      this.actorId,
     );
   }
   project(pos: Vec) {
@@ -386,7 +388,11 @@ export class View {
     this.dangers.clear();
   }
   render(s: State, delta: number) {
-    const p = s.entities[0],
+    const p =
+        s.entities.find((e) => e.id === this.actorId) ??
+        s.entities.find((e) => e.id === "mage-1")!,
+      actor = s.actors[p.id],
+      aim = this.previewAim ?? actor.aim,
       t = s.time;
     const terrain = s.terrain ?? TERRAIN,
       key = JSON.stringify(terrain);
@@ -425,10 +431,14 @@ export class View {
     this.camera.lookAt(this.center);
     for (const e of s.entities) {
       const g = this.entities.get(e.id) || this.makeEntity(e);
-      g.visible = e.hp > 0;
+      g.visible = e.hp > 0 || e.kind === "player";
+      g.scale.y = e.kind === "player" && e.hp <= 0 ? 0.3 : 1;
       g.position.set(e.pos.x, e.pos.y, e.pos.z);
       if (e.kind === "player")
-        g.rotation.y = Math.atan2(p.pos.x - s.aim.x, p.pos.z - s.aim.z);
+        g.rotation.y = Math.atan2(
+          e.pos.x - s.actors[e.id].aim.x,
+          e.pos.z - s.actors[e.id].aim.z,
+        );
       else if (e.ai) {
         g.rotation.y = Math.atan2(
           e.ai.locked.x - e.pos.x,
@@ -467,8 +477,9 @@ export class View {
           T.BufferGeometry,
           T.MeshStandardMaterial
         >;
-        orb.material.color.setHex(COLORS[s.activePrinciple]);
-        orb.material.emissive.setHex(COLORS[s.activePrinciple]);
+        orb.material.color.setHex(COLORS[s.actors[e.id].activePrinciple]);
+        body.material.color.setHex(e.id === "mage-1" ? 0xe4e8cf : 0xb6cbea);
+        orb.material.emissive.setHex(COLORS[s.actors[e.id].activePrinciple]);
       }
     }
     for (const f of s.fields) {
@@ -660,19 +671,23 @@ export class View {
         this.destroy(g);
         this.effects.delete(id);
       }
-    const primary = this.simulation.targeting("primary"),
-      target = this.simulation.targeting("secondary");
-    this.aim.position.set(s.aim.x, s.aim.y + 0.08, s.aim.z);
+    const primary = this.simulation.withActor(this.actorId, () =>
+        this.simulation.targeting("primary", actor.activePrinciple, aim),
+      ),
+      target = this.simulation.withActor(this.actorId, () =>
+        this.simulation.targeting("secondary", actor.activePrinciple, aim),
+      );
+    this.aim.position.set(aim.x, aim.y + 0.08, aim.z);
     (
       this.aim.children[0] as T.Mesh<T.BufferGeometry, T.MeshBasicMaterial>
     ).material.color.setHex(
-      primary.valid ? COLORS[s.activePrinciple] : 0xff6a66,
+      primary.valid ? COLORS[actor.activePrinciple] : 0xff6a66,
     );
     const color = !target.valid
       ? 0xff6a66
       : target.clamped
         ? 0xecc879
-        : COLORS[s.activePrinciple];
+        : COLORS[actor.activePrinciple];
     this.placement.position.set(
       target.pos.x,
       target.pos.y + 0.08,
@@ -684,9 +699,9 @@ export class View {
         i ===
         (inverse
           ? 0
-          : s.activePrinciple === "Stone"
+          : actor.activePrinciple === "Stone"
             ? 1
-            : s.activePrinciple === "Ember"
+            : actor.activePrinciple === "Ember"
               ? 2
               : 0);
       (
@@ -695,7 +710,7 @@ export class View {
     });
     this.placement.children[0].scale.setScalar(inverse ? 2.8 : 2.5);
     this.placement.rotation.y =
-      s.activePrinciple === "Ember" && !inverse
+      actor.activePrinciple === "Ember" && !inverse
         ? Math.atan2(target.pos.x - p.pos.x, target.pos.z - p.pos.z)
         : 0;
     for (const e of s.entities) {

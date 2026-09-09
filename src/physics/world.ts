@@ -9,14 +9,18 @@ export class Physics {
   colliders = new Map<string, RAPIER.Collider>();
   actorColliders = new Set<number>();
   slabs = new Map<string, RAPIER.RigidBody>();
-  controller = this.world.createCharacterController(0.02);
-  verticalSpeed = 0;
-  constructor(state: State) {
+  controllers = new Map<string, RAPIER.KinematicCharacterController>();
+  get verticalSpeed() {
+    return this.state.actors["mage-1"].verticalSpeed;
+  }
+  set verticalSpeed(v: number) {
+    this.state.actors["mage-1"].verticalSpeed = v;
+  }
+  constructor(
+    public state: State,
+    public queryOnly = false,
+  ) {
     this.world.timestep = 1 / 60;
-    this.controller.enableAutostep(0.95, 0.2, true);
-    this.controller.enableSnapToGround(0.25);
-    this.controller.setApplyImpulsesToDynamicBodies(true);
-    this.controller.setCharacterMass(2);
     for (const t of state.terrain ?? TERRAIN) {
       const b = this.world.createRigidBody(
         RAPIER.RigidBodyDesc.fixed().setTranslation(t.x, t.y, t.z),
@@ -32,11 +36,12 @@ export class Physics {
   }
   add(e: Entity) {
     const kinematic = e.kind === "player" || e.kind === "moving";
-    const desc = e.material.anchored
-      ? RAPIER.RigidBodyDesc.fixed()
-      : kinematic
-        ? RAPIER.RigidBodyDesc.kinematicPositionBased()
-        : RAPIER.RigidBodyDesc.dynamic();
+    const desc =
+      this.queryOnly || e.material.anchored
+        ? RAPIER.RigidBodyDesc.fixed()
+        : kinematic
+          ? RAPIER.RigidBodyDesc.kinematicPositionBased()
+          : RAPIER.RigidBodyDesc.dynamic();
     desc
       .setTranslation(e.pos.x, e.pos.y, e.pos.z)
       .setLinearDamping(3)
@@ -51,6 +56,14 @@ export class Physics {
       shape.setMass(e.mass).setFriction(0.6),
       b,
     );
+    if (e.kind === "player" && !this.controllers.has(e.id) && !this.queryOnly) {
+      const controller = this.world.createCharacterController(0.02);
+      controller.enableAutostep(0.95, 0.2, true);
+      controller.enableSnapToGround(0.25);
+      controller.setApplyImpulsesToDynamicBodies(true);
+      controller.setCharacterMass(2);
+      this.controllers.set(e.id, controller);
+    }
     this.bodies.set(e.id, b);
     this.colliders.set(e.id, c);
     this.actorColliders.add(c.handle);
@@ -159,7 +172,7 @@ export class Physics {
         this.slabs.set(f.id, b);
       }
   }
-  step(state: State, move: Vec) {
+  step(state: State, moves: Record<string, Vec> | Vec) {
     for (const [id, b] of this.bodies) {
       const e = state.entities.find((e) => e.id === id)!;
       if (e.hp <= 0) {
@@ -169,24 +182,33 @@ export class Physics {
         this.colliders.delete(id);
       }
     }
-    const p = state.entities[0],
-      b = this.bodies.get(p.id),
-      c = this.colliders.get(p.id);
-    if (b && c) {
-      this.verticalSpeed = Math.max(-20, this.verticalSpeed - 20 / 60);
-      this.controller.computeColliderMovement(c, {
-        x: move.x,
-        y: this.verticalSpeed / 60,
-        z: move.z,
-      });
-      const m = this.controller.computedMovement();
-      const pos = b.translation();
-      b.setNextKinematicTranslation({
-        x: pos.x + m.x,
-        y: pos.y + m.y,
-        z: pos.z + m.z,
-      });
-      if (this.controller.computedGrounded()) this.verticalSpeed = 0;
+    for (const p of state.entities.filter((e) => !!state.actors[e.id])) {
+      const b = this.bodies.get(p.id),
+        c = this.colliders.get(p.id),
+        controller = this.controllers.get(p.id),
+        a = state.actors[p.id];
+      const move =
+        typeof moves.x === "number"
+          ? p.id === "mage-1"
+            ? (moves as Vec)
+            : { x: 0, y: 0, z: 0 }
+          : ((moves as Record<string, Vec>)[p.id] ?? { x: 0, y: 0, z: 0 });
+      if (b && c && controller) {
+        a.verticalSpeed = Math.max(-20, a.verticalSpeed - 20 / 60);
+        controller.computeColliderMovement(c, {
+          x: move.x,
+          y: a.verticalSpeed / 60,
+          z: move.z,
+        });
+        const m = controller.computedMovement(),
+          pos = b.translation();
+        b.setNextKinematicTranslation({
+          x: pos.x + m.x,
+          y: pos.y + m.y,
+          z: pos.z + m.z,
+        });
+        if (controller.computedGrounded()) a.verticalSpeed = 0;
+      }
     }
     const moving = state.entities.find((e) => e.kind === "moving");
     if (moving && moving.hp > 0)
@@ -204,6 +226,23 @@ export class Physics {
         e.rotation = { ...body.rotation() };
       }
     }
+  }
+  updateSnapshot(s: State) {
+    if (!this.queryOnly) throw Error("Snapshot queries only");
+    this.state = s;
+    for (const [id, b] of this.bodies)
+      if (!s.entities.some((e) => e.id === id && e.hp > 0)) {
+        this.actorColliders.delete(this.colliders.get(id)!.handle);
+        this.world.removeRigidBody(b);
+        this.bodies.delete(id);
+        this.colliders.delete(id);
+      }
+    for (const e of s.entities.filter((e) => e.hp > 0)) {
+      if (!this.bodies.has(e.id)) this.add(e);
+      this.teleport(e);
+    }
+    this.syncFields(s.fields);
+    this.world.step();
   }
   dispose() {
     this.world.free();

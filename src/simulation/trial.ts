@@ -117,14 +117,37 @@ export function prepareEncounter(s: State, config: Config) {
   const trial = s.trial!,
     layout =
       SCENARIOS[trial.scenario as ScenarioName] ?? SCENARIOS["cross-cover"],
-    player = s.entities[0];
+    player = s.entities.find((e) => e.id === "mage-1")!;
+  const players = s.entities.filter((e) => !!s.actors[e.id]);
   player.pos = vec(layout.startX, 0.75, 6);
   player.velocity = vec();
   player.heat = 0;
   player.wet = 0;
   player.stagger = 0;
+  for (const [i, p] of players.entries()) {
+    p.pos = vec(
+      layout.startX + (players.length === 2 ? (i ? 1.2 : -1.2) : 0),
+      0.75,
+      6,
+    );
+    p.velocity = vec();
+    p.heat = 0;
+    p.wet = 0;
+    p.stagger = 0;
+    const a = s.actors[p.id];
+    a.bufferedCast = undefined;
+    a.verticalSpeed = 0;
+    a.reviveProgress = 0;
+    a.primaryReady =
+      a.secondaryReady =
+      a.dodgeReady =
+      a.dodgeUntil =
+      a.invulnerableUntil =
+      a.castUntil =
+        s.time;
+  }
   s.entities = [
-    player,
+    ...players,
     entity("timber", "wood", "Dry timber", -7, 1, 0.6, 1.6),
     entity("ballast", "heavy", "Heavy ballast", 7, 1, 0.8, 1.6, 18),
     entity("loose-1", "loose", "Loose stone", -1, 3, 0.38, 0.75, 1),
