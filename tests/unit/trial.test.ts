@@ -152,3 +152,18 @@ it("restricted policies adapt without issuing excluded casts; seeded runs repeat
   for (const p of PRINCIPLES) run(p);
   expect(run("Gale")).toBe(run("Gale"));
 });
+
+it("the trial does not inherit invisible Lab water or mechanism", () => {
+  for (const scene of ["states", "trial/ranged"]) {
+    const s = new Simulation(configFromQuery("?scene=" + scene));
+    s.advanceTrial();
+    s.player.pos = vec(-7, 0.75, -1.5);
+    s.physics.teleport(s.player);
+    for (let i = 0; i < 30; i++) s.step(idleInput());
+    if (scene.startsWith("trial")) {
+      expect(s.player.wet).toBe(0);
+      expect(s.state.mechanism).toBe(false);
+    } else expect(s.player.wet).toBeGreaterThan(0.5);
+    s.dispose();
+  }
+});

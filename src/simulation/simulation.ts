@@ -722,6 +722,7 @@ export class Simulation {
     s.bolts = s.bolts.filter((b) => b.life > 0);
     for (const e of s.entities.filter((e) => e.hp > 0)) {
       if (
+        !s.trial &&
         distance(e.pos, vec(WATER.x, 0, WATER.z)) < WATER.radius &&
         this.contact(e, vec(WATER.x, 0, WATER.z), 0.25)
       ) {
@@ -784,12 +785,14 @@ export class Simulation {
           inc(s.metrics.transformations, "physical impact");
         }
     }
-    s.mechanism = s.entities.some(
-      (e) =>
-        e.hp > 0 &&
-        e.mass >= 10 &&
-        distance(e.pos, vec(PAD.x, 0, PAD.z)) < PAD.radius,
-    );
+    s.mechanism =
+      !s.trial &&
+      s.entities.some(
+        (e) =>
+          e.hp > 0 &&
+          e.mass >= 10 &&
+          distance(e.pos, vec(PAD.x, 0, PAD.z)) < PAD.radius,
+      );
     if (s.trial) {
       if (p.hp <= 0) {
         s.trial.status = "defeat";
