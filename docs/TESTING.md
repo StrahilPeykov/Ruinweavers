@@ -82,7 +82,7 @@ Focused regression: text selection across live updates, actual clipboard copy/pa
 
 ## TURN configuration follow-up (2026-09-09)
 
-Subsequent free-only account review: Cloudflare provisioning requires payment details and explicitly bills overages; not activated. Open Relay's signup is labelled correctly, but the owner has no account, so its actual plan and TURN quota-exhaustion behavior remain unverified. The 500 MB commercial trial is excluded. See `docs/TURN.md`. No remote relay session, RTT or usage result is claimed. This review changed documentation only.
+Subsequent free-only account review: Cloudflare provisioning requires payment details and explicitly bills overages; not activated. After owner signup, Open Relay's account offers ongoing 20 GB/month with no overages and states TURN stops at exhaustion while automatic payments are disabled. Activation nevertheless requires a credit card for identity verification; this violates the separate no-payment-method constraint. Its no-card 500 MB trial is excluded. The unactivated dashboard's `0GB / NaNGB` quota is not a valid allocation or measured remote usage. See `docs/TURN.md`. No remote relay session, RTT or usage result is claimed. This review changed documentation only.
 
 45 unit tests pass, including five new credential/Worker tests. Five focused browser journeys pass (the three room-sharing regressions plus missing-relay/error handling). Production build and Wrangler deploy dry-run pass; existing Rapier bundle-size warning remains. Actual local Wrangler serves HTML 200, unconfigured POST `/api/turn` 200 with `configured:false` and no-store, GET 405, and cross-origin POST 403. No secret, account or public deployment was created.
 
