@@ -1,5 +1,62 @@
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
+
+test("pause at reset displays resume and preserves a ready handoff", async ({
+  page,
+}) => {
+  await boot(page);
+  await page.evaluate(() => {
+    window.__RUINWEAVERS__.resetLab();
+    window.__RUINWEAVERS__.setPaused(true);
+  });
+  await expect(
+    page.getByRole("button", { name: "Resume", exact: true }),
+  ).toBeVisible();
+  const before = await state(page);
+  await page.keyboard.press("w");
+  await page.keyboard.press("f");
+  expect((await state(page)).tick).toBe(before.tick);
+  await page.getByRole("button", { name: "Resume", exact: true }).click();
+  await ticks(page, 5);
+  expect((await state(page)).fields).toHaveLength(0);
+});
+
+test("rebindings, optional wheel, and real interact preserve essential access", async ({
+  page,
+}) => {
+  await boot(page, "traversal");
+  await page.keyboard.press("e");
+  await ticks(page, 3);
+  expect((await state(page)).sentinel.enabled).toBe(true);
+  await page.keyboard.press("e");
+  await ticks(page, 3);
+  expect((await state(page)).sentinel.enabled).toBe(false);
+  await page.mouse.wheel(0, 200);
+  await ticks(page, 3);
+  expect((await state(page)).activePrinciple).toBe("Ember");
+  await page.getByRole("button", { name: "Experiments", exact: true }).click();
+  await page.getByText("Selected tunables", { exact: true }).click();
+  await page.locator("#fallback").selectOption("KeyR");
+  await page.locator("#cycle").selectOption("KeyC");
+  await page.locator("#wheel").check();
+  await page.getByRole("button", { name: "×", exact: true }).click();
+  await page.keyboard.down("w");
+  await page.keyboard.press("c");
+  await ticks(page, 5);
+  await page.keyboard.press("r");
+  await ticks(page, 10);
+  await page.keyboard.up("w");
+  expect((await state(page)).activePrinciple).toBe("Tide");
+  expect(
+    (await state(page)).metrics.inputs["secondary:keyboard-fallback"],
+  ).toBe(1);
+  await page.mouse.move(700, 450);
+  await page.mouse.wheel(0, 200);
+  await ticks(page, 5);
+  expect((await state(page)).activePrinciple).toBe("Gale");
+  expect(await page.locator(".hint").innerText()).toContain("R");
+  expect(await page.locator(".hint").innerText()).toContain("C");
+});
 const state = (p: Page) => p.evaluate(() => window.__RUINWEAVERS__.getState());
 async function boot(p: Page, scene = "input-compatibility") {
   await p.goto(`/?scene=magic-lab/${scene}`);

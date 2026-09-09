@@ -6,6 +6,15 @@ import { idleInput, vec } from "../../src/simulation/types";
 beforeAll(initPhysics);
 const make = () => new Simulation(configFromQuery("?scene=states"));
 describe("material rules and simulation invariants", () => {
+  it("traversal spawn is clear of ballast and the two-tier slab bridges the gap", () => {
+    const s = new Simulation(configFromQuery("?scene=traversal"));
+    for (let i = 0; i < 10; i++) s.step(idleInput());
+    s.step({ ...idleInput(vec(9.5, 0, 0)), select: "Stone", secondary: true });
+    for (let i = 0; i < 85; i++) s.step({ ...idleInput(), moveX: 1 });
+    expect(s.player.pos.x).toBeGreaterThan(11);
+    expect(s.state.metrics.falls).toBe(0);
+    s.dispose();
+  });
   it("slab cover blocks bolts from both directions and preserves open space above", () => {
     const s = make();
     s.state.fields.push({

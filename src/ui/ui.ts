@@ -121,9 +121,23 @@ export class UI {
       );
   }
   update(s: State, view: View, paused: boolean) {
-    if (s.time - this.last < 0.08 && s.time >= this.last) return;
-    this.last = s.time;
+    const now = performance.now() / 1000;
+    if (now - this.last < 0.08) return;
+    this.last = now;
     const get = (id: string) => this.root.querySelector<HTMLElement>(`#${id}`)!;
+    const pretty = (keys: string[]) =>
+      keys
+        .map((k) =>
+          k
+            .replace("Key", "")
+            .replace("Mouse0", "LMB")
+            .replace("Mouse2", "RMB")
+            .replace("ShiftLeft", "Shift"),
+        )
+        .join(" / ");
+    this.root.querySelector(".hint")!.textContent =
+      `WASD move · ${pretty(this.input.bindings.primary)} cast · ${pretty(this.input.bindings.secondary)} secondary · Space dodge · ${pretty(this.input.bindings.next)} / ${pretty(this.input.bindings.previous)} cycle`;
+    (get("profile") as HTMLSelectElement).value = this.input.profile;
     const player = s.entities[0],
       enemy = s.entities.find((e) => e.id === "sentinel")!;
     for (const el of this.root.querySelectorAll<HTMLElement>(

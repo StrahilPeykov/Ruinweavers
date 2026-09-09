@@ -47,7 +47,7 @@
       "mage-1:pressure": 152,
       "mage-1:sentinel bolt": 28
     },
-    "blocked": 0
+    "blocked": 3
   },
   {
     "strategy": "Stone",
@@ -108,7 +108,7 @@
       "mage-1:fracture impulse": 104,
       "mage-1:pressure": 40
     },
-    "blocked": 0
+    "blocked": 1
   },
   {
     "strategy": "Basin + Ember",
@@ -134,18 +134,18 @@
   },
   {
     "strategy": "Slab + Ember",
-    "seconds": 14.57,
+    "seconds": 6.87,
     "defeated": true,
     "sentinelHp": 0,
     "playerHp": 100,
     "casts": {
-      "Stone:secondary": 2,
-      "Ember:primary": 42
+      "Stone:secondary": 1,
+      "Ember:primary": 20
     },
     "transforms": {},
     "damage": {
       "mage-1:heat bolt": 180
     },
-    "blocked": 28
+    "blocked": 2
   }
 ]

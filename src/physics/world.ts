@@ -108,6 +108,10 @@ export class Physics {
           RAPIER.ColliderDesc.cuboid(2.2, 0.45, 2.2),
           b,
         );
+        this.world.createCollider(
+          RAPIER.ColliderDesc.cuboid(3, 0.2, 3).setTranslation(0, -0.2, 0),
+          b,
+        );
         this.slabs.set(f.id, b);
       }
   }
@@ -142,13 +146,11 @@ export class Physics {
     }
     const moving = state.entities.find((e) => e.kind === "moving");
     if (moving && moving.hp > 0)
-      this.bodies
-        .get(moving.id)
-        ?.setNextKinematicTranslation({
-          x: -3 + Math.sin(state.time * 0.65 + state.seed * 0.001) * 2,
-          y: 0.55,
-          z: -10,
-        });
+      this.bodies.get(moving.id)?.setNextKinematicTranslation({
+        x: -3 + Math.sin(state.time * 0.65 + state.seed * 0.001) * 2,
+        y: 0.55,
+        z: -10,
+      });
     this.world.step();
     for (const e of state.entities) {
       const body = this.bodies.get(e.id);

@@ -55,7 +55,7 @@ export class View {
     const sun = new T.DirectionalLight(0xffe1b9, 2.8);
     sun.position.set(-9, 18, 8);
     sun.castShadow = true;
-    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.mapSize.set(1024, 1024);
     Object.assign(sun.shadow.camera, {
       left: -22,
       right: 22,
@@ -175,7 +175,7 @@ export class View {
       }),
     );
     s.position.set(pos.x, pos.y + 0.2, pos.z);
-    s.scale.set(3.8, 0.48, 1);
+    s.scale.set(6, 0.8, 1);
     this.scene.add(s);
     this.labels.push({ sprite: s, pos });
   }
@@ -405,6 +405,9 @@ export class View {
         g = new T.Group();
         const color = COLORS[f.principle];
         if (f.principle === "Stone") {
+          const step = this.box(6, 0.4, 6, 0x746d80);
+          step.position.y = 0.13;
+          g.add(step);
           const slab = this.box(4.4, 0.9, 4.4, 0x8f829d);
           slab.position.y = 0.33;
           g.add(slab);

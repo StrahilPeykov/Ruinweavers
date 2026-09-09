@@ -93,7 +93,7 @@ export function createState(config: Config): State {
   ];
   const player = entities[0];
   if (config.scene === "combat") player.pos = vec(4, 0.75, -1);
-  if (config.scene === "traversal") player.pos = vec(6, 0.75, 0);
+  if (config.scene === "traversal") player.pos = vec(6, 0.75, -1.2);
   if (config.scene === "states") player.pos = vec(-4, 0.75, 0);
   return {
     time: 0,

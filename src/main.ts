@@ -168,7 +168,8 @@ async function boot() {
   view.center.set(sim.player.pos.x * 0.82, 0, sim.player.pos.z * 0.82);
   view.render(sim.state, 0);
   function frame(now: number) {
-    const elapsed = Math.min((now - last) / 1000, 0.1);
+    const rawElapsed = (now - last) / 1000;
+    const elapsed = Math.min(rawElapsed, 0.1);
     last = now;
     if (!paused && !document.hidden && !view.contextLost) {
       accumulator += elapsed;
@@ -180,7 +181,7 @@ async function boot() {
         accumulator -= 1 / 60;
       }
     } else accumulator = 0;
-    view.render(sim.state, elapsed);
+    view.render(sim.state, rawElapsed);
     ui.update(sim.state, view, paused);
     requestAnimationFrame(frame);
   }

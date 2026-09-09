@@ -71,7 +71,9 @@ await page.keyboard.press("4");
 await page.keyboard.press("f");
 await ticks(50);
 await page.keyboard.press("3");
-await page.mouse.click(1000, 600);
+await page.mouse.down();
+await ticks(5);
+await page.mouse.up();
 await ticks(20);
 await page.screenshot({ path: "artifacts/fracture-force.png" });
 observations.push({ environment: await api() });
@@ -116,14 +118,12 @@ writeFileSync(
 console.log(
   JSON.stringify(
     {
-      comparisons: observations
-        .slice(0, 3)
-        .map((o) => ({
-          tempo: o.tempo,
-          playerHp: o.state.entities[0].hp,
-          switches: o.state.metrics.switches,
-          metrics: o.metrics.render,
-        })),
+      comparisons: observations.slice(0, 3).map((o) => ({
+        tempo: o.tempo,
+        playerHp: o.state.entities[0].hp,
+        switches: o.state.metrics.switches,
+        metrics: o.metrics.render,
+      })),
       stress: observations.at(-1),
     },
     null,
