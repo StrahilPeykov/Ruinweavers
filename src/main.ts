@@ -182,6 +182,8 @@ async function boot() {
     },
     () => input.clear(),
   );
+  net.forceRelay =
+    new URLSearchParams(location.search).get("relay") === "required";
   ui.bindNetwork(net);
   setInterval(() => {
     if (!net.active) return;

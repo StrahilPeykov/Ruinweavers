@@ -1,3 +1,4 @@
+import { loadTurnServers } from "./turn";
 import type { Room, MessageAction, JoinRoom } from "@trystero-p2p/core";
 import { Simulation } from "../simulation/simulation";
 import { PRINCIPLES, type Config, type Principle } from "../experiments/config";
@@ -10,6 +11,9 @@ export class CoopSession {
   message = "Solo trial";
   code = "";
   strategy = "public";
+  turnStatus = "not-configured";
+  forceRelay = false;
+  lastConnectionError = "";
   actorId = "mage-1";
   peerId = "";
   room?: Room;
@@ -77,6 +81,8 @@ export class CoopSession {
     this.role = role;
     this.actorId = role === "host" ? "mage-1" : "mage-2";
     this.strategy = strategy;
+    this.turnStatus = strategy === "local" ? "local" : "loading";
+    this.lastConnectionError = "";
     this.code = code.replace(/\s/g, "").toUpperCase();
     if (!/^(?:[A-Z2-9]{6}|RW-[A-Z0-9]{12})$/.test(this.code)) {
       this.fail("Enter the six-character room code.");
@@ -98,6 +104,19 @@ export class CoopSession {
     const generation = this.generation;
     let admittedPeer = "";
     try {
+      const iceServers = strategy === "local" ? [] : await loadTurnServers();
+      if (generation !== this.generation) return;
+      this.turnStatus =
+        strategy === "local"
+          ? "local"
+          : iceServers.length
+            ? "configured"
+            : "not-configured";
+      if (this.forceRelay && !iceServers.length)
+        throw Error(
+          "Relay-only test needs configured TURN credentials on this deployment.",
+        );
+      this.changed();
       const module =
         strategy === "local"
           ? await import("@trystero-p2p/ws-relay")
@@ -112,7 +131,12 @@ export class CoopSession {
                 relayConfig: { urls: ["ws://127.0.0.1:4174"] },
                 rtcConfig: { iceServers: [] },
               }
-            : {}),
+            : {
+                turnConfig: iceServers,
+                ...(this.forceRelay
+                  ? { rtcConfig: { iceTransportPolicy: "relay" as const } }
+                  : {}),
+              }),
         },
         this.code,
         {
@@ -133,10 +157,16 @@ export class CoopSession {
             admittedPeer = _peer;
           },
           onJoinError: ({ error }) => {
-            if (!this.peerId && generation === this.generation)
+            if (!this.peerId && generation === this.generation) {
+              this.lastConnectionError = error;
               this.fail(
-                `Connection failed: ${error}. Try another room; some networks require TURN, which is not configured.`,
+                /after exchanging SDP|could not connect to peer/i.test(error)
+                  ? this.turnStatus === "configured"
+                    ? "Connection failed, including TURN fallback. Check relay credentials and network access, then create a fresh room."
+                    : "The browsers could not connect directly. This deployment needs TURN relay credentials for these networks; another room code will not fix that."
+                  : `Connection failed: ${error}`,
               );
+            }
           },
         },
       );
@@ -233,10 +263,12 @@ export class CoopSession {
           !this.connected
         )
           this.fail(
-            "No partner connection after 25 seconds. Check the room code and signaling choice, then retry. No TURN relay is configured.",
+            "No partner connection after 25 seconds. Check the room code and signaling choice, then retry.",
           );
       }, 25000);
     } catch (error) {
+      if (generation !== this.generation) return;
+      this.turnStatus = "unavailable";
       this.fail(String(error));
     }
   }
@@ -468,6 +500,9 @@ export class CoopSession {
       actorId: this.actorId,
       code: this.code,
       strategy: this.strategy,
+      turnStatus: this.turnStatus,
+      forceRelay: this.forceRelay,
+      lastConnectionError: this.lastConnectionError,
       transport: "Trystero WebRTC data channel",
       peerId: this.peerId,
       epoch: this.epoch,
@@ -489,7 +524,13 @@ export class CoopSession {
     return Promise.all(
       Object.values(this.room?.getPeers() ?? {}).map(async (pc) =>
         Array.from((await pc.getStats()).values()).filter((r) =>
-          ["candidate-pair", "data-channel", "transport"].includes(r.type),
+          [
+            "candidate-pair",
+            "data-channel",
+            "transport",
+            "local-candidate",
+            "remote-candidate",
+          ].includes(r.type),
         ),
       ),
     );

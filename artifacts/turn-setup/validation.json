@@ -1,0 +1,36 @@
+{
+  "date": "2026-09-09",
+  "baseline": "deb8fbe",
+  "configuration": "Model A, balanced camera/tempo, scene=trial; relay=required for missing-credentials capture",
+  "browser": "Playwright Chromium",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "rendering": "WebGL via ANGLE SwiftShader; no hardware performance claim",
+  "unitTests": {
+    "passed": 45
+  },
+  "focusedBrowserTests": {
+    "passed": 5,
+    "files": [
+      "tests/browser/turn.spec.ts",
+      "tests/browser/lobby.spec.ts"
+    ]
+  },
+  "productionBuild": "pass; existing bundle-size warning",
+  "wranglerDryRun": "pass, no deployment",
+  "actualLocalWorker": {
+    "assetsGET": 200,
+    "unconfiguredTurnPOST": 200,
+    "configured": false,
+    "turnGET": 405,
+    "crossOriginPOST": 403
+  },
+  "credentialSuccessTests": "unit fixtures only",
+  "publicStaticAuthProbe": "No relay candidate in 18 seconds; ICE lookup errors 701 in this environment. Not shipped.",
+  "authenticatedTURN": "not tested; requires owner credentials",
+  "remoteLaptops": "reported failed direct connection; successful relay retry pending",
+  "secretsCreated": false,
+  "published": false
+}

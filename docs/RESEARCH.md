@@ -19,3 +19,9 @@ Selective research stopped once it supplied testable choices. Other listed refer
 ## Co-op API check (2026-09-09)
 
 Consulted current [official Trystero repository/API](https://github.com/dmotz/trystero) and [documentation](https://trystero.dev/docs/), then checked installed 0.25.4 source/types. `makeAction` returns `{send,onMessage}`; peer callbacks are assigned on Room; handshake callbacks validate version/host/guest before admission. Default Nostr offers account-free signaling, while the official ws-relay package provides a loopback signaling server for repeatable tests. Gameplay uses WebRTC data channels in both cases. No TURN is provisioned; STUN/signaling alone cannot guarantee restrictive-network reachability. No reference-game resurvey or external assets were needed.
+
+## TURN follow-up — 2026-09-09
+
+SDP exchange with failed peer connection points to ICE connectivity, not an unshared room code. Trystero supports `turnConfig` RTCIceServer entries and relay-only diagnostics via `rtcConfig.iceTransportPolicy`. Official sources: [Trystero troubleshooting](https://github.com/dmotz/trystero#troubleshooting-connection-issues), [Cloudflare credential exchange](https://developers.cloudflare.com/realtime/turn/generate-credentials/), [Worker asset binding](https://developers.cloudflare.com/workers/static-assets/binding/), [Worker-first route selection](https://developers.cloudflare.com/workers/static-assets/routing/worker-script/).
+
+[Open Relay](https://www.metered.ca/tools/openrelay/) advertises 20 GB/month free with an account. [Cloudflare TURN](https://developers.cloudflare.com/realtime/turn/faq/) includes 1,000 GB then charges egress; do not equate its free allowance with a hard zero-cost cap. No provider was activated. Public static-auth probe failed locally, so working authenticated relay remains a separate verification step.
