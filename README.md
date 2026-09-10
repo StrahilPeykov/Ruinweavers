@@ -2,6 +2,8 @@
 
 The default is the complete illustrated five-encounter solo/co-op run. [Play](https://ruinweavers.strahil-peykov.workers.dev/). Personal alterations arrive after encounters one and three.
 
+[Actual five-room frames and a short co-op gameplay clip](https://ruinweavers.strahil-peykov.workers.dev/broken-court/index.html). These are engine captures from normal-health input-driven play, not concept art.
+
 `npm install` then `npm run dev` → http://127.0.0.1:5173/. New run obtains a fresh host-owned seed; Retry same seed reproduces offers given the same choices. Both clear health/build/effects and retain fresh run identity. Explicit `?scene=run&seed=123` remains reproducible. Co-op readies together again.
 
 Development links: `?scene=free`, `?scene=trial`, `?scene=run&art=off`, `?scene=trial/mixed&art=storybook|ink|illustrated`. Historical comparison pages remain at `/art-study/index.html` and `/art-finish/index.html`. Controls/settings and instruments stay collapsed during normal play.
