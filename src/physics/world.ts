@@ -89,7 +89,12 @@ export class Physics {
       : null;
   }
   // Only authoritative colliders participate: never VFX, labels or state rings.
-  pick(origin: Vec, direction: Vec, playerId: string): AimPoint {
+  pick(
+    origin: Vec,
+    direction: Vec,
+    playerId: string,
+    presentation?: Entity[],
+  ): AimPoint {
     const ray = new RAPIER.Ray(origin, direction);
     const hit = this.world.castRayAndGetNormal(
       ray,
@@ -98,7 +103,26 @@ export class Physics {
       undefined,
       undefined,
       this.colliders.get(playerId),
+      undefined,
+      presentation ? (c) => !this.actorColliders.has(c.handle) : undefined,
     );
+    if (presentation) {
+      let nearest = hit?.timeOfImpact ?? 150;
+      let bodyPoint: Vec | undefined;
+      for (const e of presentation) {
+        if (e.id === playerId || e.hp <= 0) continue;
+        const shape =
+          e.kind === "player"
+            ? new RAPIER.Capsule(0.32, e.radius)
+            : new RAPIER.Cuboid(e.radius, e.height / 2, e.radius);
+        const toi = shape.castRay(ray, e.pos, e.rotation, nearest, true);
+        if (toi >= 0 && toi < nearest) {
+          nearest = toi;
+          bodyPoint = ray.pointAt(toi);
+        }
+      }
+      if (bodyPoint) return { ...bodyPoint, body: true, invalid: false };
+    }
     if (hit) {
       const point = ray.pointAt(hit.timeOfImpact);
       const body = this.actorColliders.has(hit.collider.handle);
@@ -243,6 +267,43 @@ export class Physics {
     }
     this.syncFields(s.fields);
     this.world.step();
+  }
+  /** Query-only local movement preview. No world step, impulse or state mutation. */
+  previewMove(
+    id: string,
+    pos: Vec,
+    move: Vec,
+    verticalSpeed: number,
+    dt: number,
+  ) {
+    if (!this.queryOnly) throw Error("Prediction requires query-only physics");
+    const collider = this.colliders.get(id);
+    if (!collider) return { pos, verticalSpeed: 0 };
+    let controller = this.controllers.get(id);
+    if (!controller) {
+      controller = this.world.createCharacterController(0.02);
+      controller.enableAutostep(0.95, 0.2, true);
+      controller.enableSnapToGround(0.25);
+      controller.setApplyImpulsesToDynamicBodies(false);
+      this.controllers.set(id, controller);
+    }
+    const original = { ...collider.translation() };
+    try {
+      collider.setTranslation(pos);
+      verticalSpeed = Math.max(-20, verticalSpeed - 20 * dt);
+      controller.computeColliderMovement(collider, {
+        x: move.x,
+        y: verticalSpeed * dt,
+        z: move.z,
+      });
+      const m = controller.computedMovement();
+      return {
+        pos: { x: pos.x + m.x, y: pos.y + m.y, z: pos.z + m.z },
+        verticalSpeed: controller.computedGrounded() ? 0 : verticalSpeed,
+      };
+    } finally {
+      collider.setTranslation(original);
+    }
   }
   dispose() {
     this.world.free();

@@ -5,8 +5,33 @@ import { Simulation } from "../simulation/simulation";
 import { PRINCIPLES, type Config, type Principle } from "../experiments/config";
 import { idleInput, type FrameInput, type State } from "../simulation/types";
 import { InputMailbox, type InputPacket } from "./input-mailbox";
+import { PROTOCOL, BUILD_ID } from "./protocol";
+import { encodeSnapshot, WireReader } from "./wire";
+import { PresentationTimeline } from "./presentation";
+import { LocalPrediction } from "./prediction";
+import { record, distribution } from "../diagnostics/timing";
 
 export class CoopSession {
+  wire = new WireReader();
+  timeline = new PresentationTimeline();
+  prediction = new LocalPrediction();
+  predictionEnabled = true;
+  interpolationEnabled = true;
+  sample = 0;
+  ackSample = 0;
+  sampleTimes = new Map<number, number>();
+  inputAckMs: number[] = [];
+  hostTickMs: number[] = [];
+  hostStepMs: number[] = [];
+  serializationMs: number[] = [];
+  wireBytes: number[] = [];
+  remoteMetaAck = -1;
+  remoteEventAck = 0;
+  scheduled = 0;
+  peakScheduled = 0;
+  snapshotsScheduled = 0;
+  droppedSnapshots = 0;
+  inputGeneration = 0;
   role: "solo" | "host" | "guest" = "solo";
   status = "solo";
   message = "Solo trial";
@@ -42,6 +67,9 @@ export class CoopSession {
   sending = false;
   silenceUntil = 0;
   castIntent?: FrameInput;
+  primaryIntent?: FrameInput;
+  primaryIntentAt = -Infinity;
+  primaryIntentId = 0;
   pending = idleInput();
   snapshotsReceived = 0;
   snapshotsSent = 0;
@@ -73,6 +101,10 @@ export class CoopSession {
     this.local = new InputMailbox();
     this.remote = new InputMailbox();
     this.pending = idleInput();
+    this.primaryIntent = this.castIntent = undefined;
+    this.wire.reset();
+    this.timeline.reset();
+    this.prediction.reset();
     this.paused = false;
     if (reset) {
       delete this.sim.state.actors["mage-2"];
@@ -96,6 +128,16 @@ export class CoopSession {
     this.snapshotsReceived = 0;
     this.bytesSent = 0;
     this.previousSnapshotAt = 0;
+    this.remoteMetaAck = -1;
+    this.remoteEventAck = 0;
+    this.sample = 0;
+    this.ackSample = 0;
+    this.sampleTimes.clear();
+    this.hostTickMs = [];
+    this.hostStepMs = [];
+    this.serializationMs = [];
+    this.inputAckMs = [];
+    this.wireBytes = [];
     this.code = code.replace(/\s/g, "").toUpperCase();
     if (!/^(?:[A-Z2-9]{6}|RW-[A-Z0-9]{12})$/.test(this.code)) {
       this.fail("Enter the six-character room code.");
@@ -155,13 +197,14 @@ export class CoopSession {
         {
           handshakeTimeoutMs: 8000,
           onPeerHandshake: async (_peer, send, receive) => {
-            await send({ version: 1, role });
+            await send({ version: PROTOCOL, build: BUILD_ID, role });
             const hello = (await receive()).data as any;
             if (
               generation !== this.generation ||
               (this.peerId && this.peerId !== _peer) ||
               (admittedPeer && admittedPeer !== _peer) ||
-              hello?.version !== 1 ||
+              hello?.version !== PROTOCOL ||
+              hello?.build !== BUILD_ID ||
               hello.role === role ||
               !["host", "guest"].includes(hello.role) ||
               (role === "host" && this.sim.state.trial?.status !== "ready")
@@ -196,6 +239,10 @@ export class CoopSession {
           )
         ) {
           this.lastReceive = performance.now();
+          if (Number.isSafeInteger(data.metaAck))
+            this.remoteMetaAck = data.metaAck;
+          if (Number.isSafeInteger(data.eventAck))
+            this.remoteEventAck = Math.max(this.remoteEventAck, data.eventAck);
           if (data.clear)
             this.sim.state.actors["mage-2"].bufferedCast = undefined;
         }
@@ -204,27 +251,44 @@ export class CoopSession {
         if (
           this.role !== "guest" ||
           peerId !== this.peerId ||
-          data?.version !== 1 ||
+          data?.version !== PROTOCOL ||
           !Number.isSafeInteger(data.seq) ||
-          data.seq <= this.acceptedSnapshot ||
-          !data.state?.actors?.["mage-2"] ||
-          !Array.isArray(data.state.entities) ||
-          data.state.entities.length > 64
+          data.seq <= this.acceptedSnapshot
         )
           return;
         const receivedAt = performance.now();
+        let snapshot: State | null;
+        try {
+          snapshot = this.wire.read(data, this.sim.state);
+        } catch {
+          return;
+        }
+        if (!snapshot) return;
         if (this.previousSnapshotAt)
-          this.snapshotIntervals.push(receivedAt - this.previousSnapshotAt);
-        if (this.snapshotIntervals.length > 120) this.snapshotIntervals.shift();
+          record(this.snapshotIntervals, receivedAt - this.previousSnapshotAt);
         this.previousSnapshotAt = receivedAt;
         this.acceptedSnapshot = data.seq;
-        this.lastReceive = performance.now();
-        const before = this.epoch;
-        this.sim.acceptSnapshot(data.state as State);
-        this.epoch = data.state.party.epoch;
-        // Host owns gameplay config; local camera remains local.
+        this.lastReceive = receivedAt;
+        const previous = this.sim.state;
+        const discontinuity =
+          this.epoch !== data.epoch ||
+          this.paused !== data.paused ||
+          previous.entities.some((e) => {
+            const next = snapshot!.entities.find((n) => n.id === e.id);
+            return (
+              next &&
+              (e.hp > 0 !== next.hp > 0 ||
+                Math.hypot(
+                  e.pos.x - next.pos.x,
+                  e.pos.y - next.pos.y,
+                  e.pos.z - next.pos.z,
+                ) > 3)
+            );
+          });
+        this.sim.acceptSnapshot(snapshot);
+        this.epoch = data.epoch;
         const { camera, cameraDistance, cameraPitch } = this.sim.config;
-        Object.assign(this.sim.config, data.config, {
+        Object.assign(this.sim.config, this.wire.staticData!.config, {
           camera,
           cameraDistance,
           cameraPitch,
@@ -233,15 +297,42 @@ export class CoopSession {
         this.status = "connected";
         this.message = "Connected · guest · WebRTC";
         this.snapshotsReceived++;
-        if (before !== this.epoch) {
-          this.selected = this.sim.state.actors[this.actorId].activePrinciple;
-          this.pending = idleInput();
-          this.castIntent = undefined;
+        if (discontinuity) {
+          this.selected = snapshot.actors[this.actorId].activePrinciple;
           this.clearLocal();
+          this.prediction.reset();
         }
+        if (
+          previous.fields.map((f) => f.id).join("|") !==
+          snapshot.fields.map((f) => f.id).join("|")
+        )
+          this.prediction.reset();
+        this.timeline.push(snapshot, data.seq, receivedAt, this.paused);
+        if (
+          Number.isSafeInteger(data.ackPrimary) &&
+          data.ackPrimary >= this.primaryIntentId
+        )
+          this.primaryIntent = undefined;
+        if (
+          Number.isSafeInteger(data.ackSample) &&
+          data.ackSample > this.ackSample
+        ) {
+          const at = this.sampleTimes.get(data.ackSample);
+          if (at !== undefined) record(this.inputAckMs, receivedAt - at);
+          this.ackSample = data.ackSample;
+          for (const id of this.sampleTimes.keys())
+            if (id <= this.ackSample) this.sampleTimes.delete(id);
+        }
+        this.prediction.reconcile(
+          this.ackSample,
+          snapshot,
+          this.actorId,
+          this.sim.config,
+          this.sim.physics,
+          receivedAt,
+        );
         this.changed();
-        this.snapshotApplyMs.push(performance.now() - receivedAt);
-        if (this.snapshotApplyMs.length > 120) this.snapshotApplyMs.shift();
+        record(this.snapshotApplyMs, performance.now() - receivedAt);
       };
       this.controlAction.onMessage = (data, { peerId }) => {
         if (peerId !== this.peerId) return;
@@ -265,6 +356,8 @@ export class CoopSession {
         if (role === "host") {
           this.sim.addPartner();
           this.epoch = this.sim.state.party!.epoch;
+          this.remoteEventAck = 0;
+          this.remoteMetaAck = -1;
           this.status = "connected";
           this.message = "Connected · host · WebRTC";
         }
@@ -302,6 +395,11 @@ export class CoopSession {
     this.remote.clear();
     this.pending = idleInput();
     this.sim.state.events = [];
+    this.primaryIntent = this.castIntent = undefined;
+    this.inputGeneration++;
+    this.wire.reset();
+    this.timeline.reset();
+    this.prediction.reset();
     this.sim.state.pending = [];
     for (const a of Object.values(this.sim.state.actors))
       a.bufferedCast = undefined;
@@ -309,30 +407,52 @@ export class CoopSession {
     this.changed();
     void room?.leave();
   }
-  schedule(action: () => Promise<void>) {
+  schedule(action: () => Promise<void>, inputToken?: number) {
     const generation = this.generation,
+      epoch = this.epoch,
       n = ++this.scheduleCount;
-    const jitter =
-      this.profile.jitterMs * Math.sin(n * 12.9898 + this.profile.seed);
-    const delay = Math.max(0, this.profile.delayMs + jitter);
+    if (this.scheduled >= 24) {
+      this.fail(
+        "Network send backlog exceeded the bounded queue. Create a fresh room.",
+      );
+      return Promise.resolve();
+    }
+    this.scheduled++;
+    this.peakScheduled = Math.max(this.peakScheduled, this.scheduled);
+    const delay = Math.max(
+      0,
+      this.profile.delayMs +
+        this.profile.jitterMs * Math.sin(n * 12.9898 + this.profile.seed),
+    );
     return new Promise<void>((resolve) => {
       const send = () => {
-        if (generation !== this.generation) {
+        if (
+          generation !== this.generation ||
+          epoch !== this.epoch ||
+          (inputToken !== undefined && inputToken !== this.inputGeneration)
+        ) {
+          this.scheduled--;
           resolve();
           return;
         }
         action()
           .catch(() => {})
-          .finally(resolve);
+          .finally(() => {
+            this.scheduled--;
+            resolve();
+          });
       };
       if (delay) setTimeout(send, delay);
       else send();
     });
   }
   release() {
+    this.inputGeneration++;
+    this.prediction.reset();
     this.local.clear();
     this.pending = idleInput();
     this.castIntent = undefined;
+    this.primaryIntent = undefined;
     const a = this.sim.state.actors[this.actorId];
     if (a) a.bufferedCast = undefined;
     if (this.role === "guest" && this.connected) this.sendInput(true);
@@ -340,7 +460,7 @@ export class CoopSession {
   sendInput(clear = false) {
     if (!this.inputAction || !this.peerId) return;
     const packet: InputPacket = {
-      version: 1,
+      version: PROTOCOL,
       seq: ++this.seq,
       epoch: this.epoch,
       input: {
@@ -355,7 +475,13 @@ export class CoopSession {
             }
           : {}),
       },
+      sample: this.sample,
+      metaAck: this.wire.epoch,
+      eventAck: this.wire.eventAck,
       clear,
+      primaryPress: clear ? undefined : this.primaryIntent,
+      primaryPressId:
+        clear || !this.primaryIntent ? undefined : this.primaryIntentId,
     };
     this.castIntent = undefined;
     this.pending = {
@@ -365,11 +491,33 @@ export class CoopSession {
       interact: false,
       cycle: 0,
     };
-    void this.schedule(() =>
-      this.inputAction!.send(packet as any, { target: this.peerId }),
+    void this.schedule(
+      () => this.inputAction!.send(packet as any, { target: this.peerId }),
+      this.inputGeneration,
     );
   }
   submit(input: FrameInput, now: number) {
+    this.sample++;
+    const entity = this.sim.state.entities.find((e) => e.id === this.actorId);
+    if (entity && entity.hp <= 0) {
+      this.primaryIntent = this.castIntent = undefined;
+      input = idleInput(input.aim);
+    }
+    if (this.role === "guest") {
+      this.sampleTimes.set(this.sample, now);
+      while (this.sampleTimes.size > 128)
+        this.sampleTimes.delete(this.sampleTimes.keys().next().value!);
+      if (this.predictionEnabled && !this.paused && this.sim.replica)
+        this.prediction.capture(
+          this.sample,
+          input,
+          now,
+          this.sim.state,
+          this.actorId,
+          this.sim.config,
+          this.sim.physics,
+        );
+    }
     if (input.select) this.selected = input.select;
     if (input.cycle)
       this.selected =
@@ -377,15 +525,22 @@ export class CoopSession {
     if (this.role === "host")
       this.local.receive(
         {
-          version: 1,
+          version: PROTOCOL,
           seq: ++this.seq,
           epoch: this.epoch,
+          sample: this.sample,
           input: { ...input, select: this.selected, cycle: 0 },
         },
         this.epoch,
         now,
       );
     else {
+      if (input.primary && !this.pending.primary) {
+        this.primaryIntent = { ...input, select: this.selected };
+        this.primaryIntentAt = now;
+        this.primaryIntentId = this.sample;
+      }
+      if (now - this.primaryIntentAt > 250) this.primaryIntent = undefined;
       if (input.secondary)
         this.castIntent = { ...input, select: this.selected };
       this.pending = {
@@ -402,6 +557,8 @@ export class CoopSession {
     }
   }
   tick(input: FrameInput, now = performance.now()) {
+    if (this.role === "host" && this.connected)
+      record(this.hostTickMs, now - this.lastTick);
     const elapsed = Math.min(0.1, (now - this.lastTick) / 1000);
     this.lastTick = now;
     if (!this.connected) return;
@@ -415,6 +572,8 @@ export class CoopSession {
     if (this.role === "host") {
       if (this.epoch !== this.sim.state.party!.epoch) {
         this.epoch = this.sim.state.party!.epoch;
+        this.remoteEventAck = 0;
+        this.remoteMetaAck = -1;
         this.local.clear();
         this.remote.clear();
         this.pending = idleInput();
@@ -431,13 +590,19 @@ export class CoopSession {
               this.staleClears++;
             }
           }
+          const stepStart = performance.now();
           this.sim.stepParty({
             "mage-1": this.local.consume(now),
             "mage-2": remote,
           });
+          record(this.hostStepMs, performance.now() - stepStart);
+          if (this.sim.players[0].hp <= 0) this.local.clear();
+          if (this.sim.players[1]?.hp <= 0) this.remote.clear();
           this.accumulator -= 1 / 60;
           if (this.epoch !== this.sim.state.party!.epoch) {
             this.epoch = this.sim.state.party!.epoch;
+            this.remoteEventAck = 0;
+            this.remoteMetaAck = -1;
             this.local.clear();
             this.remote.clear();
             this.selected = this.sim.state.actors[this.actorId].activePrinciple;
@@ -447,30 +612,68 @@ export class CoopSession {
           }
         }
       } else this.accumulator = 0;
-      if (
-        now - this.lastSnapshot >= 50 &&
-        !this.sending &&
-        this.snapshotAction
-      ) {
-        this.sending = true;
+      if (now - this.lastSnapshot >= 50 && this.snapshotAction) {
         this.lastSnapshot = now;
-        const packet = {
-          version: 1,
-          seq: ++this.snapshotSeq,
-          state: structuredClone(this.sim.state),
-          config: { ...this.sim.config },
-          paused: this.paused,
-        };
-        this.snapshotBytes = this.snapshotEncoder.encode(
+        const t = performance.now();
+        const packet = encodeSnapshot(
+          this.sim.state,
+          this.sim.config,
+          ++this.snapshotSeq,
+          this.paused,
+          this.remoteMetaAck !== this.epoch,
+          this.remoteEventAck,
+          this.remote.processedSample,
+          this.remote.processedPrimaryId,
+        );
+        const bytes = this.snapshotEncoder.encode(
           JSON.stringify(packet),
         ).byteLength;
-        this.bytesSent += this.snapshotBytes;
-        this.snapshotsSent++;
-        void this.schedule(() =>
-          this.snapshotAction!.send(packet as any, { target: this.peerId }),
-        ).finally(() => (this.sending = false));
+        record(this.serializationMs, performance.now() - t);
+        record(this.wireBytes, bytes);
+        this.snapshotsScheduled++;
+        void this.schedule(async () => {
+          if (this.sending) {
+            this.droppedSnapshots++;
+            return;
+          }
+          this.sending = true;
+          try {
+            this.snapshotBytes = bytes;
+            this.bytesSent += bytes;
+            this.snapshotsSent++;
+            await this.snapshotAction!.send(packet as any, {
+              target: this.peerId,
+            });
+          } finally {
+            this.sending = false;
+          }
+        });
       }
     }
+  }
+  presentation(now = performance.now()): State {
+    const s = this.sim.state;
+    if (this.role !== "guest" || !this.connected) return s;
+    const shown = this.interpolationEnabled
+      ? this.timeline.sample(s, this.actorId, now)
+      : s;
+    const pos =
+      this.predictionEnabled && !this.paused ? this.prediction.pos : undefined;
+    return {
+      ...shown,
+      entities: pos
+        ? shown.entities.map((e) =>
+            e.id === this.actorId && e.hp > 0 ? { ...e, pos } : e,
+          )
+        : shown.entities,
+      actors: {
+        ...shown.actors,
+        [this.actorId]: {
+          ...shown.actors[this.actorId],
+          activePrinciple: this.selected,
+        },
+      },
+    };
   }
   ready() {
     if (!this.connected) return;
@@ -485,6 +688,8 @@ export class CoopSession {
     if (this.sim.state.trial?.status === "active") {
       this.sim.reset();
       this.epoch = this.sim.state.party!.epoch;
+      this.remoteEventAck = 0;
+      this.remoteMetaAck = -1;
       this.local.clear();
       this.remote.clear();
       this.clearLocal();
@@ -517,6 +722,8 @@ export class CoopSession {
   }
   info() {
     return {
+      build: BUILD_ID,
+      protocol: PROTOCOL,
       role: this.role,
       status: this.status,
       message: this.message,
@@ -535,6 +742,7 @@ export class CoopSession {
       bytesSent: this.bytesSent,
       remoteStale: this.remote.stale,
       remoteSequence: this.remote.seq,
+      lastInputSendAt: this.lastSend,
       rejectedInputs: this.remote.rejected,
       profile: this.profile,
       connections: Object.values(this.room?.getPeers() ?? {}).map((pc) => ({
@@ -559,20 +767,6 @@ export class CoopSession {
     );
   }
   async diagnostics() {
-    const distribution = (values: number[]) => {
-      const sorted = [...values].sort((a, b) => a - b);
-      return {
-        samples: values.length,
-        meanMs: values.length
-          ? values.reduce((a, b) => a + b, 0) / values.length
-          : null,
-        p95Ms: sorted.length
-          ? sorted[
-              Math.min(sorted.length - 1, Math.floor(sorted.length * 0.95))
-            ]
-          : null,
-      };
-    };
     let paths: ReturnType<typeof summarizeRtc>[] = [];
     let statsAvailable = true;
     try {
@@ -581,9 +775,15 @@ export class CoopSession {
       statsAvailable = false;
     }
     return {
+      build: BUILD_ID,
+      protocol: PROTOCOL,
       role: this.role,
       status: this.status,
       forceRelay: this.forceRelay,
+      combatTelemetry:
+        this.role === "guest"
+          ? "host-only; export on host"
+          : "authoritative-local",
       turnStatus: this.turnStatus,
       snapshotsSent: this.snapshotsSent,
       snapshotsReceived: this.snapshotsReceived,
@@ -591,6 +791,33 @@ export class CoopSession {
       scheduledSnapshotJsonBytes: this.bytesSent,
       snapshotIntervals: distribution(this.snapshotIntervals),
       snapshotApply: distribution(this.snapshotApplyMs),
+      hostTickPacing: distribution(this.hostTickMs),
+      hostStep: distribution(this.hostStepMs),
+      serialization: distribution(this.serializationMs),
+      wireBytes: {
+        samples: this.wireBytes.length,
+        mean: this.wireBytes.length
+          ? this.wireBytes.reduce((a, b) => a + b, 0) / this.wireBytes.length
+          : null,
+        max: this.wireBytes.length ? Math.max(...this.wireBytes) : null,
+      },
+      inputAcknowledgement: distribution(this.inputAckMs),
+      ackSample: this.ackSample,
+      scheduled: this.scheduled,
+      peakScheduled: this.peakScheduled,
+      snapshotsScheduled: this.snapshotsScheduled,
+      droppedSnapshots: this.droppedSnapshots,
+      presentation: {
+        interpolation: this.interpolationEnabled,
+        delayMs: this.timeline.delayMs,
+        frames: this.timeline.frames.length,
+        resets: this.timeline.resets,
+        underruns: this.timeline.underruns,
+        prediction: this.predictionEnabled,
+        replayFrames: this.prediction.history.length,
+        droppedReplay: this.prediction.dropped,
+        correctionDistances: this.prediction.corrections,
+      },
       statsAvailable,
       paths,
     };

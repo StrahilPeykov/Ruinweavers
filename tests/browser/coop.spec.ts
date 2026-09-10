@@ -3,7 +3,9 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
 const signaling = process.env.RUIN_SIGNALING ?? "local";
-const dir = `artifacts/coop-trial/browser/${signaling}`;
+const dir =
+  process.env.RUIN_COOP_ARTIFACTS ??
+  `artifacts/coop-trial/browser/${signaling}`;
 const state = (p: Page) => p.evaluate(() => window.__RUINWEAVERS__.getState());
 async function ready(p: Page) {
   await p.goto("/?scene=trial&scenario=open-near");
@@ -159,7 +161,7 @@ async function arrange(a: Page, b: Page, patch: any) {
   );
   await b.waitForFunction(
     (e) =>
-      window.__RUINWEAVERS__.getNetworkState().epoch === e &&
+      window.__RUINWEAVERS__.getNetworkState().epoch >= e &&
       !window.__RUINWEAVERS__.getNetworkState().paused,
     epoch,
   );
@@ -298,7 +300,9 @@ test("co-op fields, cross-player reaction, allied safety, stale inputs and delay
   );
   const authority = await state(a),
     replica = await state(b);
-  expect(replica.metrics).toEqual(authority.metrics);
+  expect(replica.entities).toEqual(authority.entities);
+  expect(replica.fields).toEqual(authority.fields);
+  expect(replica.metrics.damageRoutes).toEqual({});
   expect(replica.events).toEqual(authority.events);
   await capture(b, "06-synthetic-delay");
   await b.getByRole("button", { name: "Leave co-op", exact: true }).click();
@@ -483,8 +487,9 @@ test("shared Stone cover and guest Gale deflection are authoritative once", asyn
   const host = await state(a),
     guest = await state(b);
   expect(guest.tick).toBe(host.tick);
-  expect(guest.metrics.damageRoutes).toEqual(host.metrics.damageRoutes);
-  expect(guest.metrics.transformations).toEqual(host.metrics.transformations);
+  expect(guest.entities).toEqual(host.entities);
+  expect(guest.metrics.damageRoutes).toEqual({});
+  expect(guest.fields).toEqual(host.fields);
   expect(guest.events).toEqual(host.events);
   expect(new Set(guest.events.map((e: any) => e.id)).size).toBe(
     guest.events.length,

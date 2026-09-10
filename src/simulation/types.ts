@@ -171,6 +171,8 @@ export interface FrameInput {
   moveZ: number;
   aim: AimPoint;
   primary: boolean;
+  primaryAim?: AimPoint;
+  primarySelect?: Principle;
   secondary: boolean;
   dodge: boolean;
   interact: boolean;

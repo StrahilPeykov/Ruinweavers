@@ -1,12 +1,18 @@
 import { PRINCIPLES } from "../experiments/config";
 import { idleInput, type FrameInput } from "../simulation/types";
+import { PROTOCOL } from "./protocol";
 
 export interface InputPacket {
-  version: 1;
+  version: typeof PROTOCOL;
   epoch: number;
   seq: number;
   input: FrameInput;
   clear?: boolean;
+  primaryPress?: FrameInput;
+  primaryPressId?: number;
+  sample?: number;
+  metaAck?: number;
+  eventAck?: number;
 }
 export function validateInput(value: unknown): FrameInput | null {
   const v = value as FrameInput;
@@ -58,9 +64,15 @@ export function validateInput(value: unknown): FrameInput | null {
 export class InputMailbox {
   latest = idleInput();
   secondary?: FrameInput;
+  primaryPress?: FrameInput;
+  primaryAt = -Infinity;
+  primaryReceivedId = -1;
+  processedPrimaryId = 0;
   dodge = false;
   interact = false;
   seq = -1;
+  sample = 0;
+  processedSample = 0;
   received = -Infinity;
   stale = true;
   rejected = 0;
@@ -75,23 +87,39 @@ export class InputMailbox {
     if (
       ++this.count > 120 ||
       !p ||
-      p.version !== 1 ||
+      p.version !== PROTOCOL ||
       p.epoch !== epoch ||
       !Number.isSafeInteger(p.seq) ||
+      (p.sample !== undefined &&
+        (!Number.isSafeInteger(p.sample) || p.sample < 0)) ||
+      (p.primaryPressId !== undefined &&
+        (!Number.isSafeInteger(p.primaryPressId) || p.primaryPressId < 0)) ||
       p.seq <= this.seq
     ) {
       this.rejected++;
       return false;
     }
     const input = validateInput(p.input);
-    if (!input) {
+    const press = p.primaryPress ? validateInput(p.primaryPress) : undefined;
+    if (!input || (p.primaryPress && !press)) {
       this.rejected++;
       return false;
     }
     this.seq = p.seq;
+    this.sample = p.sample ?? p.seq;
     this.received = now;
     this.stale = false;
     if (p.clear) this.clear();
+    const pressId = p.primaryPressId ?? p.seq;
+    if (
+      !p.clear &&
+      ((press && pressId > this.primaryReceivedId) ||
+        (!press && input.primary && !this.latest.primary))
+    ) {
+      this.primaryPress = structuredClone(press ?? input);
+      this.primaryAt = now;
+      this.primaryReceivedId = pressId;
+    }
     this.latest = input;
     if (input.secondary) this.secondary = structuredClone(input);
     this.dodge ||= input.dodge;
@@ -101,14 +129,16 @@ export class InputMailbox {
   clear() {
     this.latest = idleInput();
     this.secondary = undefined;
+    this.primaryPress = undefined;
     this.dodge = this.interact = false;
   }
   consume(now: number) {
+    this.processedSample = this.sample;
     if (now - this.received > 250) {
       this.clear();
       this.stale = true;
     }
-    let input = {
+    let input: FrameInput = {
       ...this.latest,
       secondary: false,
       dodge: this.dodge,
@@ -124,6 +154,17 @@ export class InputMailbox {
       };
       this.secondary = undefined;
     }
+    if (this.primaryPress && now - this.primaryAt <= 250) {
+      input.primary = true;
+      input.primaryAim = this.primaryPress.aim;
+      input.primarySelect = this.primaryPress.select;
+      input.primaryDevice = this.primaryPress.primaryDevice;
+    }
+    this.primaryPress = undefined;
+    this.processedPrimaryId = Math.max(
+      this.processedPrimaryId,
+      this.primaryReceivedId,
+    );
     this.latest.select = undefined;
     this.latest.cycle = 0;
     this.dodge = this.interact = false;

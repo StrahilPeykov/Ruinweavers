@@ -201,6 +201,10 @@ async function boot() {
   );
   net.forceRelay =
     new URLSearchParams(location.search).get("relay") === "required";
+  net.predictionEnabled =
+    new URLSearchParams(location.search).get("prediction") !== "off";
+  net.interpolationEnabled =
+    new URLSearchParams(location.search).get("interpolation") !== "off";
   ui.bindNetwork(net);
   setInterval(() => {
     if (!net.active) return;
@@ -218,6 +222,7 @@ async function boot() {
     getNetworkState: () => net.info(),
     getRtcStats: () => net.rtcStats(),
     getNetworkDiagnostics: () => net.diagnostics(),
+    getPresentation: () => structuredClone(view.displayedState ?? sim.state),
     setNetworkProfile: (profile: {
       delayMs: number;
       jitterMs: number;
@@ -364,9 +369,13 @@ async function boot() {
       net.active && input.pointer.active
         ? view.aimFromPointer(input.pointer.x, input.pointer.y)
         : undefined;
-    view.render(sim.state, rawElapsed);
+    const shown = net.presentation(now);
+    if (net.role === "guest" && net.connected && shown.actors[view.actorId])
+      shown.actors[view.actorId].aim =
+        view.previewAim ?? shown.actors[view.actorId].aim;
+    view.render(shown, rawElapsed);
     audio.update(sim.state);
-    ui.update(sim.state, view, net.active ? net.paused : paused);
+    ui.update(shown, view, net.active ? net.paused : paused);
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);

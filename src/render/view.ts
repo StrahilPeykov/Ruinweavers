@@ -42,6 +42,7 @@ export class View {
   quality: "standard" | "lightweight" = "standard";
   rendererIdentity = "unavailable";
   lastFrame = 0;
+  displayedState?: State;
   intervals: number[] = [];
   contextLost = false;
   constructor(
@@ -362,6 +363,7 @@ export class View {
       this.raycaster.ray.origin,
       this.raycaster.ray.direction,
       this.actorId,
+      this.simulation.replica ? this.displayedState?.entities : undefined,
     );
   }
   project(pos: Vec) {
@@ -409,6 +411,7 @@ export class View {
     this.dangers.clear();
   }
   render(s: State, delta: number) {
+    this.displayedState = s;
     const p =
         s.entities.find((e) => e.id === this.actorId) ??
         s.entities.find((e) => e.id === "mage-1")!,

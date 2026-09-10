@@ -695,7 +695,12 @@ export class Simulation {
       }
     } else this.actor.reviveProgress = 0;
     if (input.primary && !this.actor.reviveProgress)
-      this.cast("primary", input.primaryDevice);
+      this.cast(
+        "primary",
+        input.primaryDevice,
+        input.primarySelect ?? this.actor.activePrinciple,
+        input.primaryAim ?? this.actor.aim,
+      );
     if (input.secondary && !this.actor.reviveProgress)
       this.secondaryPress(input.secondaryDevice);
     const buffered = this.actor.bufferedCast;

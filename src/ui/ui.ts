@@ -299,6 +299,9 @@ export class UI {
         .filter(([k]) => /secondary|principle|next|previous/.test(k))
         .map(([k, v]) => `${k}: ${v}`)
         .join("\n")}`;
+    if (this.network?.role === "guest")
+      labels["metrics"] =
+        `${view.metrics().frameMs.toFixed(1)} ms/frame · ${view.metrics().drawCalls} draws\nFull combat telemetry stays on the host. Export there for balance counters.`;
     const target = s.entities
       .filter((e) => e.hp > 0 && e.id !== player.id)
       .sort(

@@ -10,7 +10,7 @@ it("wire inputs validate finite eight-direction commands and reject invalid cont
 it("mailbox rejects replay/old epochs, captures discrete aim and stops stale holds", () => {
   const m = new InputMailbox();
   const packet = (seq: number, input = idleInput()) => ({
-    version: 1,
+    version: 2,
     epoch: 3,
     seq,
     input,
@@ -53,7 +53,7 @@ it("focus release clears a pending cast even before the stale timeout", () => {
   const m = new InputMailbox();
   m.receive(
     {
-      version: 1,
+      version: 2,
       epoch: 0,
       seq: 1,
       input: { ...idleInput(), secondary: true },
@@ -62,7 +62,7 @@ it("focus release clears a pending cast even before the stale timeout", () => {
     0,
   );
   m.receive(
-    { version: 1, epoch: 0, seq: 2, input: idleInput(), clear: true },
+    { version: 2, epoch: 0, seq: 2, input: idleInput(), clear: true },
     0,
     1,
   );
