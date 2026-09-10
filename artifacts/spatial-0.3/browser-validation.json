@@ -1,0 +1,478 @@
+{
+  "solo": {
+    "build": "615bdffc0d55",
+    "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+    "wallSeconds": 80.627,
+    "combatSeconds": 78.74999999999682,
+    "status": "victory",
+    "measurements": [
+      {
+        "role": "solo",
+        "frames": {
+          "n": 4717,
+          "mean": 16.66338774644837,
+          "p50": 16.69999999999709,
+          "p95": 16.80000000000291,
+          "p99": 16.80000000000291,
+          "max": 33.399999999999636
+        },
+        "rooms": [
+          {
+            "room": 0,
+            "frames": {
+              "n": 727,
+              "mean": 16.639202200823295,
+              "p50": 16.600000000000364,
+              "p95": 16.800000000000182,
+              "p99": 16.80000000000109,
+              "max": 16.900000000001455
+            },
+            "maxDraws": 162
+          },
+          {
+            "room": 1,
+            "frames": {
+              "n": 534,
+              "mean": 16.68258426966292,
+              "p50": 16.600000000002183,
+              "p95": 16.80000000000109,
+              "p99": 16.899999999997817,
+              "max": 33.399999999999636
+            },
+            "maxDraws": 169
+          },
+          {
+            "room": 2,
+            "frames": {
+              "n": 978,
+              "mean": 16.66799591002045,
+              "p50": 16.69999999999709,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000291,
+              "max": 33.30000000000291
+            },
+            "maxDraws": 163
+          },
+          {
+            "room": 3,
+            "frames": {
+              "n": 1061,
+              "mean": 16.666823751178132,
+              "p50": 16.69999999999709,
+              "p95": 16.80000000000291,
+              "p99": 16.80000000000291,
+              "max": 33.299999999995634
+            },
+            "maxDraws": 195
+          },
+          {
+            "room": 4,
+            "frames": {
+              "n": 1417,
+              "mean": 16.662808750882142,
+              "p50": 16.69999999999709,
+              "p95": 16.80000000000291,
+              "p99": 16.89999999999418,
+              "max": 33.299999999995634
+            },
+            "maxDraws": 192
+          }
+        ],
+        "maxFields": 0,
+        "render": {
+          "quality": "lightweight",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1152,
+            "height": 720
+          },
+          "drawCalls": 170,
+          "triangles": 19788,
+          "geometries": 111,
+          "textures": 3,
+          "contextLost": false
+        },
+        "assets": {
+          "downloadBytes": 1643700,
+          "loadMs": 61.5,
+          "assets": 12,
+          "sharedGeometries": 77
+        }
+      }
+    ],
+    "results": [
+      {
+        "encounter": 0,
+        "seconds": 12.183333333333518,
+        "health": 72
+      },
+      {
+        "encounter": 1,
+        "seconds": 8.916666666666565,
+        "health": 72
+      },
+      {
+        "encounter": 2,
+        "seconds": 16.316666666665743,
+        "health": 72
+      },
+      {
+        "encounter": 3,
+        "seconds": 17.699999999998994,
+        "health": 72
+      },
+      {
+        "encounter": 4,
+        "seconds": 23.633333333331997,
+        "health": 72
+      }
+    ],
+    "upgrades": {
+      "mage-1": [
+        "forked-tide",
+        "undertow",
+        "shared-vapour"
+      ]
+    },
+    "transport": [
+      {
+        "role": "solo",
+        "snapshotIntervals": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "snapshotApply": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "serialization": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "wireBytes": {
+          "samples": 0,
+          "mean": null,
+          "max": null
+        },
+        "inputAcknowledgement": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "peakScheduled": 0,
+        "droppedSnapshots": 0
+      }
+    ]
+  },
+  "coop": {
+    "build": "615bdffc0d55",
+    "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+    "wallSeconds": 53.562,
+    "combatSeconds": 50.933333333331724,
+    "status": "victory",
+    "measurements": [
+      {
+        "role": "host",
+        "frames": {
+          "n": 3047,
+          "mean": 16.69274696422685,
+          "p50": 16.69999999999709,
+          "p95": 16.799999999999272,
+          "p99": 16.80000000000291,
+          "max": 66.59999999999854
+        },
+        "rooms": [
+          {
+            "room": 0,
+            "frames": {
+              "n": 493,
+              "mean": 16.638742393512157,
+              "p50": 16.69999999999891,
+              "p95": 16.800000000000182,
+              "p99": 16.80000000000109,
+              "max": 16.900000000000546
+            },
+            "maxDraws": 219
+          },
+          {
+            "room": 1,
+            "frames": {
+              "n": 334,
+              "mean": 16.70089820359281,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000109,
+              "max": 33.30000000000109
+            },
+            "maxDraws": 232
+          },
+          {
+            "room": 2,
+            "frames": {
+              "n": 743,
+              "mean": 16.67335127860027,
+              "p50": 16.69999999999709,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000291,
+              "max": 33.29999999999927
+            },
+            "maxDraws": 260
+          },
+          {
+            "room": 3,
+            "frames": {
+              "n": 600,
+              "mean": 16.67866666666666,
+              "p50": 16.69999999999709,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000291,
+              "max": 33.39999999999782
+            },
+            "maxDraws": 309
+          },
+          {
+            "room": 4,
+            "frames": {
+              "n": 877,
+              "mean": 16.746066134549597,
+              "p50": 16.69999999999709,
+              "p95": 16.799999999995634,
+              "p99": 16.80000000000291,
+              "max": 66.59999999999854
+            },
+            "maxDraws": 278
+          }
+        ],
+        "maxFields": 1,
+        "render": {
+          "quality": "lightweight",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1152,
+            "height": 720
+          },
+          "drawCalls": 270,
+          "triangles": 26152,
+          "geometries": 137,
+          "textures": 3,
+          "contextLost": false
+        },
+        "assets": {
+          "downloadBytes": 1643700,
+          "loadMs": 62.70000000298023,
+          "assets": 12,
+          "sharedGeometries": 77
+        }
+      },
+      {
+        "role": "guest",
+        "frames": {
+          "n": 3042,
+          "mean": 16.68129520052378,
+          "p50": 16.69999999999709,
+          "p95": 16.799999999999272,
+          "p99": 16.80000000000291,
+          "max": 50
+        },
+        "rooms": [
+          {
+            "room": 0,
+            "frames": {
+              "n": 496,
+              "mean": 16.634677419345838,
+              "p50": 16.69999999999891,
+              "p95": 16.800000000000182,
+              "p99": 16.800000000000182,
+              "max": 16.900000000000546
+            },
+            "maxDraws": 208
+          },
+          {
+            "room": 1,
+            "frames": {
+              "n": 331,
+              "mean": 16.70181268882175,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000109,
+              "max": 33.400000000001455
+            },
+            "maxDraws": 234
+          },
+          {
+            "room": 2,
+            "frames": {
+              "n": 739,
+              "mean": 16.67347767253045,
+              "p50": 16.69999999999709,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000291,
+              "max": 33.30000000000109
+            },
+            "maxDraws": 263
+          },
+          {
+            "room": 3,
+            "frames": {
+              "n": 596,
+              "mean": 16.679026845637583,
+              "p50": 16.69999999999709,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000291,
+              "max": 33.20000000000073
+            },
+            "maxDraws": 309
+          },
+          {
+            "room": 4,
+            "frames": {
+              "n": 880,
+              "mean": 16.707954545454545,
+              "p50": 16.69999999999709,
+              "p95": 16.799999999995634,
+              "p99": 16.80000000000291,
+              "max": 50
+            },
+            "maxDraws": 280
+          }
+        ],
+        "maxFields": 1,
+        "render": {
+          "quality": "lightweight",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1152,
+            "height": 720
+          },
+          "drawCalls": 270,
+          "triangles": 26152,
+          "geometries": 138,
+          "textures": 3,
+          "contextLost": false
+        },
+        "assets": {
+          "downloadBytes": 1643700,
+          "loadMs": 77.59999999403954,
+          "assets": 12,
+          "sharedGeometries": 77
+        }
+      }
+    ],
+    "results": [
+      {
+        "encounter": 0,
+        "seconds": 8.24999999999999,
+        "health": 100
+      },
+      {
+        "encounter": 1,
+        "seconds": 5.583333333333611,
+        "health": 100
+      },
+      {
+        "encounter": 2,
+        "seconds": 12.383333333332859,
+        "health": 72
+      },
+      {
+        "encounter": 3,
+        "seconds": 10.0166666666661,
+        "health": 72
+      },
+      {
+        "encounter": 4,
+        "seconds": 14.699999999999164,
+        "health": 72
+      }
+    ],
+    "upgrades": {
+      "mage-1": [
+        "forked-tide",
+        "undertow",
+        "shared-vapour"
+      ],
+      "mage-2": [
+        "stone-echo",
+        "fault-line",
+        "break-seal"
+      ]
+    },
+    "transport": [
+      {
+        "role": "host",
+        "snapshotIntervals": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "snapshotApply": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "serialization": {
+          "samples": 180,
+          "meanMs": 0.2244444446845187,
+          "p95Ms": 0.30000000447034836
+        },
+        "wireBytes": {
+          "samples": 180,
+          "mean": 7032.983333333334,
+          "max": 20334
+        },
+        "inputAcknowledgement": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "peakScheduled": 1,
+        "droppedSnapshots": 0
+      },
+      {
+        "role": "guest",
+        "snapshotIntervals": {
+          "samples": 180,
+          "meanMs": 62.70055555556383,
+          "p95Ms": 82
+        },
+        "snapshotApply": {
+          "samples": 180,
+          "meanMs": 0.24277777754598193,
+          "p95Ms": 0.3999999985098839
+        },
+        "serialization": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "wireBytes": {
+          "samples": 0,
+          "mean": null,
+          "max": null
+        },
+        "inputAcknowledgement": {
+          "samples": 180,
+          "meanMs": 26.885555555837023,
+          "p95Ms": 54
+        },
+        "peakScheduled": 2,
+        "droppedSnapshots": 0
+      }
+    ]
+  }
+}

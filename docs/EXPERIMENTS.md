@@ -4,6 +4,8 @@ Gameplay rules: [RUN.md](RUN.md). The previous trial/networking sections below a
 
 # Experiments / current recommendation
 
+**Spatial Design 0.3:** keep Model A, balanced camera/tempo and the existing build/Guardian rules. The normal run uses five authored physical spaces, not the historical repeated cover layouts. [Selection, rejected candidates and evidence](SPATIAL-DESIGN.md). Root starts the run; `/spatial/index.html` exposes plans, traces and explicit comparisons. No topology phase has begun.
+
 **Historical Co-op Trial 0.1 checkpoint.** Solo remains the default Start path; Create/Join adds one independent mage using host-authoritative WebRTC. Model A, balanced camera/tempo, capacity 1 per mage and 120 ms buffer remain unchanged. Public and loopback signaling passed same-machine real-browser tests, not remote-network validation. [COOP](COOP.md) records shared-world rules, connection steps and matched exploratory results. No tuning was changed. Earlier Lab and Combat Trial evidence below is historical.
 
 The keyboard-faithful motor preserves clears but removes the old control policy's zero-damage result (delayed mean 3.5 HP versus 0 with continuous headings). The current chase steering setting of 6 yields about 2.56 units/s in the measured damped lane; retreating/casting still increases the gap. Stone exclusion remains inadequate evidence about Stone: that heuristic never uses slabs. See EVALUATION corrections.

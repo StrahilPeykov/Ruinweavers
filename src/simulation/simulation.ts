@@ -1286,7 +1286,7 @@ export class Simulation {
         e.pos.y - e.height / 2 + 0.2,
         e.pos.z + dir.z * 1.4,
       );
-      if (this.physics.terrainHit(vec(e.pos.x, end.y, e.pos.z), end)) continue;
+      if (this.physics.enemyPathBlocked(e, end)) continue;
       const value = dir.x * goal.x + dir.z * goal.z;
       if (value > score) {
         score = value;

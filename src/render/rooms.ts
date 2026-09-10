@@ -1,5 +1,6 @@
 import { RUN_BEATS } from "../simulation/run";
 import type { State } from "../simulation/types";
+import { roomSpec } from "../simulation/rooms";
 
 // Presentation roles keyed by authored room identity, never by an art-test index.
 export const COURT_ROOMS = {
@@ -45,6 +46,18 @@ export const COURT_ROOMS = {
   },
 } as const;
 export function roomPresentation(s: State) {
+  const spec = roomSpec(s.roomId);
+  if (spec) {
+    const base =
+      COURT_ROOMS[
+        RUN_BEATS[s.trial?.encounter ?? 0]?.name as keyof typeof COURT_ROOMS
+      ] ?? COURT_ROOMS["The divided hall"];
+    return {
+      ...base,
+      ...spec.presentation,
+      role: spec.id === "warden" ? "ward" : base.role,
+    };
+  }
   if (!s.run) return undefined;
   return COURT_ROOMS[
     RUN_BEATS[s.trial?.encounter ?? 0]?.name as keyof typeof COURT_ROOMS

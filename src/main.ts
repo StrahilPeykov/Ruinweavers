@@ -16,6 +16,7 @@ import { LabAudio } from "./render/audio";
 import { UI } from "./ui/ui";
 import { SCENARIOS } from "./simulation/trial";
 import { idleInput } from "./simulation/types";
+import { roomSpec } from "./simulation/rooms";
 
 async function boot() {
   const root = document.querySelector("#app")!;
@@ -108,6 +109,7 @@ async function boot() {
       throw Error("Capacity must be an integer");
     if (patch.scenario && !(patch.scenario in SCENARIOS))
       throw Error("Invalid scenario");
+    if (patch.room && !roomSpec(patch.room)) throw Error("Invalid room");
     if (
       patch.encounterVersion &&
       !["baseline", "candidate"].includes(patch.encounterVersion)
@@ -118,6 +120,7 @@ async function boot() {
       !!patch.scene ||
       !!patch.model ||
       !!patch.scenario ||
+      "room" in patch ||
       !!patch.encounterVersion;
     Object.assign(config, patch);
     if (patch.scene) config.scene = patch.scene.replace("magic-lab/", "");

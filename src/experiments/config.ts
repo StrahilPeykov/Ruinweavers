@@ -59,6 +59,7 @@ export const CAMERAS = {
 export const SCENES = [
   "run",
   "run-legacy",
+  "run-classic",
   "guardian",
   "trial",
   "trial/ranged",

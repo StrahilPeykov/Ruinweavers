@@ -5,6 +5,7 @@ import {
   requirementText,
 } from "../simulation/run";
 import { COURT_ROOMS } from "../render/rooms";
+import { roomSpec } from "../simulation/rooms";
 import type { CoopSession } from "../network/session";
 import { ENCOUNTERS } from "../simulation/trial";
 import { CAST, PRINCIPLES, SCENES, type Config } from "../experiments/config";
@@ -254,9 +255,13 @@ export class UI {
       (get("room-code") as HTMLInputElement).value = code;
       // Keep the selected isolated art-proof footprint when creating a party.
       if (
-        !["run", "run-legacy", "guardian", "trial/mixed"].includes(
-          this.config.scene,
-        )
+        ![
+          "run",
+          "run-legacy",
+          "run-classic",
+          "guardian",
+          "trial/mixed",
+        ].includes(this.config.scene)
       )
         this.config.scene = "trial";
       this.config.model = "primary-secondary";
@@ -269,9 +274,13 @@ export class UI {
     };
     const join = () => {
       if (
-        !["run", "run-legacy", "guardian", "trial/mixed"].includes(
-          this.config.scene,
-        )
+        ![
+          "run",
+          "run-legacy",
+          "run-classic",
+          "guardian",
+          "trial/mixed",
+        ].includes(this.config.scene)
       )
         this.config.scene = "trial";
       this.config.model = "primary-secondary";
@@ -469,7 +478,7 @@ export class UI {
       artLinks = document.createElement("nav");
       artLinks.id = "art-links";
       artLinks.innerHTML =
-        '<a href="/?scene=trial/mixed&art=storybook">Fitted court</a><a href="/?scene=trial/mixed&art=ink">Folded court</a><a href="/?scene=run">Play the run</a>';
+        '<a href="/spatial/index.html">Spatial study</a><a href="/?scene=trial/mixed&art=storybook">Fitted court</a><a href="/?scene=trial/mixed&art=ink">Folded court</a><a href="/?scene=run-classic">Original run layout</a><a href="/?scene=run">Play the run</a>';
       get("panel").append(artLinks);
     }
     artLinks.hidden = false;
@@ -561,6 +570,15 @@ export class UI {
     }
     const terminal =
       !!s.run && !!trial && ["victory", "defeat"].includes(trial.status);
+    const physicalRoom = roomSpec(s.roomId);
+    if (physicalRoom && !s.run) {
+      labels["mode-title"] = "/ SPATIAL STUDY";
+      labels["run-eyebrow"] = "THE BROKEN COURT";
+      if (trial?.status === "ready") {
+        labels["trial-title"] = physicalRoom.name;
+        labels["trial-copy"] = physicalRoom.thesis;
+      }
+    }
     get("retry-seed").hidden = !terminal;
     get("trial-action").dataset.replay = String(terminal);
     if (terminal) labels["trial-action"] = "New run";

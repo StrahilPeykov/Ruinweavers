@@ -397,6 +397,9 @@ async function complete(pages: Page[], label: string) {
           );
       }
       if (!rooms.has(s.trial.encounter)) {
+        expect(s.roomId).toBe(
+          ["split", "gallery", "rotunda", "yard", "warden"][s.trial.encounter],
+        );
         for (const p of pages)
           await p.waitForFunction(
             () => window.__RUINWEAVERS__.getMetrics().render.art.active,

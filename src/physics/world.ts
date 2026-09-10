@@ -107,6 +107,29 @@ export class Physics {
       : null;
   }
   // Only authoritative colliders participate: never VFX, labels or state rings.
+  enemyPathBlocked(e: Entity, end: Vec) {
+    return !!this.world.castShape(
+      { x: e.pos.x, y: end.y, z: e.pos.z },
+      { x: 0, y: 0, z: 0, w: 1 },
+      { x: end.x - e.pos.x, y: 0, z: end.z - e.pos.z },
+      new RAPIER.Cuboid(e.radius + 0.06, 0.04, e.radius + 0.06),
+      0,
+      1,
+      false,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      (c) =>
+        !this.actorColliders.has(c.handle) ||
+        this.state.entities.some(
+          (p) =>
+            !p.ai &&
+            p.kind !== "player" &&
+            this.colliders.get(p.id)?.handle === c.handle,
+        ),
+    );
+  }
   pick(
     origin: Vec,
     direction: Vec,

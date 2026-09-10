@@ -4,7 +4,7 @@ Magic as craft in an ancient world. A few understandable properties should produ
 
 Current baseline: The Broken Court, complete illustrated run with Build Identity 0.2 and Guardian 0.1. Five encounter beats, three personal choices after courts 1, 3 and 4, ten Alterations and three provisional Theorems, carried health, victory/defeat and restart. The Bound Warden is the fifth-court culmination. Preserve the Lab/trial and legacy layouts as regression scenes. The user found movement/casting broadly pleasant; that accepts the control baseline, not solved balance.
 
-Authorized next milestone: Spatial Design 0.3 tests physically distinct authored combat rooms within the same fixed five-beat sequence. Movement, sight, field placement, materials and co-op approaches should differ because of space. Room topology/randomized routes remain a later question, not part of this authorization.
+Current milestone: Spatial Design 0.3 adds five selected authored physical spaces within that fixed sequence. Eight candidates, rejected-layout evidence and the previous run remain explicit diagnostics. Movement, sight, field placement, materials and co-op approaches should differ because of space. Run Topology 0.3 is the next intended question, but no branching/randomized routes are authorized or implemented here.
 
 Four experimental families: Ember (thermal energy), Tide (saturation/flow), Gale (force), Stone (cohesion/structure). Consistent intent, asymmetric behavior. Solo sequences magical operations; two actors can share terrain, prime/transform states and revive without a required class composition. Upgrades change behavior rather than global stats.
 

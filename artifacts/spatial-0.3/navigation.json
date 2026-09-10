@@ -1,0 +1,1309 @@
+{
+  "initial": {
+    "note": "Diagnostic stationary invulnerable target, 25s; every pursuer must approach. No combat performance claim.",
+    "rows": [
+      {
+        "room": "split",
+        "target": [
+          0,
+          0
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": -2.1912434101104736,
+              "y": 0.5499645471572876,
+              "z": -2.66750168800354
+            }
+          }
+        ]
+      },
+      {
+        "room": "split",
+        "target": [
+          -11.5,
+          7.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": -2.8999998569488525,
+              "y": 0.5499645471572876,
+              "z": 2.2535364627838135
+            }
+          }
+        ]
+      },
+      {
+        "room": "split",
+        "target": [
+          11.5,
+          7.5
+        ],
+        "reached": 1,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": 2.5,
+              "y": 0.5499645471572876,
+              "z": 3.3015975952148438
+            }
+          },
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": -5.099997043609619,
+              "y": 0.5499645471572876,
+              "z": 2.8222501277923584
+            }
+          }
+        ]
+      },
+      {
+        "room": "split",
+        "target": [
+          -11.5,
+          -7.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "split",
+        "target": [
+          11.5,
+          -7.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": -5.5,
+              "y": 0.5499645471572876,
+              "z": 0.9967933893203735
+            }
+          }
+        ]
+      },
+      {
+        "room": "split",
+        "target": [
+          0,
+          7.5
+        ],
+        "reached": 1,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": -4.711487293243408,
+              "y": 0.5499645471572876,
+              "z": 1.6999999284744263
+            }
+          },
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": 3.188166379928589,
+              "y": 0.5499645471572876,
+              "z": -1.6020431203855878E-08
+            }
+          }
+        ]
+      },
+      {
+        "room": "gallery",
+        "target": [
+          0,
+          0
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": -4.599999904632568,
+              "y": 0.5499645471572876,
+              "z": -3.4876320362091064
+            }
+          }
+        ]
+      },
+      {
+        "room": "gallery",
+        "target": [
+          -9.5,
+          10.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": -4.005229473114014,
+              "y": 0.5499645471572876,
+              "z": 3
+            }
+          }
+        ]
+      },
+      {
+        "room": "gallery",
+        "target": [
+          9.5,
+          10.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": 5.541397571563721,
+              "y": 0.5499645471572876,
+              "z": 6.7453508377075195
+            }
+          }
+        ]
+      },
+      {
+        "room": "gallery",
+        "target": [
+          -9.5,
+          -10.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": 1.474125623703003,
+              "y": 0.5499645471572876,
+              "z": 2
+            }
+          }
+        ]
+      },
+      {
+        "room": "gallery",
+        "target": [
+          9.5,
+          -10.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "gallery",
+        "target": [
+          0,
+          10.5
+        ],
+        "reached": 1,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": -2.014000654220581,
+              "y": 0.5499645471572876,
+              "z": 3
+            }
+          },
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": 4.245558261871338,
+              "y": 0.5499645471572876,
+              "z": -2
+            }
+          }
+        ]
+      },
+      {
+        "room": "rotunda",
+        "target": [
+          -10.5,
+          9.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": 3,
+              "y": 0.5499645471572876,
+              "z": 2.797759532928467
+            }
+          }
+        ]
+      },
+      {
+        "room": "rotunda",
+        "target": [
+          10.5,
+          9.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": -3,
+              "y": 0.5499645471572876,
+              "z": 2.7965309619903564
+            }
+          }
+        ]
+      },
+      {
+        "room": "rotunda",
+        "target": [
+          -10.5,
+          -9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "rotunda",
+        "target": [
+          10.5,
+          -9.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": -3,
+              "y": 0.5499645471572876,
+              "z": -2.792649984359741
+            }
+          }
+        ]
+      },
+      {
+        "room": "rotunda",
+        "target": [
+          0,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "terrace",
+        "target": [
+          0,
+          0
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": 6.5,
+              "y": 1.0337034463882446,
+              "z": -4.625735282897949
+            }
+          }
+        ]
+      },
+      {
+        "room": "terrace",
+        "target": [
+          -10.5,
+          9.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": 6.5,
+              "y": 1.0239602327346802,
+              "z": -4.3009562492370605
+            }
+          }
+        ]
+      },
+      {
+        "room": "terrace",
+        "target": [
+          10.5,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "terrace",
+        "target": [
+          -10.5,
+          -9.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": 5.277518272399902,
+              "y": 1.138392448425293,
+              "z": -8.114890098571777
+            }
+          }
+        ]
+      },
+      {
+        "room": "terrace",
+        "target": [
+          10.5,
+          -9.5
+        ],
+        "reached": 1,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": 2.8708550930023193,
+              "y": 1.164754033088684,
+              "z": -8.994300842285156
+            }
+          },
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": 3.500000238418579,
+              "y": 1.102583646774292,
+              "z": -6.921980381011963
+            }
+          }
+        ]
+      },
+      {
+        "room": "terrace",
+        "target": [
+          0,
+          9.5
+        ],
+        "reached": 1,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": -3.6126692295074463,
+              "y": 0.8919351100921631,
+              "z": 0.09986455738544464
+            }
+          },
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": -4.2130560874938965,
+              "y": 0.8619297742843628,
+              "z": 1.100002408027649
+            }
+          }
+        ]
+      },
+      {
+        "room": "broken",
+        "target": [
+          -11.5,
+          8.5
+        ],
+        "reached": 1,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": 0.8492735028266907,
+              "y": 0.5499650239944458,
+              "z": -0.5116393566131592
+            }
+          },
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": -0.5000001788139343,
+              "y": 0.5499650239944458,
+              "z": 6.729670524597168
+            }
+          }
+        ]
+      },
+      {
+        "room": "broken",
+        "target": [
+          11.5,
+          8.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": -0.8274732828140259,
+              "y": 0.5499645471572876,
+              "z": -0.666498601436615
+            }
+          }
+        ]
+      },
+      {
+        "room": "broken",
+        "target": [
+          -11.5,
+          -8.5
+        ],
+        "reached": 1,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": 1.5,
+              "y": 0.5499645471572876,
+              "z": -6.039424419403076
+            }
+          },
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": 0.8265224695205688,
+              "y": 0.5499650239944458,
+              "z": 0.03401627764105797
+            }
+          }
+        ]
+      },
+      {
+        "room": "broken",
+        "target": [
+          11.5,
+          -8.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "broken",
+        "target": [
+          0,
+          8.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "yard",
+        "target": [
+          0,
+          0
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "yard",
+        "target": [
+          -11.5,
+          9.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": -1.4924519062042236,
+              "y": 0.5499645471572876,
+              "z": -0.1000000387430191
+            }
+          }
+        ]
+      },
+      {
+        "room": "yard",
+        "target": [
+          11.5,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "yard",
+        "target": [
+          11.5,
+          -9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "yard",
+        "target": [
+          0,
+          9.5
+        ],
+        "reached": 1,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": 5.424432754516602,
+              "y": 0.5499750971794128,
+              "z": -3.2872917652130127
+            }
+          },
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": 5.231410980224609,
+              "y": 0.5499644875526428,
+              "z": 1.25
+            }
+          }
+        ]
+      },
+      {
+        "room": "warden",
+        "target": [
+          0,
+          0
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "warden",
+        "target": [
+          -12.5,
+          10.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "warden",
+        "target": [
+          12.5,
+          10.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": 6.400002956390381,
+              "y": 0.5499645471572876,
+              "z": 4.467339038848877
+            }
+          }
+        ]
+      },
+      {
+        "room": "warden",
+        "target": [
+          -12.5,
+          -10.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": -9.621384620666504,
+              "y": 0.5499645471572876,
+              "z": -9.666596412658691
+            }
+          }
+        ]
+      },
+      {
+        "room": "warden",
+        "target": [
+          12.5,
+          -10.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": 9.637611389160156,
+              "y": 0.5499645471572876,
+              "z": -9.696470260620117
+            }
+          }
+        ]
+      },
+      {
+        "room": "warden",
+        "target": [
+          0,
+          10.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      }
+    ]
+  },
+  "selectedRevision": {
+    "note": "Diagnostic stationary invulnerable target, 25s; every pursuer must approach. No combat performance claim.",
+    "rows": [
+      {
+        "room": "split",
+        "target": [
+          0,
+          0
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "split",
+        "target": [
+          -11.5,
+          7.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "split",
+        "target": [
+          11.5,
+          7.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "split",
+        "target": [
+          -11.5,
+          -7.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "split",
+        "target": [
+          11.5,
+          -7.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "split",
+        "target": [
+          0,
+          7.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "gallery",
+        "target": [
+          0,
+          0
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "gallery",
+        "target": [
+          -9.5,
+          10.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "gallery",
+        "target": [
+          9.5,
+          10.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "gallery",
+        "target": [
+          -9.5,
+          -10.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "gallery",
+        "target": [
+          9.5,
+          -10.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "gallery",
+        "target": [
+          0,
+          10.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "rotunda",
+        "target": [
+          -10.5,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "rotunda",
+        "target": [
+          10.5,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "rotunda",
+        "target": [
+          -10.5,
+          -9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "rotunda",
+        "target": [
+          10.5,
+          -9.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": 7.8499250411987305,
+              "y": 0.5499646663665771,
+              "z": -8.453453063964844
+            }
+          }
+        ]
+      },
+      {
+        "room": "rotunda",
+        "target": [
+          0,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "terrace",
+        "target": [
+          0,
+          0
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "terrace",
+        "target": [
+          -10.5,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "terrace",
+        "target": [
+          10.5,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "terrace",
+        "target": [
+          -10.5,
+          -9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "terrace",
+        "target": [
+          10.5,
+          -9.5
+        ],
+        "reached": 1,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": 2.4094016551971436,
+              "y": 1.1678237915039062,
+              "z": -9.09646987915039
+            }
+          },
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": 2.425262212753296,
+              "y": 1.1378237009048462,
+              "z": -8.09646987915039
+            }
+          }
+        ]
+      },
+      {
+        "room": "terrace",
+        "target": [
+          0,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "broken",
+        "target": [
+          -11.5,
+          8.5
+        ],
+        "reached": 1,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": 0.8492735028266907,
+              "y": 0.5499650239944458,
+              "z": -0.5116393566131592
+            }
+          },
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": -0.5000001788139343,
+              "y": 0.5499650239944458,
+              "z": 6.729670524597168
+            }
+          }
+        ]
+      },
+      {
+        "room": "broken",
+        "target": [
+          11.5,
+          8.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": -0.8274732828140259,
+              "y": 0.5499645471572876,
+              "z": -0.666498601436615
+            }
+          }
+        ]
+      },
+      {
+        "room": "broken",
+        "target": [
+          -11.5,
+          -8.5
+        ],
+        "reached": 1,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": 1.5,
+              "y": 0.5499645471572876,
+              "z": -6.039424419403076
+            }
+          },
+          {
+            "id": "encounter-1-pursuer-1",
+            "hp": 90,
+            "pos": {
+              "x": 0.8265224695205688,
+              "y": 0.5499650239944458,
+              "z": 0.03401627764105797
+            }
+          }
+        ]
+      },
+      {
+        "room": "broken",
+        "target": [
+          11.5,
+          -8.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "broken",
+        "target": [
+          0,
+          8.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "yard",
+        "target": [
+          0,
+          0
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "yard",
+        "target": [
+          -11.5,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "yard",
+        "target": [
+          11.5,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "yard",
+        "target": [
+          11.5,
+          -9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "yard",
+        "target": [
+          0,
+          9.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "warden",
+        "target": [
+          0,
+          0
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "warden",
+        "target": [
+          -12.5,
+          10.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      },
+      {
+        "room": "warden",
+        "target": [
+          12.5,
+          10.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": 9.273872375488281,
+              "y": 0.5499645471572876,
+              "z": 7.605399131774902
+            }
+          }
+        ]
+      },
+      {
+        "room": "warden",
+        "target": [
+          -12.5,
+          -10.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-2",
+            "hp": 90,
+            "pos": {
+              "x": -9.621384620666504,
+              "y": 0.5499645471572876,
+              "z": -9.666596412658691
+            }
+          }
+        ]
+      },
+      {
+        "room": "warden",
+        "target": [
+          12.5,
+          -10.5
+        ],
+        "reached": 2,
+        "total": 3,
+        "falls": 0,
+        "missing": [
+          {
+            "id": "encounter-1-pursuer-0",
+            "hp": 90,
+            "pos": {
+              "x": 9.637611389160156,
+              "y": 0.5499645471572876,
+              "z": -9.696470260620117
+            }
+          }
+        ]
+      },
+      {
+        "room": "warden",
+        "target": [
+          0,
+          10.5
+        ],
+        "reached": 3,
+        "total": 3,
+        "falls": 0,
+        "missing": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "candidate": {
+    "source": "d31657329507",
+    "version": "spatial-probe-1 / existing guardian-policy-1 and keyboard motor (legacy boundary attraction retained)",
+    "cases": 320
+  },
+  "note": "Earlier quick cases are subsets, not additional unique coverage. An invalid unquoted PowerShell comma-list run was stopped and excluded.",
+  "selected": {
+    "source": "5d7b02ae0bdb",
+    "version": "spatial-probe-1 / existing guardian-policy-1 and keyboard motor (legacy boundary attraction retained)",
+    "cases": 240
+  }
+}

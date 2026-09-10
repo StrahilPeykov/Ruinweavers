@@ -1,4 +1,5 @@
 import { roomPresentation } from "./rooms";
+import { roomSpec } from "../simulation/rooms";
 import { BUILD_ID } from "../network/protocol";
 import { performMage, performWarden } from "./performance";
 import * as T from "three";
@@ -63,7 +64,7 @@ export class ArtStudy {
     const value =
       q.get("art") ??
       (!q.has("scene") ||
-      ["run", "run-legacy", "guardian"].includes(q.get("scene")!)
+      ["run", "run-legacy", "run-classic", "guardian"].includes(q.get("scene")!)
         ? "illustrated"
         : "off");
     this.mode =
@@ -102,7 +103,7 @@ export class ArtStudy {
           "loose",
           ...(this.mode === "illustrated" ? ["surround"] : []),
           ...(this.mode === "illustrated" &&
-          [null, "run", "guardian"].includes(
+          [null, "run", "run-classic", "guardian"].includes(
             new URLSearchParams(location.search).get("scene"),
           )
             ? ["warden", "wardplate"]
@@ -341,6 +342,8 @@ export class ArtStudy {
     });
   }
   decorate(terrain: T.Group, s: State) {
+    if (s.roomId && roomSpec(s.roomId))
+      return this.decorateAuthored(terrain, s);
     const room = this.mode === "illustrated" ? roomPresentation(s) : undefined;
     // Thin inlay, not extra walking/collision geometry. Broad quiet tiles avoid
     // concentric ground symbols that could be mistaken for active fields.
@@ -451,6 +454,161 @@ export class ArtStudy {
         cover.position.set(box.x, box.y - box.h / 2, box.z);
         terrain.add(cover);
       }
+  }
+  decorateAuthored(terrain: T.Group, s: State) {
+    const spec = roomSpec(s.roomId)!,
+      room = roomPresentation(s)!;
+    // Inlay lies on actual authored support. No legacy flat floor over a gap.
+    const patches: { x: number; y: number; z: number; pitch: number }[] = [];
+    const surfaces = spec.terrain.filter((t) =>
+      ["Floor", "Ramp", "Terrace"].includes(t.name ?? ""),
+    );
+    for (let x = -spec.width / 2 + 1; x < spec.width / 2; x += 2)
+      for (let z = -spec.depth / 2 + 1; z < spec.depth / 2; z += 2) {
+        const support = surfaces
+          .filter(
+            (t) =>
+              Math.abs(x - t.x) < t.w / 2 &&
+              Math.abs(z - t.z) < (t.d * Math.cos(t.pitch ?? 0)) / 2,
+          )
+          .map((t) => ({
+            y:
+              t.y +
+              t.h / (2 * Math.cos(t.pitch ?? 0)) -
+              (z - t.z) * Math.tan(t.pitch ?? 0),
+            pitch: t.pitch ?? 0,
+          }))
+          .sort((a, b) => b.y - a.y)[0];
+        const solid = spec.terrain.some(
+          (t) =>
+            ["Cover", "Masonry"].includes(t.name ?? "") &&
+            Math.abs(x - t.x) < t.w / 2 + 1 &&
+            Math.abs(z - t.z) < t.d / 2 + 1,
+        );
+        if (support && !solid) patches.push({ x, z, ...support });
+      }
+    const tiles = new T.InstancedMesh(
+      new T.BoxGeometry(1.97, 0.012, 1.97),
+      new T.MeshStandardMaterial({ color: this.palette.tile, roughness: 1 }),
+      patches.length,
+    );
+    const matrix = new T.Matrix4();
+    patches.forEach((p, i) => {
+      matrix.compose(
+        new T.Vector3(p.x, p.y + 0.008, p.z),
+        new T.Quaternion().setFromAxisAngle(new T.Vector3(1, 0, 0), p.pitch),
+        new T.Vector3(1, 1, 1),
+      );
+      tiles.setMatrixAt(i, matrix);
+      tiles.setColorAt(
+        i,
+        new T.Color().setScalar(0.975 + ((i * 17) % 5) * 0.006),
+      );
+    });
+    terrain.add(tiles);
+    const pigment = new T.MeshStandardMaterial({
+      color: room.pigment,
+      roughness: 1,
+    });
+    for (const t of spec.terrain.filter(
+      (t) => t.name === "Boundary" || t.name === "Masonry",
+    )) {
+      // Broad pigment on solid architecture, never an active ground symbol.
+      const band = new T.Mesh(
+        new T.BoxGeometry(t.w + 0.012, 0.23, t.d + 0.012),
+        pigment.clone(),
+      );
+      band.position.set(t.x, t.y + t.h / 2 - 0.38, t.z);
+      terrain.add(band);
+    }
+    pigment.dispose();
+    const boundaries = spec.terrain.filter((t) =>
+      ["Boundary", "Masonry"].includes(t.name ?? ""),
+    );
+    const caps = new T.InstancedMesh(
+      new T.BoxGeometry(1, 1, 1),
+      new T.MeshStandardMaterial({ color: 0xe5d8b5, roughness: 1 }),
+      boundaries.length * 2,
+    );
+    boundaries.forEach((b, i) => {
+      for (let band = 0; band < 2; band++) {
+        matrix.compose(
+          new T.Vector3(b.x, band ? 0.18 : b.y + b.h / 2 - 0.06, b.z),
+          new T.Quaternion(),
+          new T.Vector3(b.w + 0.018, band ? 0.13 : 0.12, b.d + 0.018),
+        );
+        caps.setMatrixAt(i * 2 + band, matrix);
+      }
+    });
+    terrain.add(caps);
+    for (const box of spec.terrain.filter((t) => t.name === "Cover")) {
+      const cover = this.clone("cover"),
+        bounds = new T.Box3().setFromObject(cover),
+        size = bounds.getSize(new T.Vector3()),
+        center = bounds.getCenter(new T.Vector3());
+      cover.scale.set(box.w / size.x, box.h / size.y, box.d / size.z);
+      cover.position.set(
+        box.x - center.x * cover.scale.x,
+        box.y - box.h / 2 - bounds.min.y * cover.scale.y,
+        box.z - center.z * cover.scale.z,
+      );
+      terrain.add(cover);
+    }
+    const landmark = this.clone("landmark");
+    landmark.position.set(...spec.presentation.landmark);
+    landmark.scale.setScalar(room.scale);
+    landmark.rotation.y = Math.PI / 2;
+    if (spec.id === "rotunda") {
+      landmark.position.set(0, 3.85, -0.9);
+      landmark.rotation.y = 0;
+      landmark.scale.setScalar(0.63);
+    }
+    terrain.add(landmark);
+    for (const x of spec.presentation.columns) {
+      const column = this.clone("cover");
+      column.position.set(x, 0, -spec.depth / 2 - 1.6);
+      column.scale.set(0.6, 2.2, 0.6);
+      terrain.add(column);
+    }
+    // Broken Court masonry continues outside the playable boundary; no implied route.
+    const backdrop = new T.Mesh(
+      new T.BoxGeometry(spec.width + 5, 1.1, 2.2),
+      new T.MeshStandardMaterial({ color: this.palette.wall, roughness: 1 }),
+    );
+    backdrop.position.set(0, 0.55, -spec.depth / 2 - 2.1);
+    terrain.add(backdrop);
+    if (spec.id === "yard") {
+      for (const x of [-10, -6]) {
+        const vessel = this.clone("vessel");
+        vessel.position.set(x, 2.5, -7);
+        terrain.add(vessel);
+      }
+    }
+    if (spec.id === "warden") {
+      const binding = new T.Group();
+      binding.name = "ward-binding";
+      landmark.add(binding);
+      for (let i = 0; i < 3; i++) {
+        const stroke = new T.Mesh(
+          new T.BoxGeometry(0.09, 3, 0.09),
+          new T.MeshBasicMaterial({ color: 0xdca071 }),
+        );
+        stroke.position.set(0, 3.5, (i - 1) * 0.85);
+        binding.add(stroke);
+      }
+      const crest = new T.Group();
+      crest.name = "ward-crest";
+      crest.position.set(0, 1.3, -spec.depth / 2 + 0.04);
+      for (let i = 0; i < 3; i++) {
+        const arc = new T.Mesh(
+          new T.TorusGeometry(0.75, 0.065, 5, 16, Math.PI * 0.59),
+          new T.MeshBasicMaterial({ color: 0xd6ad78 }),
+        );
+        arc.rotation.z = (i * Math.PI * 2) / 3 + 0.15;
+        crest.add(arc);
+      }
+      terrain.add(crest);
+    }
   }
   updateRoom(terrain: T.Group, s: State) {
     const crest = terrain.getObjectByName("ward-crest");

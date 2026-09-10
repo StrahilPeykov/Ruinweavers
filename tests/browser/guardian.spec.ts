@@ -10,7 +10,7 @@ test.use({
 });
 async function boot(p: Page) {
   await p.goto(
-    `/?scene=guardian&seed=123&quality=${process.env.RUIN_GUARDIAN_QUALITY ?? "lightweight"}`,
+    `/?scene=guardian&seed=123&room=${process.env.RUIN_GUARDIAN_ROOM ?? ""}&quality=${process.env.RUIN_GUARDIAN_QUALITY ?? "lightweight"}`,
   );
   await p.waitForFunction(
     () => window.__RUINWEAVERS__?.getMetrics().render.art.ready,

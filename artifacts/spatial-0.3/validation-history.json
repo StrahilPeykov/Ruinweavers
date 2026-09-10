@@ -1,0 +1,36 @@
+{
+  "initialSweep": {
+    "startTime": "2026-09-10T19:41:29.615Z",
+    "duration": 649290.7069999999,
+    "expected": 56,
+    "skipped": 1,
+    "unexpected": 5,
+    "flaky": 0
+  },
+  "initialFailures": [
+    "Four old art-motion coordinate fixtures corrected to run-classic; unchanged assertions pass",
+    "Rotunda guest revive assertion now waits for authoritative delivery"
+  ],
+  "galleryRepair": "Explicit index.html avoids Vite SPA fallback; focused test passes",
+  "units": 123,
+  "build": "615bdffc0d55",
+  "protocol": 3,
+  "recordedSweep": {
+    "startTime": "2026-09-10T20:06:32.702Z",
+    "duration": 851362.206,
+    "expected": 61,
+    "skipped": 1,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "recordedFailure": "Guardian field journey timed out with lost WebGL context, player 90 HP/Guardian 124 HP; screenshot retained. Cause of context loss not established. Other tests including complete solo/pair runs passed.",
+  "cleanSweep": {
+    "startTime": "2026-09-10T20:21:55.575Z",
+    "duration": 640264.524,
+    "expected": 62,
+    "skipped": 1,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cleanConditions": "No run/Guardian video recording; same source build, native Chrome/Intel UHD. Complete solo and actual local WebRTC pair, no context-loss recurrence. Live TURN opt-in skipped."
+}

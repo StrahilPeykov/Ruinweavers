@@ -1,5 +1,7 @@
 # Guardian 0.1 — The Bound Warden
 
+**Current arena (Spatial Design 0.3):** the normal finale uses Warden crossing, a 28×24 authored court with peripheral cover and open central diagonals. Guardian stats, targeting, body/plate rules and all maneuver timings remain unchanged. `?scene=guardian&room=warden` practices it; bare `?scene=guardian` and `run-classic` preserve the historical arena/results below. Matched solo base changed 43.4→45.0s (14 damage both); field 27.7→32.0s; paired Basin 10.6→15.1s. Strong stationary builds still win; no tuning change was made. Actual-input base, local two-client revive/victory/retry, Stone/Gale defense and focused Standard combat pass. [Current spatial evidence](SPATIAL-DESIGN.md), [browser conditions](TESTING.md).
+
 Baseline: clean main 3ddebb2, Build Identity 0.2. One Guardian replaces the ordinary fifth court; the original final lineup remains an explicit regression scene. No spell, upgrade-pool, normal-enemy or movement retuning. Prior evidence stays historical and intact.
 
 Baseline validation: 96 units and production build pass; browser sweep 48 passed, one opt-in live TURN skip, one pre-existing failure at coop.spec.ts:265 (allied-projectile contact timeout). Its screenshots show the pointer no longer over the partner after the fixture teleport/camera follow. Preserve this as a harness finding; a constant screen pointer is not a constant world target while the camera settles. No Guardian runtime had been loaded during this sweep.

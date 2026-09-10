@@ -22,6 +22,9 @@ const rooms =
     ?.slice(8)
     .split(",") ?? Object.keys(ROOMS);
 const hash = createHash("sha256");
+for (const room of rooms)
+  if (!ROOMS[room] && room !== "guardian-old")
+    throw Error(`Unknown room argument: ${room}`);
 for (const file of [
   "src/simulation/rooms.ts",
   "src/simulation/simulation.ts",

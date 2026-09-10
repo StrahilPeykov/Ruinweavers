@@ -1,0 +1,384 @@
+{
+  "solo": {
+    "build": "f1821aec98b5",
+    "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+    "wallSeconds": 87.591,
+    "combatSeconds": 85.54999999999643,
+    "status": "victory",
+    "measurements": [
+      {
+        "role": "solo",
+        "frames": {
+          "n": 5121,
+          "mean": 16.675024409295272,
+          "p50": 16.69999999999709,
+          "p95": 16.799999999995634,
+          "p99": 16.80000000000291,
+          "max": 50
+        },
+        "rooms": [
+          {
+            "room": 0,
+            "frames": {
+              "n": 777,
+              "mean": 16.63693693693894,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.800000000000182,
+              "max": 17.199999999999818
+            },
+            "maxDraws": 162
+          },
+          {
+            "room": 1,
+            "frames": {
+              "n": 488,
+              "mean": 16.719672131147544,
+              "p50": 16.69999999999709,
+              "p95": 16.799999999999272,
+              "p99": 16.900000000001455,
+              "max": 49.79999999999927
+            },
+            "maxDraws": 172
+          },
+          {
+            "room": 2,
+            "frames": {
+              "n": 1119,
+              "mean": 16.68087578194817,
+              "p50": 16.69999999999709,
+              "p95": 16.700000000004366,
+              "p99": 16.80000000000291,
+              "max": 50
+            },
+            "maxDraws": 166
+          },
+          {
+            "room": 3,
+            "frames": {
+              "n": 983,
+              "mean": 16.685147507629704,
+              "p50": 16.69999999999709,
+              "p95": 16.799999999995634,
+              "p99": 16.80000000000291,
+              "max": 50
+            },
+            "maxDraws": 194
+          },
+          {
+            "room": 4,
+            "frames": {
+              "n": 1754,
+              "mean": 16.670068415051308,
+              "p50": 16.69999999999709,
+              "p95": 16.79999999998836,
+              "p99": 16.80000000000291,
+              "max": 50
+            },
+            "maxDraws": 178
+          }
+        ],
+        "maxFields": 0,
+        "render": {
+          "quality": "lightweight",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1152,
+            "height": 720
+          },
+          "drawCalls": 171,
+          "triangles": 19356,
+          "geometries": 115,
+          "textures": 3,
+          "contextLost": false
+        },
+        "assets": {
+          "downloadBytes": 1643700,
+          "loadMs": 69.60000000149012,
+          "assets": 12,
+          "sharedGeometries": 77
+        }
+      }
+    ],
+    "results": [
+      {
+        "encounter": 0,
+        "seconds": 13.016666666666893,
+        "health": 100
+      },
+      {
+        "encounter": 1,
+        "seconds": 8.166666666666519,
+        "health": 100
+      },
+      {
+        "encounter": 2,
+        "seconds": 18.683333333332275,
+        "health": 72
+      },
+      {
+        "encounter": 3,
+        "seconds": 16.416666666665733,
+        "health": 58
+      },
+      {
+        "encounter": 4,
+        "seconds": 29.26666666666501,
+        "health": 44
+      }
+    ],
+    "upgrades": {
+      "mage-1": [
+        "forked-tide",
+        "undertow",
+        "shared-vapour"
+      ]
+    }
+  },
+  "coop": {
+    "build": "f1821aec98b5",
+    "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+    "wallSeconds": 60.54,
+    "combatSeconds": 56.0499999999981,
+    "status": "victory",
+    "measurements": [
+      {
+        "role": "host",
+        "frames": {
+          "n": 2141,
+          "mean": 26.266090611863746,
+          "p50": 33.19999999999709,
+          "p95": 33.400000000001455,
+          "p99": 50,
+          "max": 166.5
+        },
+        "rooms": [
+          {
+            "room": 0,
+            "frames": {
+              "n": 307,
+              "mean": 25.291530944625407,
+              "p50": 16.800000000000182,
+              "p95": 33.400000000001455,
+              "p99": 50,
+              "max": 83.19999999999982
+            },
+            "maxDraws": 228
+          },
+          {
+            "room": 1,
+            "frames": {
+              "n": 450,
+              "mean": 25.12444444444445,
+              "p50": 16.799999999999272,
+              "p95": 33.400000000001455,
+              "p99": 49.70000000000073,
+              "max": 150
+            },
+            "maxDraws": 253
+          },
+          {
+            "room": 2,
+            "frames": {
+              "n": 504,
+              "mean": 25.96785714285714,
+              "p50": 33.19999999999709,
+              "p95": 33.400000000001455,
+              "p99": 49.900000000001455,
+              "max": 166.5
+            },
+            "maxDraws": 257
+          },
+          {
+            "room": 3,
+            "frames": {
+              "n": 318,
+              "mean": 27.751572327044027,
+              "p50": 33.200000000004366,
+              "p95": 33.400000000001455,
+              "p99": 49.900000000001455,
+              "max": 149.90000000000146
+            },
+            "maxDraws": 289
+          },
+          {
+            "room": 4,
+            "frames": {
+              "n": 562,
+              "mean": 27.139501779359435,
+              "p50": 33.200000000004366,
+              "p95": 33.400000000001455,
+              "p99": 50,
+              "max": 149.8000000000029
+            },
+            "maxDraws": 295
+          }
+        ],
+        "maxFields": 1,
+        "render": {
+          "quality": "lightweight",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1152,
+            "height": 720
+          },
+          "drawCalls": 282,
+          "triangles": 27128,
+          "geometries": 148,
+          "textures": 3,
+          "contextLost": false
+        },
+        "assets": {
+          "downloadBytes": 1643700,
+          "loadMs": 72.29999999701977,
+          "assets": 12,
+          "sharedGeometries": 77
+        }
+      },
+      {
+        "role": "guest",
+        "frames": {
+          "n": 2125,
+          "mean": 26.26715294117386,
+          "p50": 33.19999999999709,
+          "p95": 33.400000000001455,
+          "p99": 50,
+          "max": 166.59999999999854
+        },
+        "rooms": [
+          {
+            "room": 0,
+            "frames": {
+              "n": 306,
+              "mean": 25.42254901958835,
+              "p50": 16.800000000000182,
+              "p95": 33.400000000000546,
+              "p99": 50,
+              "max": 100
+            },
+            "maxDraws": 214
+          },
+          {
+            "room": 1,
+            "frames": {
+              "n": 444,
+              "mean": 25.201351351351352,
+              "p50": 16.80000000000109,
+              "p95": 33.400000000001455,
+              "p99": 33.599999999998545,
+              "max": 133.20000000000073
+            },
+            "maxDraws": 254
+          },
+          {
+            "room": 2,
+            "frames": {
+              "n": 496,
+              "mean": 26.017338709677418,
+              "p50": 33.19999999999709,
+              "p95": 33.400000000001455,
+              "p99": 50,
+              "max": 150.10000000000218
+            },
+            "maxDraws": 260
+          },
+          {
+            "room": 3,
+            "frames": {
+              "n": 310,
+              "mean": 27.87741935483871,
+              "p50": 33.200000000004366,
+              "p95": 33.400000000001455,
+              "p99": 50,
+              "max": 166.59999999999854
+            },
+            "maxDraws": 287
+          },
+          {
+            "room": 4,
+            "frames": {
+              "n": 569,
+              "mean": 26.893497363796136,
+              "p50": 33.200000000004366,
+              "p95": 33.400000000001455,
+              "p99": 50,
+              "max": 99.79999999999563
+            },
+            "maxDraws": 286
+          }
+        ],
+        "maxFields": 1,
+        "render": {
+          "quality": "lightweight",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1152,
+            "height": 720
+          },
+          "drawCalls": 282,
+          "triangles": 27128,
+          "geometries": 149,
+          "textures": 3,
+          "contextLost": false
+        },
+        "assets": {
+          "downloadBytes": 1643700,
+          "loadMs": 157.70000000298023,
+          "assets": 12,
+          "sharedGeometries": 77
+        }
+      }
+    ],
+    "results": [
+      {
+        "encounter": 0,
+        "seconds": 7.783333333333311,
+        "health": 100
+      },
+      {
+        "encounter": 1,
+        "seconds": 11.26666666666689,
+        "health": 100
+      },
+      {
+        "encounter": 2,
+        "seconds": 13.01666666666593,
+        "health": 86
+      },
+      {
+        "encounter": 3,
+        "seconds": 8.766666666666168,
+        "health": 86
+      },
+      {
+        "encounter": 4,
+        "seconds": 15.216666666665802,
+        "health": 86
+      }
+    ],
+    "upgrades": {
+      "mage-1": [
+        "forked-tide",
+        "undertow",
+        "shared-vapour"
+      ],
+      "mage-2": [
+        "stone-echo",
+        "fault-line",
+        "break-seal"
+      ]
+    }
+  }
+}

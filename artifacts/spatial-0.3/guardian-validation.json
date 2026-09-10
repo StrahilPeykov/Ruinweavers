@@ -1,0 +1,410 @@
+[
+  {
+    "case": "warden-new/base",
+    "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+    "wallSeconds": 50.571,
+    "seen": [
+      "1-volley-commit",
+      "1-march-commit",
+      "1-furnace-commit",
+      "2-march-shift",
+      "2-march-commit",
+      "2-furnace-commit",
+      "2-volley-commit"
+    ],
+    "reports": [
+      {
+        "build": "615bdffc0d55",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "frames": {
+          "count": 3036,
+          "mean": 16.648748353095492,
+          "p50": 16.69999999999709,
+          "p95": 16.80000000000109,
+          "p99": 16.899999999999636
+        },
+        "render": {
+          "quality": "lightweight",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1152,
+            "height": 720
+          },
+          "drawCalls": 145,
+          "triangles": 17222,
+          "geometries": 89,
+          "textures": 3
+        },
+        "network": {
+          "role": "solo",
+          "protocol": 3,
+          "snapshotIntervals": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "snapshotApply": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "wireBytes": {
+            "samples": 0,
+            "mean": null,
+            "max": null
+          },
+          "serialization": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "inputAcknowledgement": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "peakScheduled": 0,
+          "droppedSnapshots": 0
+        },
+        "status": "victory",
+        "damage": 0,
+        "outcomes": {
+          "mage-1:cast:Ember:primary": 149,
+          "projectile:mage-1:expired": 9,
+          "projectile:mage-1:hit:warden": 97,
+          "warden:target:mage-1": 13,
+          "projectile:mage-1:hit:warden-plate-right": 16,
+          "warden:volley:commit": 4,
+          "warden:volley:attack": 4,
+          "projectile:warden:blocked": 9,
+          "warden:march:commit": 6,
+          "warden:march:attack": 6,
+          "warden:march:travel": 32.61638090922078,
+          "projectile:mage-1:hit:warden-plate-left": 14,
+          "projectile:mage-1:blocked": 12,
+          "warden:march:avoided": 6,
+          "warden:furnace:commit": 3,
+          "warden:furnace:attack": 3,
+          "warden:phase:2": 1,
+          "warden:plate:detached:warden-plate-left": 1,
+          "projectile:mage-1:hit:loose-1": 1,
+          "warden:furnace:contact:ballast": 1,
+          "warden:plate:detached:warden-plate-right": 1,
+          "projectile:warden:hit:warden-plate-left": 1
+        }
+      }
+    ]
+  },
+  {
+    "case": "warden-new/pair",
+    "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+    "wallSeconds": 16.667,
+    "seen": [
+      "1-volley-commit",
+      "1-march-commit",
+      "2-march-shift",
+      "2-furnace-commit"
+    ],
+    "reports": [
+      {
+        "build": "615bdffc0d55",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "frames": {
+          "count": 999,
+          "mean": 16.64174174174031,
+          "p50": 16.69999999999709,
+          "p95": 16.799999999999272,
+          "p99": 16.80000000000109
+        },
+        "render": {
+          "quality": "lightweight",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1152,
+            "height": 720
+          },
+          "drawCalls": 259,
+          "triangles": 26212,
+          "geometries": 111,
+          "textures": 3
+        },
+        "network": {
+          "role": "host",
+          "protocol": 3,
+          "snapshotIntervals": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "snapshotApply": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "wireBytes": {
+            "samples": 180,
+            "mean": 6459.227777777778,
+            "max": 16269
+          },
+          "serialization": {
+            "samples": 180,
+            "meanMs": 0.2205555556135045,
+            "p95Ms": 0.3999999985098839
+          },
+          "inputAcknowledgement": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "peakScheduled": 1,
+          "droppedSnapshots": 0
+        },
+        "status": "victory",
+        "damage": 0,
+        "outcomes": {
+          "warden:target:mage-2": 3,
+          "revive:mage-2:mage-1": 1,
+          "mage-1:cast:Tide:primary": 20,
+          "upgrade:mage-1:forked-tide": 28,
+          "stagger:loose-1": 1,
+          "mage-1:Tide:primary:hit": 19,
+          "mage-2:cast:Ember:secondary": 4,
+          "mage-2:cast:Stone:primary": 13,
+          "mage-2:Stone:primary:miss": 1,
+          "stagger:mage-2": 5,
+          "allied-damage-suppressed:mage-1:mage-2": 17,
+          "warden:volley:commit": 1,
+          "stagger:warden": 10,
+          "stagger:warden-plate-right": 2,
+          "mage-2:Stone:primary:hit": 12,
+          "control:stagger-seconds:warden": 3.866666666666658,
+          "warden:volley:interrupted": 2,
+          "warden:volley:attack": 1,
+          "mage-2:cast:Gale:secondary": 2,
+          "field:Gale:contact:warden": 33,
+          "field:Gale:contact:warden-plate-left": 29,
+          "field:Gale:contact:warden-plate-right": 10,
+          "mage-1:cast:Ember:primary": 23,
+          "projectile:mage-1:hit:mage-2": 5,
+          "mage-2:cast:Gale:primary": 2,
+          "stagger:warden-plate-left": 1,
+          "upgrade:mage-2:migrating-inscriptions": 2,
+          "projectile:warden:deflected": 3,
+          "mage-2:Gale:primary:hit": 1,
+          "field:Ember:contact:warden": 48,
+          "upgrade:mage-2:cross-seam:warden": 48,
+          "field:Ember:contact:warden-plate-right": 7,
+          "upgrade:mage-2:cross-seam:warden-plate-right": 7,
+          "mage-2:Gale:primary:miss": 1,
+          "projectile:mage-1:hit:warden": 17,
+          "upgrade:mage-1:shared-vapour": 22,
+          "projectile:warden:hit:warden-plate-right": 2,
+          "cross-reaction:mage-1:mage-2:warden-plate-right": 1,
+          "cross-reaction:mage-2:mage-1:warden-plate-right": 1,
+          "mage-2:cast:Tide:primary": 16,
+          "mage-2:Tide:primary:hit": 13,
+          "warden:plate:detached:warden-plate-right": 1,
+          "field:Gale:contact:ballast": 10,
+          "cross-reaction:mage-2:mage-1:warden": 14,
+          "warden:march:interrupted": 5,
+          "field:Ember:contact:ballast": 4,
+          "upgrade:mage-2:cross-seam:ballast": 4,
+          "projectile:warden:expired": 1,
+          "warden:march:commit": 1,
+          "field:replaced": 4,
+          "field:Ember:contact:warden-plate-left": 2,
+          "upgrade:mage-2:cross-seam:warden-plate-left": 2,
+          "warden:march:attack": 1,
+          "warden:march:travel": 4.7108029712746,
+          "mage-2:Tide:primary:miss": 3,
+          "mage-1:Tide:primary:miss": 1,
+          "warden:march:avoided": 1,
+          "field:Ember:contact:mage-1": 4,
+          "upgrade:mage-2:cross-seam:mage-1": 4,
+          "allied-damage-suppressed:mage-2:mage-1": 8,
+          "warden:phase:2": 1,
+          "warden:plate:detached:warden-plate-left": 1,
+          "cross-reaction:mage-1:mage-2:warden": 3,
+          "warden:target:mage-1": 1,
+          "warden:furnace:interrupted": 3,
+          "warden:furnace:commit": 1,
+          "warden:furnace:attack": 1,
+          "stagger:mage-1": 2,
+          "field:Gale:contact:mage-1": 1,
+          "field:Gale:contact:mage-2": 1,
+          "projectile:mage-1:expired": 1
+        }
+      },
+      {
+        "build": "615bdffc0d55",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "frames": {
+          "count": 1000,
+          "mean": 16.640200000000092,
+          "p50": 16.69999999999709,
+          "p95": 16.799999999999272,
+          "p99": 16.80000000000109
+        },
+        "render": {
+          "quality": "lightweight",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1152,
+            "height": 720
+          },
+          "drawCalls": 260,
+          "triangles": 26468,
+          "geometries": 112,
+          "textures": 3
+        },
+        "network": {
+          "role": "guest",
+          "protocol": 3,
+          "snapshotIntervals": {
+            "samples": 180,
+            "meanMs": 61.59611111113595,
+            "p95Ms": 77.29999999701977
+          },
+          "snapshotApply": {
+            "samples": 180,
+            "meanMs": 0.2744444441050291,
+            "p95Ms": 0.5
+          },
+          "wireBytes": {
+            "samples": 0,
+            "mean": null,
+            "max": null
+          },
+          "serialization": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "inputAcknowledgement": {
+            "samples": 180,
+            "meanMs": 23.155555555721126,
+            "p95Ms": 48.599999994039536
+          },
+          "peakScheduled": 2,
+          "droppedSnapshots": 0
+        },
+        "status": "victory",
+        "damage": 0,
+        "outcomes": {}
+      }
+    ]
+  },
+  {
+    "case": "warden-standard/base",
+    "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+    "wallSeconds": 48.524,
+    "seen": [
+      "1-volley-commit",
+      "1-march-commit",
+      "1-furnace-commit",
+      "2-volley-shift",
+      "2-march-commit",
+      "2-volley-commit",
+      "2-furnace-commit"
+    ],
+    "reports": [
+      {
+        "build": "615bdffc0d55",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "frames": {
+          "count": 2913,
+          "mean": 16.64878132509519,
+          "p50": 16.69999999999709,
+          "p95": 16.799999999999272,
+          "p99": 16.80000000000291
+        },
+        "render": {
+          "quality": "standard",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawCalls": 235,
+          "triangles": 29038,
+          "geometries": 88,
+          "textures": 5
+        },
+        "network": {
+          "role": "solo",
+          "protocol": 3,
+          "snapshotIntervals": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "snapshotApply": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "wireBytes": {
+            "samples": 0,
+            "mean": null,
+            "max": null
+          },
+          "serialization": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "inputAcknowledgement": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "peakScheduled": 0,
+          "droppedSnapshots": 0
+        },
+        "status": "victory",
+        "damage": 14,
+        "outcomes": {
+          "mage-1:cast:Ember:primary": 142,
+          "projectile:mage-1:expired": 5,
+          "projectile:mage-1:hit:warden": 100,
+          "warden:target:mage-1": 13,
+          "warden:volley:commit": 5,
+          "projectile:mage-1:hit:warden-plate-right": 16,
+          "warden:volley:attack": 4,
+          "projectile:warden:blocked": 7,
+          "projectile:warden:hit:loose-1": 1,
+          "warden:march:commit": 5,
+          "warden:march:attack": 5,
+          "warden:march:travel": 27.342486525991507,
+          "projectile:mage-1:hit:warden-plate-left": 1,
+          "warden:march:avoided": 5,
+          "projectile:mage-1:blocked": 19,
+          "warden:furnace:commit": 3,
+          "warden:furnace:attack": 3,
+          "projectile:warden:hit:mage-1": 4,
+          "warden:plate:detached:warden-plate-right": 1,
+          "warden:phase:2": 1,
+          "warden:plate:detached:warden-plate-left": 1,
+          "invulnerable-contact:warden": 3,
+          "projectile:mage-1:hit:loose-1": 1
+        }
+      }
+    ]
+  }
+]

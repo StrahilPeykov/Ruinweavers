@@ -72,7 +72,7 @@ export const ROOMS: Record<string, RoomSpec> = {
     [box(-4, -1, 2, 3), box(4, 2, 2, 3)],
     [v(-2, 6.5), v(2, 6.5)],
     [v(-9, -5), v(9, -5), v(-8, 2), v(8, 3)],
-    [{ id: "timber", kind: "wood", x: -4, z: 2.8 }],
+    [{ id: "timber", kind: "wood", x: -4, z: 5 }],
   ),
   gallery: room(
     "gallery",
@@ -80,10 +80,10 @@ export const ROOMS: Record<string, RoomSpec> = {
     22,
     24,
     "Three circulation lanes around alternating piers.",
-    [box(-3, -5, 2.2, 3), box(3, 0, 2.2, 3), box(-3, 5, 2.2, 3)],
+    [box(-3, -5, 2.2, 2), box(3, 0, 2.2, 2), box(-4, 5, 2.2, 2)],
     [v(-7, 8), v(1, 9)],
     [v(-7, -8), v(6, -8), v(7, 4), v(0, -9)],
-    [{ id: "loose-1", kind: "loose", x: 0, z: 3 }],
+    [{ id: "loose-1", kind: "loose", x: 8, z: 2 }],
   ),
   rotunda: room(
     "rotunda",
@@ -181,9 +181,23 @@ ROOMS.broken.terrain = [
   { x: 0, y: -0.5, z: 8, w: 2, h: 1, d: 4, name: "Floor" },
 ];
 ROOMS.broken.bridge = { x: 0, z: 0, w: 2, d: 12 };
+ROOMS.split.presentation.pigment = 0x7f9c8d;
+ROOMS.rotunda.presentation.pigment = 0x8f7890;
+ROOMS.yard.presentation.pigment = 0x967c70;
+ROOMS.warden.presentation.pigment = 0x527986;
+ROOMS.gallery.presentation.columns = [-8, -4, 4, 8];
+ROOMS.yard.presentation.columns = [-10, -6, 6, 10];
 export function roomSpec(id?: string) {
   return id ? ROOMS[id] : undefined;
 }
+// Fixed run composition remains in run.ts. This only selects authored places.
+export const RUN_ROOMS = [
+  "split",
+  "gallery",
+  "rotunda",
+  "yard",
+  "warden",
+] as const;
 export function bridgeAt(id: string | undefined, p: Vec, legacyLab = false) {
   const b =
     roomSpec(id)?.bridge ??

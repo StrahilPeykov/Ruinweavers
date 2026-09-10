@@ -1,6 +1,6 @@
 import { RUN_BEATS } from "./run";
 import { createGuardian } from "./guardian";
-import { roomSpec } from "./rooms";
+import { roomSpec, RUN_ROOMS } from "./rooms";
 import { entity, type TerrainBox } from "./lab";
 import { vec, type State } from "./types";
 import type { Config } from "../experiments/config";
@@ -218,7 +218,10 @@ export function prepareEncounter(s: State, config: Config) {
     s.entities = s.entities.filter((e) => !e.ai);
     createGuardian(s);
   }
-  const room = roomSpec(config.room);
+  const room = roomSpec(
+    config.room ??
+      (config.scene === "run" ? RUN_ROOMS[trial.encounter] : undefined),
+  );
   if (room) {
     s.roomId = room.id;
     s.terrain = structuredClone(room.terrain);

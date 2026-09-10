@@ -1,5 +1,7 @@
 # Ruinweavers — The Broken Court
 
+Spatial Design 0.3 replaces the repeated physical layouts with **Split court, Offset gallery, Rotunda, Repair yard and Warden crossing**. Five beats, enemies, magic, builds and co-op rules stay fixed. [Room plans, trajectories and gameplay](https://ruinweavers.strahil-peykov.workers.dev/spatial/index.html); [spatial decisions and limitations](docs/SPATIAL-DESIGN.md). `?scene=run-classic` preserves the previous Guardian run; `?scene=guardian&room=warden` practices the new finale. Rejected candidates remain explicit greybox comparisons, never normal progression.
+
 The default is the complete illustrated five-encounter solo/co-op run. [Play](https://ruinweavers.strahil-peykov.workers.dev/). Build Identity 0.2 gives three personal choices after encounters one, three and four: ten Alterations and three prerequisite-gated Theorems. [Build design and catalogue](docs/BUILD-DESIGN.md).
 
 [Three builds in the same final encounter: actual frames and clips](https://ruinweavers.strahil-peykov.workers.dev/build-identity/index.html). These are normal-health input-driven runs, not concept art. [Historical five-room/co-op captures](https://ruinweavers.strahil-peykov.workers.dev/broken-court/index.html) remain available.
@@ -20,4 +22,4 @@ After every checked coherent commit, immediately push to the existing upstream a
 
 The fifth court now culminates in **The Bound Warden**, with physical ward plates, Shard Volley, Bound March and Furnace Pulse. [Guardian rules and validation](docs/GUARDIAN.md); [actual Guardian clips](https://ruinweavers.strahil-peykov.workers.dev/guardian/index.html). `?scene=guardian` opens the isolated fight; `?scene=run-legacy` preserves the ordinary-enemy five-court regression.
 
-Guardian 0.1 is closed at 4deeb7a: 117 unit tests, production build and 58 browser tests pass; one opt-in live TURN probe was skipped. Matched development/held-out results and limitations are recorded. Spatial Design 0.3 is the authorized next milestone: improve authored physical spaces while preserving this combat and fixed five-beat sequence.
+Guardian 0.1 was closed at 4deeb7a: 117 unit tests, production build and 58 browser tests passed; one opt-in live TURN probe was skipped. Its historical matched development/held-out evidence remains. The current Spatial Design 0.3 run uses the five selected physical spaces above; current validation and remaining limitations are in TESTING and SPATIAL-DESIGN. No run-topology work is included.

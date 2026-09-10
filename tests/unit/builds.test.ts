@@ -21,7 +21,8 @@ it("a gust that only redirects an inscription reports useful contact rather than
   s.dispose();
 });
 function make(upgrades: UpgradeId[] = [], pair = false) {
-  const s = new Simulation(configFromQuery("?scene=run&seed=123"));
+  // Historical spell fixtures deliberately retain the original wall/cover coordinates.
+  const s = new Simulation(configFromQuery("?scene=run-classic&seed=123"));
   if (pair) s.addPartner();
   for (const id of Object.keys(s.state.actors)) {
     s.state.run!.upgrades[id] = [...upgrades];
