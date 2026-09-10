@@ -1,0 +1,74 @@
+{
+  "build": "f7df5dd2af56b5d9b28296870fed50dbe75796de",
+  "environment": "Node, actual Simulation/Rapier; mocked input transport; not WebRTC or GPU",
+  "tapAt116Released133AfterSend100": {
+    "version": 2,
+    "seq": 1,
+    "epoch": 0,
+    "input": {
+      "moveX": 0,
+      "moveZ": 0,
+      "aim": {
+        "x": 0,
+        "y": 0,
+        "z": -5
+      },
+      "primary": false,
+      "secondary": false,
+      "dodge": false,
+      "interact": false,
+      "cycle": 0,
+      "select": "Ember"
+    },
+    "sample": 2,
+    "metaAck": -1,
+    "eventAck": 0,
+    "clear": false,
+    "primaryPress": {
+      "moveX": 0,
+      "moveZ": 0,
+      "aim": {
+        "x": 0,
+        "y": 0,
+        "z": -5
+      },
+      "primary": true,
+      "secondary": false,
+      "dodge": false,
+      "interact": false,
+      "select": "Ember"
+    },
+    "primaryPressId": 1
+  },
+  "fullStateBytes": {
+    "mean": 13309.7,
+    "p95": 14972,
+    "max": 15648
+  },
+  "fullStateCloneAndJsonMs": {
+    "mean": 0.6380970000000019,
+    "p95": 1.0475999999999885,
+    "max": 2.5879999999999654
+  },
+  "compactBytes": {
+    "mean": 5249.61,
+    "p95": 5857,
+    "max": 7534
+  },
+  "compactCloneAndJsonMs": {
+    "mean": 0.2836219999999997,
+    "p95": 0.4315000000000282,
+    "max": 1.236099999999965
+  },
+  "samples": 200,
+  "protocol": 2,
+  "runtimeBuild": "f41661a873eb",
+  "sourceHashes": {
+    "src/network/wire.ts": "f621f7b62a4210179facb2c1620b8b5b1d330508f7b047256f2b77a2a422afe1",
+    "src/network/input-mailbox.ts": "1bb50321243723b7bcde1062f14e518899b0c24115123be4ff67c5a75e82eccf",
+    "src/network/session.ts": "c82460aae149f4f1dd1f8b7176be03b93dadf476283c26078ac5fdca8882ae2d",
+    "src/simulation/simulation.ts": "0716daf87dfcddce0f40a610fce54bae995c1fa1e7ae01a4c7b482e8f474ae73",
+    "src/physics/world.ts": "a805688c6e229133fd462f6ae2f8b9307b0da816075eb4aa82baeb0b43113d20",
+    "src/experiments/config.ts": "20e7ff329672c01dc3a50a9f424a3d6ecba1f09754ca09c090d361f77b7e365b"
+  }
+}

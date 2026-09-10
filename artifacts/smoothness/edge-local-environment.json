@@ -1,0 +1,27 @@
+{
+  "build": "f41661a873eb",
+  "render": {
+    "quality": "lightweight",
+    "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 Edg/152.0.0.0",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "drawingBuffer": {
+      "width": 1152,
+      "height": 720
+    },
+    "pixelRatio": 0.8,
+    "shadows": false,
+    "samples": 36,
+    "frameMs": 34.50555555555556,
+    "p95FrameMs": 43.584,
+    "drawCalls": 35,
+    "triangles": 808,
+    "activeVfx": 0,
+    "geometries": 14,
+    "textures": 1,
+    "contextLost": false
+  }
+}

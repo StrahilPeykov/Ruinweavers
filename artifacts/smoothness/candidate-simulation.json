@@ -1,0 +1,63 @@
+{
+  "build": "f7df5dd2af56b5d9b28296870fed50dbe75796de",
+  "environment": "Node, actual Simulation/Rapier; mocked input transport; not WebRTC or GPU",
+  "tapAt116Released133AfterSend100": {
+    "version": 2,
+    "seq": 1,
+    "epoch": 0,
+    "input": {
+      "moveX": 0,
+      "moveZ": 0,
+      "aim": {
+        "x": 0,
+        "y": 0,
+        "z": -5
+      },
+      "primary": false,
+      "secondary": false,
+      "dodge": false,
+      "interact": false,
+      "cycle": 0,
+      "select": "Ember"
+    },
+    "sample": 2,
+    "metaAck": -1,
+    "eventAck": 0,
+    "clear": false,
+    "primaryPress": {
+      "moveX": 0,
+      "moveZ": 0,
+      "aim": {
+        "x": 0,
+        "y": 0,
+        "z": -5
+      },
+      "primary": true,
+      "secondary": false,
+      "dodge": false,
+      "interact": false,
+      "select": "Ember"
+    }
+  },
+  "fullStateBytes": {
+    "mean": 13309.7,
+    "p95": 14972,
+    "max": 15648
+  },
+  "fullStateCloneAndJsonMs": {
+    "mean": 0.37078100000000574,
+    "p95": 0.6023999999999887,
+    "max": 0.9289999999999736
+  },
+  "compactBytes": {
+    "mean": 5234.61,
+    "p95": 5842,
+    "max": 7519
+  },
+  "compactCloneAndJsonMs": {
+    "mean": 0.17077700000000562,
+    "p95": 0.2580000000000382,
+    "max": 0.765700000000038
+  },
+  "samples": 200
+}

@@ -1,0 +1,804 @@
+{
+  "build": "f7df5dd2af56b5d9b28296870fed50dbe75796de",
+  "environment": "Two headless Chromium clients, one Windows PC, actual local WebRTC; application-scheduled delay, not physical network emulation",
+  "observations": [
+    {
+      "delayMs": 0,
+      "jitterMs": 0,
+      "taps": 3,
+      "expectedTaps": 3,
+      "authoritativeResponseMs": 235.20000000018626,
+      "visibleResponseMs": 235.20000000018626,
+      "trace": {
+        "start": 10449.799999999814,
+        "rows": [
+          {
+            "at": 10439.299999999814,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            }
+          },
+          {
+            "at": 10519.59999999986,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            }
+          },
+          {
+            "at": 10589.699999999953,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            }
+          },
+          {
+            "at": 10685,
+            "auth": {
+              "x": 1.1976735591888428,
+              "y": 0.7200997471809387,
+              "z": 4.999995708465576
+            },
+            "visible": {
+              "x": 1.1976735591888428,
+              "y": 0.7200997471809387,
+              "z": 4.999995708465576
+            }
+          },
+          {
+            "at": 10739.899999999907,
+            "auth": {
+              "x": 1.664305567741394,
+              "y": 0.7200546860694885,
+              "z": 4.999972820281982
+            },
+            "visible": {
+              "x": 1.664305567741394,
+              "y": 0.7200546860694885,
+              "z": 4.999972820281982
+            }
+          },
+          {
+            "at": 10828.799999999814,
+            "auth": {
+              "x": 1.664305567741394,
+              "y": 0.7200546860694885,
+              "z": 4.999972820281982
+            },
+            "visible": {
+              "x": 1.664305567741394,
+              "y": 0.7200546860694885,
+              "z": 4.999972820281982
+            }
+          },
+          {
+            "at": 10904.799999999814,
+            "auth": {
+              "x": 2.037498712539673,
+              "y": 0.7228543758392334,
+              "z": 4.999912261962891
+            },
+            "visible": {
+              "x": 2.037498712539673,
+              "y": 0.7228543758392334,
+              "z": 4.999912261962891
+            }
+          },
+          {
+            "at": 11334.09999999986,
+            "auth": {
+              "x": 2.5975699424743652,
+              "y": 0.7193843722343445,
+              "z": 4.999850273132324
+            },
+            "visible": {
+              "x": 2.5975699424743652,
+              "y": 0.7193843722343445,
+              "z": 4.999850273132324
+            }
+          },
+          {
+            "at": 11338.399999999907,
+            "auth": {
+              "x": 2.5975699424743652,
+              "y": 0.7193843722343445,
+              "z": 4.999850273132324
+            },
+            "visible": {
+              "x": 2.5975699424743652,
+              "y": 0.7193843722343445,
+              "z": 4.999850273132324
+            }
+          },
+          {
+            "at": 11355,
+            "auth": {
+              "x": 2.5975704193115234,
+              "y": 0.7192843556404114,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5975704193115234,
+              "y": 0.7192843556404114,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 11401.399999999907,
+            "auth": {
+              "x": 2.5975701808929443,
+              "y": 0.7192843556404114,
+              "z": 4.999850273132324
+            },
+            "visible": {
+              "x": 2.5975701808929443,
+              "y": 0.7192843556404114,
+              "z": 4.999850273132324
+            }
+          },
+          {
+            "at": 11487.09999999986,
+            "auth": {
+              "x": 2.5975701808929443,
+              "y": 0.7192843556404114,
+              "z": 4.999850273132324
+            },
+            "visible": {
+              "x": 2.5975701808929443,
+              "y": 0.7192843556404114,
+              "z": 4.999850273132324
+            }
+          },
+          {
+            "at": 11567.299999999814,
+            "auth": {
+              "x": 2.5975704193115234,
+              "y": 0.7193843722343445,
+              "z": 4.999850749969482
+            },
+            "visible": {
+              "x": 2.5975704193115234,
+              "y": 0.7193843722343445,
+              "z": 4.999850749969482
+            }
+          },
+          {
+            "at": 11644.199999999953,
+            "auth": {
+              "x": 2.5975701808929443,
+              "y": 0.7192843556404114,
+              "z": 4.999850273132324
+            },
+            "visible": {
+              "x": 2.5975701808929443,
+              "y": 0.7192843556404114,
+              "z": 4.999850273132324
+            }
+          },
+          {
+            "at": 11720.699999999953,
+            "auth": {
+              "x": 2.5975701808929443,
+              "y": 0.7193843722343445,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5975701808929443,
+              "y": 0.7193843722343445,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 11804.799999999814,
+            "auth": {
+              "x": 2.5975704193115234,
+              "y": 0.7192843556404114,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5975704193115234,
+              "y": 0.7192843556404114,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 11882.799999999814,
+            "auth": {
+              "x": 2.5975701808929443,
+              "y": 0.7192843556404114,
+              "z": 4.999850749969482
+            },
+            "visible": {
+              "x": 2.5975701808929443,
+              "y": 0.7192843556404114,
+              "z": 4.999850749969482
+            }
+          },
+          {
+            "at": 11984.5,
+            "auth": {
+              "x": 2.5975701808929443,
+              "y": 0.7193843722343445,
+              "z": 4.999850273132324
+            },
+            "visible": {
+              "x": 2.5975701808929443,
+              "y": 0.7193843722343445,
+              "z": 4.999850273132324
+            }
+          }
+        ]
+      },
+      "host": {
+        "role": "host",
+        "status": "connected",
+        "forceRelay": false,
+        "turnStatus": "local",
+        "snapshotsSent": 69,
+        "snapshotsReceived": 0,
+        "lastOutgoingSnapshotJsonBytes": 6236,
+        "scheduledSnapshotJsonBytes": 423625,
+        "snapshotIntervals": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "snapshotApply": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "statsAvailable": true,
+        "paths": [
+          {
+            "selected": true,
+            "state": "succeeded",
+            "localType": "host",
+            "remoteType": "host",
+            "relayProtocol": null,
+            "rttMs": 1,
+            "bytesSent": 456994,
+            "bytesReceived": 65390,
+            "channels": [
+              {
+                "state": "open",
+                "messagesSent": 73,
+                "messagesReceived": 120,
+                "bytesSent": 431208,
+                "bytesReceived": 46511
+              }
+            ]
+          }
+        ]
+      },
+      "guest": {
+        "role": "guest",
+        "status": "connected",
+        "forceRelay": false,
+        "turnStatus": "local",
+        "snapshotsSent": 0,
+        "snapshotsReceived": 70,
+        "lastOutgoingSnapshotJsonBytes": null,
+        "scheduledSnapshotJsonBytes": 0,
+        "snapshotIntervals": {
+          "samples": 69,
+          "meanMs": 74.92173913043614,
+          "p95Ms": 226.10000000009313
+        },
+        "snapshotApply": {
+          "samples": 70,
+          "meanMs": 0.40285714287643454,
+          "p95Ms": 1.5
+        },
+        "statsAvailable": true,
+        "paths": [
+          {
+            "selected": true,
+            "state": "succeeded",
+            "localType": "host",
+            "remoteType": "host",
+            "relayProtocol": null,
+            "rttMs": 1,
+            "bytesSent": 66456,
+            "bytesReceived": 463524,
+            "channels": [
+              {
+                "state": "open",
+                "messagesSent": 122,
+                "messagesReceived": 74,
+                "bytesSent": 47325,
+                "bytesReceived": 437386
+              }
+            ]
+          }
+        ]
+      },
+      "hostRender": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 204,
+        "frameMs": 62.742647058823515,
+        "p95FrameMs": 116.69999999999982,
+        "drawCalls": 35,
+        "triangles": 808,
+        "activeVfx": 0,
+        "geometries": 15,
+        "textures": 1,
+        "contextLost": false
+      },
+      "guestRender": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 109,
+        "frameMs": 108.86422018348622,
+        "p95FrameMs": 216.70000000000073,
+        "drawCalls": 35,
+        "triangles": 808,
+        "activeVfx": 0,
+        "geometries": 15,
+        "textures": 1,
+        "contextLost": false
+      }
+    },
+    {
+      "delayMs": 80,
+      "jitterMs": 20,
+      "taps": 2,
+      "expectedTaps": 3,
+      "authoritativeResponseMs": 397,
+      "visibleResponseMs": 397,
+      "trace": {
+        "start": 15333.399999999907,
+        "rows": [
+          {
+            "at": 15331.5,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            }
+          },
+          {
+            "at": 15339.299999999814,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            }
+          },
+          {
+            "at": 15384.799999999814,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            }
+          },
+          {
+            "at": 15450.399999999907,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            }
+          },
+          {
+            "at": 15513,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            }
+          },
+          {
+            "at": 15610.09999999986,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            }
+          },
+          {
+            "at": 15730.399999999907,
+            "auth": {
+              "x": 1.196745753288269,
+              "y": 0.7200549840927124,
+              "z": 4.999995708465576
+            },
+            "visible": {
+              "x": 1.196745753288269,
+              "y": 0.7200549840927124,
+              "z": 4.999995708465576
+            }
+          },
+          {
+            "at": 15812.699999999953,
+            "auth": {
+              "x": 1.8509362936019897,
+              "y": 0.7199558019638062,
+              "z": 4.999938488006592
+            },
+            "visible": {
+              "x": 1.8509362936019897,
+              "y": 0.7199558019638062,
+              "z": 4.999938488006592
+            }
+          },
+          {
+            "at": 15897.09999999986,
+            "auth": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 15942.799999999814,
+            "auth": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 16106.899999999907,
+            "auth": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 16141,
+            "auth": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 16185,
+            "auth": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 16245.399999999907,
+            "auth": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5042366981506348,
+              "y": 0.7200561165809631,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 16296.09999999986,
+            "auth": {
+              "x": 3.0642199516296387,
+              "y": 0.7196686267852783,
+              "z": 4.999827861785889
+            },
+            "visible": {
+              "x": 3.0642199516296387,
+              "y": 0.7196686267852783,
+              "z": 4.999827861785889
+            }
+          },
+          {
+            "at": 16600.299999999814,
+            "auth": {
+              "x": 3.0642199516296387,
+              "y": 0.719841480255127,
+              "z": 4.999827861785889
+            },
+            "visible": {
+              "x": 3.0642199516296387,
+              "y": 0.719841480255127,
+              "z": 4.999827861785889
+            }
+          },
+          {
+            "at": 16607.09999999986,
+            "auth": {
+              "x": 3.0642199516296387,
+              "y": 0.719841480255127,
+              "z": 4.999827861785889
+            },
+            "visible": {
+              "x": 3.0642199516296387,
+              "y": 0.719841480255127,
+              "z": 4.999827861785889
+            }
+          },
+          {
+            "at": 16634,
+            "auth": {
+              "x": 3.0642199516296387,
+              "y": 0.719841480255127,
+              "z": 4.999827861785889
+            },
+            "visible": {
+              "x": 3.0642199516296387,
+              "y": 0.719841480255127,
+              "z": 4.999827861785889
+            }
+          },
+          {
+            "at": 16645.5,
+            "auth": {
+              "x": 3.0642199516296387,
+              "y": 0.719841480255127,
+              "z": 4.999827861785889
+            },
+            "visible": {
+              "x": 3.0642199516296387,
+              "y": 0.719841480255127,
+              "z": 4.999827861785889
+            }
+          },
+          {
+            "at": 16737.199999999953,
+            "auth": {
+              "x": 3.0642197132110596,
+              "y": 0.7194414138793945,
+              "z": 4.999827861785889
+            },
+            "visible": {
+              "x": 3.0642197132110596,
+              "y": 0.7194414138793945,
+              "z": 4.999827861785889
+            }
+          },
+          {
+            "at": 16838.09999999986,
+            "auth": {
+              "x": 3.0642197132110596,
+              "y": 0.7193413972854614,
+              "z": 4.999827861785889
+            },
+            "visible": {
+              "x": 3.0642197132110596,
+              "y": 0.7193413972854614,
+              "z": 4.999827861785889
+            }
+          }
+        ]
+      },
+      "host": {
+        "role": "host",
+        "status": "connected",
+        "forceRelay": false,
+        "turnStatus": "local",
+        "snapshotsSent": 105,
+        "snapshotsReceived": 0,
+        "lastOutgoingSnapshotJsonBytes": 6077,
+        "scheduledSnapshotJsonBytes": 646081,
+        "snapshotIntervals": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "snapshotApply": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "statsAvailable": true,
+        "paths": [
+          {
+            "selected": true,
+            "state": "succeeded",
+            "localType": "host",
+            "remoteType": "host",
+            "relayProtocol": null,
+            "rttMs": 1,
+            "bytesSent": 689724,
+            "bytesReceived": 114436,
+            "channels": [
+              {
+                "state": "open",
+                "messagesSent": 108,
+                "messagesReceived": 216,
+                "bytesSent": 651192,
+                "bytesReceived": 85391
+              }
+            ]
+          }
+        ]
+      },
+      "guest": {
+        "role": "guest",
+        "status": "connected",
+        "forceRelay": false,
+        "turnStatus": "local",
+        "snapshotsSent": 0,
+        "snapshotsReceived": 104,
+        "lastOutgoingSnapshotJsonBytes": null,
+        "scheduledSnapshotJsonBytes": 0,
+        "snapshotIntervals": {
+          "samples": 103,
+          "meanMs": 96.87864077669903,
+          "p95Ms": 289.39999999990687
+        },
+        "snapshotApply": {
+          "samples": 104,
+          "meanMs": 0.42692307693561393,
+          "p95Ms": 1.5
+        },
+        "statsAvailable": true,
+        "paths": [
+          {
+            "selected": true,
+            "state": "succeeded",
+            "localType": "host",
+            "remoteType": "host",
+            "relayProtocol": null,
+            "rttMs": 1,
+            "bytesSent": 114894,
+            "bytesReceived": 689724,
+            "channels": [
+              {
+                "state": "open",
+                "messagesSent": 217,
+                "messagesReceived": 108,
+                "bytesSent": 85798,
+                "bytesReceived": 651192
+              }
+            ]
+          }
+        ]
+      },
+      "hostRender": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 265,
+        "frameMs": 66.7267924528302,
+        "p95FrameMs": 116.70000000000073,
+        "drawCalls": 35,
+        "triangles": 808,
+        "activeVfx": 0,
+        "geometries": 15,
+        "textures": 1,
+        "contextLost": false
+      },
+      "guestRender": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 171,
+        "frameMs": 98.33976608187136,
+        "p95FrameMs": 216.59999999999854,
+        "drawCalls": 35,
+        "triangles": 808,
+        "activeVfx": 0,
+        "geometries": 15,
+        "textures": 1,
+        "contextLost": false
+      }
+    }
+  ],
+  "errors": []
+}

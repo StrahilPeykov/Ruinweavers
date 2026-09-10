@@ -1,0 +1,3758 @@
+{
+  "build": "f7df5dd2af56b5d9b28296870fed50dbe75796de",
+  "environment": "Two headless Chromium clients, one Windows PC, actual local WebRTC; application-scheduled delay, not physical network emulation",
+  "observations": [
+    {
+      "delayMs": 0,
+      "jitterMs": 0,
+      "taps": 3,
+      "expectedTaps": 3,
+      "authoritativeResponseMs": 192.70000000018626,
+      "visibleResponseMs": 192.70000000018626,
+      "trace": {
+        "start": 13398.599999999627,
+        "rows": [
+          {
+            "at": 13470.799999999814,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702508562244,
+              "z": 4.9999996694106414
+            }
+          },
+          {
+            "at": 13591.299999999814,
+            "auth": {
+              "x": 1.384305477142334,
+              "y": 0.7199998497962952,
+              "z": 4.999973297119141
+            },
+            "visible": {
+              "x": 1.5657202489674091,
+              "y": 0.7206547066743951,
+              "z": 5.000023099242526
+            }
+          },
+          {
+            "at": 13678.799999999814,
+            "auth": {
+              "x": 1.664305567741394,
+              "y": 0.7200546860694885,
+              "z": 4.999972820281982
+            },
+            "visible": {
+              "x": 1.951528824865818,
+              "y": 0.7207852727515274,
+              "z": 4.999967462347797
+            }
+          },
+          {
+            "at": 13774.399999999907,
+            "auth": {
+              "x": 2.1308319568634033,
+              "y": 0.7199938297271729,
+              "z": 4.999912261962891
+            },
+            "visible": {
+              "x": 2.5030188858509064,
+              "y": 0.7161524396942696,
+              "z": 5.000085731468596
+            }
+          },
+          {
+            "at": 13908,
+            "auth": {
+              "x": 2.4108195304870605,
+              "y": 0.7199885845184326,
+              "z": 4.9998931884765625
+            },
+            "visible": {
+              "x": 2.4108189766460306,
+              "y": 0.719958824069181,
+              "z": 4.999894411175292
+            }
+          },
+          {
+            "at": 13966.5,
+            "auth": {
+              "x": 2.4108195304870605,
+              "y": 0.7199885845184326,
+              "z": 4.9998931884765625
+            },
+            "visible": {
+              "x": 2.4108186576672885,
+              "y": 0.7199587806680938,
+              "z": 4.999894069958858
+            }
+          },
+          {
+            "at": 14013.399999999907,
+            "auth": {
+              "x": 2.4108195304870605,
+              "y": 0.7199885845184326,
+              "z": 4.9998931884765625
+            },
+            "visible": {
+              "x": 2.4108186152619204,
+              "y": 0.7195000432257075,
+              "z": 4.999893674222834
+            }
+          },
+          {
+            "at": 14090.899999999907,
+            "auth": {
+              "x": 2.4108195304870605,
+              "y": 0.7199885845184326,
+              "z": 4.9998931884765625
+            },
+            "visible": {
+              "x": 2.410818545339918,
+              "y": 0.7193999600131065,
+              "z": 4.999893529457546
+            }
+          },
+          {
+            "at": 14481.799999999814,
+            "auth": {
+              "x": 2.5042357444763184,
+              "y": 0.7194922566413879,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5042348727571664,
+              "y": 0.7193923346203519,
+              "z": 4.999850457071261
+            }
+          },
+          {
+            "at": 14485.099999999627,
+            "auth": {
+              "x": 2.5042357444763184,
+              "y": 0.7194922566413879,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5042348727571664,
+              "y": 0.7193923346203519,
+              "z": 4.999850457071261
+            }
+          },
+          {
+            "at": 14512.69999999972,
+            "auth": {
+              "x": 2.50423526763916,
+              "y": 0.7193922996520996,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.50423526763916,
+              "y": 0.7193923146114685,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 14586.799999999814,
+            "auth": {
+              "x": 2.50423526763916,
+              "y": 0.7193922996520996,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.50423526763916,
+              "y": 0.719392359489575,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 14675.299999999814,
+            "auth": {
+              "x": 2.50423526763916,
+              "y": 0.7193922996520996,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.50423526763916,
+              "y": 0.7193923146114685,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 14770.599999999627,
+            "auth": {
+              "x": 2.50423526763916,
+              "y": 0.7193922996520996,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.50423526763916,
+              "y": 0.7193923894083127,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 14826.5,
+            "auth": {
+              "x": 2.50423526763916,
+              "y": 0.7193922996520996,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.50423526763916,
+              "y": 0.719392359489575,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 14917.799999999814,
+            "auth": {
+              "x": 2.50423526763916,
+              "y": 0.7193922996520996,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.50423526763916,
+              "y": 0.7193923146114685,
+              "z": 4.999851226806641
+            }
+          }
+        ]
+      },
+      "inputDecisions": [
+        {
+          "kind": "receive",
+          "at": 12722.30000000028,
+          "seq": 48,
+          "press": 87,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 12722.900000000373,
+          "time": 1.4,
+          "ready": 0,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 12725.400000000373,
+          "time": 1.4166666666666665,
+          "ready": 1.72,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 12737.400000000373,
+          "seq": 49,
+          "press": 87,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 13333.400000000373,
+          "seq": 52,
+          "press": 96,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13352.400000000373,
+          "time": 1.8833333333333315,
+          "ready": 1.72,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13353,
+          "time": 1.8999999999999981,
+          "ready": 2.2033333333333314,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 13353.700000000186,
+          "seq": 53,
+          "press": 96,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 13387.600000000093,
+          "seq": 54,
+          "press": 96,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 13948.700000000186,
+          "seq": 57,
+          "press": 105,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13948.80000000028,
+          "time": 2.466666666666663,
+          "ready": 2.2033333333333314,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13949.30000000028,
+          "time": 2.4833333333333294,
+          "ready": 2.7866666666666626,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13952.400000000373,
+          "time": 2.499999999999996,
+          "ready": 2.7866666666666626,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13973.5,
+          "time": 2.5166666666666626,
+          "ready": 2.7866666666666626,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 14005.30000000028,
+          "seq": 58,
+          "press": 105,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 14869.5,
+          "seq": 75,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 14890.5,
+          "time": 3.1999999999999935,
+          "ready": 2.7866666666666626,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 14891,
+          "time": 3.21666666666666,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 14899.900000000373,
+          "seq": 76,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15187.700000000186,
+          "seq": 77,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15187.80000000028,
+          "seq": 78,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15187.80000000028,
+          "seq": 79,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15187.900000000373,
+          "seq": 80,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15187.900000000373,
+          "seq": 81,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15188,
+          "seq": 82,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15188,
+          "seq": 83,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15188.100000000093,
+          "seq": 84,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15202.900000000373,
+          "time": 3.2333333333333267,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15203.900000000373,
+          "time": 3.2499999999999933,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15204.400000000373,
+          "time": 3.26666666666666,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15204.600000000093,
+          "time": 3.2833333333333266,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15204.80000000028,
+          "time": 3.299999999999993,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15205.100000000093,
+          "time": 3.3166666666666598,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 15213.30000000028,
+          "seq": 85,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15217.600000000093,
+          "time": 3.3333333333333264,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15244.5,
+          "time": 3.349999999999993,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15248.900000000373,
+          "time": 3.3666666666666596,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 15254.600000000093,
+          "seq": 86,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15280.600000000093,
+          "time": 3.383333333333326,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15280.900000000373,
+          "time": 3.399999999999993,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15297.80000000028,
+          "time": 3.4166666666666594,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15316.600000000093,
+          "time": 3.433333333333326,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15339.80000000028,
+          "time": 3.4499999999999926,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15346.5,
+          "time": 3.4666666666666592,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15382.5,
+          "time": 3.483333333333326,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15382.80000000028,
+          "time": 3.4999999999999925,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15417.80000000028,
+          "time": 3.516666666666659,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15418.100000000093,
+          "time": 3.5333333333333257,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15440.5,
+          "time": 3.5499999999999923,
+          "ready": 3.8533333333333255,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15476.700000000186,
+          "time": 3.566666666666659,
+          "ready": 3.8533333333333255,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15477,
+          "time": 3.5833333333333255,
+          "ready": 3.8533333333333255,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15495.5,
+          "time": 3.599999999999992,
+          "ready": 3.8533333333333255,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15504.400000000373,
+          "time": 3.6166666666666587,
+          "ready": 3.8533333333333255,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        }
+      ],
+      "host": {
+        "build": "f41661a873eb",
+        "protocol": 2,
+        "role": "host",
+        "status": "connected",
+        "forceRelay": false,
+        "combatTelemetry": "authoritative-local",
+        "turnStatus": "local",
+        "snapshotsSent": 83,
+        "snapshotsReceived": 0,
+        "lastOutgoingSnapshotJsonBytes": 3355,
+        "scheduledSnapshotJsonBytes": 293629,
+        "snapshotIntervals": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "snapshotApply": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "hostTickPacing": {
+          "samples": 180,
+          "meanMs": 23.99833333333437,
+          "p95Ms": 38.60000000009313
+        },
+        "hostStep": {
+          "samples": 180,
+          "meanMs": 0.6811111111012805,
+          "p95Ms": 1.8999999999068677
+        },
+        "serialization": {
+          "samples": 83,
+          "meanMs": 0.4385542168607374,
+          "p95Ms": 1
+        },
+        "wireBytes": {
+          "samples": 83,
+          "mean": 3537.6987951807228,
+          "max": 5623
+        },
+        "inputAcknowledgement": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "ackSample": 0,
+        "scheduled": 0,
+        "peakScheduled": 1,
+        "snapshotsScheduled": 83,
+        "droppedSnapshots": 0,
+        "presentation": {
+          "interpolation": true,
+          "delayMs": 75,
+          "frames": 0,
+          "resets": 1,
+          "underruns": 0,
+          "prediction": true,
+          "replayFrames": 0,
+          "droppedReplay": 0,
+          "correctionDistances": []
+        },
+        "statsAvailable": true,
+        "paths": [
+          {
+            "selected": true,
+            "state": "succeeded",
+            "localType": "host",
+            "remoteType": "host",
+            "relayProtocol": null,
+            "rttMs": 2,
+            "bytesSent": 323157,
+            "bytesReceived": 67884,
+            "channels": [
+              {
+                "state": "open",
+                "messagesSent": 87,
+                "messagesReceived": 113,
+                "bytesSent": 302677,
+                "bytesReceived": 52185
+              }
+            ]
+          }
+        ]
+      },
+      "guest": {
+        "build": "f41661a873eb",
+        "protocol": 2,
+        "role": "guest",
+        "status": "connected",
+        "forceRelay": false,
+        "combatTelemetry": "host-only; export on host",
+        "turnStatus": "local",
+        "snapshotsSent": 0,
+        "snapshotsReceived": 83,
+        "lastOutgoingSnapshotJsonBytes": null,
+        "scheduledSnapshotJsonBytes": 0,
+        "snapshotIntervals": {
+          "samples": 82,
+          "meanMs": 70.39878048780714,
+          "p95Ms": 345.60000000009313
+        },
+        "snapshotApply": {
+          "samples": 83,
+          "meanMs": 1.3301204819434198,
+          "p95Ms": 2.1000000000931323
+        },
+        "hostTickPacing": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "hostStep": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "serialization": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "wireBytes": {
+          "samples": 0,
+          "mean": null,
+          "max": null
+        },
+        "inputAcknowledgement": {
+          "samples": 62,
+          "meanMs": 61.85967741932179,
+          "p95Ms": 220
+        },
+        "ackSample": 213,
+        "scheduled": 0,
+        "peakScheduled": 2,
+        "snapshotsScheduled": 0,
+        "droppedSnapshots": 0,
+        "presentation": {
+          "interpolation": true,
+          "delayMs": 75,
+          "frames": 12,
+          "resets": 4,
+          "underruns": 6,
+          "prediction": true,
+          "replayFrames": 2,
+          "droppedReplay": 6,
+          "correctionDistances": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.0000503605686941276,
+            0.00009990646034305179,
+            8.365714004148841e-8,
+            6.252412471115987e-7,
+            0.0006721921971455118,
+            0.00010008646388484033,
+            0.00011801953685690948,
+            0.0006720389324780388,
+            0.00047211765313839605,
+            0.00010008801533406658,
+            0.00011793058298338545,
+            0.0006721622599073639,
+            0.00010008595139254684,
+            0.000018037207432438238,
+            0.0000012414933713553736,
+            0.00010000552611655043,
+            0.00011788351424163388,
+            0.0006721391231565034,
+            0.00010008689922531535,
+            0.0000014674643541330545,
+            8.418526880797496e-7,
+            0,
+            0,
+            0.0006722136428619092,
+            0,
+            1.115522555628045e-7,
+            0.0004720601712333227,
+            0.0005720707107566285,
+            0,
+            0.00047204926257219564,
+            0.000118052589375096,
+            6.918301455778473e-7,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.000672146911434684,
+            0.00037220872823680523,
+            0.0005722421778366767,
+            0.0000715402344470312,
+            3.3068552407871596e-7,
+            0.17511119438599582,
+            0.13412840721921152,
+            0.11139319200854345,
+            0.17977897689118333,
+            0.09227932709672552,
+            0.09341706389862174,
+            0.00020000009068267945,
+            0.000299990177154541,
+            0.00020003389828979773,
+            0.00010007761857125571,
+            0,
+            0,
+            1.4959368854761124e-8,
+            7.479684427380562e-8,
+            5.98374754190445e-8,
+            0,
+            0.00009995217356029207,
+            2.991873770952225e-8,
+            7.479684427380562e-8,
+            2.991873770952225e-8,
+            3.0107231815670954e-7,
+            2.991873770952225e-8,
+            4.487810656428337e-8,
+            2.991873770952225e-8,
+            7.479684427380562e-8,
+            5.98374754190445e-8,
+            4.487810656428337e-8
+          ]
+        },
+        "statsAvailable": true,
+        "paths": [
+          {
+            "selected": true,
+            "state": "succeeded",
+            "localType": "host",
+            "remoteType": "host",
+            "relayProtocol": null,
+            "rttMs": 11,
+            "bytesSent": 67884,
+            "bytesReceived": 323157,
+            "channels": [
+              {
+                "state": "open",
+                "messagesSent": 113,
+                "messagesReceived": 87,
+                "bytesSent": 52185,
+                "bytesReceived": 302677
+              }
+            ]
+          }
+        ]
+      },
+      "hostRender": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 191,
+        "frameMs": 84.37748691099479,
+        "p95FrameMs": 199.90000000000146,
+        "drawCalls": 35,
+        "triangles": 808,
+        "activeVfx": 0,
+        "geometries": 15,
+        "textures": 1,
+        "contextLost": false
+      },
+      "guestRender": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 95,
+        "frameMs": 156.1336842105263,
+        "p95FrameMs": 333.3000000000011,
+        "drawCalls": 35,
+        "triangles": 808,
+        "activeVfx": 0,
+        "geometries": 15,
+        "textures": 1,
+        "contextLost": false
+      }
+    },
+    {
+      "delayMs": 80,
+      "jitterMs": 20,
+      "taps": 3,
+      "expectedTaps": 3,
+      "authoritativeResponseMs": 373.20000000018626,
+      "visibleResponseMs": 100.70000000018626,
+      "trace": {
+        "start": 18149.799999999814,
+        "rows": [
+          {
+            "at": 18163.799999999814,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 0.9999995397450689,
+              "y": 0.7194981039647246,
+              "z": 4.999998898605767
+            }
+          },
+          {
+            "at": 18250.5,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 1.521359411818004,
+              "y": 0.7200006946586655,
+              "z": 4.999998254656784
+            }
+          },
+          {
+            "at": 18388.5,
+            "auth": {
+              "x": 0.9999994039535522,
+              "y": 0.7200702428817749,
+              "z": 5
+            },
+            "visible": {
+              "x": 2.270196368917823,
+              "y": 0.7199580346568837,
+              "z": 4.999932201956799
+            }
+          },
+          {
+            "at": 18523,
+            "auth": {
+              "x": 1.196745753288269,
+              "y": 0.7200549840927124,
+              "z": 4.999995708465576
+            },
+            "visible": {
+              "x": 2.5769077208824456,
+              "y": 0.720063530097832,
+              "z": 4.999922898596026
+            }
+          },
+          {
+            "at": 18604,
+            "auth": {
+              "x": 2.1308319568634033,
+              "y": 0.7199938297271729,
+              "z": 4.999912261962891
+            },
+            "visible": {
+              "x": 2.73501259286445,
+              "y": 0.7200973820363288,
+              "z": 4.999927778259071
+            }
+          },
+          {
+            "at": 18705,
+            "auth": {
+              "x": 2.1308319568634033,
+              "y": 0.7199938297271729,
+              "z": 4.999912261962891
+            },
+            "visible": {
+              "x": 2.7350124235184268,
+              "y": 0.719372335668595,
+              "z": 4.999928209658989
+            }
+          },
+          {
+            "at": 18827.5,
+            "auth": {
+              "x": 2.1308319568634033,
+              "y": 0.7199938297271729,
+              "z": 4.999912261962891
+            },
+            "visible": {
+              "x": 2.735012444127964,
+              "y": 0.7194722854328575,
+              "z": 4.999927344370979
+            }
+          },
+          {
+            "at": 18893.69999999972,
+            "auth": {
+              "x": 2.1308319568634033,
+              "y": 0.7199938297271729,
+              "z": 4.999912261962891
+            },
+            "visible": {
+              "x": 2.7350124664482145,
+              "y": 0.7197722854180029,
+              "z": 4.999926905541406
+            }
+          },
+          {
+            "at": 18952.399999999907,
+            "auth": {
+              "x": 2.1308319568634033,
+              "y": 0.7199938297271729,
+              "z": 4.999912261962891
+            },
+            "visible": {
+              "x": 2.7350122068555933,
+              "y": 0.7200924747812678,
+              "z": 4.999927104174125
+            }
+          },
+          {
+            "at": 19356.799999999814,
+            "auth": {
+              "x": 2.5042362213134766,
+              "y": 0.7199699282646179,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5042362296334564,
+              "y": 0.7193923597078538,
+              "z": 4.9998492863158415
+            }
+          },
+          {
+            "at": 19360.399999999907,
+            "auth": {
+              "x": 2.5042362213134766,
+              "y": 0.7199699282646179,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.5042362296334564,
+              "y": 0.7193923597078538,
+              "z": 4.9998492863158415
+            }
+          },
+          {
+            "at": 19392.799999999814,
+            "auth": {
+              "x": 2.50423526763916,
+              "y": 0.7193922996520996,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.50423526763916,
+              "y": 0.7193923146114685,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 19405.899999999907,
+            "auth": {
+              "x": 2.50423526763916,
+              "y": 0.7193922996520996,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.50423526763916,
+              "y": 0.7193923295708373,
+              "z": 4.999851226806641
+            }
+          },
+          {
+            "at": 19489.799999999814,
+            "auth": {
+              "x": 2.50423526763916,
+              "y": 0.7193922996520996,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.504235029467921,
+              "y": 0.7193922847291105,
+              "z": 4.999851048177931
+            }
+          },
+          {
+            "at": 19592.5,
+            "auth": {
+              "x": 2.50423526763916,
+              "y": 0.7193922996520996,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.504235941880852,
+              "y": 0.7192922410031315,
+              "z": 4.999851841627698
+            }
+          },
+          {
+            "at": 19689.799999999814,
+            "auth": {
+              "x": 2.50423526763916,
+              "y": 0.7193922996520996,
+              "z": 4.999851226806641
+            },
+            "visible": {
+              "x": 2.504235915188449,
+              "y": 0.71939243862289,
+              "z": 4.999850899071788
+            }
+          }
+        ]
+      },
+      "inputDecisions": [
+        {
+          "kind": "receive",
+          "at": 12722.30000000028,
+          "seq": 48,
+          "press": 87,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 12722.900000000373,
+          "time": 1.4,
+          "ready": 0,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 12725.400000000373,
+          "time": 1.4166666666666665,
+          "ready": 1.72,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 12737.400000000373,
+          "seq": 49,
+          "press": 87,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 13333.400000000373,
+          "seq": 52,
+          "press": 96,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13352.400000000373,
+          "time": 1.8833333333333315,
+          "ready": 1.72,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13353,
+          "time": 1.8999999999999981,
+          "ready": 2.2033333333333314,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 13353.700000000186,
+          "seq": 53,
+          "press": 96,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 13387.600000000093,
+          "seq": 54,
+          "press": 96,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 13948.700000000186,
+          "seq": 57,
+          "press": 105,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13948.80000000028,
+          "time": 2.466666666666663,
+          "ready": 2.2033333333333314,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13949.30000000028,
+          "time": 2.4833333333333294,
+          "ready": 2.7866666666666626,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13952.400000000373,
+          "time": 2.499999999999996,
+          "ready": 2.7866666666666626,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 13973.5,
+          "time": 2.5166666666666626,
+          "ready": 2.7866666666666626,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 14005.30000000028,
+          "seq": 58,
+          "press": 105,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 14869.5,
+          "seq": 75,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 14890.5,
+          "time": 3.1999999999999935,
+          "ready": 2.7866666666666626,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 14891,
+          "time": 3.21666666666666,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 14899.900000000373,
+          "seq": 76,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15187.700000000186,
+          "seq": 77,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15187.80000000028,
+          "seq": 78,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15187.80000000028,
+          "seq": 79,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15187.900000000373,
+          "seq": 80,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15187.900000000373,
+          "seq": 81,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15188,
+          "seq": 82,
+          "press": 140,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15188,
+          "seq": 83,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 15188.100000000093,
+          "seq": 84,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15202.900000000373,
+          "time": 3.2333333333333267,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15203.900000000373,
+          "time": 3.2499999999999933,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15204.400000000373,
+          "time": 3.26666666666666,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15204.600000000093,
+          "time": 3.2833333333333266,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15204.80000000028,
+          "time": 3.299999999999993,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15205.100000000093,
+          "time": 3.3166666666666598,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 15213.30000000028,
+          "seq": 85,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15217.600000000093,
+          "time": 3.3333333333333264,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15244.5,
+          "time": 3.349999999999993,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15248.900000000373,
+          "time": 3.3666666666666596,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 15254.600000000093,
+          "seq": 86,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15280.600000000093,
+          "time": 3.383333333333326,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15280.900000000373,
+          "time": 3.399999999999993,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15297.80000000028,
+          "time": 3.4166666666666594,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15316.600000000093,
+          "time": 3.433333333333326,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15339.80000000028,
+          "time": 3.4499999999999926,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15346.5,
+          "time": 3.4666666666666592,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15382.5,
+          "time": 3.483333333333326,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15382.80000000028,
+          "time": 3.4999999999999925,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15417.80000000028,
+          "time": 3.516666666666659,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15418.100000000093,
+          "time": 3.5333333333333257,
+          "ready": 3.5199999999999934,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15440.5,
+          "time": 3.5499999999999923,
+          "ready": 3.8533333333333255,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15476.700000000186,
+          "time": 3.566666666666659,
+          "ready": 3.8533333333333255,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15477,
+          "time": 3.5833333333333255,
+          "ready": 3.8533333333333255,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15495.5,
+          "time": 3.599999999999992,
+          "ready": 3.8533333333333255,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 15504.400000000373,
+          "time": 3.6166666666666587,
+          "ready": 3.8533333333333255,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 17634.400000000373,
+          "seq": 135,
+          "press": 273,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 17648.80000000028,
+          "time": 5.7666666666666515,
+          "ready": 3.8533333333333255,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 17653.5,
+          "seq": 136,
+          "press": 273,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 17678.100000000093,
+          "seq": 137,
+          "press": 273,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 17978.30000000028,
+          "seq": 138,
+          "press": 273,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 17978.400000000373,
+          "seq": 139,
+          "press": 273,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 17978.5,
+          "seq": 140,
+          "press": 273,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 17978.5,
+          "seq": 141,
+          "press": 273,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 18510.5,
+          "seq": 150,
+          "press": 302,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18513.30000000028,
+          "time": 6.449999999999982,
+          "ready": 6.086666666666652,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 18762.700000000186,
+          "seq": 151,
+          "press": 302,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 18762.900000000373,
+          "seq": 152,
+          "press": 302,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 18763,
+          "seq": 153,
+          "press": 302,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 18763,
+          "seq": 154,
+          "press": 302,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 18763,
+          "seq": 155,
+          "press": 302,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 18763,
+          "seq": 156,
+          "press": 302,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 18789.5,
+          "seq": 157,
+          "press": 318,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18805.80000000028,
+          "time": 6.583333333333315,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18827.100000000093,
+          "time": 6.599999999999982,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18837.900000000373,
+          "time": 6.6166666666666485,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18849.100000000093,
+          "time": 6.633333333333315,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18878.700000000186,
+          "time": 6.649999999999982,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18897.80000000028,
+          "time": 6.666666666666648,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18898.100000000093,
+          "time": 6.683333333333315,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18922.600000000093,
+          "time": 6.6999999999999815,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18947.200000000186,
+          "time": 6.716666666666648,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18961.5,
+          "time": 6.733333333333315,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18993.700000000186,
+          "time": 6.749999999999981,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 18994,
+          "time": 6.766666666666648,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 19021,
+          "time": 6.783333333333315,
+          "ready": 6.769999999999983,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 19021.400000000373,
+          "time": 6.799999999999981,
+          "ready": 7.103333333333315,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 19162.400000000373,
+          "seq": 158,
+          "press": 318,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 19162.5,
+          "seq": 159,
+          "press": 318,
+          "held": false,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 19685.200000000186,
+          "seq": 171,
+          "press": 343,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 19702.100000000093,
+          "time": 7.483333333333312,
+          "ready": 7.103333333333315,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 19729.5,
+          "time": 7.499999999999979,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 20044.100000000093,
+          "seq": 172,
+          "press": 343,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 20044.200000000186,
+          "seq": 173,
+          "press": 343,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 20044.30000000028,
+          "seq": 174,
+          "press": 343,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 20044.30000000028,
+          "seq": 175,
+          "press": 343,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 20044.400000000373,
+          "seq": 176,
+          "press": 343,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 20044.400000000373,
+          "seq": 177,
+          "press": 343,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 20044.5,
+          "seq": 178,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 20044.5,
+          "seq": 179,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 20044.600000000093,
+          "seq": 180,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20044.600000000093,
+          "time": 7.516666666666645,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20044.80000000028,
+          "time": 7.533333333333312,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20045,
+          "time": 7.5499999999999785,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20045.200000000186,
+          "time": 7.566666666666645,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20045.30000000028,
+          "time": 7.583333333333312,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20045.5,
+          "time": 7.599999999999978,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20048.80000000028,
+          "time": 7.616666666666645,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20082.700000000186,
+          "time": 7.6333333333333115,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20082.900000000373,
+          "time": 7.649999999999978,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20097.700000000186,
+          "time": 7.666666666666645,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20124.900000000373,
+          "time": 7.683333333333311,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20144.400000000373,
+          "time": 7.699999999999978,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20160.80000000028,
+          "time": 7.716666666666645,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20193.200000000186,
+          "time": 7.733333333333311,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20193.600000000093,
+          "time": 7.749999999999978,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20208.900000000373,
+          "time": 7.766666666666644,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20228.80000000028,
+          "time": 7.783333333333311,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20240.30000000028,
+          "time": 7.799999999999978,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20259.900000000373,
+          "time": 7.816666666666644,
+          "ready": 7.803333333333312,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20279.700000000186,
+          "time": 7.833333333333311,
+          "ready": 8.136666666666644,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20280.100000000093,
+          "time": 7.849999999999977,
+          "ready": 8.136666666666644,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "receive",
+          "at": 20457.200000000186,
+          "seq": 181,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 20485,
+          "seq": 182,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "receive",
+          "at": 20485.100000000093,
+          "seq": 183,
+          "held": true,
+          "accepted": true
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20485.200000000186,
+          "time": 8.033333333333312,
+          "ready": 8.136666666666644,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20485.5,
+          "time": 8.04999999999998,
+          "ready": 8.136666666666644,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20498,
+          "time": 8.066666666666647,
+          "ready": 8.136666666666644,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20512.80000000028,
+          "time": 8.083333333333314,
+          "ready": 8.136666666666644,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        },
+        {
+          "kind": "cast-attempt",
+          "at": 20538.200000000186,
+          "time": 8.099999999999982,
+          "ready": 8.136666666666644,
+          "aim": {
+            "x": 0,
+            "y": 0,
+            "z": -5,
+            "body": false,
+            "invalid": false
+          },
+          "principle": "Ember"
+        }
+      ],
+      "host": {
+        "build": "f41661a873eb",
+        "protocol": 2,
+        "role": "host",
+        "status": "connected",
+        "forceRelay": false,
+        "combatTelemetry": "authoritative-local",
+        "turnStatus": "local",
+        "snapshotsSent": 149,
+        "snapshotsReceived": 0,
+        "lastOutgoingSnapshotJsonBytes": 3355,
+        "scheduledSnapshotJsonBytes": 539268,
+        "snapshotIntervals": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "snapshotApply": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "hostTickPacing": {
+          "samples": 180,
+          "meanMs": 21.935555555555037,
+          "p95Ms": 34.6999999997206
+        },
+        "hostStep": {
+          "samples": 180,
+          "meanMs": 0.5577777777565643,
+          "p95Ms": 2
+        },
+        "serialization": {
+          "samples": 151,
+          "meanMs": 0.42847682119945424,
+          "p95Ms": 1.1000000000931323
+        },
+        "wireBytes": {
+          "samples": 151,
+          "mean": 3615.7417218543046,
+          "max": 5829
+        },
+        "inputAcknowledgement": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "ackSample": 0,
+        "scheduled": 2,
+        "peakScheduled": 3,
+        "snapshotsScheduled": 151,
+        "droppedSnapshots": 0,
+        "presentation": {
+          "interpolation": true,
+          "delayMs": 75,
+          "frames": 0,
+          "resets": 1,
+          "underruns": 0,
+          "prediction": true,
+          "replayFrames": 0,
+          "droppedReplay": 0,
+          "correctionDistances": []
+        },
+        "statsAvailable": true,
+        "paths": [
+          {
+            "selected": true,
+            "state": "succeeded",
+            "localType": "host",
+            "remoteType": "host",
+            "relayProtocol": null,
+            "rttMs": 7,
+            "bytesSent": 590343,
+            "bytesReceived": 127656,
+            "channels": [
+              {
+                "state": "open",
+                "messagesSent": 153,
+                "messagesReceived": 207,
+                "bytesSent": 555114,
+                "bytesReceived": 100867
+              }
+            ]
+          }
+        ]
+      },
+      "guest": {
+        "build": "f41661a873eb",
+        "protocol": 2,
+        "role": "guest",
+        "status": "connected",
+        "forceRelay": false,
+        "combatTelemetry": "host-only; export on host",
+        "turnStatus": "local",
+        "snapshotsSent": 0,
+        "snapshotsReceived": 149,
+        "lastOutgoingSnapshotJsonBytes": null,
+        "scheduledSnapshotJsonBytes": 0,
+        "snapshotIntervals": {
+          "samples": 148,
+          "meanMs": 71.75,
+          "p95Ms": 346.89999999990687
+        },
+        "snapshotApply": {
+          "samples": 149,
+          "meanMs": 1.085234899330109,
+          "p95Ms": 2
+        },
+        "hostTickPacing": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "hostStep": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "serialization": {
+          "samples": 0,
+          "meanMs": null,
+          "p95Ms": null
+        },
+        "wireBytes": {
+          "samples": 0,
+          "mean": null,
+          "max": null
+        },
+        "inputAcknowledgement": {
+          "samples": 104,
+          "meanMs": 161.75576923076565,
+          "p95Ms": 516.8999999999069
+        },
+        "ackSample": 405,
+        "scheduled": 2,
+        "peakScheduled": 4,
+        "snapshotsScheduled": 0,
+        "droppedSnapshots": 0,
+        "presentation": {
+          "interpolation": true,
+          "delayMs": 75,
+          "frames": 12,
+          "resets": 5,
+          "underruns": 12,
+          "prediction": true,
+          "replayFrames": 14,
+          "droppedReplay": 50,
+          "correctionDistances": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.0000503605686941276,
+            0.00009990646034305179,
+            8.365714004148841e-8,
+            6.252412471115987e-7,
+            0.0006721921971455118,
+            0.00010008646388484033,
+            0.00011801953685690948,
+            0.0006720389324780388,
+            0.00047211765313839605,
+            0.00010008801533406658,
+            0.00011793058298338545,
+            0.0006721622599073639,
+            0.00010008595139254684,
+            0.000018037207432438238,
+            0.0000012414933713553736,
+            0.00010000552611655043,
+            0.00011788351424163388,
+            0.0006721391231565034,
+            0.00010008689922531535,
+            0.0000014674643541330545,
+            8.418526880797496e-7,
+            0,
+            0,
+            0.0006722136428619092,
+            0,
+            1.115522555628045e-7,
+            0.0004720601712333227,
+            0.0005720707107566285,
+            0,
+            0.00047204926257219564,
+            0.000118052589375096,
+            6.918301455778473e-7,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0.000672146911434684,
+            0.00037220872823680523,
+            0.0005722421778366767,
+            0.0000715402344470312,
+            3.3068552407871596e-7,
+            0.17511119438599582,
+            0.13412840721921152,
+            0.11139319200854345,
+            0.17977897689118333,
+            0.09227932709672552,
+            0.09341706389862174,
+            0.00020000009068267945,
+            0.000299990177154541,
+            0.00020003389828979773,
+            0.00010007761857125571,
+            0,
+            0,
+            1.4959368854761124e-8,
+            7.479684427380562e-8,
+            5.98374754190445e-8,
+            0,
+            0.00009995217356029207,
+            2.991873770952225e-8,
+            7.479684427380562e-8,
+            2.991873770952225e-8,
+            3.0107231815670954e-7,
+            2.991873770952225e-8,
+            4.487810656428337e-8,
+            2.991873770952225e-8,
+            7.479684427380562e-8,
+            5.98374754190445e-8,
+            4.487810656428337e-8,
+            3.143233770394333e-7,
+            0.00005349102572101384,
+            0,
+            0.00009998850168133793,
+            0.0000019174539953679,
+            0.00009991809914258068,
+            0.00010009057448244848,
+            0,
+            0.0005038005800685767,
+            0.00019995651684867765,
+            0.00010010845510659385,
+            0.00009226565256227097,
+            0.0000011706977304431453,
+            7.885282620367936e-7,
+            0.00010010747807247658,
+            0,
+            0.00020004452040122344,
+            0.0006935162339727395,
+            0.00028729172993331595,
+            0.00009995816140321906,
+            0,
+            0,
+            0,
+            0,
+            0.0000016129555478404317,
+            0,
+            0.00010004557690981274,
+            0.0002999077938412422,
+            0.0004998570087209896,
+            0.0006005267598186351,
+            0,
+            0,
+            0,
+            0,
+            0.00010012309831389024,
+            0.055563394063538725,
+            0,
+            0.04771540546343595,
+            0.22467651650312792,
+            0.06800990936576115,
+            0.1067000650957206,
+            0.3145022385478243,
+            0.5791654323870005,
+            0.32419425459432427,
+            0.09341797895203391,
+            0.00019996670650550746,
+            0.00030003194635412156,
+            0.00010000229227707342,
+            3.830356774760991e-7,
+            3.9670177934490953e-7,
+            0.00009997391736795123,
+            0,
+            0,
+            0,
+            5.396517013548709e-7,
+            6.175392032329157e-7,
+            9.033912683872155e-7,
+            0.00009992945283993985,
+            0.0000014888582386717102,
+            4.7561413516331867e-7,
+            0.0001000398626739345,
+            0.00010001691818604209,
+            9.322181017363061e-7,
+            3.2147975072144113e-7,
+            0.0001999671524206117
+          ]
+        },
+        "statsAvailable": true,
+        "paths": [
+          {
+            "selected": true,
+            "state": "succeeded",
+            "localType": "host",
+            "remoteType": "host",
+            "relayProtocol": null,
+            "rttMs": 2,
+            "bytesSent": 127656,
+            "bytesReceived": 590343,
+            "channels": [
+              {
+                "state": "open",
+                "messagesSent": 207,
+                "messagesReceived": 153,
+                "bytesSent": 100867,
+                "bytesReceived": 555114
+              }
+            ]
+          }
+        ]
+      },
+      "hostRender": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 240,
+        "frameMs": 87.21875,
+        "p95FrameMs": 200,
+        "drawCalls": 35,
+        "triangles": 808,
+        "activeVfx": 0,
+        "geometries": 15,
+        "textures": 1,
+        "contextLost": false
+      },
+      "guestRender": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 145,
+        "frameMs": 136.20137931034483,
+        "p95FrameMs": 333.3000000000011,
+        "drawCalls": 35,
+        "triangles": 808,
+        "activeVfx": 0,
+        "geometries": 15,
+        "textures": 1,
+        "contextLost": false
+      }
+    }
+  ],
+  "phaseTaps": [
+    {
+      "requestedPhase": 2,
+      "actualPhase": 46.1999999997206
+    },
+    {
+      "requestedPhase": 14,
+      "actualPhase": 46.799999999813735
+    },
+    {
+      "requestedPhase": 25,
+      "actualPhase": 41.89999999990687
+    }
+  ],
+  "mouseTaps": [
+    1,
+    1,
+    1
+  ],
+  "remoteTrace": [
+    {
+      "at": 27427.099999999627,
+      "tick": 883,
+      "auth": {
+        "x": -3.9999988079071045,
+        "y": 0.7197290062904358,
+        "z": 5.000000953674316
+      },
+      "visible": {
+        "x": -3.9999990317889624,
+        "y": 0.7197290062904358,
+        "z": 5.000000953674316
+      }
+    },
+    {
+      "at": 27432.099999999627,
+      "tick": 883,
+      "auth": {
+        "x": -3.9999988079071045,
+        "y": 0.7197290062904358,
+        "z": 5.000000953674316
+      },
+      "visible": {
+        "x": -3.9999990463256836,
+        "y": 0.7197290062904358,
+        "z": 5.000000953674316
+      }
+    },
+    {
+      "at": 27510.5,
+      "tick": 887,
+      "auth": {
+        "x": -3.719998836517334,
+        "y": 0.7200267314910889,
+        "z": 5.000000953674316
+      },
+      "visible": {
+        "x": -3.9999989612102507,
+        "y": 0.7197290062904358,
+        "z": 5.000000953674316
+      }
+    },
+    {
+      "at": 27605.799999999814,
+      "tick": 894,
+      "auth": {
+        "x": -3.066654682159424,
+        "y": 0.7185508012771606,
+        "z": 4.999939441680908
+      },
+      "visible": {
+        "x": -3.9999988079071045,
+        "y": 0.7197290062904358,
+        "z": 5.000000953674316
+      }
+    },
+    {
+      "at": 27695.69999999972,
+      "tick": 898,
+      "auth": {
+        "x": -2.6933209896087646,
+        "y": 0.7189436554908752,
+        "z": 4.99993896484375
+      },
+      "visible": {
+        "x": -3.8481828234210536,
+        "y": 0.7198904328942283,
+        "z": 5.000000953674316
+      }
+    },
+    {
+      "at": 27791.599999999627,
+      "tick": 905,
+      "auth": {
+        "x": -2.0399880409240723,
+        "y": 0.7196499705314636,
+        "z": 4.99993896484375
+      },
+      "visible": {
+        "x": -3.2749533674896005,
+        "y": 0.7196606461842961,
+        "z": 4.999952917989095
+      }
+    },
+    {
+      "at": 27890.5,
+      "tick": 910,
+      "auth": {
+        "x": -1.5732556581497192,
+        "y": 0.7210115194320679,
+        "z": 4.999941349029541
+      },
+      "visible": {
+        "x": -2.658899689104217,
+        "y": 0.7189808053970315,
+        "z": 4.99993896484375
+      }
+    },
+    {
+      "at": 27995.399999999907,
+      "tick": 917,
+      "auth": {
+        "x": -0.9199913740158081,
+        "y": 0.7200641632080078,
+        "z": 4.999943733215332
+      },
+      "visible": {
+        "x": -2.042900040628604,
+        "y": 0.7196468152999855,
+        "z": 4.99993896484375
+      }
+    },
+    {
+      "at": 28104.099999999627,
+      "tick": 921,
+      "auth": {
+        "x": -0.5466147065162659,
+        "y": 0.7211036086082458,
+        "z": 4.999945640563965
+      },
+      "visible": {
+        "x": -1.4268323449473836,
+        "y": 0.720480270640063,
+        "z": 4.999939852905274
+      }
+    },
+    {
+      "at": 28192.69999999972,
+      "tick": 928,
+      "auth": {
+        "x": 0.10672386735677719,
+        "y": 0.7200530171394348,
+        "z": 4.999943256378174
+      },
+      "visible": {
+        "x": -0.8108907117745878,
+        "y": 0.7203678891539514,
+        "z": 4.999944290542603
+      }
+    },
+    {
+      "at": 28275.5,
+      "tick": 935,
+      "auth": {
+        "x": 0.6677536368370056,
+        "y": 0.720180094242096,
+        "z": 4.999932289123535
+      },
+      "visible": {
+        "x": -0.29774811177617677,
+        "y": 0.7204344638586102,
+        "z": 4.999953905534745
+      }
+    },
+    {
+      "at": 28401.099999999627,
+      "tick": 941,
+      "auth": {
+        "x": 1.0440267324447632,
+        "y": 0.720094621181488,
+        "z": 4.999974250793457
+      },
+      "visible": {
+        "x": 0.31826982972055895,
+        "y": 0.7199947890877729,
+        "z": 4.999933529186249
+      }
+    },
+    {
+      "at": 28530.799999999814,
+      "tick": 949,
+      "auth": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      },
+      "visible": {
+        "x": 0.8419500747062448,
+        "y": 0.7201779803395272,
+        "z": 4.99995839767456
+      }
+    },
+    {
+      "at": 28620.69999999972,
+      "tick": 953,
+      "auth": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      },
+      "visible": {
+        "x": 1.044026651120186,
+        "y": 0.719958463507893,
+        "z": 4.999974088144302
+      }
+    },
+    {
+      "at": 28658.599999999627,
+      "tick": 957,
+      "auth": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      },
+      "visible": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      }
+    },
+    {
+      "at": 28756.299999999814,
+      "tick": 961,
+      "auth": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      },
+      "visible": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      }
+    },
+    {
+      "at": 28882.69999999972,
+      "tick": 968,
+      "auth": {
+        "x": 1.0440266132354736,
+        "y": 0.7195954322814941,
+        "z": 4.999973773956299
+      },
+      "visible": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      }
+    },
+    {
+      "at": 28934.19999999972,
+      "tick": 973,
+      "auth": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      },
+      "visible": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      }
+    },
+    {
+      "at": 29017.599999999627,
+      "tick": 977,
+      "auth": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      },
+      "visible": {
+        "x": 1.044026600074768,
+        "y": 0.7196064741134651,
+        "z": 4.999973773956299
+      }
+    },
+    {
+      "at": 29106.5,
+      "tick": 981,
+      "auth": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      },
+      "visible": {
+        "x": 1.044026494026184,
+        "y": 0.7196954488754272,
+        "z": 4.999973773956299
+      }
+    }
+  ],
+  "hostTrace": {
+    "start": 28526.200000000186,
+    "rows": [
+      {
+        "at": 28565.5,
+        "auth": {
+          "x": -3.9999990463256836,
+          "y": 0.7197290062904358,
+          "z": 5.000000953674316
+        },
+        "visible": {
+          "x": -3.9999990463256836,
+          "y": 0.7197290062904358,
+          "z": 5.000000953674316
+        }
+      },
+      {
+        "at": 28653.900000000373,
+        "auth": {
+          "x": -3.346726417541504,
+          "y": 0.7200430631637573,
+          "z": 4.99995756149292
+        },
+        "visible": {
+          "x": -3.346726417541504,
+          "y": 0.7200430631637573,
+          "z": 4.99995756149292
+        }
+      },
+      {
+        "at": 28743.30000000028,
+        "auth": {
+          "x": -2.8799877166748047,
+          "y": 0.7187460064888,
+          "z": 4.999939441680908
+        },
+        "visible": {
+          "x": -2.8799877166748047,
+          "y": 0.7187460064888,
+          "z": 4.999939441680908
+        }
+      },
+      {
+        "at": 28829.900000000373,
+        "auth": {
+          "x": -2.3199880123138428,
+          "y": 0.7193465828895569,
+          "z": 4.99993896484375
+        },
+        "visible": {
+          "x": -2.3199880123138428,
+          "y": 0.7193465828895569,
+          "z": 4.99993896484375
+        }
+      },
+      {
+        "at": 28930.30000000028,
+        "auth": {
+          "x": -1.7599883079528809,
+          "y": 0.719955563545227,
+          "z": 4.99993896484375
+        },
+        "visible": {
+          "x": -1.7599883079528809,
+          "y": 0.719955563545227,
+          "z": 4.99993896484375
+        }
+      },
+      {
+        "at": 29025,
+        "auth": {
+          "x": -1.293251872062683,
+          "y": 0.7199956178665161,
+          "z": 4.999938488006592
+        },
+        "visible": {
+          "x": -1.293251872062683,
+          "y": 0.7199956178665161,
+          "z": 4.999938488006592
+        }
+      },
+      {
+        "at": 29136.100000000093,
+        "auth": {
+          "x": -0.6399368643760681,
+          "y": 0.7200574278831482,
+          "z": 4.999928951263428
+        },
+        "visible": {
+          "x": -0.6399368643760681,
+          "y": 0.7200574278831482,
+          "z": 4.999928951263428
+        }
+      },
+      {
+        "at": 29240,
+        "auth": {
+          "x": 0.013361319899559021,
+          "y": 0.7200462222099304,
+          "z": 4.999958038330078
+        },
+        "visible": {
+          "x": 0.013361319899559021,
+          "y": 0.7200462222099304,
+          "z": 4.999958038330078
+        }
+      },
+      {
+        "at": 29322.900000000373,
+        "auth": {
+          "x": 0.4801245927810669,
+          "y": 0.7200197577476501,
+          "z": 4.999990463256836
+        },
+        "visible": {
+          "x": 0.4801245927810669,
+          "y": 0.7200197577476501,
+          "z": 4.999990463256836
+        }
+      },
+      {
+        "at": 29469.900000000373,
+        "auth": {
+          "x": 1.0440268516540527,
+          "y": 0.7200543880462646,
+          "z": 4.999974250793457
+        },
+        "visible": {
+          "x": 1.0440268516540527,
+          "y": 0.7200543880462646,
+          "z": 4.999974250793457
+        }
+      },
+      {
+        "at": 29580,
+        "auth": {
+          "x": 1.0440267324447632,
+          "y": 0.719495415687561,
+          "z": 4.999973773956299
+        },
+        "visible": {
+          "x": 1.0440267324447632,
+          "y": 0.719495415687561,
+          "z": 4.999973773956299
+        }
+      },
+      {
+        "at": 29666.200000000186,
+        "auth": {
+          "x": 1.0440266132354736,
+          "y": 0.7195954322814941,
+          "z": 4.999973773956299
+        },
+        "visible": {
+          "x": 1.0440266132354736,
+          "y": 0.7195954322814941,
+          "z": 4.999973773956299
+        }
+      },
+      {
+        "at": 29716.400000000373,
+        "auth": {
+          "x": 1.0440266132354736,
+          "y": 0.7195954322814941,
+          "z": 4.999973773956299
+        },
+        "visible": {
+          "x": 1.0440266132354736,
+          "y": 0.7195954322814941,
+          "z": 4.999973773956299
+        }
+      },
+      {
+        "at": 29794.5,
+        "auth": {
+          "x": 1.0440266132354736,
+          "y": 0.7195954322814941,
+          "z": 4.999973773956299
+        },
+        "visible": {
+          "x": 1.0440266132354736,
+          "y": 0.7195954322814941,
+          "z": 4.999973773956299
+        }
+      },
+      {
+        "at": 29930.600000000093,
+        "auth": {
+          "x": 1.0440266132354736,
+          "y": 0.7195954322814941,
+          "z": 4.999973773956299
+        },
+        "visible": {
+          "x": 1.0440266132354736,
+          "y": 0.7195954322814941,
+          "z": 4.999973773956299
+        }
+      },
+      {
+        "at": 30020.600000000093,
+        "auth": {
+          "x": 1.044026494026184,
+          "y": 0.7196954488754272,
+          "z": 4.999973773956299
+        },
+        "visible": {
+          "x": 1.044026494026184,
+          "y": 0.7196954488754272,
+          "z": 4.999973773956299
+        }
+      },
+      {
+        "at": 30059.200000000186,
+        "auth": {
+          "x": 1.0440266132354736,
+          "y": 0.7195954322814941,
+          "z": 4.999973773956299
+        },
+        "visible": {
+          "x": 1.0440266132354736,
+          "y": 0.7195954322814941,
+          "z": 4.999973773956299
+        }
+      },
+      {
+        "at": 30148.900000000373,
+        "auth": {
+          "x": 1.044026494026184,
+          "y": 0.7197832465171814,
+          "z": 4.999973773956299
+        },
+        "visible": {
+          "x": 1.044026494026184,
+          "y": 0.7197832465171814,
+          "z": 4.999973773956299
+        }
+      }
+    ]
+  },
+  "errors": []
+}

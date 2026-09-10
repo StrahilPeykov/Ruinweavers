@@ -34,6 +34,18 @@ test("measure real guest taps, held cast and movement over WebRTC with matched a
     await a.waitForFunction(
       () => window.__RUINWEAVERS__.getState().trial.status === "active",
     );
+    mkdirSync("artifacts/smoothness", { recursive: true });
+    writeFileSync(
+      `artifacts/smoothness/${label}-environment.json`,
+      JSON.stringify(
+        await b.evaluate(() => ({
+          build: window.__RUINWEAVERS__.getNetworkState().build,
+          render: window.__RUINWEAVERS__.getMetrics().render,
+        })),
+        null,
+        2,
+      ),
+    );
     // Observe actual mailbox/cast decisions; these wrappers never supply inputs or alter returns.
     if (process.env.RUIN_INPUT_TRACE === "1")
       await a.evaluate(async () => {
@@ -105,6 +117,13 @@ test("measure real guest taps, held cast and movement over WebRTC with matched a
           delayMs,
         );
       await b.waitForTimeout(400);
+      // A headed browser can inherit the real cursor over unsupported geometry.
+      // Establish a valid aim through actual pointer input for the keyboard tap test.
+      await b.bringToFront();
+      const floorAim = await b.evaluate(() =>
+        window.__RUINWEAVERS__.projectWorld({ x: 1, y: 0, z: 2 }),
+      );
+      await b.mouse.move(floorAim.x, floorAim.y);
       const startCount =
         (await state(a)).metrics.outcomes["mage-2:cast:Ember:primary"] ?? 0;
       for (const phase of [5, 16, 25]) {

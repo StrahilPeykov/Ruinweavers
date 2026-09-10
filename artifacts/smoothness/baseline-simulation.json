@@ -1,0 +1,36 @@
+{
+  "build": "f7df5dd2af56b5d9b28296870fed50dbe75796de",
+  "environment": "Node, actual Simulation/Rapier; mocked input transport; not WebRTC or GPU",
+  "tapAt116Released133AfterSend100": {
+    "version": 1,
+    "seq": 1,
+    "epoch": 0,
+    "input": {
+      "moveX": 0,
+      "moveZ": 0,
+      "aim": {
+        "x": 0,
+        "y": 0,
+        "z": -5
+      },
+      "primary": false,
+      "secondary": false,
+      "dodge": false,
+      "interact": false,
+      "cycle": 0,
+      "select": "Ember"
+    },
+    "clear": false
+  },
+  "fullStateBytes": {
+    "mean": 13309.7,
+    "p95": 14972,
+    "max": 15648
+  },
+  "fullStateCloneAndJsonMs": {
+    "mean": 0.381713000000002,
+    "p95": 0.5086999999999762,
+    "max": 2.7065000000000055
+  },
+  "samples": 200
+}

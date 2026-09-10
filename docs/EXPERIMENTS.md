@@ -91,3 +91,8 @@ The old questionnaire is no longer a gate. Co-op Trial 0.1 is explicitly authori
 ## Device rendering comparison (2026-09-09)
 
 Owner-reported remote co-op is smooth on the stronger host but choppy on the weaker laptop. Retain all gameplay defaults. Add one optional local Lightweight rendering mode (reduced resolution, shadows off); Standard remains default. This tests rendering cost without confounding combat or authority rules. Current export proves slow frames (~23 FPS), not a GPU, CPU or TURN diagnosis. New observation exports separate rendering context and selected ICE/snapshot statistics. Local structural/browser checks pass; remote FPS benefit remains unvalidated. See `TESTING.md` and `COOP.md`.
+
+
+## Co-op smoothness and input (2026-09-10)
+
+Keep gameplay defaults and device quality preferences. Protocol 2 enables bounded remote interpolation and separate local guest walking prediction; Primary press intent survives sample/send boundaries and reordered release packets without bypassing cooldown. Measured local Edge/Intel UHD input and presentation evidence, software limits and failed iterations are in [SMOOTHNESS](SMOOTHNESS.md). No balance or allied-interference change. This finite pass ends here; the next intended milestone is the first small roguelite run/build loop, not further open-ended networking work.
