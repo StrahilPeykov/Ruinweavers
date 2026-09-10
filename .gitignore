@@ -22,3 +22,7 @@ artifacts/art-proof/raw/
 
 artifacts/art-proof/iterations/
 artifacts/art-proof/**/raw/
+artifacts/art-finish/**/raw/
+# Selected full-size views and compact clips are packaged in public/art-finish.
+artifacts/art-finish/motion/*.png
+artifacts/art-finish/native-probe/*.png

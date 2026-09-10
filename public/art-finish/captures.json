@@ -1,0 +1,34 @@
+[
+  {
+    "file": "storybook-flow-echo.mp4",
+    "build": "3e5e03333abb",
+    "start": 2.9690000000000003,
+    "duration": 10.958333,
+    "source": "Actual WebGL/DOM browser video, silent, no speed-up",
+    "fixture": "Existing run reward/encounter lifecycle reached with labelled HP fixtures; measured sequence uses real browser controls and real simulation/physics. Same seed/layout/actors/actions for A and B."
+  },
+  {
+    "file": "storybook-capacity-tether.mp4",
+    "build": "3e5e03333abb",
+    "start": 3.9800000000000004,
+    "duration": 11.583333,
+    "source": "Actual WebGL/DOM browser video, silent, no speed-up",
+    "fixture": "Existing run reward/encounter lifecycle reached with labelled HP fixtures; measured sequence uses real browser controls and real simulation/physics. Same seed/layout/actors/actions for A and B."
+  },
+  {
+    "file": "illustrated-flow-echo.mp4",
+    "build": "3e5e03333abb",
+    "start": 4.281000000000001,
+    "duration": 12.583333,
+    "source": "Actual WebGL/DOM browser video, silent, no speed-up",
+    "fixture": "Existing run reward/encounter lifecycle reached with labelled HP fixtures; measured sequence uses real browser controls and real simulation/physics. Same seed/layout/actors/actions for A and B."
+  },
+  {
+    "file": "illustrated-capacity-tether.mp4",
+    "build": "3e5e03333abb",
+    "start": 4.247,
+    "duration": 12.291667,
+    "source": "Actual WebGL/DOM browser video, silent, no speed-up",
+    "fixture": "Existing run reward/encounter lifecycle reached with labelled HP fixtures; measured sequence uses real browser controls and real simulation/physics. Same seed/layout/actors/actions for A and B."
+  }
+]

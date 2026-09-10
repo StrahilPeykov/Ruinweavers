@@ -1,7 +1,15 @@
 import { test, expect } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
 // Run this separately, without video recording/encoding or another browser suite.
-for (const art of ["off", "storybook", "ink"])
+const finish = process.env.RUIN_ART_FINISH === "1";
+const quality =
+  process.env.RUIN_ART_QUALITY === "standard" ? "standard" : "lightweight";
+const output = finish
+  ? "artifacts/art-finish/performance"
+  : "artifacts/art-proof/performance";
+for (const art of finish
+  ? ["storybook", "illustrated"]
+  : ["off", "storybook", "ink"])
   test(`isolated render sample: ${art}`, async ({ browser }) => {
     test.setTimeout(90000);
     const ca = await browser.newContext({
@@ -12,7 +20,7 @@ for (const art of ["off", "storybook", "ink"])
       b = await cb.newPage();
     try {
       for (const p of [a, b]) {
-        await p.goto(`/?scene=trial/mixed&art=${art}&quality=lightweight`);
+        await p.goto(`/?scene=trial/mixed&art=${art}&quality=${quality}`);
         await p.waitForFunction(() => !!window.__RUINWEAVERS__);
         await p.getByText("Connection options", { exact: true }).click();
         await p.locator("#signaling").selectOption("local");
@@ -71,6 +79,19 @@ for (const art of ["off", "storybook", "ink"])
       await a.waitForFunction(
         () => window.__RUINWEAVERS__.getState().fields.length === 2,
       );
+      // A slow software renderer may take longer than ordinary field lifetime
+      // to produce 60 frames. Hold the matched load only in this measurement.
+      const loadEpoch = await a.evaluate(() => {
+        const api = window.__RUINWEAVERS__;
+        api.setPaused(true);
+        api.setupTestState({ fieldLife: 120 });
+        api.setPaused(false);
+        return api.getState().party.epoch;
+      });
+      await b.waitForFunction(
+        (e) => window.__RUINWEAVERS__.getState().party.epoch === e,
+        loadEpoch,
+      );
       for (const [i, p] of [a, b].entries()) {
         await p.keyboard.press(i ? "4" : "1");
         const xy = await p.evaluate(
@@ -120,13 +141,13 @@ for (const art of ["off", "storybook", "ink"])
       );
       for (const p of [a, b]) await p.keyboard.up("j");
       expect(samples[0].fields).toBe(2);
-      mkdirSync("artifacts/art-proof/performance", { recursive: true });
+      mkdirSync(output, { recursive: true });
       writeFileSync(
-        `artifacts/art-proof/performance/${art}.json`,
+        `${output}/${art}${quality === "standard" ? "-standard" : ""}.json`,
         JSON.stringify(
           {
             conditions:
-              "Two same-machine WebRTC browsers; four existing enemies with AI disabled for repeatability; two real fields and held Ember/Stone casting; 60 requestAnimationFrame intervals per client; no video/encoding; software renderer is reported, not hardware GPU extrapolation.",
+              "Two same-machine WebRTC browsers; four existing enemies with AI disabled for repeatability; two real fields (120 s lifetime measurement fixture only) and held Ember/Stone casting; 60 requestAnimationFrame intervals per client; no video/encoding; software renderer is reported, not hardware GPU extrapolation.",
             samples,
           },
           null,

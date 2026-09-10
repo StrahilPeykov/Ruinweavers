@@ -1,0 +1,115 @@
+{
+  "tool": "Blender 5.2 / glTF Transform / Khronos validator",
+  "assets": [
+    {
+      "path": "public/art/illustrated/ballast.glb",
+      "bytes": 40916,
+      "sourceBytes": 28224,
+      "meshes": 1,
+      "materials": 3,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/illustrated/cover.glb",
+      "bytes": 84024,
+      "sourceBytes": 72132,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/illustrated/landmark.glb",
+      "bytes": 100924,
+      "sourceBytes": 88968,
+      "meshes": 1,
+      "materials": 5,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/illustrated/loose.glb",
+      "bytes": 23752,
+      "sourceBytes": 5068,
+      "meshes": 1,
+      "materials": 2,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/illustrated/mage.glb",
+      "bytes": 165800,
+      "sourceBytes": 218864,
+      "meshes": 11,
+      "materials": 8,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/illustrated/pursuer.glb",
+      "bytes": 86752,
+      "sourceBytes": 82284,
+      "meshes": 1,
+      "materials": 5,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/illustrated/sentinel.glb",
+      "bytes": 75296,
+      "sourceBytes": 62420,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/illustrated/surround.glb",
+      "bytes": 706772,
+      "sourceBytes": 713016,
+      "meshes": 1,
+      "materials": 5,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/illustrated/timber.glb",
+      "bytes": 48812,
+      "sourceBytes": 34548,
+      "meshes": 1,
+      "materials": 3,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/illustrated/vessel.glb",
+      "bytes": 42132,
+      "sourceBytes": 28036,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    }
+  ]
+}

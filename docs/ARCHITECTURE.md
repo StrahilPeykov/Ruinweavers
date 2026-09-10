@@ -51,3 +51,5 @@ Application delay queues are capped at 24; input generations and epochs cancel o
 ## Art proof presentation
 
 `render/art.ts` loads device-local GLB assets and adapts models/materials/animation only on the third/mixed encounter. Root startup opens the proof; explicit run/Lab/trial links keep their existing simulation. No art nodes enter picking or Rapier. Source/export/ownership rules: ART.md. Asset bytes join source bytes in the build identifier.
+
+The current `illustrated` benchmark retains both earlier libraries. `render/performance.ts` poses named mage joints from entity velocity, simulation time and source-filtered authoritative cast/hit events. It writes transforms only; pause does not advance gait. One shared broad pigment texture and built-in Toon materials use explicit glTF properties/vertex color. Actor contour hulls share immutable geometry; instance materials are released on reset. The surrounding visual wall matches the existing envelope; no decoration joins collision or aiming queries.

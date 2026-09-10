@@ -1,4 +1,10 @@
-## 2026-09-10 — Bounded art direction proof
+## 2026-09-10 — One illustrated benchmark
+
+- Replace the provisional Storybook preference with a bright illustrated working treatment for one court. Shared-geometry comparison shows graphic treatment need not be dark; it does not isolate palette from shading. Preserve both old proofs and evidence.
+- More human proportions and cosmetic joint performance; broad shared pigment/vertex colors and crafted stone repairs. Built-in Toon plus restrained actor contours, no post-processing framework. Existing spells, states, timing, collision and network authority remain unchanged.
+- Root opens the benchmark, instruments collapsed. No automatic five-room rollout. Current rules, original source/export workflow, clips and hardware/software measurement limits are in ART.md.
+
+## Historical 2026-09-10 — Bounded art direction proof
 
 - Recommend Sculptural Storybook: fitted construction, compact travelling mages, upright aperture sentinels versus low carapace pursuers. Retain Ink & Pigment for direct comparison; Weathered Mythic stays a labelled concept proposal. This is visual judgment, not a numerical taste score.
 - Original scripted Blender → GLB assets; standard glTF material vocabulary, built-in Three.js Standard/Toon materials and small exported mantle animation. No texture pack, external art or new renderer. Lightweight carries the identity without shadows.

@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ruinweavers — one painted court</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font:
+        16px/1.55 system-ui,
+        sans-serif;
+      background: #203840;
+      color: #e3e9df;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    main {
+      max-width: 1280px;
+      margin: auto;
+      padding: 40px 24px 70px;
+    }
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      color: #f1dfb1;
+      line-height: 1.15;
+    }
+    h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      margin: 8px 0 20px;
+    }
+    h2 {
+      font-size: 30px;
+      margin: 0 0 16px;
+    }
+    h3 {
+      font-size: 22px;
+    }
+    .eyebrow {
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: #accccb;
+    }
+    p {
+      max-width: 850px;
+    }
+    a {
+      color: #f1dfb1;
+      text-underline-offset: 4px;
+    }
+    nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 24px 0;
+    }
+    nav a {
+      border: 1px solid #9b997a;
+      border-radius: 4px;
+      padding: 10px 17px;
+      text-decoration: none;
+    }
+    nav a:first-child {
+      background: #e2c58d;
+      color: #243e47;
+      border-color: #e2c58d;
+    }
+    section {
+      margin-top: 44px;
+      padding-top: 30px;
+      border-top: 1px solid #526c6e;
+    }
+    img,
+    video {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      background: #172e35;
+    }
+    figure {
+      margin: 0;
+    }
+    figcaption,
+    .note {
+      font-size: 14px;
+      color: #b8d0cb;
+      margin: 10px 0 24px;
+    }
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .pair h3 {
+      margin: 8px 0 12px;
+    }
+    details {
+      margin-top: 20px;
+    }
+    summary {
+      cursor: pointer;
+      color: #f1dfb1;
+    }
+    details img {
+      margin-top: 16px;
+    }
+    code {
+      color: #f1dfb1;
+    }
+    video {
+      aspect-ratio: 8/5;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: #b8d0cb;
+    }
+    @media (max-width: 700px) {
+      main {
+        padding: 24px 14px;
+      }
+      .pair {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <main>
+    <div class="eyebrow">Ruinweavers · illustrated benchmark</div>
+    <h1>One painted court.</h1>
+    <p>
+      A compact playable finish study: travelling human mages, surviving pigment
+      and crafted repairs inside old magical architecture. All images and clips
+      on this page are <strong>actual engine output</strong>, not concept art.
+    </p>
+    <nav>
+      <a href="/?scene=trial/mixed&art=illustrated">Play the painted court</a
+      ><a href="/?scene=run&art=illustrated">Run with the third-court sample</a
+      ><a href="/art-study/index.html"
+        >Previous proof &amp; labelled concepts</a
+      >
+    </nav>
+    <figure>
+      <a href="benchmark-comparison.jpg"
+        ><img
+          src="benchmark-comparison.jpg"
+          alt="Previous Storybook and refined painted court, same full gameplay camera"
+          width="1600"
+          height="590"
+      /></a>
+      <figcaption>
+        Quiet gameplay views without branding. The refined mage is fitted to the
+        existing gameplay body height; collision, camera and spells are
+        unchanged. Open an image for the full contact sheet.
+      </figcaption>
+    </figure>
+    <p>
+      <strong>Try it:</strong> WASD + pointer aim; hold LMB/J, RMB/F/K
+      Secondary, 1–4 or Tab/Q select, Space dodge, E revive/continue. Create
+      co-op and share the six-character code; your partner presses Enter to
+      join, then both Ready. The isolated court has no reward stop; the run link
+      and recorded sequences show alterations and rewards.
+    </p>
+
+    <section>
+      <h2>The corrective comparison</h2>
+      <img
+        src="shared-geometry-comparison.jpg"
+        alt="Identical old geometry with original versus bright illustrated treatment"
+        width="1600"
+        height="590"
+      />
+      <p>
+        The earlier comparison coupled dark colors, folded shapes and Toon
+        shading. This pair shares geometry: illustration can stay bright and
+        legible. Palette and shading still change together, so this is not an
+        isolated shader experiment. The bright illustrated treatment is the
+        working preference.
+      </p>
+      <nav>
+        <a href="/?scene=trial/mixed&art=storybook&treatment=illustrated"
+          >Try shared geometry / illustrated</a
+        ><a href="/?scene=trial/mixed&art=storybook">Original Storybook</a
+        ><a href="/?scene=trial/mixed&art=ink">Original Ink</a>
+      </nav>
+    </section>
+
+    <section>
+      <h2>In motion, through the same encounter</h2>
+      <p>
+        Two real local WebRTC clients, the same third court, camera, seed and
+        action sequence. Both players cast Ember, then perform an existing
+        reaction and alteration, move under enemy pressure, revive and choose
+        personal rewards. Silent clips retain recorded wall-clock speed.
+        Labelled HP/position/AI fixtures arrange the sample; spells and reward
+        choices use actual controls.
+      </p>
+      <div class="pair">
+        <figure>
+          <h3>Previous · flow &amp; echo</h3>
+          <video
+            controls
+            muted
+            playsinline
+            preload="metadata"
+            src="storybook-flow-echo.mp4"
+            poster="storybook-flow-echo-filmstrip.jpg"
+          ></video>
+          <figcaption>
+            Storybook geometry and original material treatment.
+          </figcaption>
+        </figure>
+        <figure>
+          <h3>Refined · flow &amp; echo</h3>
+          <video
+            controls
+            muted
+            playsinline
+            preload="metadata"
+            src="illustrated-flow-echo.mp4"
+            poster="illustrated-flow-echo-filmstrip.jpg"
+          ></video>
+          <figcaption>
+            Travelling Basin and the delayed Stone echo execute through the
+            unchanged simulation.
+          </figcaption>
+        </figure>
+        <figure>
+          <h3>Previous · capacity &amp; tether</h3>
+          <video
+            controls
+            muted
+            playsinline
+            preload="metadata"
+            src="storybook-capacity-tether.mp4"
+            poster="storybook-capacity-tether-filmstrip.jpg"
+          ></video>
+          <figcaption>
+            The same second comparison loadout and lifecycle.
+          </figcaption>
+        </figure>
+        <figure>
+          <h3>Refined · capacity &amp; tether</h3>
+          <video
+            controls
+            muted
+            playsinline
+            preload="metadata"
+            src="illustrated-capacity-tether.mp4"
+            poster="illustrated-capacity-tether-filmstrip.jpg"
+          ></video>
+          <figcaption>
+            Two manifestations and a moving Updraft. No altered spell timing or
+            damage for the recording.
+          </figcaption>
+        </figure>
+      </div>
+      <p class="note" id="builds">
+        Build labels and fixture details:
+        <a href="captures.json">capture manifest</a>. The same scripted intents
+        are not tick-identical film playback.
+      </p>
+    </section>
+
+    <section>
+      <h2>Personal identity, construction and recovery</h2>
+      <div class="pair">
+        <figure>
+          <img
+            loading="lazy"
+            src="same-principle.png"
+            alt="Both mages casting Ember with distinct cloth and personal ground marks"
+          />
+          <figcaption>
+            Same Principle, stable plum/teal and disc/bar identity.
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            loading="lazy"
+            src="alteration.png"
+            alt="Travelling Basin and Stone echo in the actual arena"
+          />
+          <figcaption>
+            Alterations visibly change the existing actions.
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            loading="lazy"
+            src="downed.png"
+            alt="Articulated downed partner beside the living mage"
+          />
+          <figcaption>
+            A lowered, slumped kneeling pose; held E restores the partner
+            through existing rules.
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            loading="lazy"
+            src="reward.png"
+            alt="Matching personal reward cards over the painted court"
+          />
+          <figcaption>
+            Quiet reward cards keep compatibility and choice legible.
+          </figcaption>
+        </figure>
+      </div>
+      <details>
+        <summary>Reaction and visual diagnostics</summary>
+        <div class="pair">
+          <img
+            loading="lazy"
+            src="reaction.png"
+            alt="Actual thermal reaction"
+          /><img
+            loading="lazy"
+            src="capacity-tether.png"
+            alt="Actual capacity and tether alteration"
+          />
+        </div>
+        <div class="pair">
+          <img
+            loading="lazy"
+            src="grayscale.png"
+            alt="Grayscale diagnostic"
+          /><img
+            loading="lazy"
+            src="deuteranopia.png"
+            alt="Deuteranopia emulation diagnostic"
+          />
+        </div>
+        <p class="note">
+          Diagnostic emulation is not complete accessibility validation.
+        </p>
+      </details>
+    </section>
+
+    <section>
+      <h2>Lightweight is the base treatment</h2>
+      <img
+        src="quality-comparison.jpg"
+        alt="Lightweight and Standard at the same gameplay viewport"
+        width="1600"
+        height="590"
+      />
+      <p>
+        One shared 256×256 pigment map, broad vertex color and built-in Toon
+        shading. Ten GLBs total 1.38 MB raw; there is no post-process stack.
+        Standard adds ground shadows, while illustrated surfaces retain clean
+        graphic values. Four resets showed no accumulated texture/geometry
+        resources.
+      </p>
+      <p class="note">
+        Native sample: Windows, installed headless Chrome 152, ANGLE Intel UHD /
+        Direct3D 11, two same-machine clients, 1440×900 viewport / 1152×720
+        Lightweight buffer. One short 60-frame/client casting sample stayed near
+        16.5 ms mean / 16.8 ms p95. This is not a sustained hardware guarantee
+        or remote-laptop measurement. Earlier SwiftShader captures are software
+        evidence only.
+      </p>
+    </section>
+
+    <section>
+      <h2>What this establishes—and what remains</h2>
+      <p>
+        Bright illustration, selective pigment and more human proportions work
+        together at the normal camera. The source recipe is repeatable:
+        <code>npm run art:finish</code> regenerates the editable Blender scene,
+        GLBs and shared map. The new performance uses a small joint hierarchy,
+        with no gameplay authority.
+      </p>
+      <p>
+        This remains stylized code-authored animation: no foot IK, facial
+        performance or precise hand-contact solver. A broader adventure still
+        needs composed rooms and authored performance polish. Applying this
+        vocabulary to the run should be a small collider-preserving rollout, not
+        five copies of this room. Both previous proofs remain available; no
+        other encounters have been dressed.
+      </p>
+    </section>
+    <footer>
+      Free local tools and original geometry/pigment. No purchased assets, new
+      services, mechanics or networking changes.
+    </footer>
+  </main>
+</html>

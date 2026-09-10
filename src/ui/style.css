@@ -566,6 +566,64 @@ body[data-art="ink"] .top-actions button {
   margin-top: 16px;
   font-size: 11px;
 }
+body[data-art="illustrated"] {
+  --art-paper: #f2e7c9;
+  --art-gold: #d6af77;
+}
+body[data-art="illustrated"] h1 {
+  display: none;
+}
+body[data-art="illustrated"] header {
+  top: 18px;
+  left: 22px;
+  color: #334453;
+  text-shadow: 0 1px 2px #f2e7c9;
+}
+body[data-art="illustrated"] #status {
+  color: #334453;
+  background: #f2e7c9da;
+  padding: 3px 7px;
+  border-radius: 2px;
+  text-shadow: none;
+}
+body[data-art="illustrated"] #connection-status:not(:empty),
+body[data-art="illustrated"] #upgrades:not(:empty) {
+  color: #f2e7c9;
+  background: #304b53ed;
+  padding: 4px 7px;
+  border-radius: 2px;
+  width: fit-content;
+}
+body[data-art="illustrated"] footer {
+  background: #293f4aeb;
+  border-top: 2px solid #d6af77;
+  border-radius: 3px;
+  padding: 6px 12px;
+}
+body[data-art="illustrated"] .top-actions button {
+  background: #304751df;
+  padding: 6px 9px;
+}
+body[data-art="illustrated"] #trial-card {
+  background: #2d4650f7;
+  border: 1px solid #d6af77;
+}
+body[data-art="illustrated"] #trial-title {
+  font:
+    32px Georgia,
+    serif;
+  color: #f2e7c9;
+}
+body[data-art="illustrated"] .eyebrow {
+  display: none;
+}
+body[data-art="illustrated"] #reward-cards button {
+  background: #42616a;
+  border-top: 5px solid #d6af77;
+}
+body[data-art="illustrated"] #reward-cards strong {
+  font-family: Georgia, serif;
+}
 #art-links[hidden] {
   display: none;
 }

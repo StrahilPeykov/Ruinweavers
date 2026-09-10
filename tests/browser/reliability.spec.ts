@@ -77,6 +77,11 @@ test("body and feet aiming, raised casts and preview execution through real poin
   );
   await capture(page, "01-body-thermal-reaction");
   // Test feet geometry independently: residual heat legitimately vaporizes a new jet.
+  // Resolve already-fired Ember before resetting heat; a screenshot can return
+  // while the final bolt is still in flight on a faster native renderer.
+  await page.waitForFunction(
+    () => window.__RUINWEAVERS__.getState().bolts.length === 0,
+  );
   await page.evaluate(() => {
     const api = window.__RUINWEAVERS__;
     api.setPaused(true);

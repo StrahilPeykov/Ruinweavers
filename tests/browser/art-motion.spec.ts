@@ -1,6 +1,9 @@
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
-const dir = "artifacts/art-proof/motion";
+const finish = process.env.RUIN_ART_FINISH === "1";
+const dir = finish
+  ? "artifacts/art-finish/motion"
+  : "artifacts/art-proof/motion";
 // Keep reviewable visual evidence; full diagnostic histories stay local/on demand.
 const compactState = (s: any) =>
   s && {
@@ -77,7 +80,7 @@ async function fixture(a: Page, b: Page, entities: any[], enabled = false) {
   await b.waitForTimeout(600);
 }
 
-for (const art of ["storybook", "ink"])
+for (const art of finish ? ["storybook", "illustrated"] : ["storybook", "ink"])
   for (const loadout of ["flow-echo", "capacity-tether"])
     test(`${art} paired motion: ${loadout}`, async ({ browser }) => {
       test.setTimeout(120000);
@@ -127,6 +130,7 @@ for (const art of ["storybook", "ink"])
         for (const p of [a, b]) {
           await p.goto(`/?scene=run&art=${art}&quality=lightweight&seed=3`);
           await p.waitForFunction(() => !!window.__RUINWEAVERS__);
+          if (finish) await p.addStyleTag({ content: "h1{display:none}" });
           await p.getByText("Connection options", { exact: true }).click();
           await p.locator("#signaling").selectOption("local");
         }
@@ -160,6 +164,19 @@ for (const art of ["storybook", "ink"])
         marks.sequence = (Date.now() - started) / 1000;
         for (const p of [a, b]) await p.keyboard.press("1");
         await capture("identity");
+        if (finish) {
+          await a.waitForFunction(() =>
+            Object.values(window.__RUINWEAVERS__.getState().actors).every(
+              (a: any) => a.activePrinciple === "Ember",
+            ),
+          );
+          await aim(a, -9, 0);
+          await aim(b, -3, 0);
+          for (const p of [a, b]) await p.keyboard.down("j");
+          await a.waitForTimeout(180);
+          await capture("same-principle");
+          for (const p of [a, b]) await p.keyboard.up("j");
+        }
         await a.keyboard.press("2");
         await aim(a, -7, 1);
         await a.keyboard.press("f");
@@ -273,6 +290,22 @@ for (const art of ["storybook", "ink"])
         await cdp.send("Emulation.setEmulatedVisionDeficiency", {
           type: "none",
         });
+        if (finish) {
+          await fixture(a, b, [
+            { id: "mage-1", pos: { x: 0, y: 0.75, z: 4 }, hp: 100 },
+            { id: "mage-2", pos: { x: 1, y: 0.75, z: 4 }, hp: 0 },
+          ]);
+          await capture("downed");
+          await a.keyboard.down("e");
+          await a.waitForFunction(
+            () =>
+              window.__RUINWEAVERS__
+                .getState()
+                .entities.find((e: any) => e.id === "mage-2").hp > 0,
+          );
+          await a.keyboard.up("e");
+          await capture("revived");
+        }
         await clearFixture(a, b);
         await capture("reward");
         for (const p of [a, b])

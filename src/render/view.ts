@@ -426,7 +426,11 @@ export class View {
       this.art.active = artActive;
       document.body.dataset.art = artActive ? this.art.mode : "off";
       this.renderer.setClearColor(artActive ? this.art.palette.sky : 0x18252b);
-      this.scene.fog = artActive ? null : new T.Fog(0x18252b, 38, 85);
+      this.scene.fog = artActive
+        ? this.art.mode === "illustrated"
+          ? new T.Fog(0xb8c9c7, 36, 80)
+          : null
+        : new T.Fog(0x18252b, 38, 85);
       this.scene.children.forEach((o) => {
         if (o instanceof T.HemisphereLight) {
           o.intensity = artActive ? 1.8 : 2.1;
@@ -472,6 +476,8 @@ export class View {
         );
         mesh.position.set(box.x, box.y, box.z);
         if (this.art.active && box.name === "Cover") mesh.visible = false;
+        if (this.art.active && this.art.mode === "illustrated" && box.h === 2.6)
+          mesh.visible = false;
         this.terrainGroup.add(mesh);
       }
       if (this.art.active) this.art.decorate(this.terrainGroup, s);
@@ -525,10 +531,14 @@ export class View {
     for (const e of s.entities) {
       const g = this.entities.get(e.id) || this.makeEntity(e);
       g.visible = e.hp > 0 || e.kind === "player";
-      g.scale.y = e.kind === "player" && e.hp <= 0 ? 0.3 : 1;
+      const flattenDown =
+        !(this.art.active && this.art.mode === "illustrated") &&
+        e.kind === "player" &&
+        e.hp <= 0;
+      g.scale.y = flattenDown ? 0.3 : 1;
       g.position.set(
         e.pos.x,
-        e.pos.y - (e.kind === "player" && e.hp <= 0 ? e.height * 0.35 : 0),
+        e.pos.y - (flattenDown ? e.height * 0.35 : 0),
         e.pos.z,
       );
       if (e.kind === "player")
@@ -1005,6 +1015,16 @@ export class View {
       textures: this.renderer.info.memory.textures,
       contextLost: this.contextLost,
       art: this.art.metrics(),
+      performances:
+        this.art.mode === "illustrated"
+          ? [...this.entities]
+              .filter(([id]) => id.startsWith("mage-"))
+              .map(([id, g]) => ({
+                id,
+                pose: g.getObjectByName("art-model")?.userData.pose,
+                bodyScale: g.getObjectByName("art-model")?.scale.y,
+              }))
+          : [],
       fieldFeedback: [...this.fields].map(([id, group]) => {
         const cue = group.getObjectByName("expiry-cue") as T.Mesh<
           T.BufferGeometry,

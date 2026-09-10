@@ -1,0 +1,6838 @@
+{
+  "art": "storybook",
+  "loadout": "flow-echo",
+  "fixture": "Existing run reward/encounter lifecycle reached with labelled HP fixtures; measured sequence uses real browser controls and real simulation/physics. Same seed/layout/actors/actions for A and B.",
+  "captures": [
+    {
+      "name": "identity",
+      "at": 3.279,
+      "build": "3e5e03333abb",
+      "config": {
+        "model": "primary-secondary",
+        "camera": "balanced",
+        "tempo": "balanced",
+        "scene": "run",
+        "scenario": "cross-cover",
+        "encounterVersion": "candidate",
+        "seed": 3,
+        "moveSpeed": 5.6,
+        "dodgeDistance": 3.5,
+        "dodgeDuration": 0.22,
+        "dodgeRecovery": 0.8,
+        "castRecovery": 1,
+        "telegraph": 1.05,
+        "cameraDistance": 24,
+        "cameraPitch": 51,
+        "secondaryCapacity": 1,
+        "inputBuffer": 0.12,
+        "invulnerability": 0.17,
+        "castMoveMultiplier": 0.78
+      },
+      "state": {
+        "time": 1.1666666666666674,
+        "tick": 70,
+        "trial": {
+          "status": "active",
+          "encounter": 2,
+          "isolated": false,
+          "scenario": "side-cover",
+          "elapsed": 1.1666666666666674,
+          "started": 0.11666666666666665,
+          "results": [
+            {
+              "encounter": 0,
+              "seconds": 0.06666666666666667,
+              "health": 100
+            },
+            {
+              "encounter": 1,
+              "seconds": 0.04999999999999999,
+              "health": 100
+            }
+          ]
+        },
+        "run": {
+          "id": "3:2",
+          "upgrades": {
+            "mage-1": [
+              "travelling-basin"
+            ],
+            "mage-2": [
+              "stone-echo"
+            ]
+          }
+        },
+        "party": {
+          "ready": [],
+          "epoch": 12
+        },
+        "actors": {
+          "mage-1": {
+            "activePrinciple": "Ember",
+            "aim": {
+              "x": 0,
+              "y": 0,
+              "z": -5,
+              "body": false,
+              "invalid": false
+            },
+            "primaryReady": 0.11666666666666665,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 0.11666666666666665,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          },
+          "mage-2": {
+            "activePrinciple": "Ember",
+            "aim": {
+              "x": 0,
+              "y": 0,
+              "z": -5,
+              "body": false,
+              "invalid": false
+            },
+            "primaryReady": 0.11666666666666665,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 0.11666666666666665,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          }
+        },
+        "entities": [
+          {
+            "id": "mage-1",
+            "kind": "player",
+            "pos": {
+              "x": -7,
+              "y": 0.719843327999115,
+              "z": 5
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "mage-2",
+            "kind": "player",
+            "pos": {
+              "x": -5.000000476837158,
+              "y": 0.7197679281234741,
+              "z": 5
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "timber",
+            "kind": "wood",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "ballast",
+            "kind": "heavy",
+            "pos": {
+              "x": 7.002625465393066,
+              "y": 0.7998589873313904,
+              "z": 1.0021593570709229
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "loose-1",
+            "kind": "loose",
+            "pos": {
+              "x": -0.9973426461219788,
+              "y": 0.3748576045036316,
+              "z": 3.002114772796631
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-0",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.090222358703613,
+              "y": 0.799964427947998,
+              "z": -6.557510852813721
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-1",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.099999904632568,
+              "y": 0.7999609112739563,
+              "z": 6.599999904632568
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-2",
+            "kind": "pursuer",
+            "pos": {
+              "x": -1.6325851678848267,
+              "y": 0.549964427947998,
+              "z": -4.983146667480469
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-3",
+            "kind": "pursuer",
+            "pos": {
+              "x": -2.04018497467041,
+              "y": 0.549964427947998,
+              "z": 5.608470916748047
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          }
+        ],
+        "fields": [],
+        "bolts": [],
+        "metrics": {
+          "damageRoutes": {},
+          "outcomes": {},
+          "casts": {},
+          "inputs": {},
+          "switches": 0,
+          "dodges": 0,
+          "stateApplications": 0,
+          "transformations": {},
+          "damage": {},
+          "playerDamage": 0,
+          "blockedBolts": 0,
+          "sentinelDefeatTime": null,
+          "combatStartedAt": null,
+          "falls": 0
+        },
+        "recentEvents": []
+      },
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 169,
+        "frameMs": 17.537869822485185,
+        "p95FrameMs": 16.799999999999955,
+        "drawCalls": 77,
+        "triangles": 10632,
+        "activeVfx": 0,
+        "geometries": 52,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 33,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": []
+      },
+      "guest": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 122,
+        "frameMs": 18.560934426229505,
+        "p95FrameMs": 16.799999999999955,
+        "drawCalls": 77,
+        "triangles": 10632,
+        "activeVfx": 0,
+        "geometries": 52,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 38.399999998509884,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": []
+      }
+    },
+    {
+      "name": "same-principle",
+      "at": 3.666,
+      "build": "3e5e03333abb",
+      "config": {
+        "model": "primary-secondary",
+        "camera": "balanced",
+        "tempo": "balanced",
+        "scene": "run",
+        "scenario": "cross-cover",
+        "encounterVersion": "candidate",
+        "seed": 3,
+        "moveSpeed": 5.6,
+        "dodgeDistance": 3.5,
+        "dodgeDuration": 0.22,
+        "dodgeRecovery": 0.8,
+        "castRecovery": 1,
+        "telegraph": 1.05,
+        "cameraDistance": 24,
+        "cameraPitch": 51,
+        "secondaryCapacity": 1,
+        "inputBuffer": 0.12,
+        "invulnerability": 0.17,
+        "castMoveMultiplier": 0.78
+      },
+      "state": {
+        "time": 1.5499999999999994,
+        "tick": 93,
+        "trial": {
+          "status": "active",
+          "encounter": 2,
+          "isolated": false,
+          "scenario": "side-cover",
+          "elapsed": 1.5499999999999994,
+          "started": 0.11666666666666665,
+          "results": [
+            {
+              "encounter": 0,
+              "seconds": 0.06666666666666667,
+              "health": 100
+            },
+            {
+              "encounter": 1,
+              "seconds": 0.04999999999999999,
+              "health": 100
+            }
+          ]
+        },
+        "run": {
+          "id": "3:2",
+          "upgrades": {
+            "mage-1": [
+              "travelling-basin"
+            ],
+            "mage-2": [
+              "stone-echo"
+            ]
+          }
+        },
+        "party": {
+          "ready": [],
+          "epoch": 12
+        },
+        "actors": {
+          "mage-1": {
+            "activePrinciple": "Ember",
+            "aim": {
+              "x": -9.000000597212473,
+              "y": 1.7545975694588378e-7,
+              "z": -2.5917328017044383e-7,
+              "body": false,
+              "invalid": false
+            },
+            "primaryReady": 1.5866666666666671,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 1.3866666666666672,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          },
+          "mage-2": {
+            "activePrinciple": "Ember",
+            "aim": {
+              "x": -3.0003103672842277,
+              "y": 1.698032647823311e-7,
+              "z": -0.000019644046727052,
+              "body": false,
+              "invalid": false
+            },
+            "primaryReady": 1.6033333333333337,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 1.4033333333333338,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          }
+        },
+        "entities": [
+          {
+            "id": "mage-1",
+            "kind": "player",
+            "pos": {
+              "x": -7,
+              "y": 0.7197433114051819,
+              "z": 5
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "mage-2",
+            "kind": "player",
+            "pos": {
+              "x": -5.000000476837158,
+              "y": 0.7197679281234741,
+              "z": 5
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "timber",
+            "kind": "wood",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "ballast",
+            "kind": "heavy",
+            "pos": {
+              "x": 7.002625465393066,
+              "y": 0.7998589873313904,
+              "z": 1.0021593570709229
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "loose-1",
+            "kind": "loose",
+            "pos": {
+              "x": -0.9973426461219788,
+              "y": 0.3748576045036316,
+              "z": 3.002114772796631
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-0",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.090222358703613,
+              "y": 0.799964427947998,
+              "z": -6.557510852813721
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-1",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.099999904632568,
+              "y": 0.7999609112739563,
+              "z": 6.599999904632568
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-2",
+            "kind": "pursuer",
+            "pos": {
+              "x": -1.6325851678848267,
+              "y": 0.549964427947998,
+              "z": -4.983146667480469
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-3",
+            "kind": "pursuer",
+            "pos": {
+              "x": -2.04018497467041,
+              "y": 0.549964427947998,
+              "z": 5.608470916748047
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          }
+        ],
+        "fields": [],
+        "bolts": [
+          {
+            "id": "bolt-2",
+            "source": "mage-1",
+            "principle": "Ember",
+            "pos": {
+              "x": -9.56259621200508,
+              "y": 0.7551402376889709,
+              "z": -1.4064889490435546
+            },
+            "velocity": {
+              "x": -7.799205862624179,
+              "y": 0.11798995296144396,
+              "z": -19.49800984491516
+            },
+            "life": 0.25999999999999995,
+            "radius": 0.22,
+            "pierce": 0,
+            "hitIds": []
+          }
+        ],
+        "metrics": {
+          "damageRoutes": {},
+          "outcomes": {
+            "mage-1:cast:Ember:primary": 1,
+            "mage-2:cast:Ember:primary": 1,
+            "projectile:mage-2:blocked": 1
+          },
+          "casts": {
+            "Ember:primary": 2
+          },
+          "inputs": {
+            "primary:keyboard-fallback": 2
+          },
+          "switches": 0,
+          "dodges": 0,
+          "stateApplications": 0,
+          "transformations": {},
+          "damage": {},
+          "playerDamage": 0,
+          "blockedBolts": 1,
+          "sentinelDefeatTime": null,
+          "combatStartedAt": null,
+          "falls": 0
+        },
+        "recentEvents": [
+          {
+            "id": 1,
+            "time": 1.266666666666667,
+            "type": "cast",
+            "source": "mage-1",
+            "pos": {
+              "x": -7,
+              "y": 0.7197432518005371,
+              "z": 5
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          },
+          {
+            "id": 3,
+            "time": 1.2833333333333337,
+            "type": "cast",
+            "source": "mage-2",
+            "pos": {
+              "x": -5.000000476837158,
+              "y": 0.7197679281234741,
+              "z": 5
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          },
+          {
+            "id": 5,
+            "time": 1.4499999999999997,
+            "type": "impact",
+            "source": "mage-2",
+            "pos": {
+              "x": -3.3473889289317684,
+              "y": 0.741381909020437,
+              "z": 0.8682479416439142
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          }
+        ]
+      },
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 193,
+        "frameMs": 17.427461139896334,
+        "p95FrameMs": 16.799999999999955,
+        "drawCalls": 80,
+        "triangles": 10834,
+        "activeVfx": 1,
+        "geometries": 53,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 33,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": []
+      },
+      "guest": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 146,
+        "frameMs": 18.24680821917808,
+        "p95FrameMs": 16.799999999999955,
+        "drawCalls": 80,
+        "triangles": 10834,
+        "activeVfx": 1,
+        "geometries": 53,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 38.399999998509884,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": []
+      }
+    },
+    {
+      "name": "reaction",
+      "at": 5.108,
+      "build": "3e5e03333abb",
+      "config": {
+        "model": "primary-secondary",
+        "camera": "balanced",
+        "tempo": "balanced",
+        "scene": "run",
+        "scenario": "cross-cover",
+        "encounterVersion": "candidate",
+        "seed": 3,
+        "moveSpeed": 5.6,
+        "dodgeDistance": 3.5,
+        "dodgeDuration": 0.22,
+        "dodgeRecovery": 0.8,
+        "castRecovery": 1,
+        "telegraph": 1.05,
+        "cameraDistance": 24,
+        "cameraPitch": 51,
+        "secondaryCapacity": 1,
+        "inputBuffer": 0.12,
+        "invulnerability": 0.17,
+        "castMoveMultiplier": 0.78
+      },
+      "state": {
+        "time": 2.9999999999999942,
+        "tick": 180,
+        "trial": {
+          "status": "active",
+          "encounter": 2,
+          "isolated": false,
+          "scenario": "side-cover",
+          "elapsed": 2.9999999999999942,
+          "started": 0.11666666666666665,
+          "results": [
+            {
+              "encounter": 0,
+              "seconds": 0.06666666666666667,
+              "health": 100
+            },
+            {
+              "encounter": 1,
+              "seconds": 0.04999999999999999,
+              "health": 100
+            }
+          ]
+        },
+        "run": {
+          "id": "3:2",
+          "upgrades": {
+            "mage-1": [
+              "travelling-basin"
+            ],
+            "mage-2": [
+              "stone-echo"
+            ]
+          }
+        },
+        "party": {
+          "ready": [],
+          "epoch": 12
+        },
+        "actors": {
+          "mage-1": {
+            "activePrinciple": "Tide",
+            "aim": {
+              "x": -6.958469545182832,
+              "y": 0.6147608653138761,
+              "z": 1.6000005015298058,
+              "body": true,
+              "invalid": false
+            },
+            "primaryReady": 1.5866666666666671,
+            "secondaryReady": 2.2833333333333323,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 1.7533333333333325,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          },
+          "mage-2": {
+            "activePrinciple": "Ember",
+            "aim": {
+              "x": -6.9044165689908645,
+              "y": 1.388392844041956,
+              "z": 1.6000008471691913,
+              "body": true,
+              "invalid": false
+            },
+            "primaryReady": 2.936666666666662,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 2.7366666666666624,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          }
+        },
+        "entities": [
+          {
+            "id": "mage-1",
+            "kind": "player",
+            "pos": {
+              "x": -7,
+              "y": 0.7198432683944702,
+              "z": 5
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "mage-2",
+            "kind": "player",
+            "pos": {
+              "x": -5.000000476837158,
+              "y": 0.7197679281234741,
+              "z": 5
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "timber",
+            "kind": "wood",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "hp": 28.770000000000017,
+            "wet": 0.24874999999999997,
+            "heat": 19.350000000000065,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "ballast",
+            "kind": "heavy",
+            "pos": {
+              "x": 7.002625465393066,
+              "y": 0.7998589873313904,
+              "z": 1.0021593570709229
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "loose-1",
+            "kind": "loose",
+            "pos": {
+              "x": -0.9973426461219788,
+              "y": 0.3748576045036316,
+              "z": 3.002114772796631
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-0",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.090222358703613,
+              "y": 0.799964427947998,
+              "z": -6.557510852813721
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-1",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.099999904632568,
+              "y": 0.7999609112739563,
+              "z": 6.599999904632568
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-2",
+            "kind": "pursuer",
+            "pos": {
+              "x": -1.6325851678848267,
+              "y": 0.549964427947998,
+              "z": -4.983146667480469
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-3",
+            "kind": "pursuer",
+            "pos": {
+              "x": -2.04018497467041,
+              "y": 0.549964427947998,
+              "z": 5.608470916748047
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          }
+        ],
+        "fields": [
+          {
+            "id": "field-9",
+            "source": "mage-1",
+            "principle": "Tide",
+            "pos": {
+              "x": -6.9381944208610244,
+              "y": 2.384185970871755e-8,
+              "z": -0.05987567437391329
+            },
+            "end": {
+              "x": -6.913766560232371,
+              "y": 1.1920928910669204e-8,
+              "z": -2.059726488716096
+            },
+            "radius": 2.5,
+            "life": 10.616666666666598,
+            "nextPulse": 0.21666666666666667,
+            "travel": {
+              "x": 0.01465671637719209,
+              "y": 0,
+              "z": -1.199910488605312
+            },
+            "tethered": false
+          }
+        ],
+        "bolts": [],
+        "metrics": {
+          "damageRoutes": {
+            "[\"mage-2\",\"timber\",\"steam\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "steam",
+              "amount": 34.22999999999998
+            },
+            "[\"mage-2\",\"timber\",\"heat bolt\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "heat bolt",
+              "amount": 27
+            }
+          },
+          "outcomes": {
+            "mage-1:cast:Ember:primary": 1,
+            "mage-2:cast:Ember:primary": 5,
+            "projectile:mage-2:blocked": 2,
+            "mage-1:cast:Tide:secondary": 1,
+            "field:Tide:contact:timber": 6,
+            "projectile:mage-1:expired": 1,
+            "projectile:mage-2:hit:timber": 3,
+            "stagger:timber": 1,
+            "cross-reaction:mage-1:mage-2:timber": 3
+          },
+          "casts": {
+            "Ember:primary": 6,
+            "Tide:secondary": 1
+          },
+          "inputs": {
+            "primary:keyboard-fallback": 3,
+            "secondary:keyboard-fallback": 1,
+            "primary:mouse": 3
+          },
+          "switches": 1,
+          "dodges": 0,
+          "stateApplications": 9,
+          "transformations": {
+            "vaporize": 3
+          },
+          "damage": {
+            "mage-2:steam": 34.22999999999998,
+            "mage-2:heat bolt": 27
+          },
+          "playerDamage": 0,
+          "blockedBolts": 2,
+          "sentinelDefeatTime": null,
+          "combatStartedAt": null,
+          "falls": 0
+        },
+        "recentEvents": [
+          {
+            "id": 18,
+            "time": 2.28333333333333,
+            "type": "cast",
+            "source": "mage-2",
+            "pos": {
+              "x": -5.000000476837158,
+              "y": 0.7197679281234741,
+              "z": 5
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          },
+          {
+            "id": 20,
+            "time": 2.416666666666663,
+            "type": "steam",
+            "source": "mage-2",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "duration": 1.2,
+            "primedBy": "mage-1",
+            "target": "timber",
+            "value": 0.2504166666666663
+          },
+          {
+            "id": 21,
+            "time": 2.416666666666663,
+            "type": "impact",
+            "source": "mage-2",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "duration": 0.45,
+            "principle": "Ember"
+          },
+          {
+            "id": 22,
+            "time": 2.4333333333333296,
+            "type": "wet",
+            "source": "mage-1",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "duration": 0.4,
+            "principle": "Tide",
+            "target": "timber"
+          },
+          {
+            "id": 23,
+            "time": 2.6166666666666623,
+            "type": "cast",
+            "source": "mage-2",
+            "pos": {
+              "x": -5.000000476837158,
+              "y": 0.7197679281234741,
+              "z": 5
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          },
+          {
+            "id": 25,
+            "time": 2.749999999999995,
+            "type": "steam",
+            "source": "mage-2",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "duration": 1.2,
+            "primedBy": "mage-1",
+            "target": "timber",
+            "value": 0.49208333333333315
+          },
+          {
+            "id": 26,
+            "time": 2.749999999999995,
+            "type": "impact",
+            "source": "mage-2",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "duration": 0.45,
+            "principle": "Ember"
+          },
+          {
+            "id": 27,
+            "time": 2.966666666666661,
+            "type": "wet",
+            "source": "mage-1",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "duration": 0.4,
+            "principle": "Tide",
+            "target": "timber"
+          }
+        ]
+      },
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 279,
+        "frameMs": 17.188172043010717,
+        "p95FrameMs": 16.799999999999955,
+        "drawCalls": 114,
+        "triangles": 13048,
+        "activeVfx": 5,
+        "geometries": 67,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 33,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      },
+      "guest": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 232,
+        "frameMs": 17.655318965517218,
+        "p95FrameMs": 16.799999999999955,
+        "drawCalls": 113,
+        "triangles": 12792,
+        "activeVfx": 5,
+        "geometries": 66,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 38.399999998509884,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      }
+    },
+    {
+      "name": "alteration",
+      "at": 7.039,
+      "build": "3e5e03333abb",
+      "config": {
+        "model": "primary-secondary",
+        "camera": "balanced",
+        "tempo": "balanced",
+        "scene": "run",
+        "scenario": "cross-cover",
+        "encounterVersion": "candidate",
+        "seed": 3,
+        "moveSpeed": 5.6,
+        "dodgeDistance": 3.5,
+        "dodgeDuration": 0.22,
+        "dodgeRecovery": 0.8,
+        "castRecovery": 1,
+        "telegraph": 1.05,
+        "cameraDistance": 24,
+        "cameraPitch": 51,
+        "secondaryCapacity": 1,
+        "inputBuffer": 0.12,
+        "invulnerability": 0.17,
+        "castMoveMultiplier": 0.78
+      },
+      "state": {
+        "time": 4.933333333333321,
+        "tick": 296,
+        "trial": {
+          "status": "active",
+          "encounter": 2,
+          "isolated": false,
+          "scenario": "side-cover",
+          "elapsed": 4.933333333333321,
+          "started": 0.11666666666666665,
+          "results": [
+            {
+              "encounter": 0,
+              "seconds": 0.06666666666666667,
+              "health": 100
+            },
+            {
+              "encounter": 1,
+              "seconds": 0.04999999999999999,
+              "health": 100
+            }
+          ]
+        },
+        "run": {
+          "id": "3:2",
+          "upgrades": {
+            "mage-1": [
+              "travelling-basin"
+            ],
+            "mage-2": [
+              "stone-echo"
+            ]
+          }
+        },
+        "party": {
+          "ready": [],
+          "epoch": 14
+        },
+        "actors": {
+          "mage-1": {
+            "activePrinciple": "Tide",
+            "aim": {
+              "x": -1.2600004143835561,
+              "y": -1.0057576105282351e-7,
+              "z": 0.17999964463718854,
+              "body": false,
+              "invalid": false
+            },
+            "primaryReady": 1.5866666666666671,
+            "secondaryReady": 2.2833333333333323,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 1.7533333333333325,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          },
+          "mage-2": {
+            "activePrinciple": "Stone",
+            "aim": {
+              "x": 6.7925481138900565,
+              "y": 0.8609598137111902,
+              "z": 1.8021728587615868,
+              "body": true,
+              "invalid": false
+            },
+            "primaryReady": 4.456666666666658,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 3.936666666666658,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          }
+        },
+        "entities": [
+          {
+            "id": "mage-1",
+            "kind": "player",
+            "pos": {
+              "x": -9.534110176900867e-7,
+              "y": 0.7196467518806458,
+              "z": 4
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "mage-2",
+            "kind": "player",
+            "pos": {
+              "x": 2.99999737739563,
+              "y": 0.7197019457817078,
+              "z": 3.9999966621398926
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "timber",
+            "kind": "wood",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "hp": 28.770000000000017,
+            "wet": 0.9904166666666677,
+            "heat": 11.61666666666676,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "ballast",
+            "kind": "heavy",
+            "pos": {
+              "x": 7.002626419067383,
+              "y": 0.7998597025871277,
+              "z": 1.0021729469299316
+            },
+            "hp": 60,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 1
+          },
+          {
+            "id": "loose-1",
+            "kind": "loose",
+            "pos": {
+              "x": -0.9973426461219788,
+              "y": 0.3748576045036316,
+              "z": 3.002114772796631
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-0",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.090222358703613,
+              "y": 0.799964427947998,
+              "z": -6.557510852813721
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-1",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.099999904632568,
+              "y": 0.7999609112739563,
+              "z": 6.599999904632568
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-2",
+            "kind": "pursuer",
+            "pos": {
+              "x": -1.6325851678848267,
+              "y": 0.549964427947998,
+              "z": -4.983146667480469
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-3",
+            "kind": "pursuer",
+            "pos": {
+              "x": -2.04018497467041,
+              "y": 0.549964427947998,
+              "z": 5.608470916748047
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          }
+        ],
+        "fields": [
+          {
+            "id": "field-9",
+            "source": "mage-1",
+            "principle": "Tide",
+            "pos": {
+              "x": -6.909858102531751,
+              "y": -1.1920924580799408e-8,
+              "z": -2.3797026190108523
+            },
+            "end": {
+              "x": -6.885430241903097,
+              "y": 1.1920928910669204e-8,
+              "z": -4.379553433353019
+            },
+            "radius": 2.5,
+            "life": 8.683333333333168,
+            "nextPulse": 0.15000000000000002,
+            "travel": {
+              "x": 0.01465671637719209,
+              "y": 0,
+              "z": -1.199910488605312
+            },
+            "tethered": false
+          }
+        ],
+        "bolts": [],
+        "metrics": {
+          "damageRoutes": {
+            "[\"mage-2\",\"timber\",\"steam\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "steam",
+              "amount": 34.22999999999998
+            },
+            "[\"mage-2\",\"timber\",\"heat bolt\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "heat bolt",
+              "amount": 27
+            },
+            "[\"mage-2\",\"ballast\",\"eruption\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "eruption",
+              "amount": 40
+            }
+          },
+          "outcomes": {
+            "mage-1:cast:Ember:primary": 1,
+            "mage-2:cast:Ember:primary": 5,
+            "projectile:mage-2:blocked": 2,
+            "mage-1:cast:Tide:secondary": 1,
+            "field:Tide:contact:timber": 12,
+            "projectile:mage-1:expired": 1,
+            "projectile:mage-2:hit:timber": 3,
+            "stagger:timber": 1,
+            "cross-reaction:mage-1:mage-2:timber": 3,
+            "mage-2:cast:Stone:primary": 1,
+            "stagger:ballast": 1,
+            "mage-2:Stone:primary:hit": 2
+          },
+          "casts": {
+            "Ember:primary": 6,
+            "Tide:secondary": 1,
+            "Stone:primary": 1
+          },
+          "inputs": {
+            "primary:keyboard-fallback": 4,
+            "secondary:keyboard-fallback": 1,
+            "primary:mouse": 3
+          },
+          "switches": 2,
+          "dodges": 0,
+          "stateApplications": 17,
+          "transformations": {
+            "vaporize": 3
+          },
+          "damage": {
+            "mage-2:steam": 34.22999999999998,
+            "mage-2:heat bolt": 27,
+            "mage-2:eruption": 40
+          },
+          "playerDamage": 0,
+          "blockedBolts": 2,
+          "sentinelDefeatTime": null,
+          "combatStartedAt": null,
+          "falls": 0
+        },
+        "recentEvents": [
+          {
+            "id": 27,
+            "time": 2.966666666666661,
+            "type": "wet",
+            "source": "mage-1",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "duration": 0.4,
+            "principle": "Tide",
+            "target": "timber"
+          },
+          {
+            "id": 28,
+            "time": 3.816666666666658,
+            "type": "cast",
+            "source": "mage-2",
+            "pos": {
+              "x": 2.99999737739563,
+              "y": 0.7197019457817078,
+              "z": 3.9999966621398926
+            },
+            "duration": 0.2,
+            "principle": "Stone"
+          },
+          {
+            "id": 29,
+            "time": 3.816666666666658,
+            "type": "eruption-warning",
+            "source": "mage-2",
+            "pos": {
+              "x": 6.791115197631043,
+              "y": 4.133728803701331e-8,
+              "z": 1.8021563501306694
+            },
+            "duration": 0.22,
+            "principle": "Stone"
+          },
+          {
+            "id": 30,
+            "time": 3.816666666666658,
+            "type": "eruption-warning",
+            "source": "mage-2",
+            "pos": {
+              "x": 6.791115197631043,
+              "y": 4.133728803701331e-8,
+              "z": 1.8021563501306694
+            },
+            "duration": 0.83,
+            "principle": "Stone"
+          },
+          {
+            "id": 31,
+            "time": 3.9999999999999907,
+            "type": "eruption",
+            "source": "mage-2",
+            "pos": {
+              "x": 6.791115197631043,
+              "y": 4.133728803701331e-8,
+              "z": 1.8021563501306694
+            },
+            "duration": 0.5,
+            "principle": "Stone"
+          },
+          {
+            "id": 32,
+            "time": 3.9999999999999907,
+            "type": "structure",
+            "source": "mage-2",
+            "pos": {
+              "x": 7.002625465393066,
+              "y": 0.7998589873313904,
+              "z": 1.0021593570709229
+            },
+            "duration": 0.5,
+            "principle": "Stone",
+            "target": "ballast"
+          },
+          {
+            "id": 33,
+            "time": 4.649999999999989,
+            "type": "eruption",
+            "source": "mage-2",
+            "pos": {
+              "x": 6.791115197631043,
+              "y": 4.133728803701331e-8,
+              "z": 1.8021563501306694
+            },
+            "duration": 0.5,
+            "principle": "Stone"
+          }
+        ]
+      },
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.873333333333346,
+        "p95FrameMs": 16.799999999999727,
+        "drawCalls": 101,
+        "triangles": 12120,
+        "activeVfx": 1,
+        "geometries": 63,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 33,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      },
+      "guest": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.985000000000014,
+        "p95FrameMs": 16.800000000000182,
+        "drawCalls": 100,
+        "triangles": 11864,
+        "activeVfx": 1,
+        "geometries": 63,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 38.399999998509884,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      }
+    },
+    {
+      "name": "danger",
+      "at": 9.295,
+      "build": "3e5e03333abb",
+      "config": {
+        "model": "primary-secondary",
+        "camera": "balanced",
+        "tempo": "balanced",
+        "scene": "run",
+        "scenario": "cross-cover",
+        "encounterVersion": "candidate",
+        "seed": 3,
+        "moveSpeed": 5.6,
+        "dodgeDistance": 3.5,
+        "dodgeDuration": 0.22,
+        "dodgeRecovery": 0.8,
+        "castRecovery": 1,
+        "telegraph": 1.05,
+        "cameraDistance": 24,
+        "cameraPitch": 51,
+        "secondaryCapacity": 1,
+        "inputBuffer": 0.12,
+        "invulnerability": 0.17,
+        "castMoveMultiplier": 0.78
+      },
+      "state": {
+        "time": 7.183333333333313,
+        "tick": 431,
+        "trial": {
+          "status": "active",
+          "encounter": 2,
+          "isolated": false,
+          "scenario": "side-cover",
+          "elapsed": 7.183333333333313,
+          "started": 0.11666666666666665,
+          "results": [
+            {
+              "encounter": 0,
+              "seconds": 0.06666666666666667,
+              "health": 100
+            },
+            {
+              "encounter": 1,
+              "seconds": 0.04999999999999999,
+              "health": 100
+            }
+          ]
+        },
+        "run": {
+          "id": "3:2",
+          "upgrades": {
+            "mage-1": [
+              "travelling-basin"
+            ],
+            "mage-2": [
+              "stone-echo"
+            ]
+          }
+        },
+        "party": {
+          "ready": [],
+          "epoch": 16
+        },
+        "actors": {
+          "mage-1": {
+            "activePrinciple": "Ember",
+            "aim": {
+              "x": -13.41114137312064,
+              "y": 0,
+              "z": -4.069918292911641,
+              "body": false,
+              "invalid": true
+            },
+            "primaryReady": 7.169999999999981,
+            "secondaryReady": 2.2833333333333323,
+            "dodgeReady": 7.416666666666648,
+            "dodgeUntil": 6.836666666666648,
+            "invulnerableUntil": 6.786666666666648,
+            "dodgeDirection": {
+              "x": -1,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.969999999999981,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          },
+          "mage-2": {
+            "activePrinciple": "Gale",
+            "aim": {
+              "x": 7.9262058228313155,
+              "y": 6.390684923474055e-7,
+              "z": 0.00006019611045715578,
+              "body": false,
+              "invalid": false
+            },
+            "primaryReady": 6.799999999999983,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.419999999999983,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          }
+        },
+        "entities": [
+          {
+            "id": "mage-1",
+            "kind": "player",
+            "pos": {
+              "x": -10.135940551757812,
+              "y": 0.7200919389724731,
+              "z": 3.914409637451172
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "mage-2",
+            "kind": "player",
+            "pos": {
+              "x": 8.417901039123535,
+              "y": 0.7190781831741333,
+              "z": 4.00015115737915
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "timber",
+            "kind": "wood",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "hp": 28.770000000000017,
+            "wet": 0.9341666666666739,
+            "heat": 2.616666666666782,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "ballast",
+            "kind": "heavy",
+            "pos": {
+              "x": 7.0073442459106445,
+              "y": 0.7998597025871277,
+              "z": 0.9973018169403076
+            },
+            "hp": 55,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 1
+          },
+          {
+            "id": "loose-1",
+            "kind": "loose",
+            "pos": {
+              "x": -0.7648534774780273,
+              "y": 0.3798602819442749,
+              "z": 2.045093536376953
+            },
+            "hp": 91,
+            "wet": 0,
+            "heat": 41.86666666666636,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-0",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.0794596672058105,
+              "y": 0.7999645471572876,
+              "z": -6.472723960876465
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-1",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.099999904632568,
+              "y": 0.7999609112739563,
+              "z": 6.599999904632568
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-2",
+            "kind": "pursuer",
+            "pos": {
+              "x": -2.599515914916992,
+              "y": 0.5499645471572876,
+              "z": 0.12226996570825577
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-3",
+            "kind": "pursuer",
+            "pos": {
+              "x": -4.275171279907227,
+              "y": 0.5499646067619324,
+              "z": 4.242581844329834
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          }
+        ],
+        "fields": [
+          {
+            "id": "field-9",
+            "source": "mage-1",
+            "principle": "Tide",
+            "pos": {
+              "x": -6.876880490683027,
+              "y": -1.1920921583197241e-8,
+              "z": -5.079501218372788
+            },
+            "end": {
+              "x": -6.8524526300543736,
+              "y": 1.1920928910669204e-8,
+              "z": -7.079352032714954
+            },
+            "radius": 2.5,
+            "life": 6.433333333333141,
+            "nextPulse": 0.03333333333333338,
+            "travel": {
+              "x": 0.01465671637719209,
+              "y": 0,
+              "z": -1.199910488605312
+            },
+            "tethered": false
+          }
+        ],
+        "bolts": [
+          {
+            "id": "enemy-47",
+            "source": "encounter-2-sentinel-0",
+            "originalSource": "encounter-2-sentinel-0",
+            "principle": "hostile",
+            "pos": {
+              "x": 3.4820087352713998,
+              "y": 0.756462784647363,
+              "z": -1.1255739567292409
+            },
+            "velocity": {
+              "x": -1.9979002575922817,
+              "y": -0.05437720313740652,
+              "z": 6.708829596935123
+            },
+            "life": 2.200000000000003,
+            "radius": 0.3
+          },
+          {
+            "id": "enemy-49",
+            "source": "encounter-2-sentinel-1",
+            "originalSource": "encounter-2-sentinel-1",
+            "principle": "hostile",
+            "pos": {
+              "x": 4.055104221043138,
+              "y": 0.7133185362939752,
+              "z": 3.8769249047729257
+            },
+            "velocity": {
+              "x": -2.5077496406146467,
+              "y": -0.20794169995195255,
+              "z": -6.535379999663149
+            },
+            "life": 2.583333333333335,
+            "radius": 0.3
+          },
+          {
+            "id": "bolt-51",
+            "source": "mage-1",
+            "principle": "Ember",
+            "pos": {
+              "x": -11.619630760419989,
+              "y": 0.7461929383152691,
+              "z": -3.6217597064953617
+            },
+            "velocity": {
+              "x": -6.688882579323775,
+              "y": 0.07454260822533378,
+              "z": -19.906251526593824
+            },
+            "life": 0.20999999999999996,
+            "radius": 0.22,
+            "pierce": 0,
+            "hitIds": []
+          }
+        ],
+        "metrics": {
+          "damageRoutes": {
+            "[\"mage-2\",\"timber\",\"steam\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "steam",
+              "amount": 34.22999999999998
+            },
+            "[\"mage-2\",\"timber\",\"heat bolt\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "heat bolt",
+              "amount": 27
+            },
+            "[\"mage-2\",\"ballast\",\"eruption\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "eruption",
+              "amount": 40
+            },
+            "[\"mage-1\",\"loose-1\",\"heat bolt\"]": {
+              "source": "mage-1",
+              "recipient": "loose-1",
+              "reason": "heat bolt",
+              "amount": 9
+            },
+            "[\"mage-2\",\"ballast\",\"pressure\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "pressure",
+              "amount": 5
+            }
+          },
+          "outcomes": {
+            "mage-1:cast:Ember:primary": 5,
+            "mage-2:cast:Ember:primary": 5,
+            "projectile:mage-2:blocked": 2,
+            "mage-1:cast:Tide:secondary": 1,
+            "field:Tide:contact:timber": 12,
+            "projectile:mage-1:expired": 2,
+            "projectile:mage-2:hit:timber": 3,
+            "stagger:timber": 1,
+            "cross-reaction:mage-1:mage-2:timber": 3,
+            "mage-2:cast:Stone:primary": 1,
+            "stagger:ballast": 1,
+            "mage-2:Stone:primary:hit": 2,
+            "projectile:mage-1:hit:loose-1": 1,
+            "mage-2:cast:Gale:primary": 2,
+            "mage-2:Gale:primary:miss": 1,
+            "projectile:mage-1:blocked": 1,
+            "mage-2:Gale:primary:hit": 1,
+            "encounter-2-sentinel-0:projectile:attempt": 1,
+            "encounter-2-sentinel-1:projectile:attempt": 1
+          },
+          "casts": {
+            "Ember:primary": 10,
+            "Tide:secondary": 1,
+            "Stone:primary": 1,
+            "Gale:primary": 2
+          },
+          "inputs": {
+            "primary:keyboard-fallback": 6,
+            "secondary:keyboard-fallback": 1,
+            "primary:mouse": 7
+          },
+          "switches": 4,
+          "dodges": 1,
+          "stateApplications": 19,
+          "transformations": {
+            "vaporize": 3
+          },
+          "damage": {
+            "mage-2:steam": 34.22999999999998,
+            "mage-2:heat bolt": 27,
+            "mage-2:eruption": 40,
+            "mage-1:heat bolt": 9,
+            "mage-2:pressure": 5
+          },
+          "playerDamage": 0,
+          "blockedBolts": 3,
+          "sentinelDefeatTime": null,
+          "combatStartedAt": null,
+          "falls": 0
+        },
+        "recentEvents": [
+          {
+            "id": 39,
+            "time": 5.699999999999985,
+            "type": "empty",
+            "source": "mage-2",
+            "pos": {
+              "x": 1.9997769011014204,
+              "y": 0.7500006390684923,
+              "z": 7.183577430680543e-7
+            },
+            "duration": 0.3
+          },
+          {
+            "id": 40,
+            "time": 5.999999999999984,
+            "type": "cast",
+            "source": "mage-1",
+            "pos": {
+              "x": -2.5163092613220215,
+              "y": 0.7152029275894165,
+              "z": 3.9147257804870605
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          },
+          {
+            "id": 42,
+            "time": 6.11666666666665,
+            "type": "impact",
+            "source": "mage-1",
+            "pos": {
+              "x": -4.1703942850241775,
+              "y": 0.7258676351565434,
+              "z": 0.944203480559951
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          },
+          {
+            "id": 43,
+            "time": 6.299999999999983,
+            "type": "cast",
+            "source": "mage-2",
+            "pos": {
+              "x": 4.102296352386475,
+              "y": 0.7172316908836365,
+              "z": 3.999911069869995
+            },
+            "duration": 0.2,
+            "principle": "Gale"
+          },
+          {
+            "id": 44,
+            "time": 6.299999999999983,
+            "type": "fan",
+            "source": "mage-2",
+            "pos": {
+              "x": 4.102296352386475,
+              "y": 0.7172316908836365,
+              "z": 3.999911069869995
+            },
+            "duration": 0.3,
+            "principle": "Gale",
+            "end": {
+              "x": 0.03064328562203823,
+              "y": 0,
+              "z": -0.9995303842536684
+            }
+          },
+          {
+            "id": 45,
+            "time": 6.333333333333316,
+            "type": "cast",
+            "source": "mage-1",
+            "pos": {
+              "x": -4.218709945678711,
+              "y": 0.717200517654419,
+              "z": 3.914724588394165
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          },
+          {
+            "id": 48,
+            "time": 6.6166666666666485,
+            "type": "dodge",
+            "source": "mage-1",
+            "pos": {
+              "x": -5.641109466552734,
+              "y": 0.7189018130302429,
+              "z": 3.9147231578826904
+            },
+            "duration": 0.3
+          },
+          {
+            "id": 50,
+            "time": 6.849999999999981,
+            "type": "cast",
+            "source": "mage-1",
+            "pos": {
+              "x": -9.087410926818848,
+              "y": 0.7201030254364014,
+              "z": 3.9141783714294434
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          }
+        ]
+      },
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.650666666666666,
+        "p95FrameMs": 16.799999999999272,
+        "drawCalls": 95,
+        "triangles": 10776,
+        "activeVfx": 0,
+        "geometries": 63,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 33,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      },
+      "guest": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.651000000000003,
+        "p95FrameMs": 16.800000000000182,
+        "drawCalls": 94,
+        "triangles": 10922,
+        "activeVfx": 0,
+        "geometries": 64,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 38.399999998509884,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      }
+    },
+    {
+      "name": "grayscale",
+      "at": 9.45,
+      "build": "3e5e03333abb",
+      "config": {
+        "model": "primary-secondary",
+        "camera": "balanced",
+        "tempo": "balanced",
+        "scene": "run",
+        "scenario": "cross-cover",
+        "encounterVersion": "candidate",
+        "seed": 3,
+        "moveSpeed": 5.6,
+        "dodgeDistance": 3.5,
+        "dodgeDuration": 0.22,
+        "dodgeRecovery": 0.8,
+        "castRecovery": 1,
+        "telegraph": 1.05,
+        "cameraDistance": 24,
+        "cameraPitch": 51,
+        "secondaryCapacity": 1,
+        "inputBuffer": 0.12,
+        "invulnerability": 0.17,
+        "castMoveMultiplier": 0.78
+      },
+      "state": {
+        "time": 7.383333333333312,
+        "tick": 443,
+        "trial": {
+          "status": "active",
+          "encounter": 2,
+          "isolated": false,
+          "scenario": "side-cover",
+          "elapsed": 7.383333333333312,
+          "started": 0.11666666666666665,
+          "results": [
+            {
+              "encounter": 0,
+              "seconds": 0.06666666666666667,
+              "health": 100
+            },
+            {
+              "encounter": 1,
+              "seconds": 0.04999999999999999,
+              "health": 100
+            }
+          ]
+        },
+        "run": {
+          "id": "3:2",
+          "upgrades": {
+            "mage-1": [
+              "travelling-basin"
+            ],
+            "mage-2": [
+              "stone-echo"
+            ]
+          }
+        },
+        "party": {
+          "ready": [],
+          "epoch": 16
+        },
+        "actors": {
+          "mage-1": {
+            "activePrinciple": "Ember",
+            "aim": {
+              "x": -13.482561309050949,
+              "y": 0,
+              "z": -4.0698983891432725,
+              "body": false,
+              "invalid": true
+            },
+            "primaryReady": 7.169999999999981,
+            "secondaryReady": 2.2833333333333323,
+            "dodgeReady": 7.416666666666648,
+            "dodgeUntil": 6.836666666666648,
+            "invulnerableUntil": 6.786666666666648,
+            "dodgeDirection": {
+              "x": -1,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.969999999999981,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          },
+          "mage-2": {
+            "activePrinciple": "Gale",
+            "aim": {
+              "x": 8.067850158110993,
+              "y": 6.390684923474055e-7,
+              "z": 0.00011935522291395273,
+              "body": false,
+              "invalid": false
+            },
+            "primaryReady": 6.799999999999983,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.419999999999983,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          }
+        },
+        "entities": [
+          {
+            "id": "mage-1",
+            "kind": "player",
+            "pos": {
+              "x": -10.135940551757812,
+              "y": 0.7199923992156982,
+              "z": 3.9144093990325928
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "mage-2",
+            "kind": "player",
+            "pos": {
+              "x": 8.417898178100586,
+              "y": 0.7192782163619995,
+              "z": 4.00015115737915
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "timber",
+            "kind": "wood",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "hp": 28.770000000000017,
+            "wet": 0.9291666666666745,
+            "heat": 1.8166666666667803,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "ballast",
+            "kind": "heavy",
+            "pos": {
+              "x": 7.0073442459106445,
+              "y": 0.7998597025871277,
+              "z": 0.9973018169403076
+            },
+            "hp": 55,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 1
+          },
+          {
+            "id": "loose-1",
+            "kind": "loose",
+            "pos": {
+              "x": -0.7648534774780273,
+              "y": 0.3798602819442749,
+              "z": 2.045093536376953
+            },
+            "hp": 91,
+            "wet": 0,
+            "heat": 41.06666666666632,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-0",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.0794596672058105,
+              "y": 0.7999645471572876,
+              "z": -6.472723960876465
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-1",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.099999904632568,
+              "y": 0.7999609112739563,
+              "z": 6.599999904632568
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-2",
+            "kind": "pursuer",
+            "pos": {
+              "x": -2.5999999046325684,
+              "y": 0.5499645471572876,
+              "z": 0.4067544639110565
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-3",
+            "kind": "pursuer",
+            "pos": {
+              "x": -4.786832332611084,
+              "y": 0.5499646067619324,
+              "z": 4.213719367980957
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          }
+        ],
+        "fields": [
+          {
+            "id": "field-9",
+            "source": "mage-1",
+            "principle": "Tide",
+            "pos": {
+              "x": -6.873949147407585,
+              "y": 3.5762794503568784e-8,
+              "z": -5.319483316093849
+            },
+            "end": {
+              "x": -6.8495212867789315,
+              "y": 1.1920928910669204e-8,
+              "z": -7.319334130436015
+            },
+            "radius": 2.5,
+            "life": 6.2333333333331415,
+            "nextPulse": 0.10000000000000003,
+            "travel": {
+              "x": 0.01465671637719209,
+              "y": 0,
+              "z": -1.199910488605312
+            },
+            "tethered": false
+          }
+        ],
+        "bolts": [
+          {
+            "id": "enemy-47",
+            "source": "encounter-2-sentinel-0",
+            "originalSource": "encounter-2-sentinel-0",
+            "principle": "hostile",
+            "pos": {
+              "x": 3.0824286837529424,
+              "y": 0.7455873440198819,
+              "z": 0.21619196265778368
+            },
+            "velocity": {
+              "x": -1.9979002575922817,
+              "y": -0.05437720313740652,
+              "z": 6.708829596935123
+            },
+            "life": 2.0000000000000036,
+            "radius": 0.3
+          }
+        ],
+        "metrics": {
+          "damageRoutes": {
+            "[\"mage-2\",\"timber\",\"steam\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "steam",
+              "amount": 34.22999999999998
+            },
+            "[\"mage-2\",\"timber\",\"heat bolt\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "heat bolt",
+              "amount": 27
+            },
+            "[\"mage-2\",\"ballast\",\"eruption\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "eruption",
+              "amount": 40
+            },
+            "[\"mage-1\",\"loose-1\",\"heat bolt\"]": {
+              "source": "mage-1",
+              "recipient": "loose-1",
+              "reason": "heat bolt",
+              "amount": 9
+            },
+            "[\"mage-2\",\"ballast\",\"pressure\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "pressure",
+              "amount": 5
+            }
+          },
+          "outcomes": {
+            "mage-1:cast:Ember:primary": 5,
+            "mage-2:cast:Ember:primary": 5,
+            "projectile:mage-2:blocked": 2,
+            "mage-1:cast:Tide:secondary": 1,
+            "field:Tide:contact:timber": 12,
+            "projectile:mage-1:expired": 2,
+            "projectile:mage-2:hit:timber": 3,
+            "stagger:timber": 1,
+            "cross-reaction:mage-1:mage-2:timber": 3,
+            "mage-2:cast:Stone:primary": 1,
+            "stagger:ballast": 1,
+            "mage-2:Stone:primary:hit": 2,
+            "projectile:mage-1:hit:loose-1": 1,
+            "mage-2:cast:Gale:primary": 2,
+            "mage-2:Gale:primary:miss": 1,
+            "projectile:mage-1:blocked": 2,
+            "mage-2:Gale:primary:hit": 1,
+            "encounter-2-sentinel-0:projectile:attempt": 1,
+            "encounter-2-sentinel-1:projectile:attempt": 1,
+            "projectile:encounter-2-sentinel-1:blocked": 1
+          },
+          "casts": {
+            "Ember:primary": 10,
+            "Tide:secondary": 1,
+            "Stone:primary": 1,
+            "Gale:primary": 2
+          },
+          "inputs": {
+            "primary:keyboard-fallback": 6,
+            "secondary:keyboard-fallback": 1,
+            "primary:mouse": 7
+          },
+          "switches": 4,
+          "dodges": 1,
+          "stateApplications": 19,
+          "transformations": {
+            "vaporize": 3
+          },
+          "damage": {
+            "mage-2:steam": 34.22999999999998,
+            "mage-2:heat bolt": 27,
+            "mage-2:eruption": 40,
+            "mage-1:heat bolt": 9,
+            "mage-2:pressure": 5
+          },
+          "playerDamage": 0,
+          "blockedBolts": 5,
+          "sentinelDefeatTime": null,
+          "combatStartedAt": null,
+          "falls": 0
+        },
+        "recentEvents": [
+          {
+            "id": 42,
+            "time": 6.11666666666665,
+            "type": "impact",
+            "source": "mage-1",
+            "pos": {
+              "x": -4.1703942850241775,
+              "y": 0.7258676351565434,
+              "z": 0.944203480559951
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          },
+          {
+            "id": 43,
+            "time": 6.299999999999983,
+            "type": "cast",
+            "source": "mage-2",
+            "pos": {
+              "x": 4.102296352386475,
+              "y": 0.7172316908836365,
+              "z": 3.999911069869995
+            },
+            "duration": 0.2,
+            "principle": "Gale"
+          },
+          {
+            "id": 44,
+            "time": 6.299999999999983,
+            "type": "fan",
+            "source": "mage-2",
+            "pos": {
+              "x": 4.102296352386475,
+              "y": 0.7172316908836365,
+              "z": 3.999911069869995
+            },
+            "duration": 0.3,
+            "principle": "Gale",
+            "end": {
+              "x": 0.03064328562203823,
+              "y": 0,
+              "z": -0.9995303842536684
+            }
+          },
+          {
+            "id": 45,
+            "time": 6.333333333333316,
+            "type": "cast",
+            "source": "mage-1",
+            "pos": {
+              "x": -4.218709945678711,
+              "y": 0.717200517654419,
+              "z": 3.914724588394165
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          },
+          {
+            "id": 48,
+            "time": 6.6166666666666485,
+            "type": "dodge",
+            "source": "mage-1",
+            "pos": {
+              "x": -5.641109466552734,
+              "y": 0.7189018130302429,
+              "z": 3.9147231578826904
+            },
+            "duration": 0.3
+          },
+          {
+            "id": 50,
+            "time": 6.849999999999981,
+            "type": "cast",
+            "source": "mage-1",
+            "pos": {
+              "x": -9.087410926818848,
+              "y": 0.7201030254364014,
+              "z": 3.9141783714294434
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          },
+          {
+            "id": 52,
+            "time": 7.24999999999998,
+            "type": "impact",
+            "source": "mage-1",
+            "pos": {
+              "x": -12.06555626570824,
+              "y": 0.7511624455302915,
+              "z": -4.948843141601616
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          },
+          {
+            "id": 53,
+            "time": 7.316666666666646,
+            "type": "impact",
+            "source": "encounter-2-sentinel-1",
+            "pos": {
+              "x": 3.7207376022945198,
+              "y": 0.6855929763003813,
+              "z": 3.00554090481784
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          }
+        ]
+      },
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.650999999999996,
+        "p95FrameMs": 16.799999999999272,
+        "drawCalls": 96,
+        "triangles": 10990,
+        "activeVfx": 2,
+        "geometries": 62,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 33,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      },
+      "guest": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.651,
+        "p95FrameMs": 16.800000000000182,
+        "drawCalls": 96,
+        "triangles": 11146,
+        "activeVfx": 2,
+        "geometries": 63,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 38.399999998509884,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      }
+    },
+    {
+      "name": "deuteranopia",
+      "at": 9.645,
+      "build": "3e5e03333abb",
+      "config": {
+        "model": "primary-secondary",
+        "camera": "balanced",
+        "tempo": "balanced",
+        "scene": "run",
+        "scenario": "cross-cover",
+        "encounterVersion": "candidate",
+        "seed": 3,
+        "moveSpeed": 5.6,
+        "dodgeDistance": 3.5,
+        "dodgeDuration": 0.22,
+        "dodgeRecovery": 0.8,
+        "castRecovery": 1,
+        "telegraph": 1.05,
+        "cameraDistance": 24,
+        "cameraPitch": 51,
+        "secondaryCapacity": 1,
+        "inputBuffer": 0.12,
+        "invulnerability": 0.17,
+        "castMoveMultiplier": 0.78
+      },
+      "state": {
+        "time": 7.5499999999999785,
+        "tick": 453,
+        "trial": {
+          "status": "active",
+          "encounter": 2,
+          "isolated": false,
+          "scenario": "side-cover",
+          "elapsed": 7.5499999999999785,
+          "started": 0.11666666666666665,
+          "results": [
+            {
+              "encounter": 0,
+              "seconds": 0.06666666666666667,
+              "health": 100
+            },
+            {
+              "encounter": 1,
+              "seconds": 0.04999999999999999,
+              "health": 100
+            }
+          ]
+        },
+        "run": {
+          "id": "3:2",
+          "upgrades": {
+            "mage-1": [
+              "travelling-basin"
+            ],
+            "mage-2": [
+              "stone-echo"
+            ]
+          }
+        },
+        "party": {
+          "ready": [],
+          "epoch": 16
+        },
+        "actors": {
+          "mage-1": {
+            "activePrinciple": "Ember",
+            "aim": {
+              "x": -13.49048753534397,
+              "y": 0,
+              "z": -4.069896278701371,
+              "body": false,
+              "invalid": true
+            },
+            "primaryReady": 7.169999999999981,
+            "secondaryReady": 2.2833333333333323,
+            "dodgeReady": 7.416666666666648,
+            "dodgeUntil": 6.836666666666648,
+            "invulnerableUntil": 6.786666666666648,
+            "dodgeDirection": {
+              "x": -1,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.969999999999981,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          },
+          "mage-2": {
+            "activePrinciple": "Gale",
+            "aim": {
+              "x": 8.080711868860444,
+              "y": 6.390684923474055e-7,
+              "z": 0.00012484277039348513,
+              "body": false,
+              "invalid": false
+            },
+            "primaryReady": 6.799999999999983,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.419999999999983,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          }
+        },
+        "entities": [
+          {
+            "id": "mage-1",
+            "kind": "player",
+            "pos": {
+              "x": -10.135940551757812,
+              "y": 0.7199923992156982,
+              "z": 3.9144093990325928
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "mage-2",
+            "kind": "player",
+            "pos": {
+              "x": 8.417898178100586,
+              "y": 0.7194782495498657,
+              "z": 4.00015115737915
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "timber",
+            "kind": "wood",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "hp": 28.770000000000017,
+            "wet": 0.9250000000000083,
+            "heat": 1.1500000000001138,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "ballast",
+            "kind": "heavy",
+            "pos": {
+              "x": 7.0073442459106445,
+              "y": 0.7998597025871277,
+              "z": 0.9973018169403076
+            },
+            "hp": 55,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 1
+          },
+          {
+            "id": "loose-1",
+            "kind": "loose",
+            "pos": {
+              "x": -0.7648534774780273,
+              "y": 0.3798602819442749,
+              "z": 2.045093536376953
+            },
+            "hp": 91,
+            "wet": 0,
+            "heat": 40.39999999999962,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-0",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.0794596672058105,
+              "y": 0.7999645471572876,
+              "z": -6.472723960876465
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-1",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.099999904632568,
+              "y": 0.7999609112739563,
+              "z": 6.599999904632568
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-2",
+            "kind": "pursuer",
+            "pos": {
+              "x": -2.5999999046325684,
+              "y": 0.5499645471572876,
+              "z": 0.6012916564941406
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-3",
+            "kind": "pursuer",
+            "pos": {
+              "x": -5.213240623474121,
+              "y": 0.5499646067619324,
+              "z": 4.189841270446777
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          }
+        ],
+        "fields": [
+          {
+            "id": "field-9",
+            "source": "mage-1",
+            "principle": "Tide",
+            "pos": {
+              "x": -6.871506361344717,
+              "y": 3.576279472561339e-8,
+              "z": -5.519468397528066
+            },
+            "end": {
+              "x": -6.847078500716063,
+              "y": 1.1920928910669204e-8,
+              "z": -7.519319211870233
+            },
+            "radius": 2.5,
+            "life": 6.0666666666664755,
+            "nextPulse": 0.2,
+            "travel": {
+              "x": 0.01465671637719209,
+              "y": 0,
+              "z": -1.199910488605312
+            },
+            "tethered": false
+          }
+        ],
+        "bolts": [
+          {
+            "id": "enemy-47",
+            "source": "encounter-2-sentinel-0",
+            "originalSource": "encounter-2-sentinel-0",
+            "principle": "hostile",
+            "pos": {
+              "x": 2.7494453074875613,
+              "y": 0.7365244768303143,
+              "z": 1.3343302288136376
+            },
+            "velocity": {
+              "x": -1.9979002575922817,
+              "y": -0.05437720313740652,
+              "z": 6.708829596935123
+            },
+            "life": 1.8333333333333375,
+            "radius": 0.3
+          }
+        ],
+        "metrics": {
+          "damageRoutes": {
+            "[\"mage-2\",\"timber\",\"steam\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "steam",
+              "amount": 34.22999999999998
+            },
+            "[\"mage-2\",\"timber\",\"heat bolt\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "heat bolt",
+              "amount": 27
+            },
+            "[\"mage-2\",\"ballast\",\"eruption\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "eruption",
+              "amount": 40
+            },
+            "[\"mage-1\",\"loose-1\",\"heat bolt\"]": {
+              "source": "mage-1",
+              "recipient": "loose-1",
+              "reason": "heat bolt",
+              "amount": 9
+            },
+            "[\"mage-2\",\"ballast\",\"pressure\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "pressure",
+              "amount": 5
+            }
+          },
+          "outcomes": {
+            "mage-1:cast:Ember:primary": 5,
+            "mage-2:cast:Ember:primary": 5,
+            "projectile:mage-2:blocked": 2,
+            "mage-1:cast:Tide:secondary": 1,
+            "field:Tide:contact:timber": 12,
+            "projectile:mage-1:expired": 2,
+            "projectile:mage-2:hit:timber": 3,
+            "stagger:timber": 1,
+            "cross-reaction:mage-1:mage-2:timber": 3,
+            "mage-2:cast:Stone:primary": 1,
+            "stagger:ballast": 1,
+            "mage-2:Stone:primary:hit": 2,
+            "projectile:mage-1:hit:loose-1": 1,
+            "mage-2:cast:Gale:primary": 2,
+            "mage-2:Gale:primary:miss": 1,
+            "projectile:mage-1:blocked": 2,
+            "mage-2:Gale:primary:hit": 1,
+            "encounter-2-sentinel-0:projectile:attempt": 1,
+            "encounter-2-sentinel-1:projectile:attempt": 1,
+            "projectile:encounter-2-sentinel-1:blocked": 1
+          },
+          "casts": {
+            "Ember:primary": 10,
+            "Tide:secondary": 1,
+            "Stone:primary": 1,
+            "Gale:primary": 2
+          },
+          "inputs": {
+            "primary:keyboard-fallback": 6,
+            "secondary:keyboard-fallback": 1,
+            "primary:mouse": 7
+          },
+          "switches": 4,
+          "dodges": 1,
+          "stateApplications": 19,
+          "transformations": {
+            "vaporize": 3
+          },
+          "damage": {
+            "mage-2:steam": 34.22999999999998,
+            "mage-2:heat bolt": 27,
+            "mage-2:eruption": 40,
+            "mage-1:heat bolt": 9,
+            "mage-2:pressure": 5
+          },
+          "playerDamage": 0,
+          "blockedBolts": 5,
+          "sentinelDefeatTime": null,
+          "combatStartedAt": null,
+          "falls": 0
+        },
+        "recentEvents": [
+          {
+            "id": 42,
+            "time": 6.11666666666665,
+            "type": "impact",
+            "source": "mage-1",
+            "pos": {
+              "x": -4.1703942850241775,
+              "y": 0.7258676351565434,
+              "z": 0.944203480559951
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          },
+          {
+            "id": 43,
+            "time": 6.299999999999983,
+            "type": "cast",
+            "source": "mage-2",
+            "pos": {
+              "x": 4.102296352386475,
+              "y": 0.7172316908836365,
+              "z": 3.999911069869995
+            },
+            "duration": 0.2,
+            "principle": "Gale"
+          },
+          {
+            "id": 44,
+            "time": 6.299999999999983,
+            "type": "fan",
+            "source": "mage-2",
+            "pos": {
+              "x": 4.102296352386475,
+              "y": 0.7172316908836365,
+              "z": 3.999911069869995
+            },
+            "duration": 0.3,
+            "principle": "Gale",
+            "end": {
+              "x": 0.03064328562203823,
+              "y": 0,
+              "z": -0.9995303842536684
+            }
+          },
+          {
+            "id": 45,
+            "time": 6.333333333333316,
+            "type": "cast",
+            "source": "mage-1",
+            "pos": {
+              "x": -4.218709945678711,
+              "y": 0.717200517654419,
+              "z": 3.914724588394165
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          },
+          {
+            "id": 48,
+            "time": 6.6166666666666485,
+            "type": "dodge",
+            "source": "mage-1",
+            "pos": {
+              "x": -5.641109466552734,
+              "y": 0.7189018130302429,
+              "z": 3.9147231578826904
+            },
+            "duration": 0.3
+          },
+          {
+            "id": 50,
+            "time": 6.849999999999981,
+            "type": "cast",
+            "source": "mage-1",
+            "pos": {
+              "x": -9.087410926818848,
+              "y": 0.7201030254364014,
+              "z": 3.9141783714294434
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          },
+          {
+            "id": 52,
+            "time": 7.24999999999998,
+            "type": "impact",
+            "source": "mage-1",
+            "pos": {
+              "x": -12.06555626570824,
+              "y": 0.7511624455302915,
+              "z": -4.948843141601616
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          },
+          {
+            "id": 53,
+            "time": 7.316666666666646,
+            "type": "impact",
+            "source": "encounter-2-sentinel-1",
+            "pos": {
+              "x": 3.7207376022945198,
+              "y": 0.6855929763003813,
+              "z": 3.00554090481784
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          }
+        ]
+      },
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.651333333333334,
+        "p95FrameMs": 16.799999999999272,
+        "drawCalls": 97,
+        "triangles": 11002,
+        "activeVfx": 2,
+        "geometries": 62,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 33,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      },
+      "guest": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.651666666666667,
+        "p95FrameMs": 16.800000000000182,
+        "drawCalls": 102,
+        "triangles": 11566,
+        "activeVfx": 2,
+        "geometries": 63,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 38.399999998509884,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      }
+    },
+    {
+      "name": "downed",
+      "at": 10.459,
+      "build": "3e5e03333abb",
+      "config": {
+        "model": "primary-secondary",
+        "camera": "balanced",
+        "tempo": "balanced",
+        "scene": "run",
+        "scenario": "cross-cover",
+        "encounterVersion": "candidate",
+        "seed": 3,
+        "moveSpeed": 5.6,
+        "dodgeDistance": 3.5,
+        "dodgeDuration": 0.22,
+        "dodgeRecovery": 0.8,
+        "castRecovery": 1,
+        "telegraph": 1.05,
+        "cameraDistance": 24,
+        "cameraPitch": 51,
+        "secondaryCapacity": 1,
+        "inputBuffer": 0.12,
+        "invulnerability": 0.17,
+        "castMoveMultiplier": 0.78
+      },
+      "state": {
+        "time": 8.333333333333327,
+        "tick": 500,
+        "trial": {
+          "status": "active",
+          "encounter": 2,
+          "isolated": false,
+          "scenario": "side-cover",
+          "elapsed": 8.333333333333327,
+          "started": 0.11666666666666665,
+          "results": [
+            {
+              "encounter": 0,
+              "seconds": 0.06666666666666667,
+              "health": 100
+            },
+            {
+              "encounter": 1,
+              "seconds": 0.04999999999999999,
+              "health": 100
+            }
+          ]
+        },
+        "run": {
+          "id": "3:2",
+          "upgrades": {
+            "mage-1": [
+              "travelling-basin"
+            ],
+            "mage-2": [
+              "stone-echo"
+            ]
+          }
+        },
+        "party": {
+          "ready": [],
+          "epoch": 18
+        },
+        "actors": {
+          "mage-1": {
+            "activePrinciple": "Ember",
+            "aim": {
+              "x": -5.180006358890653,
+              "y": 6.426661620650975e-7,
+              "z": -3.9997109495634966,
+              "body": false,
+              "invalid": false
+            },
+            "primaryReady": 7.169999999999981,
+            "secondaryReady": 2.2833333333333323,
+            "dodgeReady": 7.416666666666648,
+            "dodgeUntil": 6.836666666666648,
+            "invulnerableUntil": 6.786666666666648,
+            "dodgeDirection": {
+              "x": -1,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.969999999999981,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          },
+          "mage-2": {
+            "activePrinciple": "Gale",
+            "aim": {
+              "x": 0,
+              "y": 0,
+              "z": -5
+            },
+            "primaryReady": 6.799999999999983,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 0.11666666666666665,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.419999999999983,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          }
+        },
+        "entities": [
+          {
+            "id": "mage-1",
+            "kind": "player",
+            "pos": {
+              "x": -0.0000011042232017643983,
+              "y": 0.7197467088699341,
+              "z": 4
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "mage-2",
+            "kind": "player",
+            "pos": {
+              "x": 1,
+              "y": 0.75,
+              "z": 4
+            },
+            "hp": 0,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "timber",
+            "kind": "wood",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "hp": 28.770000000000017,
+            "wet": 0.9054166666666771,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "ballast",
+            "kind": "heavy",
+            "pos": {
+              "x": 7.0073442459106445,
+              "y": 0.7998597025871277,
+              "z": 0.9973018169403076
+            },
+            "hp": 55,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 1
+          },
+          {
+            "id": "loose-1",
+            "kind": "loose",
+            "pos": {
+              "x": -0.7648534774780273,
+              "y": 0.3798602819442749,
+              "z": 2.045093536376953
+            },
+            "hp": 91,
+            "wet": 0,
+            "heat": 37.26666666666613,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-0",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.0794596672058105,
+              "y": 0.7999645471572876,
+              "z": -6.472723960876465
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-1",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.099999904632568,
+              "y": 0.7999609112739563,
+              "z": 6.599999904632568
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-2",
+            "kind": "pursuer",
+            "pos": {
+              "x": -2.5999999046325684,
+              "y": 0.5499645471572876,
+              "z": 0.690677285194397
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-3",
+            "kind": "pursuer",
+            "pos": {
+              "x": -5.526886940002441,
+              "y": 0.5499646067619324,
+              "z": 4.172288417816162
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          }
+        ],
+        "fields": [
+          {
+            "id": "field-9",
+            "source": "mage-1",
+            "principle": "Tide",
+            "pos": {
+              "x": -6.860025266849235,
+              "y": 2.3841866814144907e-8,
+              "z": -6.459398280268888
+            },
+            "end": {
+              "x": -6.8355974062205815,
+              "y": 1.1920928910669204e-8,
+              "z": -8.459249094611055
+            },
+            "radius": 2.5,
+            "life": 5.283333333333145,
+            "nextPulse": 0.21666666666666667,
+            "travel": {
+              "x": 0.01465671637719209,
+              "y": 0,
+              "z": -1.199910488605312
+            },
+            "tethered": false
+          }
+        ],
+        "bolts": [
+          {
+            "id": "enemy-47",
+            "source": "encounter-2-sentinel-0",
+            "originalSource": "encounter-2-sentinel-0",
+            "principle": "hostile",
+            "pos": {
+              "x": 1.1844234390402701,
+              "y": 0.6939290010393465,
+              "z": 6.589580079746154
+            },
+            "velocity": {
+              "x": -1.9979002575922817,
+              "y": -0.05437720313740652,
+              "z": 6.708829596935123
+            },
+            "life": 1.050000000000007,
+            "radius": 0.3
+          }
+        ],
+        "metrics": {
+          "damageRoutes": {
+            "[\"mage-2\",\"timber\",\"steam\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "steam",
+              "amount": 34.22999999999998
+            },
+            "[\"mage-2\",\"timber\",\"heat bolt\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "heat bolt",
+              "amount": 27
+            },
+            "[\"mage-2\",\"ballast\",\"eruption\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "eruption",
+              "amount": 40
+            },
+            "[\"mage-1\",\"loose-1\",\"heat bolt\"]": {
+              "source": "mage-1",
+              "recipient": "loose-1",
+              "reason": "heat bolt",
+              "amount": 9
+            },
+            "[\"mage-2\",\"ballast\",\"pressure\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "pressure",
+              "amount": 5
+            }
+          },
+          "outcomes": {
+            "mage-1:cast:Ember:primary": 5,
+            "mage-2:cast:Ember:primary": 5,
+            "projectile:mage-2:blocked": 2,
+            "mage-1:cast:Tide:secondary": 1,
+            "field:Tide:contact:timber": 12,
+            "projectile:mage-1:expired": 2,
+            "projectile:mage-2:hit:timber": 3,
+            "stagger:timber": 1,
+            "cross-reaction:mage-1:mage-2:timber": 3,
+            "mage-2:cast:Stone:primary": 1,
+            "stagger:ballast": 1,
+            "mage-2:Stone:primary:hit": 2,
+            "projectile:mage-1:hit:loose-1": 1,
+            "mage-2:cast:Gale:primary": 2,
+            "mage-2:Gale:primary:miss": 1,
+            "projectile:mage-1:blocked": 2,
+            "mage-2:Gale:primary:hit": 1,
+            "encounter-2-sentinel-0:projectile:attempt": 1,
+            "encounter-2-sentinel-1:projectile:attempt": 1,
+            "projectile:encounter-2-sentinel-1:blocked": 1
+          },
+          "casts": {
+            "Ember:primary": 10,
+            "Tide:secondary": 1,
+            "Stone:primary": 1,
+            "Gale:primary": 2
+          },
+          "inputs": {
+            "primary:keyboard-fallback": 6,
+            "secondary:keyboard-fallback": 1,
+            "primary:mouse": 7
+          },
+          "switches": 4,
+          "dodges": 1,
+          "stateApplications": 19,
+          "transformations": {
+            "vaporize": 3
+          },
+          "damage": {
+            "mage-2:steam": 34.22999999999998,
+            "mage-2:heat bolt": 27,
+            "mage-2:eruption": 40,
+            "mage-1:heat bolt": 9,
+            "mage-2:pressure": 5
+          },
+          "playerDamage": 0,
+          "blockedBolts": 5,
+          "sentinelDefeatTime": null,
+          "combatStartedAt": null,
+          "falls": 0
+        },
+        "recentEvents": [
+          {
+            "id": 48,
+            "time": 6.6166666666666485,
+            "type": "dodge",
+            "source": "mage-1",
+            "pos": {
+              "x": -5.641109466552734,
+              "y": 0.7189018130302429,
+              "z": 3.9147231578826904
+            },
+            "duration": 0.3
+          },
+          {
+            "id": 50,
+            "time": 6.849999999999981,
+            "type": "cast",
+            "source": "mage-1",
+            "pos": {
+              "x": -9.087410926818848,
+              "y": 0.7201030254364014,
+              "z": 3.9141783714294434
+            },
+            "duration": 0.2,
+            "principle": "Ember"
+          },
+          {
+            "id": 52,
+            "time": 7.24999999999998,
+            "type": "impact",
+            "source": "mage-1",
+            "pos": {
+              "x": -12.06555626570824,
+              "y": 0.7511624455302915,
+              "z": -4.948843141601616
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          },
+          {
+            "id": 53,
+            "time": 7.316666666666646,
+            "type": "impact",
+            "source": "encounter-2-sentinel-1",
+            "pos": {
+              "x": 3.7207376022945198,
+              "y": 0.6855929763003813,
+              "z": 3.00554090481784
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          }
+        ]
+      },
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.651,
+        "p95FrameMs": 16.799999999999272,
+        "drawCalls": 99,
+        "triangles": 11994,
+        "activeVfx": 0,
+        "geometries": 62,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 33,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      },
+      "guest": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.651666666666667,
+        "p95FrameMs": 16.800000000000182,
+        "drawCalls": 100,
+        "triangles": 12250,
+        "activeVfx": 0,
+        "geometries": 63,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 38.399999998509884,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      }
+    },
+    {
+      "name": "revived",
+      "at": 11.801,
+      "build": "3e5e03333abb",
+      "config": {
+        "model": "primary-secondary",
+        "camera": "balanced",
+        "tempo": "balanced",
+        "scene": "run",
+        "scenario": "cross-cover",
+        "encounterVersion": "candidate",
+        "seed": 3,
+        "moveSpeed": 5.6,
+        "dodgeDistance": 3.5,
+        "dodgeDuration": 0.22,
+        "dodgeRecovery": 0.8,
+        "castRecovery": 1,
+        "telegraph": 1.05,
+        "cameraDistance": 24,
+        "cameraPitch": 51,
+        "secondaryCapacity": 1,
+        "inputBuffer": 0.12,
+        "invulnerability": 0.17,
+        "castMoveMultiplier": 0.78
+      },
+      "state": {
+        "time": 9.683333333333394,
+        "tick": 581,
+        "trial": {
+          "status": "active",
+          "encounter": 2,
+          "isolated": false,
+          "scenario": "side-cover",
+          "elapsed": 9.683333333333394,
+          "started": 0.11666666666666665,
+          "results": [
+            {
+              "encounter": 0,
+              "seconds": 0.06666666666666667,
+              "health": 100
+            },
+            {
+              "encounter": 1,
+              "seconds": 0.04999999999999999,
+              "health": 100
+            }
+          ]
+        },
+        "run": {
+          "id": "3:2",
+          "upgrades": {
+            "mage-1": [
+              "travelling-basin"
+            ],
+            "mage-2": [
+              "stone-echo"
+            ]
+          }
+        },
+        "party": {
+          "ready": [],
+          "epoch": 18
+        },
+        "actors": {
+          "mage-1": {
+            "activePrinciple": "Ember",
+            "aim": {
+              "x": -5.180006348762697,
+              "y": 6.426661620650975e-7,
+              "z": -3.9997109511970095,
+              "body": false,
+              "invalid": false
+            },
+            "primaryReady": 7.169999999999981,
+            "secondaryReady": 2.2833333333333323,
+            "dodgeReady": 7.416666666666648,
+            "dodgeUntil": 6.836666666666648,
+            "invulnerableUntil": 6.786666666666648,
+            "dodgeDirection": {
+              "x": -1,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.969999999999981,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          },
+          "mage-2": {
+            "activePrinciple": "Gale",
+            "aim": {
+              "x": 1.9993233147262335,
+              "y": 6.390684923474055e-7,
+              "z": 0.0000012040101786681134,
+              "body": false,
+              "invalid": false
+            },
+            "primaryReady": 6.799999999999983,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 10.566666666666721,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.419999999999983,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          }
+        },
+        "entities": [
+          {
+            "id": "mage-1",
+            "kind": "player",
+            "pos": {
+              "x": -0.000001070204689312959,
+              "y": 0.7197467684745789,
+              "z": 4
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "mage-2",
+            "kind": "player",
+            "pos": {
+              "x": 0.9999997019767761,
+              "y": 0.7200587391853333,
+              "z": 3.9999992847442627
+            },
+            "hp": 35,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "timber",
+            "kind": "wood",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "hp": 28.770000000000017,
+            "wet": 0.8716666666666808,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "ballast",
+            "kind": "heavy",
+            "pos": {
+              "x": 7.0073442459106445,
+              "y": 0.7998597025871277,
+              "z": 0.9973018169403076
+            },
+            "hp": 55,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 1
+          },
+          {
+            "id": "loose-1",
+            "kind": "loose",
+            "pos": {
+              "x": -0.7648534774780273,
+              "y": 0.3798602819442749,
+              "z": 2.045093536376953
+            },
+            "hp": 91,
+            "wet": 0,
+            "heat": 31.866666666665875,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-0",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.0794596672058105,
+              "y": 0.7999645471572876,
+              "z": -6.472723960876465
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-1",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.099999904632568,
+              "y": 0.7999609112739563,
+              "z": 6.599999904632568
+            },
+            "hp": 180,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-2",
+            "kind": "pursuer",
+            "pos": {
+              "x": -2.5999999046325684,
+              "y": 0.5499645471572876,
+              "z": 0.690677285194397
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-3",
+            "kind": "pursuer",
+            "pos": {
+              "x": -5.526886940002441,
+              "y": 0.5499646067619324,
+              "z": 4.172288417816162
+            },
+            "hp": 90,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          }
+        ],
+        "fields": [
+          {
+            "id": "field-9",
+            "source": "mage-1",
+            "principle": "Tide",
+            "pos": {
+              "x": -6.840238699740001,
+              "y": -1.1920918252528168e-8,
+              "z": -8.07927743988605
+            },
+            "end": {
+              "x": -6.815810839111347,
+              "y": 1.1920928910669204e-8,
+              "z": -10.079128254228218
+            },
+            "radius": 2.5,
+            "life": 3.9333333333331497,
+            "nextPulse": 0.2,
+            "travel": {
+              "x": 0.01465671637719209,
+              "y": 0,
+              "z": -1.199910488605312
+            },
+            "tethered": false
+          }
+        ],
+        "bolts": [],
+        "metrics": {
+          "damageRoutes": {
+            "[\"mage-2\",\"timber\",\"steam\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "steam",
+              "amount": 34.22999999999998
+            },
+            "[\"mage-2\",\"timber\",\"heat bolt\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "heat bolt",
+              "amount": 27
+            },
+            "[\"mage-2\",\"ballast\",\"eruption\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "eruption",
+              "amount": 40
+            },
+            "[\"mage-1\",\"loose-1\",\"heat bolt\"]": {
+              "source": "mage-1",
+              "recipient": "loose-1",
+              "reason": "heat bolt",
+              "amount": 9
+            },
+            "[\"mage-2\",\"ballast\",\"pressure\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "pressure",
+              "amount": 5
+            }
+          },
+          "outcomes": {
+            "mage-1:cast:Ember:primary": 5,
+            "mage-2:cast:Ember:primary": 5,
+            "projectile:mage-2:blocked": 2,
+            "mage-1:cast:Tide:secondary": 1,
+            "field:Tide:contact:timber": 12,
+            "projectile:mage-1:expired": 2,
+            "projectile:mage-2:hit:timber": 3,
+            "stagger:timber": 1,
+            "cross-reaction:mage-1:mage-2:timber": 3,
+            "mage-2:cast:Stone:primary": 1,
+            "stagger:ballast": 1,
+            "mage-2:Stone:primary:hit": 2,
+            "projectile:mage-1:hit:loose-1": 1,
+            "mage-2:cast:Gale:primary": 2,
+            "mage-2:Gale:primary:miss": 1,
+            "projectile:mage-1:blocked": 2,
+            "mage-2:Gale:primary:hit": 1,
+            "encounter-2-sentinel-0:projectile:attempt": 1,
+            "encounter-2-sentinel-1:projectile:attempt": 1,
+            "projectile:encounter-2-sentinel-1:blocked": 1,
+            "projectile:encounter-2-sentinel-0:blocked": 1,
+            "revive:mage-1:mage-2": 1
+          },
+          "casts": {
+            "Ember:primary": 10,
+            "Tide:secondary": 1,
+            "Stone:primary": 1,
+            "Gale:primary": 2
+          },
+          "inputs": {
+            "primary:keyboard-fallback": 6,
+            "secondary:keyboard-fallback": 1,
+            "primary:mouse": 7
+          },
+          "switches": 4,
+          "dodges": 1,
+          "stateApplications": 19,
+          "transformations": {
+            "vaporize": 3
+          },
+          "damage": {
+            "mage-2:steam": 34.22999999999998,
+            "mage-2:heat bolt": 27,
+            "mage-2:eruption": 40,
+            "mage-1:heat bolt": 9,
+            "mage-2:pressure": 5
+          },
+          "playerDamage": 0,
+          "blockedBolts": 6,
+          "sentinelDefeatTime": null,
+          "combatStartedAt": null,
+          "falls": 0
+        },
+        "recentEvents": [
+          {
+            "id": 54,
+            "time": 9.000000000000027,
+            "type": "impact",
+            "source": "encounter-2-sentinel-0",
+            "pos": {
+              "x": -0.14751006602125072,
+              "y": 0.6576775322810761,
+              "z": 11.062133144369549
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          },
+          {
+            "id": 55,
+            "time": 9.566666666666721,
+            "type": "revive",
+            "source": "mage-1",
+            "pos": {
+              "x": 1,
+              "y": 0.75,
+              "z": 4
+            },
+            "duration": 1,
+            "target": "mage-2"
+          }
+        ]
+      },
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.651333333333334,
+        "p95FrameMs": 16.799999999999272,
+        "drawCalls": 99,
+        "triangles": 12026,
+        "activeVfx": 1,
+        "geometries": 62,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 33,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      },
+      "guest": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.651000000000003,
+        "p95FrameMs": 16.799999999999272,
+        "drawCalls": 100,
+        "triangles": 12282,
+        "activeVfx": 1,
+        "geometries": 63,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 38.399999998509884,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      }
+    },
+    {
+      "name": "reward",
+      "at": 12.01,
+      "build": "3e5e03333abb",
+      "config": {
+        "model": "primary-secondary",
+        "camera": "balanced",
+        "tempo": "balanced",
+        "scene": "run",
+        "scenario": "cross-cover",
+        "encounterVersion": "candidate",
+        "seed": 3,
+        "moveSpeed": 5.6,
+        "dodgeDistance": 3.5,
+        "dodgeDuration": 0.22,
+        "dodgeRecovery": 0.8,
+        "castRecovery": 1,
+        "telegraph": 1.05,
+        "cameraDistance": 24,
+        "cameraPitch": 51,
+        "secondaryCapacity": 1,
+        "inputBuffer": 0.12,
+        "invulnerability": 0.17,
+        "castMoveMultiplier": 0.78
+      },
+      "state": {
+        "time": 9.750000000000064,
+        "tick": 585,
+        "trial": {
+          "status": "between",
+          "encounter": 2,
+          "isolated": false,
+          "scenario": "side-cover",
+          "elapsed": 9.750000000000064,
+          "started": 0.11666666666666665,
+          "results": [
+            {
+              "encounter": 0,
+              "seconds": 0.06666666666666667,
+              "health": 100
+            },
+            {
+              "encounter": 1,
+              "seconds": 0.04999999999999999,
+              "health": 100
+            },
+            {
+              "encounter": 2,
+              "seconds": 9.633333333333397,
+              "health": 100
+            }
+          ]
+        },
+        "run": {
+          "id": "3:2",
+          "upgrades": {
+            "mage-1": [
+              "travelling-basin"
+            ],
+            "mage-2": [
+              "stone-echo"
+            ]
+          },
+          "reward": {
+            "id": "3:2:reward:2",
+            "encounter": 2,
+            "offers": {
+              "mage-1": [
+                "stone-echo",
+                "undertow",
+                "double-inscription"
+              ],
+              "mage-2": [
+                "piercing-ember",
+                "undertow",
+                "travelling-basin"
+              ]
+            },
+            "choices": {}
+          }
+        },
+        "party": {
+          "ready": [],
+          "epoch": 21
+        },
+        "actors": {
+          "mage-1": {
+            "activePrinciple": "Ember",
+            "aim": {
+              "x": 0,
+              "y": 0,
+              "z": -5
+            },
+            "primaryReady": 7.169999999999981,
+            "secondaryReady": 2.2833333333333323,
+            "dodgeReady": 7.416666666666648,
+            "dodgeUntil": 6.836666666666648,
+            "invulnerableUntil": 6.786666666666648,
+            "dodgeDirection": {
+              "x": -1,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.969999999999981,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          },
+          "mage-2": {
+            "activePrinciple": "Gale",
+            "aim": {
+              "x": 0,
+              "y": 0,
+              "z": -5
+            },
+            "primaryReady": 6.799999999999983,
+            "secondaryReady": 0.11666666666666665,
+            "dodgeReady": 0.11666666666666665,
+            "dodgeUntil": 0.11666666666666665,
+            "invulnerableUntil": 10.566666666666721,
+            "dodgeDirection": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castUntil": 6.419999999999983,
+            "verticalSpeed": 0,
+            "reviveProgress": 0
+          }
+        },
+        "entities": [
+          {
+            "id": "mage-1",
+            "kind": "player",
+            "pos": {
+              "x": -9.225946087099146e-7,
+              "y": 0.7195467352867126,
+              "z": 4
+            },
+            "hp": 100,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "mage-2",
+            "kind": "player",
+            "pos": {
+              "x": 0.9999997019767761,
+              "y": 0.7200587391853333,
+              "z": 3.9999992847442627
+            },
+            "hp": 35,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "timber",
+            "kind": "wood",
+            "pos": {
+              "x": -7,
+              "y": 0.8500000238418579,
+              "z": 1
+            },
+            "hp": 28.770000000000017,
+            "wet": 0.8700000000000143,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "ballast",
+            "kind": "heavy",
+            "pos": {
+              "x": 7.0073442459106445,
+              "y": 0.7998597025871277,
+              "z": 0.9973018169403076
+            },
+            "hp": 55,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 1
+          },
+          {
+            "id": "loose-1",
+            "kind": "loose",
+            "pos": {
+              "x": -0.7648534774780273,
+              "y": 0.3798602819442749,
+              "z": 2.045093536376953
+            },
+            "hp": 91,
+            "wet": 0,
+            "heat": 31.59999999999921,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-0",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.0794596672058105,
+              "y": 0.7999645471572876,
+              "z": -6.472723960876465
+            },
+            "hp": 0,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-sentinel-1",
+            "kind": "sentinel",
+            "pos": {
+              "x": 5.099999904632568,
+              "y": 0.7999609112739563,
+              "z": 6.599999904632568
+            },
+            "hp": 0,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-2",
+            "kind": "pursuer",
+            "pos": {
+              "x": -2.5999999046325684,
+              "y": 0.5499645471572876,
+              "z": 0.690677285194397
+            },
+            "hp": 0,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          },
+          {
+            "id": "encounter-2-pursuer-3",
+            "kind": "pursuer",
+            "pos": {
+              "x": -5.526886940002441,
+              "y": 0.5499646067619324,
+              "z": 4.172288417816162
+            },
+            "hp": 0,
+            "wet": 0,
+            "heat": 0,
+            "burning": false,
+            "cohesion": 0
+          }
+        ],
+        "fields": [
+          {
+            "id": "field-9",
+            "source": "mage-1",
+            "principle": "Tide",
+            "pos": {
+              "x": -6.839261585314854,
+              "y": 2.384186870152405e-8,
+              "z": -8.159271472459737
+            },
+            "end": {
+              "x": -6.8148337246862,
+              "y": 1.1920928910669204e-8,
+              "z": -10.159122286801905
+            },
+            "radius": 2.5,
+            "life": 3.8666666666664833,
+            "nextPulse": 0.13333333333333336,
+            "travel": {
+              "x": 0.01465671637719209,
+              "y": 0,
+              "z": -1.199910488605312
+            },
+            "tethered": false
+          }
+        ],
+        "bolts": [],
+        "metrics": {
+          "damageRoutes": {
+            "[\"mage-2\",\"timber\",\"steam\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "steam",
+              "amount": 34.22999999999998
+            },
+            "[\"mage-2\",\"timber\",\"heat bolt\"]": {
+              "source": "mage-2",
+              "recipient": "timber",
+              "reason": "heat bolt",
+              "amount": 27
+            },
+            "[\"mage-2\",\"ballast\",\"eruption\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "eruption",
+              "amount": 40
+            },
+            "[\"mage-1\",\"loose-1\",\"heat bolt\"]": {
+              "source": "mage-1",
+              "recipient": "loose-1",
+              "reason": "heat bolt",
+              "amount": 9
+            },
+            "[\"mage-2\",\"ballast\",\"pressure\"]": {
+              "source": "mage-2",
+              "recipient": "ballast",
+              "reason": "pressure",
+              "amount": 5
+            }
+          },
+          "outcomes": {
+            "mage-1:cast:Ember:primary": 5,
+            "mage-2:cast:Ember:primary": 5,
+            "projectile:mage-2:blocked": 2,
+            "mage-1:cast:Tide:secondary": 1,
+            "field:Tide:contact:timber": 12,
+            "projectile:mage-1:expired": 2,
+            "projectile:mage-2:hit:timber": 3,
+            "stagger:timber": 1,
+            "cross-reaction:mage-1:mage-2:timber": 3,
+            "mage-2:cast:Stone:primary": 1,
+            "stagger:ballast": 1,
+            "mage-2:Stone:primary:hit": 2,
+            "projectile:mage-1:hit:loose-1": 1,
+            "mage-2:cast:Gale:primary": 2,
+            "mage-2:Gale:primary:miss": 1,
+            "projectile:mage-1:blocked": 2,
+            "mage-2:Gale:primary:hit": 1,
+            "encounter-2-sentinel-0:projectile:attempt": 1,
+            "encounter-2-sentinel-1:projectile:attempt": 1,
+            "projectile:encounter-2-sentinel-1:blocked": 1,
+            "projectile:encounter-2-sentinel-0:blocked": 1,
+            "revive:mage-1:mage-2": 1
+          },
+          "casts": {
+            "Ember:primary": 10,
+            "Tide:secondary": 1,
+            "Stone:primary": 1,
+            "Gale:primary": 2
+          },
+          "inputs": {
+            "primary:keyboard-fallback": 6,
+            "secondary:keyboard-fallback": 1,
+            "primary:mouse": 7
+          },
+          "switches": 4,
+          "dodges": 1,
+          "stateApplications": 19,
+          "transformations": {
+            "vaporize": 3
+          },
+          "damage": {
+            "mage-2:steam": 34.22999999999998,
+            "mage-2:heat bolt": 27,
+            "mage-2:eruption": 40,
+            "mage-1:heat bolt": 9,
+            "mage-2:pressure": 5
+          },
+          "playerDamage": 0,
+          "blockedBolts": 6,
+          "sentinelDefeatTime": null,
+          "combatStartedAt": null,
+          "falls": 0
+        },
+        "recentEvents": [
+          {
+            "id": 54,
+            "time": 9.000000000000027,
+            "type": "impact",
+            "source": "encounter-2-sentinel-0",
+            "pos": {
+              "x": -0.14751006602125072,
+              "y": 0.6576775322810761,
+              "z": 11.062133144369549
+            },
+            "duration": 0.45,
+            "principle": "Stone"
+          },
+          {
+            "id": 55,
+            "time": 9.566666666666721,
+            "type": "revive",
+            "source": "mage-1",
+            "pos": {
+              "x": 1,
+              "y": 0.75,
+              "z": 4
+            },
+            "duration": 1,
+            "target": "mage-2"
+          }
+        ]
+      },
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.651333333333334,
+        "p95FrameMs": 16.799999999999272,
+        "drawCalls": 73,
+        "triangles": 8570,
+        "activeVfx": 1,
+        "geometries": 62,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 33,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      },
+      "guest": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 300,
+        "frameMs": 16.650999999999996,
+        "p95FrameMs": 16.799999999999272,
+        "drawCalls": 74,
+        "triangles": 8826,
+        "activeVfx": 1,
+        "geometries": 63,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 38.399999998509884,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-9",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      }
+    }
+  ],
+  "returnToPlay": true,
+  "finalState": {
+    "time": 10.316666666666759,
+    "tick": 619,
+    "trial": {
+      "status": "active",
+      "encounter": 3,
+      "isolated": false,
+      "scenario": "open-near",
+      "elapsed": 10.316666666666759,
+      "started": 9.750000000000064,
+      "results": [
+        {
+          "encounter": 0,
+          "seconds": 0.06666666666666667,
+          "health": 100
+        },
+        {
+          "encounter": 1,
+          "seconds": 0.04999999999999999,
+          "health": 100
+        },
+        {
+          "encounter": 2,
+          "seconds": 9.633333333333397,
+          "health": 100
+        }
+      ]
+    },
+    "run": {
+      "id": "3:2",
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "stone-echo"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "piercing-ember"
+        ]
+      }
+    },
+    "party": {
+      "ready": [],
+      "epoch": 22
+    },
+    "actors": {
+      "mage-1": {
+        "activePrinciple": "Ember",
+        "aim": {
+          "x": -6.1627645457768,
+          "y": 6.426661620650975e-7,
+          "z": -3.8807663599781854,
+          "body": false,
+          "invalid": false
+        },
+        "primaryReady": 9.750000000000064,
+        "secondaryReady": 9.750000000000064,
+        "dodgeReady": 9.750000000000064,
+        "dodgeUntil": 9.750000000000064,
+        "invulnerableUntil": 9.750000000000064,
+        "dodgeDirection": {
+          "x": -1,
+          "y": 0,
+          "z": 0
+        },
+        "castUntil": 9.750000000000064,
+        "verticalSpeed": 0,
+        "reviveProgress": 0
+      },
+      "mage-2": {
+        "activePrinciple": "Gale",
+        "aim": {
+          "x": 2.160323371663728,
+          "y": 6.390684923474055e-7,
+          "z": 1.6250103477209912,
+          "body": false,
+          "invalid": false
+        },
+        "primaryReady": 9.750000000000064,
+        "secondaryReady": 9.750000000000064,
+        "dodgeReady": 9.750000000000064,
+        "dodgeUntil": 9.750000000000064,
+        "invulnerableUntil": 9.750000000000064,
+        "dodgeDirection": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "castUntil": 9.750000000000064,
+        "verticalSpeed": 0,
+        "reviveProgress": 0
+      }
+    },
+    "entities": [
+      {
+        "id": "mage-1",
+        "kind": "player",
+        "pos": {
+          "x": -1.2001417875289917,
+          "y": 0.7196096777915955,
+          "z": 3.8513600826263428
+        },
+        "hp": 100,
+        "wet": 0,
+        "heat": 0,
+        "burning": false,
+        "cohesion": 0
+      },
+      {
+        "id": "mage-2",
+        "kind": "player",
+        "pos": {
+          "x": 1.1999984979629517,
+          "y": 0.719495415687561,
+          "z": 6.000000476837158
+        },
+        "hp": 35,
+        "wet": 0,
+        "heat": 0,
+        "burning": false,
+        "cohesion": 0
+      },
+      {
+        "id": "timber",
+        "kind": "wood",
+        "pos": {
+          "x": -7,
+          "y": 0.8500000238418579,
+          "z": 1
+        },
+        "hp": 90,
+        "wet": 0,
+        "heat": 0,
+        "burning": false,
+        "cohesion": 0
+      },
+      {
+        "id": "ballast",
+        "kind": "heavy",
+        "pos": {
+          "x": 7.002625465393066,
+          "y": 0.7998577356338501,
+          "z": 1.0021593570709229
+        },
+        "hp": 100,
+        "wet": 0,
+        "heat": 0,
+        "burning": false,
+        "cohesion": 0
+      },
+      {
+        "id": "loose-1",
+        "kind": "loose",
+        "pos": {
+          "x": -0.9973426461219788,
+          "y": 0.3748563528060913,
+          "z": 3.002114772796631
+        },
+        "hp": 100,
+        "wet": 0,
+        "heat": 0,
+        "burning": false,
+        "cohesion": 0
+      },
+      {
+        "id": "encounter-3-pursuer-0",
+        "kind": "pursuer",
+        "pos": {
+          "x": -5.07525110244751,
+          "y": 0.549965500831604,
+          "z": -2.4739272594451904
+        },
+        "hp": 90,
+        "wet": 0,
+        "heat": 0,
+        "burning": false,
+        "cohesion": 0
+      },
+      {
+        "id": "encounter-3-pursuer-1",
+        "kind": "pursuer",
+        "pos": {
+          "x": 5.055893898010254,
+          "y": 0.549965500831604,
+          "z": -2.4947595596313477
+        },
+        "hp": 90,
+        "wet": 0,
+        "heat": 0,
+        "burning": false,
+        "cohesion": 0
+      },
+      {
+        "id": "encounter-3-pursuer-2",
+        "kind": "pursuer",
+        "pos": {
+          "x": -0.10768665373325348,
+          "y": 0.549965500831604,
+          "z": -4.620498180389404
+        },
+        "hp": 90,
+        "wet": 0,
+        "heat": 0,
+        "burning": false,
+        "cohesion": 0
+      },
+      {
+        "id": "encounter-3-sentinel-3",
+        "kind": "sentinel",
+        "pos": {
+          "x": -0.0099706519395113,
+          "y": 0.7999577522277832,
+          "z": -3.4204981327056885
+        },
+        "hp": 180,
+        "wet": 0,
+        "heat": 0,
+        "burning": false,
+        "cohesion": 0
+      }
+    ],
+    "fields": [],
+    "bolts": [],
+    "metrics": {
+      "damageRoutes": {
+        "[\"mage-2\",\"timber\",\"steam\"]": {
+          "source": "mage-2",
+          "recipient": "timber",
+          "reason": "steam",
+          "amount": 34.22999999999998
+        },
+        "[\"mage-2\",\"timber\",\"heat bolt\"]": {
+          "source": "mage-2",
+          "recipient": "timber",
+          "reason": "heat bolt",
+          "amount": 27
+        },
+        "[\"mage-2\",\"ballast\",\"eruption\"]": {
+          "source": "mage-2",
+          "recipient": "ballast",
+          "reason": "eruption",
+          "amount": 40
+        },
+        "[\"mage-1\",\"loose-1\",\"heat bolt\"]": {
+          "source": "mage-1",
+          "recipient": "loose-1",
+          "reason": "heat bolt",
+          "amount": 9
+        },
+        "[\"mage-2\",\"ballast\",\"pressure\"]": {
+          "source": "mage-2",
+          "recipient": "ballast",
+          "reason": "pressure",
+          "amount": 5
+        }
+      },
+      "outcomes": {
+        "mage-1:cast:Ember:primary": 5,
+        "mage-2:cast:Ember:primary": 5,
+        "projectile:mage-2:blocked": 2,
+        "mage-1:cast:Tide:secondary": 1,
+        "field:Tide:contact:timber": 12,
+        "projectile:mage-1:expired": 2,
+        "projectile:mage-2:hit:timber": 3,
+        "stagger:timber": 1,
+        "cross-reaction:mage-1:mage-2:timber": 3,
+        "mage-2:cast:Stone:primary": 1,
+        "stagger:ballast": 1,
+        "mage-2:Stone:primary:hit": 2,
+        "projectile:mage-1:hit:loose-1": 1,
+        "mage-2:cast:Gale:primary": 2,
+        "mage-2:Gale:primary:miss": 1,
+        "projectile:mage-1:blocked": 2,
+        "mage-2:Gale:primary:hit": 1,
+        "encounter-2-sentinel-0:projectile:attempt": 1,
+        "encounter-2-sentinel-1:projectile:attempt": 1,
+        "projectile:encounter-2-sentinel-1:blocked": 1,
+        "projectile:encounter-2-sentinel-0:blocked": 1,
+        "revive:mage-1:mage-2": 1
+      },
+      "casts": {
+        "Ember:primary": 10,
+        "Tide:secondary": 1,
+        "Stone:primary": 1,
+        "Gale:primary": 2
+      },
+      "inputs": {
+        "primary:keyboard-fallback": 6,
+        "secondary:keyboard-fallback": 1,
+        "primary:mouse": 7
+      },
+      "switches": 4,
+      "dodges": 1,
+      "stateApplications": 19,
+      "transformations": {
+        "vaporize": 3
+      },
+      "damage": {
+        "mage-2:steam": 34.22999999999998,
+        "mage-2:heat bolt": 27,
+        "mage-2:eruption": 40,
+        "mage-1:heat bolt": 9,
+        "mage-2:pressure": 5
+      },
+      "playerDamage": 0,
+      "blockedBolts": 6,
+      "sentinelDefeatTime": null,
+      "combatStartedAt": null,
+      "falls": 0
+    },
+    "recentEvents": []
+  },
+  "marks": {
+    "sequence": 3.269,
+    "identity": 3.279,
+    "same-principle": 3.666,
+    "reaction": 5.108,
+    "alteration": 7.039,
+    "danger": 9.295,
+    "grayscale": 9.45,
+    "deuteranopia": 9.645,
+    "downed": 10.459,
+    "revived": 11.801,
+    "reward": 12.01
+  },
+  "errors": []
+}

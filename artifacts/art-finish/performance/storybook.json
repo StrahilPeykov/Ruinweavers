@@ -1,0 +1,288 @@
+{
+  "conditions": "Two same-machine WebRTC browsers; four existing enemies with AI disabled for repeatability; two real fields (120 s lifetime measurement fixture only) and held Ember/Stone casting; 60 requestAnimationFrame intervals per client; no video/encoding; software renderer is reported, not hardware GPU extrapolation.",
+  "samples": [
+    {
+      "build": "3e5e03333abb",
+      "role": "host",
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 259,
+        "frameMs": 17.036563706563697,
+        "p95FrameMs": 16.800000000000182,
+        "drawCalls": 126,
+        "triangles": 13506,
+        "activeVfx": 4,
+        "geometries": 78,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 27.599999997764826,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-2",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          },
+          {
+            "id": "field-7",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      },
+      "frameSample": {
+        "count": 60,
+        "mean": 16.564999999975164,
+        "p50": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "max": 16.800000000000182
+      },
+      "fields": 2,
+      "casts": {
+        "Tide:secondary": 1,
+        "Gale:secondary": 1,
+        "Ember:primary": 7,
+        "Stone:primary": 4
+      }
+    },
+    {
+      "build": "3e5e03333abb",
+      "role": "guest",
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 220,
+        "frameMs": 17.332727272727244,
+        "p95FrameMs": 16.800000000000182,
+        "drawCalls": 128,
+        "triangles": 13698,
+        "activeVfx": 5,
+        "geometries": 79,
+        "textures": 1,
+        "contextLost": false,
+        "art": {
+          "mode": "storybook",
+          "treatment": "original",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 34.69999999925494,
+          "downloadBytes": 280860,
+          "assets": 9,
+          "animationMixers": 2,
+          "sharedGeometries": 35,
+          "bounds": {
+            "mage": [
+              -0.4522479772567749,
+              0.015000000596046448,
+              -0.39050747767604066,
+              0.5618481040000916,
+              1.8712764978408813,
+              0.3799999952316284
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.100000023841858,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.100000023841858
+            ],
+            "landmark": [
+              -5.25,
+              0,
+              -1.350000023841858,
+              5.25,
+              6.7093706130981445,
+              1.350000023841858
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": false
+        },
+        "performances": [],
+        "fieldFeedback": [
+          {
+            "id": "field-2",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          },
+          {
+            "id": "field-7",
+            "expiryOpacity": 0.7,
+            "ownerOpacity": 0.8,
+            "ownerHeight": 0.12
+          }
+        ]
+      },
+      "frameSample": {
+        "count": 60,
+        "mean": 16.534999999950333,
+        "p50": 16.600000000000364,
+        "p95": 16.799999999999727,
+        "max": 16.800000000000182
+      },
+      "fields": 2,
+      "casts": {}
+    }
+  ]
+}

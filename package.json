@@ -17,6 +17,7 @@
     "evaluate:run": "tsx scripts/evaluate-run.ts",
     "art:package": "node scripts/art/package.mjs",
     "art:build": "node scripts/art/build.mjs",
+    "art:finish": "node scripts/art/build.mjs --finish",
     "art:captures": "node scripts/art/captures.mjs"
   },
   "dependencies": {

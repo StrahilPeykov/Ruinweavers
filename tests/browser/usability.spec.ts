@@ -107,12 +107,19 @@ test("Enter joins; both camera changes preserve party fields; rejection belongs 
     await a.waitForFunction(
       () => window.__RUINWEAVERS__.getState().trial.status === "active",
     );
-    await a.evaluate(() => {
+    const setupEpoch = await a.evaluate(() => {
       const api = window.__RUINWEAVERS__;
       api.setPaused(true);
       api.setupTestState({ enemyEnabled: false });
       api.setPaused(false);
+      return api.getState().party.epoch;
     });
+    // Do not send guest combat intent against the pre-fixture epoch. Faster
+    // native rendering exposes this setup race before the next snapshot arrives.
+    await b.waitForFunction(
+      (epoch) => window.__RUINWEAVERS__.getState().party.epoch === epoch,
+      setupEpoch,
+    );
     for (const p of [a, b]) {
       const at = await p.evaluate(() => {
         const api = window.__RUINWEAVERS__;
@@ -122,6 +129,13 @@ test("Enter joins; both camera changes preserve party fields; rejection belongs 
       await p.mouse.move(at.x, at.y);
       await p.keyboard.press(p === a ? "2" : "4");
       await p.keyboard.press("f");
+      await expect
+        .poll(async () =>
+          (await state(a)).fields.some(
+            (f: any) => f.source === (p === a ? "mage-1" : "mage-2"),
+          ),
+        )
+        .toBe(true);
     }
     await a.waitForFunction(
       () => window.__RUINWEAVERS__.getState().fields.length === 2,
@@ -143,6 +157,11 @@ test("Enter joins; both camera changes preserve party fields; rejection belongs 
       api.setupTestState({ secondaryRemaining: 2 });
       api.setPaused(false);
     });
+    await a.waitForFunction(
+      () =>
+        window.__RUINWEAVERS__.getNetworkState().epoch ===
+        window.__RUINWEAVERS__.getState().party.epoch,
+    );
     await a.keyboard.press("f");
     await a.waitForFunction(() =>
       window.__RUINWEAVERS__

@@ -1,0 +1,54 @@
+{
+  "runtimeBuild": "3e5e03333abb",
+  "protocol": 3,
+  "reviewedStart": "d72ae3e",
+  "unitTests": {
+    "passed": 75,
+    "failed": 0
+  },
+  "finalFullBrowserSweep": {
+    "passed": 43,
+    "failed": 1,
+    "skipped": 1,
+    "failure": "Windows PNG overwrite after gameplay assertions, historical 02-mixed-pressure.png"
+  },
+  "focusedReruns": {
+    "trialWithFreshCapturePath": "passed",
+    "standardTwoClientLoad": "passed",
+    "finalPackagedMedia": "passed"
+  },
+  "nonOptInBrowserJourneysPassedAcrossSweepAndRerun": 44,
+  "productionBuild": "passed; existing Rapier chunk-size warning",
+  "assetValidation": {
+    "files": 10,
+    "errors": 0,
+    "warnings": 0,
+    "rawBytes": 1375180
+  },
+  "nativeEnvironment": "Windows / installed headless Chrome 152 / ANGLE Intel UHD Direct3D11 / 1440x900 CSS; Lightweight 1152x720 buffer; Standard 1440x900",
+  "softwareIteration": "Chromium 153 / Vulkan SwiftShader; 6 passed, 1 invalid render-load sample because fields expired before 60 frames",
+  "firstNativeSweep": {
+    "passed": 41,
+    "failed": 2,
+    "skipped": 1,
+    "corrections": [
+      "Wait for already-fired Ember before resetting thermal fixture",
+      "Wait for host/guest pause epoch before test key input"
+    ]
+  },
+  "visualCorrections": [
+    "Landmark moved into starting camera composition",
+    "Painted solid wall replaces same greybox envelope",
+    "Native self-shadow striping removed from illustrated surfaces; ground shadows retained",
+    "Human crown fitted to existing body height",
+    "Connection/upgrade labels given contrasting backing"
+  ],
+  "media": "public/art-finish/index.html; captures.json labels actual recorded builds/fixtures",
+  "notValidated": [
+    "Remote second laptop or TURN path",
+    "Physical trackpad/rollover",
+    "Sustained hardware performance",
+    "Full accessibility or subjective enjoyment"
+  ],
+  "scope": "One benchmark only; old proofs and gameplay preserved; no rollout to all rooms"
+}

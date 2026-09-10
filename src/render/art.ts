@@ -1,4 +1,5 @@
 import { BUILD_ID } from "../network/protocol";
+import { performMage } from "./performance";
 import * as T from "three";
 import { GLTFLoader, type GLTF } from "three/addons/loaders/GLTFLoader.js";
 import type { Entity, State } from "../simulation/types";
@@ -54,13 +55,19 @@ export class ArtStudy {
   mixers = new Map<T.Object3D, T.AnimationMixer>();
   bounds: Record<string, number[]> = {};
   gradient?: T.DataTexture;
+  paintTexture?: T.Texture;
   treatment: string;
   constructor() {
     const q = new URLSearchParams(location.search);
-    const value = q.get("art") ?? (!q.has("scene") ? "storybook" : "off");
-    this.mode = value === "storybook" || value === "ink" ? value : "off";
+    const value = q.get("art") ?? (!q.has("scene") ? "illustrated" : "off");
+    this.mode =
+      value === "storybook" || value === "ink" || value === "illustrated"
+        ? value
+        : "off";
     this.treatment =
-      q.get("treatment") === "illustrated" ? "illustrated" : "original";
+      q.get("treatment") === "illustrated" || this.mode === "illustrated"
+        ? "illustrated"
+        : "original";
   }
   async load() {
     if (this.mode === "off") return;
@@ -87,6 +94,7 @@ export class ArtStudy {
           "timber",
           "ballast",
           "loose",
+          ...(this.mode === "illustrated" ? ["surround"] : []),
         ].map(async (name) => {
           const response = await fetch(
             `/art/${this.mode}/${name}.glb?v=${BUILD_ID}`,
@@ -102,7 +110,20 @@ export class ArtStudy {
           if (!Number.isFinite(size.length()) || size.y <= 0)
             throw Error(`Invalid asset bounds: ${name}`);
           gltf.scene.traverse((o) => {
-            if (o instanceof T.Mesh) this.geometry.add(o.geometry);
+            if (o instanceof T.Mesh) {
+              this.geometry.add(o.geometry);
+              for (const m of Array.isArray(o.material)
+                ? o.material
+                : [o.material]) {
+                if (m.map && this.mode === "illustrated") {
+                  if (!this.paintTexture) this.paintTexture = m.map;
+                  else if (m.map !== this.paintTexture) {
+                    m.map.dispose();
+                    m.map = this.paintTexture;
+                  }
+                }
+              }
+            }
           });
           this.library.set(name, gltf);
         }),
@@ -125,12 +146,20 @@ export class ArtStudy {
     const gltf = this.library.get(name)!;
     const group = gltf.scene.clone(true);
     group.name = "art-model";
+    const silhouettes: T.Mesh[] = [];
     group.traverse((o) => {
       if (!(o instanceof T.Mesh)) return;
-      o.castShadow = o.receiveShadow = true;
+      o.castShadow = true;
+      // Graphic surface values carry form. Standard adds ground shadows; avoid
+      // self-shadow striping on small fitted ornament at the gameplay camera.
+      o.receiveShadow = this.mode !== "illustrated";
       const convert = (base: T.MeshStandardMaterial) => {
         const color = base.color.clone();
-        if (this.treatment === "illustrated" && base.name in PIGMENT)
+        if (
+          this.treatment === "illustrated" &&
+          this.mode !== "illustrated" &&
+          base.name in PIGMENT
+        )
           color.setHex(PIGMENT[base.name as keyof typeof PIGMENT]);
         // Stable personal mantle/accent, independent of the selected Principle.
         if (actor === "mage-2" && base.name === "cloth")
@@ -146,12 +175,28 @@ export class ArtStudy {
               });
         m.name = base.name;
         m.side = base.side;
+        m.map = base.map;
+        m.vertexColors = !!o.geometry.getAttribute("color");
         return m;
       };
       o.material = Array.isArray(o.material)
         ? o.material.map(convert)
         : convert(o.material);
+      if (
+        this.mode === "illustrated" &&
+        ["mage", "sentinel", "pursuer"].includes(name)
+      )
+        silhouettes.push(o);
     });
+    for (const mesh of silhouettes) {
+      const edge = new T.Mesh(
+        mesh.geometry,
+        new T.MeshBasicMaterial({ color: 0x344653, side: T.BackSide }),
+      );
+      edge.name = "silhouette";
+      edge.scale.setScalar(1.025);
+      mesh.add(edge);
+    }
     if (gltf.animations.length) {
       const mixer = new T.AnimationMixer(group);
       for (const clip of gltf.animations) mixer.clipAction(clip).play();
@@ -187,6 +232,10 @@ export class ArtStudy {
         o.visible = false;
     const model = this.clone(asset, e.id);
     model.position.y = -e.height / 2;
+    // Source human crown is 1.90 m; fit the visible body to the existing capsule.
+    // The measuring-staff tip extends slightly above it, without joining picking.
+    if (this.mode === "illustrated" && e.kind === "player")
+      model.scale.setScalar(e.height / 1.9);
     if (e.kind === "player") model.rotation.y = Math.PI; // asset +Z forward; player adapter -Z forward.
     group.add(model);
     const shadow = new T.Mesh(
@@ -226,6 +275,8 @@ export class ArtStudy {
   updateEntity(group: T.Group, e: Entity, s: State) {
     const model = group.getObjectByName("art-model");
     if (!model) return;
+    if (this.mode === "illustrated" && e.kind === "player")
+      performMage(model, e, s);
     const mixer = this.mixers.get(model);
     if (mixer)
       mixer.setTime(
@@ -234,12 +285,36 @@ export class ArtStudy {
     // Bounded root tilt leaves feet/hurt volume stable; attacks are still state-driven.
     model.rotation.x =
       e.kind === "pursuer" && e.ai?.phase === "telegraph" ? -0.13 : 0;
+    if (this.mode === "illustrated" && e.ai) {
+      const moving = Math.min(1, Math.hypot(e.velocity.x, e.velocity.z) / 4);
+      model.position.y =
+        -e.height / 2 +
+        (e.kind === "pursuer"
+          ? Math.abs(Math.sin(s.time * 13)) * moving * 0.05
+          : 0);
+      model.rotation.x =
+        e.ai.phase === "telegraph"
+          ? e.kind === "pursuer"
+            ? -0.22
+            : -0.12
+          : e.ai.phase === "recover"
+            ? 0.1
+            : 0;
+    }
     model.traverse((o) => {
       if (o instanceof T.Mesh)
         for (const m of Array.isArray(o.material) ? o.material : [o.material]) {
           if ("emissive" in m) {
             m.emissive.setHex(
-              s.time - e.hitAt < 0.1 ? 0x9d6f41 : e.heat > 30 ? 0x531602 : 0,
+              s.time - e.hitAt < 0.1
+                ? 0x9d6f41
+                : e.heat > 30
+                  ? 0x531602
+                  : this.mode === "illustrated" &&
+                      e.ai?.phase === "telegraph" &&
+                      ["trim", "light"].includes(m.name)
+                    ? 0xc15a38
+                    : 0,
             );
             m.emissiveIntensity = 0.35;
           }
@@ -250,14 +325,18 @@ export class ArtStudy {
     // Thin inlay, not extra walking/collision geometry. Broad quiet tiles avoid
     // concentric ground symbols that could be mistaken for active fields.
     const tiles = new T.InstancedMesh(
-      new T.BoxGeometry(3.98, 0.014, 1.98),
+      new T.BoxGeometry(3.98, 0.014, this.mode === "illustrated" ? 3.98 : 1.98),
       new T.MeshStandardMaterial({ color: this.palette.tile, roughness: 1 }),
-      60,
+      this.mode === "illustrated" ? 30 : 60,
     );
     const matrix = new T.Matrix4();
     let index = 0;
     for (let x = -10; x <= 10; x += 4)
-      for (let z = -9; z <= 9; z += 2) {
+      for (
+        let z = this.mode === "illustrated" ? -8 : -9;
+        z <= 9;
+        z += this.mode === "illustrated" ? 4 : 2
+      ) {
         matrix.makeTranslation(x, 0.005, z);
         tiles.setMatrixAt(index, matrix);
         tiles.setColorAt(
@@ -270,8 +349,37 @@ export class ArtStudy {
       }
     tiles.receiveShadow = true;
     terrain.add(tiles);
+    if (this.mode === "illustrated") {
+      // Surviving pigment is confined to the court's edges; no luminous floor sigils.
+      const pigment = new T.MeshStandardMaterial({
+        color: 0x748f93,
+        roughness: 1,
+      });
+      for (const x of [-11.5, 11.5]) {
+        const edge = new T.Mesh(
+          new T.BoxGeometry(0.72, 0.018, 20),
+          pigment.clone(),
+        );
+        edge.position.set(x, 0.015, 0);
+        terrain.add(edge);
+      }
+      for (const z of [-10.5, 10.5]) {
+        const edge = new T.Mesh(
+          new T.BoxGeometry(22.3, 0.018, 0.72),
+          pigment.clone(),
+        );
+        edge.position.set(0, 0.015, z);
+        terrain.add(edge);
+      }
+      pigment.dispose();
+    }
     const landmark = this.clone("landmark");
-    landmark.position.set(0, 0, -13.2);
+    if (this.mode === "illustrated") {
+      landmark.position.set(-12.84, 1.5, -3);
+      landmark.scale.setScalar(0.65);
+      landmark.rotation.y = Math.PI / 2;
+      terrain.add(this.clone("surround"));
+    } else landmark.position.set(0, 0, -13.2);
     terrain.add(landmark);
     for (const x of [-8, 8]) {
       const vessel = this.clone("vessel");
@@ -298,6 +406,7 @@ export class ArtStudy {
       animationMixers: this.mixers.size,
       sharedGeometries: this.geometry.size,
       bounds: this.bounds,
+      articulated: this.mode === "illustrated",
     };
   }
 }
