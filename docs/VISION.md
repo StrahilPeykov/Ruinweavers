@@ -1,3 +1,5 @@
+Current authorization: Run Prototype 0.1 adds a five-beat solo/co-op run and personal behavior modifiers. Earlier pre-production scope limits below are historical. No classes, economy or broader content expansion is authorized. Every checked commit is pushed immediately to the configured upstream; AGENTS.md owns current workflow.
+
 # Ruinweavers / experimental pre-production
 
 Magic as craft in an ancient world. A few understandable properties should produce many situations. Future solo and two-player action roguelite, elevated 3/4 camera, keyboard/mouse first. The current Co-op Trial phase tests the same magic and three encounters with one or two independent mages; it adds no roguelite structure.

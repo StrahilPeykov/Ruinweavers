@@ -8,6 +8,7 @@ const gap = (a: Vec, b: Vec) => Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
 /** Bounded, timestamped poses. Lifecycle/state always comes from the newest truth. */
 export class PresentationTimeline {
   frames: { seq: number; time: number; received: number; state: State }[] = [];
+  entityReset = new Map<string, number>();
   epoch = -1;
   paused = false;
   resets = 0;
@@ -17,6 +18,7 @@ export class PresentationTimeline {
   lastSample = 0;
   reset() {
     this.frames = [];
+    this.entityReset.clear();
     this.epoch = -1;
     this.resets++;
     this.playTime = undefined;
@@ -28,13 +30,16 @@ export class PresentationTimeline {
     const discontinuity =
       state.party?.epoch !== this.epoch ||
       paused !== this.paused ||
-      (last &&
-        (state.tick < last.state.tick ||
-          state.entities.some((e) => {
-            const old = last.state.entities.find((o) => o.id === e.id);
-            return old && (old.hp > 0 !== e.hp > 0 || gap(old.pos, e.pos) > 3);
-          })));
+      (last && state.tick < last.state.tick);
     if (discontinuity) this.reset();
+    else if (last)
+      for (const e of state.entities) {
+        const old = last.state.entities.find((o) => o.id === e.id);
+        if (!old || old.hp > 0 !== e.hp > 0 || gap(old.pos, e.pos) > 3)
+          this.entityReset.set(e.id, seq);
+      }
+    for (const id of this.entityReset.keys())
+      if (!state.entities.some((e) => e.id === id)) this.entityReset.delete(id);
     this.epoch = state.party?.epoch ?? 0;
     this.paused = paused;
     this.frames.push({ seq, time: state.time, received: now, state });
@@ -78,7 +83,12 @@ export class PresentationTimeline {
     return {
       ...latest,
       entities: latest.entities.map((e) => {
-        if (e.id === localId || e.hp <= 0) return e;
+        if (
+          e.id === localId ||
+          e.hp <= 0 ||
+          a.seq < (this.entityReset.get(e.id) ?? 0)
+        )
+          return e;
         const from = a.state.entities.find((o) => o.id === e.id),
           to = b.state.entities.find((o) => o.id === e.id);
         return from && to && from.hp > 0 && to.hp > 0

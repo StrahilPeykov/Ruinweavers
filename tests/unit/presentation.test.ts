@@ -91,12 +91,12 @@ it("timeline interpolates bounded poses, leaves local actor and truth intact, im
   const dead = structuredClone(b);
   dead.entities[0].hp = 0;
   timeline.push(dead, 3, 1200, false);
-  expect(timeline.frames).toHaveLength(1);
+  expect(timeline.entityReset.get(dead.entities[0].id)).toBe(3);
   expect(timeline.sample(dead, "mage-2", 1200).entities[0].hp).toBe(0);
   const teleported = structuredClone(b);
   teleported.entities[0].pos.x += 9;
   timeline.push(teleported, 4, 1300, false);
-  expect(timeline.frames).toHaveLength(1);
+  expect(timeline.entityReset.get(teleported.entities[0].id)).toBe(4);
   timeline.push(teleported, 5, 1400, true);
   expect(timeline.sample(teleported, "mage-2", 1600)).toBe(teleported);
   sim.dispose();

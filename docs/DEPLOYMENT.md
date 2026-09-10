@@ -17,7 +17,7 @@ Local validation, without publishing:
 npm run deploy:check
 ```
 
-This builds the game and runs Wrangler in dry-run mode. Actual publication is a separate action; no credentials or account IDs belong in this repository.
+This builds the game and runs Wrangler in dry-run mode. Standing workflow (2026-09-10): every checked commit is immediately pushed to the existing upstream and verified. Those pushes may trigger the existing Workers Builds pipeline. Do not disable it or perform unrelated direct deployments. Never commit credentials.
 
 The reported `Cannot modify Vite config: could not find a valid plugins array` error came from Wrangler automatic configuration, not TypeScript or the game. The preceding esbuild install-script warning was not the failure shown in that log.
 
@@ -25,4 +25,4 @@ Wrangler is pinned to 4.130.0 for reproducible CI. Its Miniflare dependency pins
 
 References: [Cloudflare static assets](https://developers.cloudflare.com/workers/static-assets/), [Workers Builds configuration](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/).
 
-Remote co-op may need TURN when direct WebRTC fails. See [TURN setup](TURN.md). Serving the game on Cloudflare does not itself relay WebRTC traffic. No relay secrets or provider service are enabled by this checkout.
+Remote co-op may need TURN when direct WebRTC fails. See [TURN setup](TURN.md). Serving the game on Cloudflare does not itself relay WebRTC traffic. The existing deployed Cloudflare TURN configuration and its narrow authorization are retained; secrets remain server-side.

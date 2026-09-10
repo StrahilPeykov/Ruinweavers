@@ -270,21 +270,21 @@ export class CoopSession {
         this.acceptedSnapshot = data.seq;
         this.lastReceive = receivedAt;
         const previous = this.sim.state;
+        const localBefore = previous.entities.find(
+          (e) => e.id === this.actorId,
+        );
+        const localAfter = snapshot.entities.find((e) => e.id === this.actorId);
         const discontinuity =
           this.epoch !== data.epoch ||
           this.paused !== data.paused ||
-          previous.entities.some((e) => {
-            const next = snapshot!.entities.find((n) => n.id === e.id);
-            return (
-              next &&
-              (e.hp > 0 !== next.hp > 0 ||
-                Math.hypot(
-                  e.pos.x - next.pos.x,
-                  e.pos.y - next.pos.y,
-                  e.pos.z - next.pos.z,
-                ) > 3)
-            );
-          });
+          !localBefore ||
+          !localAfter ||
+          localBefore.hp > 0 !== localAfter.hp > 0 ||
+          Math.hypot(
+            localBefore.pos.x - localAfter.pos.x,
+            localBefore.pos.y - localAfter.pos.y,
+            localBefore.pos.z - localAfter.pos.z,
+          ) > 3;
         this.sim.acceptSnapshot(snapshot);
         this.epoch = data.epoch;
         const { camera, cameraDistance, cameraPitch } = this.sim.config;

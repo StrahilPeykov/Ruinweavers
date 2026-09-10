@@ -1,3 +1,5 @@
+Current milestone: Run Prototype 0.1. Baseline at 9bfaa68: 59 unit tests and build passed. Reproduced guest held-input cancellation on a non-final enemy death in the actual two-client browser and snapshot-handler unit regression. The fix scopes intent cancellation to the local actor/session and presentation discontinuities to each affected entity.
+
 # Validation and limits
 
 Current pass: [Co-op smoothness evidence](SMOOTHNESS.md). Sections below retain dated milestone history; older statements about full snapshots, missing interpolation or inactive TURN do not describe Protocol 2 / the currently authorized provider.
@@ -111,3 +113,5 @@ Started clean at c22d8a1; 47 baseline unit tests passed. Real browser regression
 Eleven existing Lab/reliability/lobby journeys were exercised. Nine passed on the initial run. The older Model B cooling journey once found zero heat before cooling and passed unchanged on rerun. The clipboard lobby journey twice timed out before its share code appeared, then passed without runtime changes; a diagnostic-only catch added for that run produced no errors because it passed, and was removed. These intermittent failures are recorded, not established as pre-existing or assigned an unproven cause. Total unique journeys with passing results: 14. No claim of a clean single full-suite run, physical shortcut/trackpad ergonomics, remote performance or live deployment.
 
 Inspected `artifacts/usability/guest-fields.png` with state and source hashes: both fields, Stone geometry and local guest feedback survive the tactical camera switch. Also reviewed connected copy/selection and existing solo-buffer captures. Chromium 153 / WebGL2 ANGLE SwiftShader, 1440×900 CSS pixels; new focused tests use local Lightweight rendering, older tests Standard. No hardware FPS inference. Historical regenerated artifacts were restored; selected new evidence has its own directory.
+
+Lifecycle correction validation: 60 unit tests, production build and the real two-browser held W/LMB journey passed. The guest continued from 2 to 4 casts while moving after the non-final kill. Screenshot and state: artifacts/run-0.1/held-input.*. The reused dev server retained its prior build label f41661a873eb; this evidence ran the current HMR source, not the historical deployed build. Default headless Chromium/SwiftShader, 1440x900; no remote-laptop claim.
