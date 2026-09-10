@@ -186,6 +186,21 @@ it("plate destruction keeps the damaging actor in detachment feedback", () => {
   ).toBe("mage-1");
   s.dispose();
 });
+it("a post-maneuver physical impact resolves the fallen pose before victory freezes time", () => {
+  const s = make(),
+    core = s.state.entities.find((e) => e.kind === "warden")!,
+    loose = s.state.entities.find((e) => e.id === "loose-1")!;
+  core.hp = 1;
+  loose.pos = vec(core.pos.x + 1.75, 0.4, core.pos.z);
+  s.physics.teleport(loose);
+  s.physics.bodies.get(loose.id)!.setLinvel(vec(-12, 0, 0), true);
+  advance(s, 1);
+  expect(core.hp).toBe(0);
+  expect(s.state.metrics.transformations["physical impact"]).toBeGreaterThan(0);
+  expect(s.state.guardian!.stage).toBe("fallen");
+  expect(s.state.trial!.status).toBe("victory");
+  s.dispose();
+});
 it("Guardian live state and attached/loose lifecycle cross the explicit wire contract", () => {
   const s = make(true),
     reader = new WireReader();
@@ -197,6 +212,59 @@ it("Guardian live state and attached/loose lifecycle cross the explicit wire con
   expect(replica.guardian).toEqual(s.state.guardian);
   expect(JSON.stringify(packet).length).toBeLessThan(30000);
   s.dispose();
+});
+it("Through the embers traverses a real ward plate into the core", () => {
+  const s = make();
+  s.state.run!.upgrades["mage-1"] = ["piercing-ember"];
+  s.player.pos = vec(-4, 0.75, -5);
+  s.physics.teleport(s.player);
+  s.state.entities.find((e) => e.kind === "warden")!.ai!.enabled = false;
+  s.step({ ...idleInput(vec(0, 0, -5)), select: "Ember", primary: true });
+  advance(s, 25);
+  expect(
+    s.state.metrics.outcomes["projectile:mage-1:hit:warden-plate-left"],
+  ).toBe(1);
+  expect(s.state.metrics.outcomes["projectile:mage-1:hit:warden"]).toBe(1);
+  s.dispose();
+});
+it("Long breath extends useful force range against the same heavy core", () => {
+  for (const long of [false, true]) {
+    const s = make(),
+      core = s.state.entities.find((e) => e.kind === "warden")!;
+    core.ai!.enabled = false;
+    s.state.run!.upgrades["mage-1"] = long ? ["focused-gale"] : [];
+    s.player.pos = vec(0, 0.75, 3);
+    s.physics.teleport(s.player);
+    s.step({ ...idleInput(vec(0, 0, -5)), select: "Gale", primary: true });
+    expect(core.hp < core.maxHp).toBe(long);
+    s.dispose();
+  }
+});
+it("travelling basin and tethered updraft retain actual material contact with the Guardian", () => {
+  for (const principle of ["Tide", "Gale"] as const) {
+    const s = make(),
+      core = s.state.entities.find((e) => e.kind === "warden")!;
+    core.ai!.enabled = false;
+    s.state.run!.upgrades["mage-1"] = [
+      principle === "Tide" ? "travelling-basin" : "tethered-updraft",
+    ];
+    s.player.pos = vec(0, 0.75, -2.5);
+    s.physics.teleport(s.player);
+    s.step({
+      ...idleInput(vec(0, 0, principle === "Tide" ? -5 : -2.5)),
+      select: principle,
+      secondary: true,
+    });
+    advance(s, 35);
+    expect(
+      s.state.metrics.outcomes[`field:${principle}:contact:warden`],
+    ).toBeGreaterThan(0);
+    if (principle === "Tide") {
+      expect(core.wet).toBeGreaterThan(0);
+      expect(s.state.fields[0].travel).toBeTruthy();
+    } else expect(s.state.fields[0].tethered).toBe(true);
+    s.dispose();
+  }
 });
 it("Gale redirects a Guardian shard and reports effect without requiring an entity hit", () => {
   const s = make();
@@ -239,7 +307,13 @@ it("Stone cover blocks an actually launched volley; direct unprotected standing 
 it("furnace heat on the construction can be transformed with ordinary water", () => {
   const s = make();
   s.player.hp = 100000;
-  while (!s.state.metrics.outcomes["warden:furnace:attack"]) advance(s, 1);
+  for (
+    let i = 0;
+    i < 2400 && !s.state.metrics.outcomes["warden:furnace:attack"];
+    i++
+  )
+    advance(s, 1);
+  expect(s.state.metrics.outcomes["warden:furnace:attack"]).toBeGreaterThan(0);
   const core = s.state.entities.find((e) => e.kind === "warden")!;
   expect(core.heat).toBeGreaterThan(40);
   const before = core.hp;

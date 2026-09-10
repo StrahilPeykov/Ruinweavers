@@ -1,5 +1,7 @@
 # Build Identity 0.2
 
+Guardian 0.1 follow-up: the catalogue remains ten Alterations and three Theorems. The Warden provides real field migration, structural release and thermal opportunities without build-specific weaknesses. Matched with/without Shared Vapour still does not establish a reliable tactical payoff; recommend a later rework, not a buff in this milestone. Strong stationary Basin/Ember also remains an explicit design risk. Current measurements and limits: [GUARDIAN.md](GUARDIAN.md); the experiments below preserve Build Identity's original conditions.
+
 Working question: can three personal choices change how the same mage solves the same encounters? Keep the five rooms, illustrated presentation, base tuning, authority and controls. This is not a class system or a completion-rate target.
 
 ## Targeted research (10 September 2026)

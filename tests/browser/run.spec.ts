@@ -391,7 +391,10 @@ async function complete(pages: Page[], label: string) {
       ) {
         actions.add(s.trial.encounter);
         if (s.trial.encounter === 4)
-          await capture(pages.at(-1)!, `${buildDirection}-last-ward-combat`);
+          await capture(
+            pages.at(-1)!,
+            `${label}-${buildDirection}-last-ward-combat`,
+          );
       }
       if (!rooms.has(s.trial.encounter)) {
         for (const p of pages)

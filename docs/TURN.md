@@ -1,4 +1,4 @@
-Current Run Prototype 0.1: provider, credential exchange, TLS/443 fallback and scoped authorization are unchanged. The pushed lifecycle correction a0cffdf passed the existing Cloudflare build. The remote-session observations below are historical; this milestone adds no claim of new remote-laptop or relay validation. Current client contract: Protocol 3, matching source builds.
+Current Guardian 0.1: provider, credential exchange, TLS/443 fallback and scoped authorization are unchanged. The remote-session observations below are historical; this milestone adds no claim of new remote-laptop or relay validation. Current client contract: Protocol 3, matching source builds. Guardian validation uses same-machine clients and local signaling; see GUARDIAN.md and TESTING.md.
 
 # Remote connection fallback
 

@@ -295,3 +295,60 @@ test("real Stone placement blocks Guardian shards; a real Gale tap redirects the
     await capture(page, `defence-${principle}`);
   }
 });
+test("Guardian defeat and repeated reset remove fields and preserve resource bounds", async ({
+  page,
+}) => {
+  await boot(page);
+  const samples = [];
+  for (let i = 0; i < 4; i++) {
+    // Solo New run starts immediately; Retry same seed returns to Ready.
+    if (
+      (await page.evaluate(
+        () => window.__RUINWEAVERS__.getState().trial.status,
+      )) === "ready"
+    )
+      await page.locator("#trial-action").click();
+    await page.waitForFunction(
+      () => window.__RUINWEAVERS__.getState().trial.status === "active",
+    );
+    await page.keyboard.press("4");
+    const point = await page.evaluate(() =>
+      window.__RUINWEAVERS__.projectWorld({ x: 0, y: 0, z: 2 }),
+    );
+    await page.mouse.move(point.x, point.y);
+    await page.keyboard.press("f");
+    await page.waitForFunction(
+      () => window.__RUINWEAVERS__.getState().fields.length === 1,
+    );
+    await page.evaluate(() => {
+      const api = window.__RUINWEAVERS__;
+      api.setPaused(true);
+      api.setupTestState({ entities: [{ id: "mage-1", hp: 0 }] });
+      api.setPaused(false);
+    });
+    await page.waitForFunction(
+      () => window.__RUINWEAVERS__.getState().trial.status === "defeat",
+    );
+    await page.locator(i % 2 ? "#trial-action" : "#retry-seed").click();
+    await page.waitForTimeout(120);
+    const sample = await page.evaluate(() => {
+      const api = window.__RUINWEAVERS__;
+      return { state: api.getState(), render: api.getMetrics().render };
+    });
+    expect(sample.state.guardian.phase).toBe(1);
+    expect(sample.state.guardian.plates.every((p: any) => p.attached)).toBe(
+      true,
+    );
+    expect(sample.state.fields).toHaveLength(0);
+    expect(sample.state.run.upgrades["mage-1"]).toEqual([]);
+    samples.push({
+      geometries: sample.render.geometries,
+      textures: sample.render.textures,
+      draws: sample.render.drawCalls,
+    });
+  }
+  expect(new Set(samples.map((s) => s.geometries)).size).toBe(1);
+  expect(new Set(samples.map((s) => s.textures)).size).toBe(1);
+  mkdirSync(root, { recursive: true });
+  writeFileSync(`${root}/reset-resources.json`, JSON.stringify(samples));
+});

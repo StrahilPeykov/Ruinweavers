@@ -1,0 +1,3398 @@
+{
+  "runtime": "9dd14b9dcd8f",
+  "protocol": 3,
+  "conditions": "Windows, installed headless Chrome 152, ANGLE Intel UHD D3D11, 1440x900 CSS; no video/encoding/batches during these frame samples. Same-machine clients/local signaling, not remote laptop or TURN validation.",
+  "limits": "Scripted policies are not human skill models. Isolated builds and initial downed state are fixtures; casts, movement, dodge, revive and complete-run reward choices use real browser inputs. Network summaries are rolling bounded windows, not entire-run distributions.",
+  "policy": "guardian-policy-1",
+  "evaluationSource": "9708f6a77d28",
+  "evaluatedCases": 96,
+  "victories": 96,
+  "comparisons": [
+    {
+      "name": "base",
+      "cases": [
+        {
+          "party": 1,
+          "count": 4,
+          "victories": 4,
+          "seconds": 48.5,
+          "damage": 14
+        },
+        {
+          "party": 2,
+          "count": 4,
+          "victories": 4,
+          "seconds": 35.69,
+          "damage": 10
+        }
+      ]
+    },
+    {
+      "name": "reaction",
+      "cases": [
+        {
+          "party": 1,
+          "count": 4,
+          "victories": 4,
+          "seconds": 24.35,
+          "damage": 14
+        },
+        {
+          "party": 2,
+          "count": 4,
+          "victories": 4,
+          "seconds": 18.82,
+          "damage": 0
+        }
+      ]
+    },
+    {
+      "name": "reaction-without-vapour",
+      "cases": [
+        {
+          "party": 1,
+          "count": 4,
+          "victories": 4,
+          "seconds": 23.83,
+          "damage": 0
+        },
+        {
+          "party": 2,
+          "count": 4,
+          "victories": 4,
+          "seconds": 18.42,
+          "damage": 7.55
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "cases": [
+        {
+          "party": 1,
+          "count": 4,
+          "victories": 4,
+          "seconds": 25.81,
+          "damage": 8
+        },
+        {
+          "party": 2,
+          "count": 4,
+          "victories": 4,
+          "seconds": 16.72,
+          "damage": 0
+        }
+      ]
+    },
+    {
+      "name": "structure",
+      "cases": [
+        {
+          "party": 1,
+          "count": 4,
+          "victories": 4,
+          "seconds": 14.52,
+          "damage": 0
+        },
+        {
+          "party": 2,
+          "count": 4,
+          "victories": 4,
+          "seconds": 10.81,
+          "damage": 3.5
+        }
+      ]
+    },
+    {
+      "name": "basin",
+      "cases": [
+        {
+          "party": 1,
+          "count": 4,
+          "victories": 4,
+          "seconds": 13.87,
+          "damage": 0
+        },
+        {
+          "party": 2,
+          "count": 4,
+          "victories": 4,
+          "seconds": 10.74,
+          "damage": 10.5
+        }
+      ]
+    }
+  ],
+  "isolatedLightweight": {
+    "base": {
+      "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+      "wallSeconds": 43.782,
+      "seen": [
+        "1-volley-commit",
+        "1-march-commit",
+        "1-furnace-commit",
+        "2-furnace-shift",
+        "2-furnace-commit",
+        "2-march-commit",
+        "2-volley-commit"
+      ],
+      "reports": [
+        {
+          "build": "9dd14b9dcd8f",
+          "frames": {
+            "count": 2615,
+            "mean": 16.71567877628976,
+            "p50": 16.69999999999709,
+            "p95": 16.80000000000109,
+            "p99": 16.900000000001455
+          },
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 177,
+            "triangles": 27460,
+            "activeVfx": 5,
+            "geometries": 100,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 226.10000000149012,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          },
+          "network": {
+            "build": "9dd14b9dcd8f",
+            "protocol": 3,
+            "role": "solo",
+            "status": "solo",
+            "snapshotsSent": 0,
+            "snapshotsReceived": 0,
+            "scheduledSnapshotJsonBytes": 0,
+            "snapshotIntervals": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "snapshotApply": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostTickPacing": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostStep": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "serialization": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "wireBytes": {
+              "samples": 0,
+              "mean": null,
+              "max": null
+            },
+            "inputAcknowledgement": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "scheduled": 0,
+            "peakScheduled": 0,
+            "snapshotsScheduled": 0,
+            "droppedSnapshots": 0
+          },
+          "status": "victory",
+          "seconds": 43.333333333332156,
+          "playerDamage": 26,
+          "outcomes": {
+            "mage-1:cast:Ember:primary": 126,
+            "projectile:mage-1:hit:loose-1": 1,
+            "projectile:mage-1:hit:warden": 91,
+            "warden:target:mage-1": 11,
+            "projectile:mage-1:blocked": 6,
+            "projectile:mage-1:hit:warden-plate-left": 13,
+            "warden:volley:commit": 3,
+            "projectile:mage-1:hit:warden-plate-right": 10,
+            "warden:volley:attack": 3,
+            "projectile:warden:blocked": 8,
+            "projectile:mage-1:expired": 5,
+            "warden:march:commit": 4,
+            "warden:march:attack": 4,
+            "warden:march:travel": 19.635368487435567,
+            "warden:march:avoided": 4,
+            "warden:furnace:commit": 4,
+            "warden:furnace:attack": 4,
+            "projectile:warden:hit:mage-1": 1,
+            "invulnerable-contact:warden": 1,
+            "warden:furnace:contact:mage-1": 2,
+            "warden:phase:2": 1,
+            "warden:plate:detached:warden-plate-left": 1,
+            "warden:plate:detached:warden-plate-right": 1
+          }
+        }
+      ]
+    },
+    "reaction": {
+      "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+      "wallSeconds": 29.146,
+      "seen": [
+        "1-volley-commit",
+        "1-march-commit",
+        "1-furnace-commit",
+        "2-furnace-shift",
+        "2-march-commit",
+        "2-volley-commit"
+      ],
+      "reports": [
+        {
+          "build": "9dd14b9dcd8f",
+          "frames": {
+            "count": 1738,
+            "mean": 16.72819332566256,
+            "p50": 16.69999999999709,
+            "p95": 16.799999999999272,
+            "p99": 16.900000000001455
+          },
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 186,
+            "triangles": 28210,
+            "activeVfx": 8,
+            "geometries": 105,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 275.70000000298023,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          },
+          "network": {
+            "build": "9dd14b9dcd8f",
+            "protocol": 3,
+            "role": "solo",
+            "status": "solo",
+            "snapshotsSent": 0,
+            "snapshotsReceived": 0,
+            "scheduledSnapshotJsonBytes": 0,
+            "snapshotIntervals": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "snapshotApply": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostTickPacing": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostStep": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "serialization": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "wireBytes": {
+              "samples": 0,
+              "mean": null,
+              "max": null
+            },
+            "inputAcknowledgement": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "scheduled": 0,
+            "peakScheduled": 0,
+            "snapshotsScheduled": 0,
+            "droppedSnapshots": 0
+          },
+          "status": "victory",
+          "seconds": 28.849999999999643,
+          "playerDamage": 14,
+          "outcomes": {
+            "mage-1:cast:Tide:primary": 28,
+            "upgrade:mage-1:forked-tide": 33,
+            "stagger:loose-1": 1,
+            "mage-1:Tide:primary:hit": 26,
+            "mage-1:Tide:primary:miss": 2,
+            "warden:target:mage-1": 6,
+            "mage-1:cast:Ember:primary": 47,
+            "projectile:mage-1:blocked": 7,
+            "warden:volley:commit": 2,
+            "projectile:mage-1:hit:warden-plate-left": 1,
+            "warden:volley:attack": 2,
+            "projectile:mage-1:hit:warden": 30,
+            "stagger:warden": 13,
+            "stagger:warden-plate-left": 2,
+            "upgrade:mage-1:shared-vapour": 24,
+            "control:stagger-seconds:warden": 4.999999999999988,
+            "warden:volley:interrupted": 4,
+            "projectile:warden:blocked": 4,
+            "projectile:mage-1:hit:warden-plate-right": 6,
+            "stagger:warden-plate-right": 2,
+            "warden:plate:detached:warden-plate-right": 1,
+            "warden:march:commit": 3,
+            "warden:march:attack": 3,
+            "warden:march:travel": 14.61832510242564,
+            "warden:march:avoided": 3,
+            "warden:march:interrupted": 6,
+            "warden:furnace:commit": 1,
+            "warden:furnace:attack": 1,
+            "warden:plate:detached:warden-plate-left": 1,
+            "warden:furnace:interrupted": 2,
+            "warden:phase:2": 1,
+            "projectile:mage-1:expired": 2,
+            "projectile:warden:hit:timber": 1,
+            "projectile:warden:hit:mage-1": 1,
+            "projectile:mage-1:hit:timber": 1,
+            "stagger:timber": 1
+          }
+        }
+      ]
+    },
+    "field": {
+      "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+      "wallSeconds": 24.754,
+      "seen": [
+        "1-volley-commit",
+        "1-march-commit",
+        "1-furnace-commit",
+        "2-furnace-shift",
+        "2-march-commit",
+        "2-volley-commit"
+      ],
+      "reports": [
+        {
+          "build": "9dd14b9dcd8f",
+          "frames": {
+            "count": 1483,
+            "mean": 16.643560350640694,
+            "p50": 16.69999999999709,
+            "p95": 16.799999999999272,
+            "p99": 16.899999999997817
+          },
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 194,
+            "triangles": 27632,
+            "activeVfx": 8,
+            "geometries": 117,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 177.39999999850988,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          },
+          "network": {
+            "build": "9dd14b9dcd8f",
+            "protocol": 3,
+            "role": "solo",
+            "status": "solo",
+            "snapshotsSent": 0,
+            "snapshotsReceived": 0,
+            "scheduledSnapshotJsonBytes": 0,
+            "snapshotIntervals": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "snapshotApply": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostTickPacing": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostStep": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "serialization": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "wireBytes": {
+              "samples": 0,
+              "mean": null,
+              "max": null
+            },
+            "inputAcknowledgement": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "scheduled": 0,
+            "peakScheduled": 0,
+            "snapshotsScheduled": 0,
+            "droppedSnapshots": 0
+          },
+          "status": "victory",
+          "seconds": 24.11666666666658,
+          "playerDamage": 0,
+          "outcomes": {
+            "mage-1:cast:Ember:secondary": 5,
+            "field:Ember:contact:warden": 87,
+            "upgrade:mage-1:cross-seam:warden": 87,
+            "field:Ember:contact:warden-plate-left": 11,
+            "upgrade:mage-1:cross-seam:warden-plate-left": 11,
+            "field:Ember:contact:warden-plate-right": 22,
+            "upgrade:mage-1:cross-seam:warden-plate-right": 22,
+            "mage-1:cast:Stone:primary": 10,
+            "stagger:warden": 14,
+            "stagger:warden-plate-left": 3,
+            "mage-1:Stone:primary:hit": 10,
+            "control:stagger-seconds:warden": 4.416666666666656,
+            "warden:volley:interrupted": 5,
+            "mage-1:cast:Tide:primary": 26,
+            "mage-1:Tide:primary:hit": 19,
+            "warden:target:mage-1": 6,
+            "mage-1:Tide:primary:miss": 7,
+            "mage-1:cast:Gale:secondary": 2,
+            "field:Gale:contact:warden": 21,
+            "field:Gale:contact:warden-plate-left": 8,
+            "field:Gale:contact:warden-plate-right": 9,
+            "stagger:warden-plate-right": 3,
+            "mage-1:cast:Gale:primary": 12,
+            "upgrade:mage-1:migrating-inscriptions": 5,
+            "mage-1:Gale:primary:hit": 10,
+            "warden:volley:commit": 2,
+            "warden:volley:attack": 2,
+            "projectile:warden:deflected": 3,
+            "projectile:warden:hit:warden-plate-right": 1,
+            "warden:plate:detached:warden-plate-right": 1,
+            "projectile:warden:blocked": 5,
+            "warden:march:interrupted": 7,
+            "warden:march:commit": 2,
+            "warden:march:attack": 2,
+            "warden:march:travel": 10.702323362133063,
+            "warden:plate:detached:warden-plate-left": 1,
+            "field:replaced": 5,
+            "warden:march:avoided": 2,
+            "mage-1:Gale:primary:miss": 2,
+            "warden:furnace:interrupted": 2,
+            "warden:furnace:commit": 1,
+            "warden:furnace:attack": 1,
+            "warden:phase:2": 1
+          }
+        }
+      ]
+    },
+    "structure": {
+      "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+      "wallSeconds": 15.172,
+      "seen": [
+        "1-volley-commit",
+        "1-march-commit",
+        "2-march-shift",
+        "2-furnace-commit"
+      ],
+      "reports": [
+        {
+          "build": "9dd14b9dcd8f",
+          "frames": {
+            "count": 906,
+            "mean": 16.782671081684374,
+            "p50": 16.69999999999891,
+            "p95": 16.800000000000182,
+            "p99": 17
+          },
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 198,
+            "triangles": 26562,
+            "activeVfx": 17,
+            "geometries": 128,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 263.20000000298023,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          },
+          "network": {
+            "build": "9dd14b9dcd8f",
+            "protocol": 3,
+            "role": "solo",
+            "status": "solo",
+            "snapshotsSent": 0,
+            "snapshotsReceived": 0,
+            "scheduledSnapshotJsonBytes": 0,
+            "snapshotIntervals": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "snapshotApply": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostTickPacing": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostStep": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "serialization": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "wireBytes": {
+              "samples": 0,
+              "mean": null,
+              "max": null
+            },
+            "inputAcknowledgement": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "scheduled": 0,
+            "peakScheduled": 0,
+            "snapshotsScheduled": 0,
+            "droppedSnapshots": 0
+          },
+          "status": "victory",
+          "seconds": 14.56666666666697,
+          "playerDamage": 0,
+          "outcomes": {
+            "mage-1:cast:Stone:primary": 17,
+            "upgrade:mage-1:fault-line": 51,
+            "mage-1:Stone:primary:miss": 62,
+            "upgrade:mage-1:fault-hit:warden": 32,
+            "stagger:warden": 8,
+            "mage-1:Stone:primary:hit": 37,
+            "control:stagger-seconds:warden": 2.1333333333333306,
+            "warden:volley:interrupted": 3,
+            "upgrade:mage-1:fault-hit:warden-plate-right": 7,
+            "stagger:warden-plate-right": 2,
+            "upgrade:mage-1:fault-hit:warden-plate-left": 5,
+            "stagger:warden-plate-left": 2,
+            "warden:target:mage-1": 4,
+            "warden:volley:commit": 1,
+            "warden:volley:attack": 1,
+            "warden:plate:detached:warden-plate-right": 1,
+            "projectile:warden:hit:timber": 1,
+            "projectile:warden:blocked": 2,
+            "mage-1:cast:Gale:primary": 7,
+            "upgrade:mage-1:break-seal": 8,
+            "mage-1:Gale:primary:hit": 7,
+            "warden:plate:detached:warden-plate-left": 1,
+            "warden:march:interrupted": 3,
+            "warden:march:commit": 1,
+            "warden:march:attack": 1,
+            "warden:march:travel": 5.007846279669992,
+            "warden:march:avoided": 1,
+            "warden:phase:2": 1,
+            "warden:furnace:interrupted": 2,
+            "warden:furnace:commit": 1,
+            "warden:furnace:attack": 1,
+            "warden:furnace:contact:timber": 1,
+            "upgrade:mage-1:fault-hit:timber": 3,
+            "stagger:timber": 1
+          }
+        }
+      ]
+    },
+    "basin": {
+      "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+      "wallSeconds": 19.585,
+      "seen": [
+        "1-volley-commit",
+        "1-march-commit",
+        "2-march-shift",
+        "2-furnace-commit",
+        "2-march-commit"
+      ],
+      "reports": [
+        {
+          "build": "9dd14b9dcd8f",
+          "frames": {
+            "count": 1152,
+            "mean": 16.92977430555307,
+            "p50": 16.69999999999709,
+            "p95": 16.800000000000182,
+            "p99": 33.30000000000018
+          },
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 223,
+            "triangles": 29838,
+            "activeVfx": 16,
+            "geometries": 123,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 158.39999999850988,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          },
+          "network": {
+            "build": "9dd14b9dcd8f",
+            "protocol": 3,
+            "role": "solo",
+            "status": "solo",
+            "snapshotsSent": 0,
+            "snapshotsReceived": 0,
+            "scheduledSnapshotJsonBytes": 0,
+            "snapshotIntervals": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "snapshotApply": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostTickPacing": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostStep": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "serialization": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "wireBytes": {
+              "samples": 0,
+              "mean": null,
+              "max": null
+            },
+            "inputAcknowledgement": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "scheduled": 0,
+            "peakScheduled": 0,
+            "snapshotsScheduled": 0,
+            "droppedSnapshots": 0
+          },
+          "status": "victory",
+          "seconds": 18.93333333333354,
+          "playerDamage": 0,
+          "outcomes": {
+            "mage-1:cast:Tide:secondary": 8,
+            "field:Tide:contact:warden": 71,
+            "field:Tide:contact:warden-plate-right": 20,
+            "field:Tide:contact:warden-plate-left": 50,
+            "mage-1:cast:Ember:primary": 51,
+            "projectile:mage-1:hit:loose-1": 1,
+            "projectile:mage-1:hit:warden": 34,
+            "stagger:warden": 11,
+            "upgrade:mage-1:shared-vapour": 58,
+            "control:stagger-seconds:warden": 4.166666666666657,
+            "warden:volley:interrupted": 3,
+            "projectile:mage-1:hit:warden-plate-left": 3,
+            "stagger:warden-plate-left": 3,
+            "projectile:mage-1:blocked": 11,
+            "projectile:mage-1:expired": 32,
+            "warden:target:mage-1": 4,
+            "projectile:mage-1:hit:warden-plate-right": 6,
+            "stagger:warden-plate-right": 3,
+            "warden:plate:detached:warden-plate-right": 1,
+            "warden:volley:commit": 1,
+            "warden:volley:attack": 1,
+            "projectile:warden:blocked": 3,
+            "field:replaced": 7,
+            "warden:march:interrupted": 4,
+            "warden:march:commit": 2,
+            "warden:march:attack": 2,
+            "warden:march:travel": 6.781841835772006,
+            "warden:march:avoided": 1,
+            "warden:phase:2": 1,
+            "warden:plate:detached:warden-plate-left": 1,
+            "warden:furnace:interrupted": 3,
+            "warden:furnace:commit": 1,
+            "warden:furnace:attack": 1
+          }
+        }
+      ]
+    },
+    "pair": {
+      "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+      "wallSeconds": 24.494,
+      "seen": [
+        "1-volley-commit",
+        "1-march-commit",
+        "2-march-shift",
+        "2-furnace-commit",
+        "2-march-commit",
+        "2-volley-commit"
+      ],
+      "reports": [
+        {
+          "build": "9dd14b9dcd8f",
+          "frames": {
+            "count": 726,
+            "mean": 33.48154269972043,
+            "p50": 33.29999999999927,
+            "p95": 50,
+            "p99": 83.19999999999891
+          },
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 242,
+            "triangles": 31586,
+            "activeVfx": 7,
+            "geometries": 120,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 157.19999999552965,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          },
+          "network": {
+            "build": "9dd14b9dcd8f",
+            "protocol": 3,
+            "role": "host",
+            "status": "connected",
+            "snapshotsSent": 364,
+            "snapshotsReceived": 0,
+            "scheduledSnapshotJsonBytes": 2337778,
+            "snapshotIntervals": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "snapshotApply": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostTickPacing": {
+              "samples": 180,
+              "meanMs": 23.522777777786057,
+              "p95Ms": 72.89999999850988
+            },
+            "hostStep": {
+              "samples": 180,
+              "meanMs": 0.6199999999254941,
+              "p95Ms": 1.8000000044703484
+            },
+            "serialization": {
+              "samples": 180,
+              "meanMs": 0.7611111112766795,
+              "p95Ms": 1.4000000059604645
+            },
+            "wireBytes": {
+              "samples": 180,
+              "mean": 6646.266666666666,
+              "max": 15060
+            },
+            "inputAcknowledgement": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "scheduled": 0,
+            "peakScheduled": 1,
+            "snapshotsScheduled": 364,
+            "droppedSnapshots": 0
+          },
+          "status": "victory",
+          "seconds": 24.016666666666584,
+          "playerDamage": 16,
+          "outcomes": {
+            "warden:target:mage-2": 3,
+            "revive:mage-2:mage-1": 1,
+            "mage-1:cast:Tide:primary": 35,
+            "mage-1:Tide:primary:miss": 11,
+            "mage-2:cast:Ember:secondary": 7,
+            "field:Ember:contact:warden": 55,
+            "upgrade:mage-2:cross-seam:warden": 55,
+            "field:Ember:contact:warden-plate-left": 13,
+            "upgrade:mage-2:cross-seam:warden-plate-left": 13,
+            "field:Ember:contact:warden-plate-right": 19,
+            "upgrade:mage-2:cross-seam:warden-plate-right": 19,
+            "mage-2:cast:Stone:primary": 12,
+            "stagger:warden": 12,
+            "mage-2:Stone:primary:hit": 10,
+            "control:stagger-seconds:warden": 4.39999999999999,
+            "warden:volley:interrupted": 4,
+            "mage-2:cast:Tide:primary": 13,
+            "mage-2:Tide:primary:miss": 5,
+            "warden:volley:commit": 2,
+            "upgrade:mage-1:forked-tide": 28,
+            "stagger:warden-plate-left": 2,
+            "cross-reaction:mage-2:mage-1:warden-plate-left": 4,
+            "cross-reaction:mage-2:mage-1:warden": 11,
+            "upgrade:mage-1:shared-vapour": 8,
+            "mage-1:Tide:primary:hit": 24,
+            "mage-2:Tide:primary:hit": 8,
+            "warden:volley:attack": 2,
+            "projectile:warden:blocked": 3,
+            "stagger:warden-plate-right": 2,
+            "cross-reaction:mage-2:mage-1:warden-plate-right": 3,
+            "warden:plate:detached:warden-plate-left": 1,
+            "mage-2:cast:Gale:secondary": 2,
+            "field:Gale:contact:warden": 14,
+            "field:Gale:contact:warden-plate-left": 4,
+            "field:Gale:contact:warden-plate-right": 10,
+            "cross-reaction:mage-1:mage-2:warden": 7,
+            "cross-reaction:mage-1:mage-2:warden-plate-left": 1,
+            "mage-2:cast:Gale:primary": 13,
+            "mage-2:Gale:primary:hit": 7,
+            "mage-1:cast:Ember:primary": 19,
+            "projectile:mage-1:expired": 5,
+            "warden:plate:detached:warden-plate-right": 1,
+            "mage-2:Gale:primary:miss": 6,
+            "field:Gale:contact:mage-1": 4,
+            "stagger:mage-1": 4,
+            "projectile:mage-1:hit:warden": 11,
+            "upgrade:mage-2:migrating-inscriptions": 9,
+            "cross-reaction:mage-1:mage-2:warden-plate-right": 1,
+            "warden:march:interrupted": 5,
+            "warden:march:commit": 2,
+            "warden:march:attack": 2,
+            "warden:march:travel": 10.546009366123714,
+            "allied-damage-suppressed:mage-2:mage-1": 5,
+            "field:Gale:contact:loose-1": 5,
+            "stagger:loose-1": 2,
+            "field:replaced": 7,
+            "warden:march:avoided": 2,
+            "field:Ember:contact:mage-1": 3,
+            "upgrade:mage-2:cross-seam:mage-1": 3,
+            "field:Ember:contact:mage-2": 2,
+            "upgrade:mage-2:cross-seam:mage-2": 2,
+            "warden:phase:2": 1,
+            "warden:target:mage-1": 2,
+            "warden:furnace:interrupted": 3,
+            "warden:furnace:commit": 1,
+            "warden:furnace:attack": 1,
+            "warden:furnace:contact:mage-2": 1,
+            "stagger:mage-2": 1,
+            "allied-damage-suppressed:mage-1:mage-2": 5,
+            "projectile:mage-1:hit:mage-2": 3,
+            "field:Gale:contact:ballast": 8,
+            "mage-2:Stone:primary:miss": 2
+          }
+        },
+        {
+          "build": "9dd14b9dcd8f",
+          "frames": {
+            "count": 743,
+            "mean": 32.80578734858687,
+            "p50": 33.29999999999927,
+            "p95": 50,
+            "p99": 66.70000000000073
+          },
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 242,
+            "triangles": 31586,
+            "activeVfx": 7,
+            "geometries": 120,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 305,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          },
+          "network": {
+            "build": "9dd14b9dcd8f",
+            "protocol": 3,
+            "role": "guest",
+            "status": "connected",
+            "snapshotsSent": 0,
+            "snapshotsReceived": 365,
+            "scheduledSnapshotJsonBytes": 0,
+            "snapshotIntervals": {
+              "samples": 180,
+              "meanMs": 71.72888888890544,
+              "p95Ms": 140.19999999552965
+            },
+            "snapshotApply": {
+              "samples": 180,
+              "meanMs": 1.037777777471476,
+              "p95Ms": 2.399999998509884
+            },
+            "hostTickPacing": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostStep": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "serialization": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "wireBytes": {
+              "samples": 0,
+              "mean": null,
+              "max": null
+            },
+            "inputAcknowledgement": {
+              "samples": 180,
+              "meanMs": 62.65277777777778,
+              "p95Ms": 129.10000000149012
+            },
+            "scheduled": 0,
+            "peakScheduled": 2,
+            "snapshotsScheduled": 0,
+            "droppedSnapshots": 0
+          },
+          "status": "victory",
+          "seconds": 24.016666666666584,
+          "playerDamage": null
+        }
+      ]
+    }
+  },
+  "isolatedStandard": {
+    "base": {
+      "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+      "wallSeconds": 50.181,
+      "seen": [
+        "1-volley-commit",
+        "1-march-commit",
+        "1-furnace-commit",
+        "2-furnace-shift",
+        "2-furnace-commit",
+        "2-march-commit",
+        "2-volley-commit"
+      ],
+      "reports": [
+        {
+          "build": "9dd14b9dcd8f",
+          "frames": {
+            "count": 2899,
+            "mean": 17.28395998620221,
+            "p50": 16.69999999999709,
+            "p95": 16.80000000000291,
+            "p99": 33.399999999999636
+          },
+          "render": {
+            "quality": "standard",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1440,
+              "height": 900
+            },
+            "pixelRatio": 1,
+            "drawCalls": 276,
+            "triangles": 49228,
+            "activeVfx": 8,
+            "geometries": 100,
+            "textures": 5,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 241,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          },
+          "network": {
+            "build": "9dd14b9dcd8f",
+            "protocol": 3,
+            "role": "solo",
+            "status": "solo",
+            "snapshotsSent": 0,
+            "snapshotsReceived": 0,
+            "scheduledSnapshotJsonBytes": 0,
+            "snapshotIntervals": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "snapshotApply": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostTickPacing": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostStep": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "serialization": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "wireBytes": {
+              "samples": 0,
+              "mean": null,
+              "max": null
+            },
+            "inputAcknowledgement": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "scheduled": 0,
+            "peakScheduled": 0,
+            "snapshotsScheduled": 0,
+            "droppedSnapshots": 0
+          },
+          "status": "victory",
+          "seconds": 49.66666666666513,
+          "playerDamage": 14,
+          "outcomes": {
+            "mage-1:cast:Ember:primary": 146,
+            "projectile:mage-1:hit:loose-1": 5,
+            "projectile:mage-1:hit:warden": 98,
+            "warden:target:mage-1": 13,
+            "projectile:mage-1:blocked": 10,
+            "warden:volley:commit": 4,
+            "warden:volley:attack": 4,
+            "projectile:warden:blocked": 8,
+            "warden:march:commit": 5,
+            "warden:march:attack": 5,
+            "warden:march:travel": 26.016030378055675,
+            "projectile:mage-1:hit:warden-plate-left": 3,
+            "projectile:mage-1:expired": 15,
+            "warden:march:avoided": 4,
+            "projectile:mage-1:hit:warden-plate-right": 11,
+            "warden:furnace:commit": 4,
+            "warden:furnace:attack": 4,
+            "projectile:warden:hit:mage-1": 3,
+            "invulnerable-contact:warden": 3,
+            "projectile:mage-1:hit:timber": 4,
+            "warden:furnace:contact:timber": 2,
+            "warden:phase:2": 1,
+            "warden:plate:detached:warden-plate-left": 1,
+            "warden:march:contact:mage-1": 1,
+            "warden:plate:detached:warden-plate-right": 1
+          }
+        }
+      ]
+    },
+    "pair": {
+      "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+      "wallSeconds": 17.399,
+      "seen": [
+        "1-volley-commit",
+        "1-march-commit",
+        "2-march-shift",
+        "2-furnace-commit",
+        "2-march-commit"
+      ],
+      "reports": [
+        {
+          "build": "9dd14b9dcd8f",
+          "frames": {
+            "count": 453,
+            "mean": 38.10573951433562,
+            "p50": 33.30000000000109,
+            "p95": 66.70000000000073,
+            "p99": 83.39999999999964
+          },
+          "render": {
+            "quality": "standard",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1440,
+              "height": 900
+            },
+            "pixelRatio": 1,
+            "drawCalls": 394,
+            "triangles": 57022,
+            "activeVfx": 14,
+            "geometries": 126,
+            "textures": 5,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 134.10000000149012,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          },
+          "network": {
+            "build": "9dd14b9dcd8f",
+            "protocol": 3,
+            "role": "host",
+            "status": "connected",
+            "snapshotsSent": 286,
+            "snapshotsReceived": 0,
+            "scheduledSnapshotJsonBytes": 1824589,
+            "snapshotIntervals": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "snapshotApply": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostTickPacing": {
+              "samples": 180,
+              "meanMs": 18.442777777794333,
+              "p95Ms": 42.899999998509884
+            },
+            "hostStep": {
+              "samples": 180,
+              "meanMs": 0.38944444441133075,
+              "p95Ms": 1
+            },
+            "serialization": {
+              "samples": 180,
+              "meanMs": 0.46111111106971897,
+              "p95Ms": 0.7999999970197678
+            },
+            "wireBytes": {
+              "samples": 180,
+              "mean": 6607.4,
+              "max": 17417
+            },
+            "inputAcknowledgement": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "scheduled": 0,
+            "peakScheduled": 1,
+            "snapshotsScheduled": 286,
+            "droppedSnapshots": 0
+          },
+          "status": "victory",
+          "seconds": 17.500000000000288,
+          "playerDamage": 2,
+          "outcomes": {
+            "warden:target:mage-2": 3,
+            "revive:mage-2:mage-1": 1,
+            "mage-1:cast:Tide:primary": 20,
+            "mage-1:Tide:primary:miss": 3,
+            "mage-2:cast:Ember:secondary": 4,
+            "field:Ember:contact:warden": 54,
+            "upgrade:mage-2:cross-seam:warden": 54,
+            "field:Ember:contact:warden-plate-left": 12,
+            "upgrade:mage-2:cross-seam:warden-plate-left": 12,
+            "field:Ember:contact:warden-plate-right": 17,
+            "upgrade:mage-2:cross-seam:warden-plate-right": 17,
+            "mage-2:cast:Stone:primary": 10,
+            "stagger:warden": 10,
+            "mage-2:Stone:primary:hit": 8,
+            "control:stagger-seconds:warden": 3.4499999999999926,
+            "warden:volley:interrupted": 2,
+            "warden:volley:commit": 1,
+            "stagger:warden-plate-right": 2,
+            "upgrade:mage-1:forked-tide": 24,
+            "cross-reaction:mage-2:mage-1:warden": 9,
+            "stagger:warden-plate-left": 2,
+            "cross-reaction:mage-2:mage-1:warden-plate-left": 3,
+            "upgrade:mage-1:shared-vapour": 7,
+            "cross-reaction:mage-2:mage-1:warden-plate-right": 3,
+            "mage-1:Tide:primary:hit": 17,
+            "warden:plate:detached:warden-plate-left": 1,
+            "warden:plate:detached:warden-plate-right": 1,
+            "warden:volley:attack": 1,
+            "mage-2:cast:Tide:primary": 12,
+            "mage-2:Tide:primary:hit": 11,
+            "cross-reaction:mage-1:mage-2:warden": 7,
+            "projectile:warden:blocked": 3,
+            "cross-reaction:mage-1:mage-2:warden-plate-left": 2,
+            "mage-2:cast:Gale:secondary": 2,
+            "field:Gale:contact:warden": 30,
+            "field:Gale:contact:warden-plate-left": 4,
+            "field:Gale:contact:warden-plate-right": 10,
+            "mage-1:cast:Ember:primary": 23,
+            "projectile:mage-1:hit:mage-2": 2,
+            "allied-damage-suppressed:mage-1:mage-2": 6,
+            "mage-2:cast:Gale:primary": 7,
+            "projectile:mage-1:deflected": 4,
+            "mage-2:Gale:primary:hit": 7,
+            "projectile:mage-1:expired": 4,
+            "projectile:mage-1:hit:warden-plate-left": 1,
+            "warden:march:interrupted": 4,
+            "projectile:mage-1:hit:warden": 14,
+            "field:Gale:contact:mage-2": 2,
+            "upgrade:mage-2:migrating-inscriptions": 5,
+            "warden:march:commit": 2,
+            "warden:march:attack": 2,
+            "warden:march:travel": 5.314186945104282,
+            "mage-2:Tide:primary:miss": 1,
+            "field:Gale:contact:loose-1": 2,
+            "stagger:loose-1": 1,
+            "field:replaced": 4,
+            "mage-2:Stone:primary:miss": 2,
+            "warden:march:avoided": 1,
+            "warden:phase:2": 1,
+            "field:Ember:contact:mage-1": 4,
+            "upgrade:mage-2:cross-seam:mage-1": 4,
+            "allied-damage-suppressed:mage-2:mage-1": 4,
+            "stagger:mage-2": 3,
+            "warden:target:mage-1": 1,
+            "field:Ember:contact:mage-2": 1,
+            "upgrade:mage-2:cross-seam:mage-2": 1,
+            "projectile:mage-1:blocked": 1,
+            "warden:furnace:interrupted": 3,
+            "warden:furnace:commit": 1,
+            "warden:furnace:attack": 1
+          }
+        },
+        {
+          "build": "9dd14b9dcd8f",
+          "frames": {
+            "count": 466,
+            "mean": 37.16824034334765,
+            "p50": 33.30000000000109,
+            "p95": 66.60000000000036,
+            "p99": 66.89999999999964
+          },
+          "render": {
+            "quality": "standard",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1440,
+              "height": 900
+            },
+            "pixelRatio": 1,
+            "drawCalls": 395,
+            "triangles": 57278,
+            "activeVfx": 14,
+            "geometries": 127,
+            "textures": 5,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 217.5,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          },
+          "network": {
+            "build": "9dd14b9dcd8f",
+            "protocol": 3,
+            "role": "guest",
+            "status": "connected",
+            "snapshotsSent": 0,
+            "snapshotsReceived": 287,
+            "scheduledSnapshotJsonBytes": 0,
+            "snapshotIntervals": {
+              "samples": 180,
+              "meanMs": 65.93166666664183,
+              "p95Ms": 109.70000000298023
+            },
+            "snapshotApply": {
+              "samples": 180,
+              "meanMs": 0.5533333333416117,
+              "p95Ms": 1
+            },
+            "hostTickPacing": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "hostStep": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "serialization": {
+              "samples": 0,
+              "meanMs": null,
+              "p95Ms": null
+            },
+            "wireBytes": {
+              "samples": 0,
+              "mean": null,
+              "max": null
+            },
+            "inputAcknowledgement": {
+              "samples": 180,
+              "meanMs": 41.63611111135946,
+              "p95Ms": 83.30000000447035
+            },
+            "scheduled": 0,
+            "peakScheduled": 2,
+            "snapshotsScheduled": 0,
+            "droppedSnapshots": 0
+          },
+          "status": "victory",
+          "seconds": 17.500000000000288,
+          "playerDamage": null
+        }
+      ]
+    }
+  },
+  "earlierCurrentRuntimePair": {
+    "fixture": "Isolated fifth court with explicit starting build; all combat uses real keyboard/mouse",
+    "wallSeconds": 24.329,
+    "seen": [
+      "1-volley-commit",
+      "1-march-commit",
+      "1-furnace-commit",
+      "2-furnace-shift",
+      "2-march-commit",
+      "2-volley-commit"
+    ],
+    "reports": [
+      {
+        "build": "9dd14b9dcd8f",
+        "frames": {
+          "count": 692,
+          "mean": 34.84523121387499,
+          "p50": 33.29999999999927,
+          "p95": 50,
+          "p99": 66.70000000000073
+        },
+        "render": {
+          "quality": "lightweight",
+          "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1152,
+            "height": 720
+          },
+          "pixelRatio": 0.8,
+          "drawCalls": 256,
+          "triangles": 33126,
+          "activeVfx": 7,
+          "geometries": 119,
+          "textures": 3,
+          "contextLost": false,
+          "art": {
+            "active": true,
+            "ready": true,
+            "loadMs": 229.39999999850988,
+            "downloadBytes": 1643700,
+            "assets": 12,
+            "sharedGeometries": 77
+          }
+        },
+        "network": {
+          "build": "9dd14b9dcd8f",
+          "protocol": 3,
+          "role": "host",
+          "status": "connected",
+          "snapshotsSent": 363,
+          "snapshotsReceived": 0,
+          "scheduledSnapshotJsonBytes": 2350842,
+          "snapshotIntervals": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "snapshotApply": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostTickPacing": {
+            "samples": 180,
+            "meanMs": 32.0016666666915,
+            "p95Ms": 84.39999999850988
+          },
+          "hostStep": {
+            "samples": 180,
+            "meanMs": 0.9894444445355071,
+            "p95Ms": 3.2000000029802322
+          },
+          "serialization": {
+            "samples": 180,
+            "meanMs": 0.881666667221321,
+            "p95Ms": 1.5
+          },
+          "wireBytes": {
+            "samples": 180,
+            "mean": 6784.527777777777,
+            "max": 14737
+          },
+          "inputAcknowledgement": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "scheduled": 0,
+          "peakScheduled": 1,
+          "snapshotsScheduled": 363,
+          "droppedSnapshots": 0
+        },
+        "status": "victory",
+        "seconds": 24.049999999999915,
+        "playerDamage": 14,
+        "outcomes": {
+          "warden:target:mage-2": 3,
+          "revive:mage-2:mage-1": 1,
+          "mage-1:cast:Tide:primary": 25,
+          "mage-1:Tide:primary:miss": 7,
+          "mage-2:cast:Ember:secondary": 7,
+          "field:Ember:contact:warden": 68,
+          "upgrade:mage-2:cross-seam:warden": 68,
+          "field:Ember:contact:warden-plate-left": 19,
+          "upgrade:mage-2:cross-seam:warden-plate-left": 19,
+          "field:Ember:contact:warden-plate-right": 22,
+          "upgrade:mage-2:cross-seam:warden-plate-right": 22,
+          "warden:volley:commit": 2,
+          "mage-2:cast:Stone:primary": 15,
+          "stagger:warden": 13,
+          "stagger:warden-plate-left": 3,
+          "mage-2:Stone:primary:hit": 14,
+          "control:stagger-seconds:warden": 4.966666666666654,
+          "warden:volley:interrupted": 4,
+          "warden:volley:attack": 2,
+          "upgrade:mage-1:forked-tide": 25,
+          "cross-reaction:mage-2:mage-1:warden": 7,
+          "cross-reaction:mage-2:mage-1:warden-plate-left": 3,
+          "upgrade:mage-1:shared-vapour": 8,
+          "stagger:warden-plate-right": 2,
+          "cross-reaction:mage-2:mage-1:warden-plate-right": 4,
+          "mage-1:Tide:primary:hit": 18,
+          "projectile:warden:blocked": 3,
+          "mage-2:cast:Tide:primary": 11,
+          "mage-2:Tide:primary:hit": 9,
+          "mage-2:cast:Gale:primary": 10,
+          "mage-2:Gale:primary:miss": 4,
+          "cross-reaction:mage-1:mage-2:warden": 9,
+          "mage-1:cast:Ember:primary": 33,
+          "projectile:mage-1:hit:warden-plate-left": 1,
+          "mage-2:cast:Gale:secondary": 3,
+          "field:Gale:contact:warden": 30,
+          "field:Gale:contact:warden-plate-left": 2,
+          "mage-2:Tide:primary:miss": 2,
+          "projectile:mage-1:expired": 12,
+          "upgrade:mage-2:migrating-inscriptions": 8,
+          "mage-2:Gale:primary:hit": 6,
+          "field:replaced": 8,
+          "warden:march:commit": 2,
+          "warden:march:interrupted": 6,
+          "projectile:mage-1:deflected": 3,
+          "warden:march:attack": 2,
+          "warden:march:travel": 10.165113466617605,
+          "projectile:mage-1:hit:mage-2": 4,
+          "allied-damage-suppressed:mage-1:mage-2": 13,
+          "field:Gale:contact:warden-plate-right": 5,
+          "stagger:mage-2": 6,
+          "warden:plate:detached:warden-plate-left": 1,
+          "warden:plate:detached:warden-plate-right": 1,
+          "warden:march:avoided": 2,
+          "mage-2:cast:Ember:primary": 1,
+          "projectile:mage-2:expired": 1,
+          "projectile:mage-1:hit:warden": 13,
+          "warden:target:mage-1": 2,
+          "projectile:mage-1:blocked": 3,
+          "warden:furnace:interrupted": 3,
+          "stagger:mage-1": 2,
+          "allied-damage-suppressed:mage-2:mage-1": 2,
+          "warden:furnace:commit": 1,
+          "warden:furnace:attack": 1,
+          "warden:phase:2": 1,
+          "mage-2:Stone:primary:miss": 1,
+          "projectile:warden:hit:mage-2": 1,
+          "field:Gale:contact:mage-2": 2
+        }
+      },
+      {
+        "build": "9dd14b9dcd8f",
+        "frames": {
+          "count": 706,
+          "mean": 34.28484419263671,
+          "p50": 33.29999999999927,
+          "p95": 50,
+          "p99": 66.60000000000036
+        },
+        "render": {
+          "quality": "lightweight",
+          "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+          "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "drawingBuffer": {
+            "width": 1152,
+            "height": 720
+          },
+          "pixelRatio": 0.8,
+          "drawCalls": 255,
+          "triangles": 32870,
+          "activeVfx": 7,
+          "geometries": 120,
+          "textures": 3,
+          "contextLost": false,
+          "art": {
+            "active": true,
+            "ready": true,
+            "loadMs": 244.89999999850988,
+            "downloadBytes": 1643700,
+            "assets": 12,
+            "sharedGeometries": 77
+          }
+        },
+        "network": {
+          "build": "9dd14b9dcd8f",
+          "protocol": 3,
+          "role": "guest",
+          "status": "connected",
+          "snapshotsSent": 0,
+          "snapshotsReceived": 364,
+          "scheduledSnapshotJsonBytes": 0,
+          "snapshotIntervals": {
+            "samples": 180,
+            "meanMs": 74.56777777779433,
+            "p95Ms": 148.69999999552965
+          },
+          "snapshotApply": {
+            "samples": 180,
+            "meanMs": 0.9455555555307202,
+            "p95Ms": 2
+          },
+          "hostTickPacing": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostStep": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "serialization": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "wireBytes": {
+            "samples": 0,
+            "mean": null,
+            "max": null
+          },
+          "inputAcknowledgement": {
+            "samples": 180,
+            "meanMs": 65.19555555561351,
+            "p95Ms": 144.10000000149012
+          },
+          "scheduled": 0,
+          "peakScheduled": 2,
+          "snapshotsScheduled": 0,
+          "droppedSnapshots": 0
+        },
+        "status": "victory",
+        "seconds": 24.049999999999915,
+        "playerDamage": null
+      }
+    ]
+  },
+  "completeRuns": {
+    "solo": {
+      "wallSeconds": 93.086,
+      "combatSeconds": 89.71666666666286,
+      "status": "victory",
+      "results": [
+        {
+          "encounter": 0,
+          "seconds": 12.266666666666856,
+          "health": 100
+        },
+        {
+          "encounter": 1,
+          "seconds": 11.816666666666391,
+          "health": 100
+        },
+        {
+          "encounter": 2,
+          "seconds": 18.983333333332258,
+          "health": 64
+        },
+        {
+          "encounter": 3,
+          "seconds": 16.399999999999068,
+          "health": 64
+        },
+        {
+          "encounter": 4,
+          "seconds": 30.249999999998288,
+          "health": 36
+        }
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "casts": {
+        "Tide:primary": 92,
+        "Ember:primary": 138
+      },
+      "reactions": {
+        "vaporize": 98,
+        "thermal fracture": 92,
+        "shatter impulse": 35
+      },
+      "outcomes": {
+        "mage-1:cast:Tide:primary": 92,
+        "stagger:loose-1": 4,
+        "mage-1:Tide:primary:hit": 79,
+        "stagger:encounter-0-sentinel-0": 3,
+        "control:stagger-seconds:encounter-0-sentinel-0": 0.9500000000000013,
+        "encounter-0-sentinel-0:projectile:attempt": 2,
+        "encounter-0-sentinel-1:projectile:attempt": 5,
+        "mage-1:cast:Ember:primary": 138,
+        "projectile:mage-1:hit:encounter-0-sentinel-0": 7,
+        "projectile:encounter-0-sentinel-1:hit:loose-1": 1,
+        "mage-1:Tide:primary:miss": 13,
+        "projectile:mage-1:expired": 20,
+        "projectile:encounter-0-sentinel-0:blocked": 2,
+        "projectile:encounter-0-sentinel-1:blocked": 3,
+        "stagger:encounter-0-sentinel-1": 4,
+        "control:stagger-seconds:encounter-0-sentinel-1": 0.9500000000000013,
+        "projectile:mage-1:hit:encounter-0-sentinel-1": 7,
+        "upgrade:mage-1:forked-tide": 83,
+        "stagger:encounter-1-pursuer-0": 3,
+        "control:stagger-seconds:encounter-1-pursuer-0": 0.9500000000000013,
+        "projectile:mage-1:hit:encounter-1-pursuer-0": 3,
+        "projectile:mage-1:hit:timber": 9,
+        "stagger:timber": 3,
+        "projectile:mage-1:blocked": 9,
+        "projectile:mage-1:hit:encounter-1-pursuer-2": 4,
+        "encounter-1-pursuer-2:melee:attempt": 1,
+        "encounter-1-pursuer-2:melee:miss": 1,
+        "stagger:encounter-1-pursuer-2": 1,
+        "control:stagger-seconds:encounter-1-pursuer-2": 0.41666666666666663,
+        "encounter-1-pursuer-0:melee:attempt": 1,
+        "encounter-1-pursuer-0:melee:miss": 1,
+        "stagger:encounter-1-pursuer-1": 2,
+        "control:stagger-seconds:encounter-1-pursuer-1": 0.6833333333333338,
+        "projectile:mage-1:hit:encounter-1-pursuer-1": 3,
+        "encounter-1-pursuer-1:melee:attempt": 1,
+        "encounter-1-pursuer-1:melee:contact": 1,
+        "invulnerable-contact:encounter-1-pursuer-1": 1,
+        "stagger:encounter-2-pursuer-3": 5,
+        "control:stagger-seconds:encounter-2-pursuer-3": 1.2166666666666672,
+        "encounter-2-sentinel-0:projectile:attempt": 8,
+        "encounter-2-sentinel-1:projectile:attempt": 4,
+        "projectile:encounter-2-sentinel-0:blocked": 3,
+        "projectile:encounter-2-sentinel-1:blocked": 3,
+        "projectile:mage-1:hit:encounter-2-sentinel-1": 7,
+        "stagger:encounter-2-pursuer-2": 4,
+        "control:stagger-seconds:encounter-2-pursuer-2": 0.8000000000000008,
+        "projectile:mage-1:hit:encounter-2-pursuer-2": 3,
+        "encounter-2-pursuer-2:melee:attempt": 2,
+        "encounter-2-pursuer-2:melee:miss": 1,
+        "encounter-2-pursuer-3:melee:attempt": 2,
+        "encounter-2-pursuer-3:melee:contact": 2,
+        "projectile:mage-1:hit:encounter-2-pursuer-3": 2,
+        "projectile:encounter-2-sentinel-1:hit:encounter-2-pursuer-3": 1,
+        "stagger:encounter-2-sentinel-1": 3,
+        "control:stagger-seconds:encounter-2-sentinel-1": 1.0500000000000012,
+        "projectile:encounter-2-sentinel-0:hit:ballast": 4,
+        "encounter-2-pursuer-2:melee:contact": 1,
+        "projectile:mage-1:hit:ballast": 1,
+        "stagger:encounter-2-sentinel-0": 4,
+        "control:stagger-seconds:encounter-2-sentinel-0": 1.3666666666666667,
+        "projectile:mage-1:hit:encounter-2-sentinel-0": 7,
+        "stagger:encounter-3-pursuer-0": 2,
+        "control:stagger-seconds:encounter-3-pursuer-0": 0.26666666666666666,
+        "projectile:mage-1:hit:encounter-3-pursuer-0": 3,
+        "encounter-3-sentinel-3:projectile:attempt": 6,
+        "stagger:encounter-3-pursuer-1": 3,
+        "control:stagger-seconds:encounter-3-pursuer-1": 0.9500000000000013,
+        "projectile:encounter-3-sentinel-3:blocked": 2,
+        "projectile:encounter-3-sentinel-3:hit:encounter-3-pursuer-1": 2,
+        "projectile:mage-1:hit:loose-1": 1,
+        "stagger:encounter-3-pursuer-2": 3,
+        "stagger:encounter-3-sentinel-3": 5,
+        "control:stagger-seconds:encounter-3-pursuer-2": 0.7166666666666672,
+        "control:stagger-seconds:encounter-3-sentinel-3": 1.5166666666666662,
+        "projectile:mage-1:hit:encounter-3-pursuer-2": 3,
+        "projectile:mage-1:hit:encounter-3-pursuer-1": 3,
+        "encounter-3-pursuer-2:melee:attempt": 1,
+        "encounter-3-pursuer-2:melee:miss": 1,
+        "projectile:encounter-3-sentinel-3:hit:encounter-3-pursuer-2": 1,
+        "projectile:mage-1:hit:encounter-3-sentinel-3": 7,
+        "warden:target:mage-1": 7,
+        "warden:volley:commit": 3,
+        "warden:volley:attack": 3,
+        "projectile:mage-1:hit:warden": 31,
+        "stagger:warden": 12,
+        "upgrade:mage-1:shared-vapour": 25,
+        "control:stagger-seconds:warden": 4.583333333333322,
+        "warden:volley:interrupted": 4,
+        "projectile:warden:blocked": 7,
+        "projectile:mage-1:hit:warden-plate-left": 2,
+        "stagger:warden-plate-left": 3,
+        "projectile:mage-1:hit:warden-plate-right": 5,
+        "stagger:warden-plate-right": 3,
+        "warden:march:commit": 2,
+        "warden:plate:detached:warden-plate-right": 1,
+        "warden:march:interrupted": 4,
+        "warden:march:attack": 2,
+        "warden:march:travel": 10.44190666900594,
+        "warden:march:avoided": 2,
+        "warden:furnace:commit": 2,
+        "warden:furnace:attack": 2,
+        "warden:plate:detached:warden-plate-left": 1,
+        "warden:furnace:interrupted": 3,
+        "warden:phase:2": 1,
+        "projectile:warden:hit:mage-1": 2
+      },
+      "build": "9dd14b9dcd8f",
+      "measurements": [
+        {
+          "role": "solo",
+          "frames": {
+            "n": 5341,
+            "mean": 16.741808650065472,
+            "p50": 16.69999999999709,
+            "p95": 16.80000000000291,
+            "p99": 16.899999999999636,
+            "max": 100
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 722,
+                "mean": 16.653185595567884,
+                "p50": 16.69999999999891,
+                "p95": 16.800000000000182,
+                "p99": 16.80000000000109,
+                "max": 33.40000000000009
+              },
+              "maxDraws": 154
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 702,
+                "mean": 16.817378917378917,
+                "p50": 16.69999999999709,
+                "p95": 16.799999999999272,
+                "p99": 16.900000000001455,
+                "max": 100
+              },
+              "maxDraws": 189
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 1135,
+                "mean": 16.709779735682822,
+                "p50": 16.69999999999709,
+                "p95": 16.80000000000291,
+                "p99": 16.899999999997817,
+                "max": 83.09999999999854
+              },
+              "maxDraws": 198
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 978,
+                "mean": 16.753169734151328,
+                "p50": 16.69999999999709,
+                "p95": 16.799999999995634,
+                "p99": 16.89999999999418,
+                "max": 83.19999999999709
+              },
+              "maxDraws": 178
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 1804,
+                "mean": 16.761862527716186,
+                "p50": 16.69999999999709,
+                "p95": 16.80000000000291,
+                "p99": 16.89999999999418,
+                "max": 66.59999999999854
+              },
+              "maxDraws": 205
+            }
+          ],
+          "maxFields": 0,
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 187,
+            "triangles": 28118,
+            "activeVfx": 10,
+            "geometries": 118,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 224.89999999850988,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          }
+        }
+      ],
+      "transport": [
+        {
+          "build": "9dd14b9dcd8f",
+          "protocol": 3,
+          "role": "solo",
+          "status": "solo",
+          "snapshotsSent": 0,
+          "snapshotsReceived": 0,
+          "scheduledSnapshotJsonBytes": 0,
+          "snapshotIntervals": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "snapshotApply": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostTickPacing": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostStep": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "serialization": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "wireBytes": {
+            "samples": 0,
+            "mean": null,
+            "max": null
+          },
+          "inputAcknowledgement": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "scheduled": 0,
+          "peakScheduled": 0,
+          "snapshotsScheduled": 0,
+          "droppedSnapshots": 0
+        }
+      ]
+    },
+    "coop": {
+      "wallSeconds": 79.416,
+      "combatSeconds": 70.84999999999727,
+      "status": "victory",
+      "results": [
+        {
+          "encounter": 0,
+          "seconds": 9.716666666666729,
+          "health": 86
+        },
+        {
+          "encounter": 1,
+          "seconds": 15.466666666666455,
+          "health": 62
+        },
+        {
+          "encounter": 2,
+          "seconds": 14.166666666665865,
+          "health": 50
+        },
+        {
+          "encounter": 3,
+          "seconds": 11.649999999999338,
+          "health": 50
+        },
+        {
+          "encounter": 4,
+          "seconds": 19.84999999999888,
+          "health": 32
+        }
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "fault-line",
+          "break-seal"
+        ]
+      },
+      "casts": {
+        "Tide:primary": 89,
+        "Stone:primary": 77,
+        "Ember:primary": 79,
+        "Gale:secondary": 4,
+        "Gale:primary": 30
+      },
+      "reactions": {
+        "vaporize": 39,
+        "thermal fracture": 34,
+        "shatter impulse": 8,
+        "deflect": 6,
+        "physical impact": 7
+      },
+      "outcomes": {
+        "mage-1:cast:Tide:primary": 89,
+        "mage-1:Tide:primary:miss": 26,
+        "encounter-0-sentinel-0:projectile:attempt": 2,
+        "mage-2:cast:Stone:primary": 77,
+        "stagger:encounter-0-sentinel-1": 3,
+        "mage-2:Stone:primary:hit": 89,
+        "control:stagger-seconds:encounter-0-sentinel-1": 0.9500000000000013,
+        "stagger:encounter-0-sentinel-0": 3,
+        "mage-1:Tide:primary:hit": 63,
+        "control:stagger-seconds:encounter-0-sentinel-0": 0.9500000000000013,
+        "encounter-0-sentinel-1:projectile:attempt": 4,
+        "projectile:encounter-0-sentinel-0:hit:mage-2": 1,
+        "mage-1:cast:Ember:primary": 79,
+        "projectile:mage-1:hit:mage-2": 8,
+        "allied-damage-suppressed:mage-1:mage-2": 22,
+        "projectile:mage-1:blocked": 9,
+        "projectile:mage-1:hit:encounter-0-sentinel-0": 4,
+        "mage-2:Stone:primary:miss": 166,
+        "projectile:encounter-0-sentinel-1:blocked": 1,
+        "mage-2:cast:Gale:secondary": 4,
+        "field:Gale:contact:timber": 19,
+        "projectile:encounter-0-sentinel-1:hit:encounter-0-sentinel-0": 1,
+        "field:Gale:contact:mage-2": 13,
+        "projectile:encounter-0-sentinel-0:hit:mage-1": 1,
+        "field:Gale:contact:mage-1": 12,
+        "stagger:mage-1": 6,
+        "projectile:encounter-0-sentinel-1:hit:timber": 1,
+        "projectile:mage-1:hit:encounter-0-sentinel-1": 2,
+        "mage-2:cast:Gale:primary": 30,
+        "projectile:encounter-0-sentinel-1:deflected": 1,
+        "mage-2:Gale:primary:hit": 20,
+        "upgrade:mage-1:forked-tide": 68,
+        "stagger:encounter-1-pursuer-1": 2,
+        "control:stagger-seconds:encounter-1-pursuer-1": 0.39999999999999997,
+        "stagger:encounter-1-pursuer-2": 6,
+        "control:stagger-seconds:encounter-1-pursuer-2": 1.3333333333333335,
+        "encounter-1-pursuer-2:melee:attempt": 3,
+        "encounter-1-pursuer-2:melee:miss": 1,
+        "encounter-1-pursuer-0:melee:attempt": 3,
+        "encounter-1-pursuer-0:melee:contact": 2,
+        "invulnerable-contact:encounter-1-pursuer-0": 1,
+        "field:Gale:contact:loose-1": 25,
+        "stagger:loose-1": 13,
+        "field:Gale:contact:encounter-1-pursuer-2": 10,
+        "stagger:encounter-1-pursuer-0": 3,
+        "control:stagger-seconds:encounter-1-pursuer-0": 0.7166666666666672,
+        "projectile:mage-1:hit:encounter-1-pursuer-0": 2,
+        "projectile:mage-1:expired": 24,
+        "mage-2:Gale:primary:miss": 10,
+        "encounter-1-pursuer-2:melee:contact": 2,
+        "encounter-1-pursuer-0:melee:miss": 1,
+        "allied-damage-suppressed:mage-2:mage-1": 2,
+        "stagger:mage-2": 8,
+        "stagger:encounter-2-pursuer-3": 2,
+        "control:stagger-seconds:encounter-2-pursuer-3": 0.5333333333333333,
+        "field:Gale:contact:encounter-2-sentinel-1": 45,
+        "stagger:encounter-2-sentinel-1": 3,
+        "field:Gale:contact:encounter-2-pursuer-3": 13,
+        "control:stagger-seconds:encounter-2-sentinel-1": 0.8000000000000008,
+        "encounter-2-sentinel-0:projectile:attempt": 5,
+        "encounter-2-sentinel-1:projectile:attempt": 6,
+        "encounter-2-pursuer-3:melee:attempt": 1,
+        "encounter-2-pursuer-3:melee:contact": 1,
+        "projectile:encounter-2-sentinel-0:blocked": 3,
+        "projectile:encounter-2-sentinel-1:deflected": 1,
+        "projectile:mage-1:deflected": 4,
+        "projectile:mage-1:hit:encounter-2-pursuer-3": 2,
+        "projectile:encounter-2-sentinel-1:hit:encounter-2-sentinel-1": 1,
+        "stagger:encounter-2-pursuer-2": 2,
+        "control:stagger-seconds:encounter-2-pursuer-2": 0.5333333333333333,
+        "projectile:mage-1:hit:encounter-2-pursuer-2": 1,
+        "projectile:mage-1:hit:timber": 1,
+        "stagger:timber": 1,
+        "projectile:encounter-2-sentinel-1:expired": 1,
+        "projectile:encounter-2-sentinel-0:hit:mage-2": 2,
+        "projectile:encounter-2-sentinel-1:hit:loose-1": 1,
+        "stagger:encounter-2-sentinel-0": 2,
+        "control:stagger-seconds:encounter-2-sentinel-0": 0.6833333333333338,
+        "projectile:encounter-2-sentinel-1:blocked": 3,
+        "projectile:mage-1:hit:encounter-2-sentinel-0": 3,
+        "projectile:mage-1:hit:encounter-2-sentinel-1": 2,
+        "upgrade:mage-2:fault-line": 93,
+        "upgrade:mage-2:fault-hit:encounter-3-pursuer-1": 3,
+        "stagger:encounter-3-pursuer-1": 2,
+        "control:stagger-seconds:encounter-3-pursuer-1": 0.5333333333333333,
+        "upgrade:mage-2:fault-hit:encounter-3-pursuer-0": 4,
+        "stagger:encounter-3-pursuer-0": 2,
+        "control:stagger-seconds:encounter-3-pursuer-0": 0.5333333333333333,
+        "field:Gale:contact:encounter-3-pursuer-0": 9,
+        "encounter-3-sentinel-3:projectile:attempt": 4,
+        "field:Gale:contact:encounter-3-pursuer-1": 11,
+        "projectile:encounter-3-sentinel-3:hit:encounter-3-pursuer-1": 1,
+        "stagger:encounter-3-pursuer-2": 2,
+        "control:stagger-seconds:encounter-3-pursuer-2": 0.5333333333333333,
+        "projectile:encounter-3-sentinel-3:hit:timber": 1,
+        "upgrade:mage-2:fault-hit:encounter-3-pursuer-2": 3,
+        "encounter-3-pursuer-2:melee:attempt": 1,
+        "encounter-3-pursuer-2:melee:miss": 1,
+        "projectile:mage-1:hit:loose-1": 1,
+        "stagger:encounter-3-sentinel-3": 2,
+        "control:stagger-seconds:encounter-3-sentinel-3": 0.6833333333333338,
+        "projectile:encounter-3-sentinel-3:blocked": 2,
+        "upgrade:mage-2:fault-hit:encounter-3-sentinel-3": 4,
+        "projectile:mage-1:hit:encounter-3-sentinel-3": 3,
+        "warden:target:mage-1": 3,
+        "upgrade:mage-2:fault-hit:warden": 36,
+        "stagger:warden": 11,
+        "upgrade:mage-2:fault-hit:warden-plate-right": 7,
+        "stagger:warden-plate-right": 2,
+        "control:stagger-seconds:warden": 3.26666666666666,
+        "warden:volley:interrupted": 3,
+        "upgrade:mage-2:fault-hit:warden-plate-left": 3,
+        "stagger:warden-plate-left": 2,
+        "warden:volley:commit": 1,
+        "warden:volley:attack": 1,
+        "projectile:warden:blocked": 3,
+        "warden:plate:detached:warden-plate-right": 1,
+        "upgrade:mage-2:break-seal": 3,
+        "warden:plate:detached:warden-plate-left": 1,
+        "projectile:mage-1:hit:warden": 15,
+        "upgrade:mage-1:shared-vapour": 1,
+        "projectile:mage-1:hit:warden-plate-left": 1,
+        "cross-reaction:mage-1:mage-2:warden-plate-left": 1,
+        "upgrade:mage-2:fault-hit:mage-1": 1,
+        "warden:target:mage-2": 2,
+        "warden:march:interrupted": 4,
+        "warden:march:commit": 2,
+        "warden:march:attack": 2,
+        "warden:march:travel": 10.656374875589147,
+        "warden:march:avoided": 1,
+        "warden:phase:2": 1,
+        "warden:furnace:interrupted": 3,
+        "warden:furnace:commit": 1,
+        "warden:furnace:attack": 1,
+        "warden:march:contact:mage-1": 1
+      },
+      "build": "9dd14b9dcd8f",
+      "measurements": [
+        {
+          "role": "host",
+          "frames": {
+            "n": 2294,
+            "mean": 31.487140366172014,
+            "p50": 33.29999999999927,
+            "p95": 50,
+            "p99": 83.09999999999127,
+            "max": 299.90000000000146
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 330,
+                "mean": 30.82666666666215,
+                "p50": 33.20000000000073,
+                "p95": 50.100000000000364,
+                "p99": 99.79999999999927,
+                "max": 183.29999999999927
+              },
+              "maxDraws": 242
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 490,
+                "mean": 32.14673469387755,
+                "p50": 33.29999999999927,
+                "p95": 50,
+                "p99": 83.29999999999927,
+                "max": 183.20000000000073
+              },
+              "maxDraws": 273
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 500,
+                "mean": 28.806600000000007,
+                "p50": 33.200000000004366,
+                "p95": 50,
+                "p99": 50.10000000000582,
+                "max": 199.8000000000029
+              },
+              "maxDraws": 282
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 381,
+                "mean": 30.942519685039365,
+                "p50": 33.299999999995634,
+                "p95": 50,
+                "p99": 83.29999999999563,
+                "max": 133.09999999999854
+              },
+              "maxDraws": 285
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 593,
+                "mean": 33.91973018549747,
+                "p50": 33.30000000000291,
+                "p95": 50,
+                "p99": 66.69999999999709,
+                "max": 299.90000000000146
+              },
+              "maxDraws": 284
+            }
+          ],
+          "maxFields": 1,
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 269,
+            "triangles": 33660,
+            "activeVfx": 23,
+            "geometries": 132,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 225.10000000149012,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          }
+        },
+        {
+          "role": "guest",
+          "frames": {
+            "n": 2288,
+            "mean": 31.395410839160846,
+            "p50": 33.299999999995634,
+            "p95": 50,
+            "p99": 66.69999999999709,
+            "max": 199.90000000000873
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 350,
+                "mean": 29.068285714285725,
+                "p50": 33.20000000000073,
+                "p95": 50,
+                "p99": 83.20000000000073,
+                "max": 166.5
+              },
+              "maxDraws": 238
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 474,
+                "mean": 32.95084388185654,
+                "p50": 33.29999999999927,
+                "p95": 50,
+                "p99": 83.29999999999927,
+                "max": 199.79999999999927
+              },
+              "maxDraws": 273
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 494,
+                "mean": 28.819230769230764,
+                "p50": 33.200000000004366,
+                "p95": 50,
+                "p99": 66.69999999999709,
+                "max": 183
+              },
+              "maxDraws": 281
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 376,
+                "mean": 31.087500000000002,
+                "p50": 33.299999999995634,
+                "p95": 50,
+                "p99": 66.5,
+                "max": 133.09999999999854
+              },
+              "maxDraws": 278
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 594,
+                "mean": 33.862794612794616,
+                "p50": 33.30000000000291,
+                "p95": 50.10000000000582,
+                "p99": 66.69999999999709,
+                "max": 199.90000000000873
+              },
+              "maxDraws": 283
+            }
+          ],
+          "maxFields": 1,
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 268,
+            "triangles": 33404,
+            "activeVfx": 23,
+            "geometries": 133,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 531,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          }
+        }
+      ],
+      "transport": [
+        {
+          "build": "9dd14b9dcd8f",
+          "protocol": 3,
+          "role": "host",
+          "status": "connected",
+          "snapshotsSent": 1129,
+          "snapshotsReceived": 0,
+          "scheduledSnapshotJsonBytes": 7554020,
+          "snapshotIntervals": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "snapshotApply": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostTickPacing": {
+            "samples": 180,
+            "meanMs": 19.228888888864052,
+            "p95Ms": 45
+          },
+          "hostStep": {
+            "samples": 180,
+            "meanMs": 0.46388888859914407,
+            "p95Ms": 2
+          },
+          "serialization": {
+            "samples": 180,
+            "meanMs": 0.7238888892034689,
+            "p95Ms": 1.3999999985098839
+          },
+          "wireBytes": {
+            "samples": 180,
+            "mean": 7135.105555555556,
+            "max": 18821
+          },
+          "inputAcknowledgement": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "scheduled": 0,
+          "peakScheduled": 1,
+          "snapshotsScheduled": 1129,
+          "droppedSnapshots": 0
+        },
+        {
+          "build": "9dd14b9dcd8f",
+          "protocol": 3,
+          "role": "guest",
+          "status": "connected",
+          "snapshotsSent": 0,
+          "snapshotsReceived": 1129,
+          "scheduledSnapshotJsonBytes": 0,
+          "snapshotIntervals": {
+            "samples": 180,
+            "meanMs": 67.86277777780262,
+            "p95Ms": 142.79999999701977
+          },
+          "snapshotApply": {
+            "samples": 180,
+            "meanMs": 0.8711111110945543,
+            "p95Ms": 1.6999999955296516
+          },
+          "hostTickPacing": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostStep": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "serialization": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "wireBytes": {
+            "samples": 0,
+            "mean": null,
+            "max": null
+          },
+          "inputAcknowledgement": {
+            "samples": 180,
+            "meanMs": 63.53999999989238,
+            "p95Ms": 145.29999999701977
+          },
+          "scheduled": 0,
+          "peakScheduled": 2,
+          "snapshotsScheduled": 0,
+          "droppedSnapshots": 0
+        }
+      ]
+    }
+  },
+  "earlierCompleteRuns": {
+    "solo": {
+      "wallSeconds": 95.674,
+      "combatSeconds": 92.5166666666627,
+      "status": "victory",
+      "results": [
+        {
+          "encounter": 0,
+          "seconds": 12.333333333333526,
+          "health": 100
+        },
+        {
+          "encounter": 1,
+          "seconds": 11.683333333333058,
+          "health": 100
+        },
+        {
+          "encounter": 2,
+          "seconds": 20.96666666666548,
+          "health": 86
+        },
+        {
+          "encounter": 3,
+          "seconds": 15.866666666665765,
+          "health": 86
+        },
+        {
+          "encounter": 4,
+          "seconds": 31.666666666664874,
+          "health": 86
+        }
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "casts": {
+        "Tide:primary": 107,
+        "Ember:primary": 128
+      },
+      "reactions": {
+        "vaporize": 91,
+        "thermal fracture": 88,
+        "shatter impulse": 34
+      },
+      "outcomes": {
+        "mage-1:cast:Tide:primary": 107,
+        "stagger:loose-1": 5,
+        "mage-1:Tide:primary:hit": 80,
+        "stagger:encounter-0-sentinel-0": 3,
+        "control:stagger-seconds:encounter-0-sentinel-0": 1.100000000000001,
+        "mage-1:cast:Ember:primary": 128,
+        "encounter-0-sentinel-0:projectile:attempt": 2,
+        "projectile:mage-1:hit:encounter-0-sentinel-0": 7,
+        "encounter-0-sentinel-1:projectile:attempt": 5,
+        "projectile:mage-1:hit:timber": 4,
+        "projectile:mage-1:expired": 18,
+        "projectile:encounter-0-sentinel-0:blocked": 2,
+        "projectile:encounter-0-sentinel-1:blocked": 2,
+        "projectile:encounter-0-sentinel-1:hit:encounter-0-sentinel-0": 1,
+        "projectile:encounter-0-sentinel-1:hit:mage-1": 1,
+        "invulnerable-contact:encounter-0-sentinel-1": 1,
+        "stagger:encounter-0-sentinel-1": 4,
+        "control:stagger-seconds:encounter-0-sentinel-1": 1.100000000000001,
+        "projectile:mage-1:hit:encounter-0-sentinel-1": 7,
+        "mage-1:Tide:primary:miss": 27,
+        "upgrade:mage-1:forked-tide": 83,
+        "stagger:encounter-1-pursuer-0": 2,
+        "control:stagger-seconds:encounter-1-pursuer-0": 0.5333333333333333,
+        "projectile:mage-1:hit:encounter-1-pursuer-0": 4,
+        "stagger:timber": 2,
+        "stagger:encounter-1-pursuer-2": 3,
+        "control:stagger-seconds:encounter-1-pursuer-2": 0.5333333333333333,
+        "projectile:mage-1:hit:encounter-1-pursuer-2": 3,
+        "stagger:encounter-1-pursuer-1": 2,
+        "control:stagger-seconds:encounter-1-pursuer-1": 0.26666666666666666,
+        "projectile:mage-1:hit:encounter-1-pursuer-1": 4,
+        "stagger:encounter-2-pursuer-3": 4,
+        "control:stagger-seconds:encounter-2-pursuer-3": 0.8000000000000008,
+        "encounter-2-sentinel-0:projectile:attempt": 9,
+        "projectile:mage-1:hit:encounter-2-pursuer-3": 3,
+        "encounter-2-sentinel-1:projectile:attempt": 3,
+        "stagger:encounter-2-sentinel-1": 4,
+        "control:stagger-seconds:encounter-2-sentinel-1": 1.100000000000001,
+        "projectile:encounter-2-sentinel-1:hit:mage-1": 1,
+        "invulnerable-contact:encounter-2-sentinel-1": 1,
+        "encounter-2-pursuer-3:melee:attempt": 1,
+        "encounter-2-pursuer-3:melee:miss": 1,
+        "projectile:encounter-2-sentinel-0:hit:encounter-2-pursuer-3": 1,
+        "projectile:mage-1:hit:encounter-2-sentinel-1": 7,
+        "projectile:encounter-2-sentinel-0:blocked": 6,
+        "projectile:encounter-2-sentinel-1:hit:ballast": 1,
+        "projectile:encounter-2-sentinel-1:blocked": 1,
+        "projectile:encounter-2-sentinel-0:hit:ballast": 1,
+        "stagger:encounter-2-pursuer-2": 2,
+        "control:stagger-seconds:encounter-2-pursuer-2": 0.5333333333333333,
+        "projectile:mage-1:hit:encounter-2-pursuer-2": 3,
+        "stagger:encounter-2-sentinel-0": 3,
+        "control:stagger-seconds:encounter-2-sentinel-0": 1.100000000000001,
+        "projectile:mage-1:hit:encounter-2-sentinel-0": 7,
+        "projectile:encounter-2-sentinel-0:hit:mage-1": 1,
+        "stagger:encounter-3-sentinel-3": 5,
+        "stagger:encounter-3-pursuer-0": 3,
+        "control:stagger-seconds:encounter-3-pursuer-0": 0.5333333333333333,
+        "control:stagger-seconds:encounter-3-sentinel-3": 1.7833333333333319,
+        "stagger:encounter-3-pursuer-1": 3,
+        "control:stagger-seconds:encounter-3-pursuer-1": 0.6833333333333338,
+        "projectile:mage-1:hit:encounter-3-pursuer-0": 3,
+        "projectile:mage-1:hit:encounter-3-pursuer-1": 3,
+        "encounter-3-sentinel-3:projectile:attempt": 6,
+        "encounter-3-pursuer-0:melee:attempt": 1,
+        "encounter-3-pursuer-0:melee:miss": 1,
+        "projectile:mage-1:hit:encounter-3-sentinel-3": 7,
+        "projectile:encounter-3-sentinel-3:blocked": 3,
+        "encounter-3-pursuer-1:melee:attempt": 1,
+        "encounter-3-pursuer-1:melee:miss": 1,
+        "projectile:encounter-3-sentinel-3:hit:timber": 1,
+        "stagger:encounter-3-pursuer-2": 2,
+        "control:stagger-seconds:encounter-3-pursuer-2": 0.5333333333333333,
+        "projectile:mage-1:hit:encounter-3-pursuer-2": 3,
+        "encounter-3-pursuer-2:melee:attempt": 1,
+        "encounter-3-pursuer-2:melee:miss": 1,
+        "projectile:encounter-3-sentinel-3:hit:encounter-3-pursuer-2": 1,
+        "projectile:mage-1:blocked": 10,
+        "warden:target:mage-1": 7,
+        "warden:volley:commit": 2,
+        "projectile:mage-1:hit:warden-plate-right": 2,
+        "warden:volley:attack": 2,
+        "projectile:mage-1:hit:warden": 32,
+        "stagger:warden": 14,
+        "upgrade:mage-1:shared-vapour": 27,
+        "stagger:warden-plate-right": 2,
+        "control:stagger-seconds:warden": 5.416666666666653,
+        "warden:volley:interrupted": 4,
+        "projectile:warden:blocked": 6,
+        "projectile:mage-1:hit:warden-plate-left": 1,
+        "stagger:warden-plate-left": 2,
+        "warden:plate:detached:warden-plate-right": 1,
+        "warden:march:commit": 3,
+        "warden:march:interrupted": 6,
+        "warden:march:attack": 3,
+        "warden:march:travel": 17.327800013136297,
+        "warden:march:avoided": 3,
+        "warden:furnace:commit": 1,
+        "warden:furnace:attack": 1,
+        "warden:plate:detached:warden-plate-left": 1,
+        "warden:furnace:interrupted": 3,
+        "warden:phase:2": 1
+      },
+      "build": "9dd14b9dcd8f",
+      "measurements": [
+        {
+          "role": "solo",
+          "frames": {
+            "n": 5516,
+            "mean": 16.73404641044233,
+            "p50": 16.69999999999709,
+            "p95": 16.80000000000291,
+            "p99": 16.89999999999418,
+            "max": 100
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 731,
+                "mean": 16.662106703146414,
+                "p50": 16.600000000000364,
+                "p95": 16.800000000000182,
+                "p99": 16.80000000000109,
+                "max": 33.399999999999636
+              },
+              "maxDraws": 151
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 696,
+                "mean": 16.770977011494253,
+                "p50": 16.69999999999709,
+                "p95": 16.799999999999272,
+                "p99": 16.80000000000291,
+                "max": 100
+              },
+              "maxDraws": 183
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 1252,
+                "mean": 16.730830670926515,
+                "p50": 16.69999999999709,
+                "p95": 16.80000000000291,
+                "p99": 16.900000000001455,
+                "max": 100
+              },
+              "maxDraws": 188
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 944,
+                "mean": 16.792161016949155,
+                "p50": 16.69999999999709,
+                "p95": 16.80000000000291,
+                "p99": 16.80000000000291,
+                "max": 66.5
+              },
+              "maxDraws": 199
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 1893,
+                "mean": 16.721394611727412,
+                "p50": 16.69999999999709,
+                "p95": 16.80000000000291,
+                "p99": 16.89999999999418,
+                "max": 50
+              },
+              "maxDraws": 207
+            }
+          ],
+          "maxFields": 0,
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 179,
+            "triangles": 27998,
+            "activeVfx": 8,
+            "geometries": 111,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 121.70000000298023,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          }
+        }
+      ],
+      "transport": [
+        {
+          "build": "9dd14b9dcd8f",
+          "protocol": 3,
+          "role": "solo",
+          "status": "solo",
+          "snapshotsSent": 0,
+          "snapshotsReceived": 0,
+          "scheduledSnapshotJsonBytes": 0,
+          "snapshotIntervals": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "snapshotApply": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostTickPacing": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostStep": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "serialization": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "wireBytes": {
+            "samples": 0,
+            "mean": null,
+            "max": null
+          },
+          "inputAcknowledgement": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "scheduled": 0,
+          "peakScheduled": 0,
+          "snapshotsScheduled": 0,
+          "droppedSnapshots": 0
+        }
+      ]
+    },
+    "coop": {
+      "wallSeconds": 54.835,
+      "combatSeconds": 50.966666666665056,
+      "status": "victory",
+      "results": [
+        {
+          "encounter": 0,
+          "seconds": 7.533333333333312,
+          "health": 100
+        },
+        {
+          "encounter": 1,
+          "seconds": 9.383333333333676,
+          "health": 100
+        },
+        {
+          "encounter": 2,
+          "seconds": 10.333333333332746,
+          "health": 86
+        },
+        {
+          "encounter": 3,
+          "seconds": 7.91666666666622,
+          "health": 86
+        },
+        {
+          "encounter": 4,
+          "seconds": 15.799999999999102,
+          "health": 86
+        }
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "fault-line",
+          "break-seal"
+        ]
+      },
+      "casts": {
+        "Tide:primary": 65,
+        "Stone:primary": 57,
+        "Ember:primary": 64,
+        "Gale:primary": 24,
+        "Gale:secondary": 3
+      },
+      "reactions": {
+        "vaporize": 43,
+        "thermal fracture": 41,
+        "physical impact": 5,
+        "shatter impulse": 10,
+        "deflect": 3
+      },
+      "outcomes": {
+        "mage-1:cast:Tide:primary": 65,
+        "mage-1:Tide:primary:miss": 22,
+        "mage-2:cast:Stone:primary": 57,
+        "stagger:encounter-0-sentinel-1": 3,
+        "mage-2:Stone:primary:hit": 84,
+        "control:stagger-seconds:encounter-0-sentinel-1": 0.9500000000000013,
+        "stagger:encounter-0-sentinel-0": 2,
+        "mage-1:Tide:primary:hit": 43,
+        "control:stagger-seconds:encounter-0-sentinel-0": 0.5333333333333333,
+        "mage-1:cast:Ember:primary": 64,
+        "projectile:mage-1:hit:encounter-0-sentinel-0": 4,
+        "encounter-0-sentinel-0:projectile:attempt": 1,
+        "projectile:mage-1:hit:timber": 2,
+        "encounter-0-sentinel-1:projectile:attempt": 3,
+        "projectile:encounter-0-sentinel-1:hit:loose-1": 1,
+        "projectile:encounter-0-sentinel-0:blocked": 1,
+        "mage-2:Stone:primary:miss": 118,
+        "projectile:mage-1:hit:encounter-0-sentinel-1": 3,
+        "projectile:encounter-0-sentinel-1:blocked": 1,
+        "upgrade:mage-1:forked-tide": 50,
+        "stagger:loose-1": 7,
+        "mage-2:cast:Gale:primary": 24,
+        "mage-2:Gale:primary:miss": 3,
+        "stagger:encounter-1-pursuer-1": 2,
+        "control:stagger-seconds:encounter-1-pursuer-1": 0.26666666666666666,
+        "stagger:ballast": 2,
+        "mage-2:Gale:primary:hit": 21,
+        "stagger:encounter-1-pursuer-0": 2,
+        "control:stagger-seconds:encounter-1-pursuer-0": 0.35,
+        "stagger:encounter-1-pursuer-2": 4,
+        "control:stagger-seconds:encounter-1-pursuer-2": 0.8000000000000008,
+        "mage-2:cast:Gale:secondary": 3,
+        "field:Gale:contact:mage-2": 14,
+        "field:Gale:contact:loose-1": 12,
+        "projectile:mage-1:hit:encounter-1-pursuer-0": 2,
+        "stagger:timber": 1,
+        "field:Gale:contact:encounter-1-pursuer-2": 11,
+        "projectile:mage-1:hit:encounter-1-pursuer-2": 1,
+        "projectile:mage-1:blocked": 7,
+        "projectile:mage-1:hit:encounter-1-pursuer-1": 1,
+        "field:Gale:contact:mage-1": 12,
+        "stagger:mage-1": 4,
+        "field:Gale:contact:encounter-2-sentinel-1": 8,
+        "stagger:encounter-2-sentinel-1": 6,
+        "control:stagger-seconds:encounter-2-sentinel-1": 1.3333333333333335,
+        "projectile:mage-1:expired": 10,
+        "stagger:encounter-2-pursuer-3": 2,
+        "control:stagger-seconds:encounter-2-pursuer-3": 0.26666666666666666,
+        "projectile:mage-1:hit:encounter-2-pursuer-3": 3,
+        "encounter-2-sentinel-0:projectile:attempt": 4,
+        "field:Gale:contact:encounter-2-pursuer-3": 3,
+        "allied-damage-suppressed:mage-2:mage-1": 2,
+        "encounter-2-sentinel-1:projectile:attempt": 4,
+        "projectile:encounter-2-sentinel-1:hit:mage-1": 1,
+        "projectile:encounter-2-sentinel-0:hit:encounter-2-pursuer-2": 1,
+        "projectile:encounter-2-sentinel-0:hit:ballast": 2,
+        "stagger:encounter-2-pursuer-2": 1,
+        "control:stagger-seconds:encounter-2-pursuer-2": 0.26666666666666666,
+        "projectile:mage-1:hit:encounter-2-pursuer-2": 1,
+        "projectile:mage-1:hit:ballast": 1,
+        "stagger:encounter-2-sentinel-0": 3,
+        "control:stagger-seconds:encounter-2-sentinel-0": 0.9500000000000013,
+        "projectile:encounter-2-sentinel-1:blocked": 1,
+        "projectile:mage-1:hit:encounter-2-sentinel-0": 6,
+        "projectile:encounter-2-sentinel-1:deflected": 1,
+        "projectile:encounter-2-sentinel-1:hit:encounter-2-sentinel-1": 1,
+        "projectile:encounter-2-sentinel-0:hit:mage-1": 1,
+        "invulnerable-contact:encounter-2-sentinel-0": 1,
+        "upgrade:mage-2:fault-line": 84,
+        "projectile:mage-1:hit:loose-1": 1,
+        "upgrade:mage-2:fault-hit:encounter-3-pursuer-1": 4,
+        "stagger:encounter-3-pursuer-1": 2,
+        "control:stagger-seconds:encounter-3-pursuer-1": 0.5333333333333333,
+        "stagger:encounter-3-pursuer-0": 2,
+        "control:stagger-seconds:encounter-3-pursuer-0": 0.3833333333333333,
+        "upgrade:mage-2:fault-hit:encounter-3-sentinel-3": 6,
+        "stagger:encounter-3-sentinel-3": 3,
+        "control:stagger-seconds:encounter-3-sentinel-3": 0.8000000000000008,
+        "upgrade:mage-2:fault-hit:encounter-3-pursuer-2": 2,
+        "stagger:encounter-3-pursuer-2": 2,
+        "control:stagger-seconds:encounter-3-pursuer-2": 0.5333333333333333,
+        "projectile:mage-1:hit:encounter-3-pursuer-0": 1,
+        "upgrade:mage-2:fault-hit:encounter-3-pursuer-0": 3,
+        "encounter-3-sentinel-3:projectile:attempt": 3,
+        "upgrade:mage-2:fault-hit:loose-1": 4,
+        "projectile:encounter-3-sentinel-3:blocked": 1,
+        "projectile:encounter-3-sentinel-3:deflected": 1,
+        "projectile:encounter-3-sentinel-3:hit:encounter-3-sentinel-3": 1,
+        "projectile:mage-1:hit:encounter-3-pursuer-2": 2,
+        "projectile:mage-1:hit:encounter-3-sentinel-3": 2,
+        "upgrade:mage-2:fault-hit:warden": 33,
+        "stagger:warden": 9,
+        "control:stagger-seconds:warden": 2.549999999999996,
+        "warden:volley:interrupted": 3,
+        "upgrade:mage-2:fault-hit:warden-plate-right": 7,
+        "stagger:warden-plate-right": 2,
+        "warden:target:mage-1": 2,
+        "upgrade:mage-2:fault-hit:warden-plate-left": 4,
+        "stagger:warden-plate-left": 2,
+        "warden:volley:commit": 1,
+        "warden:plate:detached:warden-plate-right": 1,
+        "upgrade:mage-2:break-seal": 5,
+        "warden:volley:attack": 1,
+        "projectile:mage-1:hit:warden": 12,
+        "upgrade:mage-1:shared-vapour": 4,
+        "projectile:warden:hit:mage-2": 1,
+        "projectile:warden:blocked": 2,
+        "projectile:mage-1:hit:warden-plate-left": 2,
+        "warden:plate:detached:warden-plate-left": 1,
+        "warden:target:mage-2": 2,
+        "warden:march:interrupted": 3,
+        "warden:march:commit": 2,
+        "warden:march:attack": 2,
+        "warden:march:travel": 5.251627739373811,
+        "warden:march:avoided": 1,
+        "warden:phase:2": 1,
+        "warden:furnace:interrupted": 3,
+        "projectile:mage-1:deflected": 1,
+        "cross-reaction:mage-1:mage-2:warden": 1,
+        "warden:furnace:commit": 1,
+        "warden:furnace:attack": 1,
+        "stagger:mage-2": 3,
+        "allied-damage-suppressed:mage-1:mage-2": 4,
+        "projectile:mage-1:hit:mage-2": 1
+      },
+      "build": "9dd14b9dcd8f",
+      "measurements": [
+        {
+          "role": "host",
+          "frames": {
+            "n": 2689,
+            "mean": 18.961807363330465,
+            "p50": 16.69999999999709,
+            "p95": 33.30000000000291,
+            "p99": 50,
+            "max": 83.20000000000437
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 417,
+                "mean": 17.975299760181134,
+                "p50": 16.69999999999891,
+                "p95": 33.19999999999982,
+                "p99": 49.899999999999636,
+                "max": 66.59999999999991
+              },
+              "maxDraws": 230
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 509,
+                "mean": 18.450294695481336,
+                "p50": 16.69999999999891,
+                "p95": 33.29999999999927,
+                "p99": 49.89999999999782,
+                "max": 66.69999999999891
+              },
+              "maxDraws": 266
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 563,
+                "mean": 18.33694493783304,
+                "p50": 16.69999999999709,
+                "p95": 33.29999999999927,
+                "p99": 50,
+                "max": 66.60000000000218
+              },
+              "maxDraws": 277
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 399,
+                "mean": 19.906015037593985,
+                "p50": 16.69999999999709,
+                "p95": 33.400000000001455,
+                "p99": 50,
+                "max": 83.20000000000437
+              },
+              "maxDraws": 285
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 801,
+                "mean": 19.769288389513104,
+                "p50": 16.69999999999709,
+                "p95": 33.400000000001455,
+                "p99": 50,
+                "max": 83.19999999999709
+              },
+              "maxDraws": 303
+            }
+          ],
+          "maxFields": 1,
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 258,
+            "triangles": 33644,
+            "activeVfx": 19,
+            "geometries": 125,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 92.60000000149012,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          }
+        },
+        {
+          "role": "guest",
+          "frames": {
+            "n": 2623,
+            "mean": 19.36168509340466,
+            "p50": 16.69999999999709,
+            "p95": 33.30000000000291,
+            "p99": 50,
+            "max": 99.80000000000291
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 393,
+                "mean": 19.108396946564888,
+                "p50": 16.699999999999818,
+                "p95": 33.399999999999636,
+                "p99": 50,
+                "max": 66.60000000000036
+              },
+              "maxDraws": 221
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 494,
+                "mean": 18.90971659919028,
+                "p50": 16.69999999999891,
+                "p95": 33.30000000000109,
+                "p99": 50,
+                "max": 50.100000000000364
+              },
+              "maxDraws": 265
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 553,
+                "mean": 18.66853526220615,
+                "p50": 16.700000000000728,
+                "p95": 33.29999999999927,
+                "p99": 49.900000000001455,
+                "max": 66.69999999999709
+              },
+              "maxDraws": 282
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 396,
+                "mean": 19.930303030303033,
+                "p50": 16.69999999999709,
+                "p95": 33.400000000001455,
+                "p99": 50,
+                "max": 66.60000000000582
+              },
+              "maxDraws": 281
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 787,
+                "mean": 19.972808132147392,
+                "p50": 16.69999999999709,
+                "p95": 33.400000000001455,
+                "p99": 50,
+                "max": 99.80000000000291
+              },
+              "maxDraws": 298
+            }
+          ],
+          "maxFields": 1,
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "drawCalls": 257,
+            "triangles": 33388,
+            "activeVfx": 19,
+            "geometries": 126,
+            "textures": 3,
+            "contextLost": false,
+            "art": {
+              "active": true,
+              "ready": true,
+              "loadMs": 116.30000000447035,
+              "downloadBytes": 1643700,
+              "assets": 12,
+              "sharedGeometries": 77
+            }
+          }
+        }
+      ],
+      "transport": [
+        {
+          "build": "9dd14b9dcd8f",
+          "protocol": 3,
+          "role": "host",
+          "status": "connected",
+          "snapshotsSent": 862,
+          "snapshotsReceived": 0,
+          "scheduledSnapshotJsonBytes": 5630639,
+          "snapshotIntervals": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "snapshotApply": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostTickPacing": {
+            "samples": 180,
+            "meanMs": 18.080555555555556,
+            "p95Ms": 41.20000000298023
+          },
+          "hostStep": {
+            "samples": 180,
+            "meanMs": 0.23277777768671512,
+            "p95Ms": 0.6000000014901161
+          },
+          "serialization": {
+            "samples": 180,
+            "meanMs": 0.3205555551995834,
+            "p95Ms": 0.5
+          },
+          "wireBytes": {
+            "samples": 180,
+            "mean": 7288.594444444445,
+            "max": 20738
+          },
+          "inputAcknowledgement": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "scheduled": 0,
+          "peakScheduled": 1,
+          "snapshotsScheduled": 862,
+          "droppedSnapshots": 0
+        },
+        {
+          "build": "9dd14b9dcd8f",
+          "protocol": 3,
+          "role": "guest",
+          "status": "connected",
+          "snapshotsSent": 0,
+          "snapshotsReceived": 862,
+          "scheduledSnapshotJsonBytes": 0,
+          "snapshotIntervals": {
+            "samples": 180,
+            "meanMs": 63.77722222225533,
+            "p95Ms": 90.59999999403954
+          },
+          "snapshotApply": {
+            "samples": 180,
+            "meanMs": 0.3594444441712565,
+            "p95Ms": 0.6999999955296516
+          },
+          "hostTickPacing": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostStep": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "serialization": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "wireBytes": {
+            "samples": 0,
+            "mean": null,
+            "max": null
+          },
+          "inputAcknowledgement": {
+            "samples": 180,
+            "meanMs": 38.22388888883094,
+            "p95Ms": 74.90000000596046
+          },
+          "scheduled": 0,
+          "peakScheduled": 2,
+          "snapshotsScheduled": 0,
+          "droppedSnapshots": 0
+        }
+      ]
+    }
+  },
+  "resetResources": [
+    {
+      "geometries": 92,
+      "textures": 3,
+      "draws": 152
+    },
+    {
+      "geometries": 92,
+      "textures": 3,
+      "draws": 152
+    },
+    {
+      "geometries": 92,
+      "textures": 3,
+      "draws": 152
+    },
+    {
+      "geometries": 92,
+      "textures": 3,
+      "draws": 152
+    }
+  ],
+  "standardResetResources": [
+    {
+      "geometries": 92,
+      "textures": 5,
+      "draws": 256
+    },
+    {
+      "geometries": 92,
+      "textures": 5,
+      "draws": 256
+    },
+    {
+      "geometries": 92,
+      "textures": 5,
+      "draws": 256
+    },
+    {
+      "geometries": 92,
+      "textures": 5,
+      "draws": 256
+    }
+  ]
+}
