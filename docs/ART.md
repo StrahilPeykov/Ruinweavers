@@ -1,4 +1,10 @@
-# Art direction proof — current bounded study
+# Illustrated benchmark — current bounded study
+
+The d72ae3e Storybook preference is provisional. Its comparison bundled geometry, palette and shading; it did not isolate illustration. A brief corrective pair (`art=storybook&treatment=original|illustrated`) uses identical GLBs, footprint, camera and actors. Current captures in `artifacts/art-finish/shared-geometry-*` show that brighter value-grouped graphic shading remains readable. Carry this treatment into one finished benchmark; preserve both old proofs. No five-room rollout.
+
+Firsthand principles: [Microbird's Hinterberg account](https://80.lv/articles/dungeons-of-hinterberg-shaders-gameplay-more) describes art-directed color/light, small production tools and a mixture of textured/untextured assets. We borrow selectivity, not their deferred renderer. [Shedworks' Sable interview](https://www.cookandbecker.com/en/article/170/sable-exploration-through-line-art.html) connects sparse detail, distinctive landmarks and a sense of place. Neither source establishes that weathering means fine noise or that illustration requires a dark palette. Our benchmark will use broad pigment, repairs and human articulation; the texture-free mantle-only old assets are prototype limits.
+
+## Historical d72ae3e proof
 
 The brief is travelling mages inside places constructed by old magic: capable small people, warm curiosity, ancient scale and readable danger. This is one existing mixed encounter footprint, not a five-room reskin. Root startup opens the study; `?scene=run` and explicit Lab/trial links keep the accepted baseline. Art is local presentation, never networked gameplay configuration. With `?scene=run&art=storybook|ink`, only the third court receives the sample treatment, including its reward stop.
 

@@ -1,6 +1,6 @@
 # Ruinweavers
 
-Current milestone is a bounded Art Direction Proof on one existing mixed court. Art rules/pipeline: `docs/ART.md`. Run Prototype 0.1 remains the gameplay baseline. Blender/background authoring and free local asset tools are authorized for this study. Preserve the old Lab/trial regression scenes, accepted controls, four families, damage and co-op architecture. No classes, new Principles, economy or broad content expansion. Run structure/authority/evidence: `docs/RUN.md`. Co-op connection steps: `docs/COOP.md`.
+Current milestone is one illustrated fantasy benchmark scene, refining the art proof without rolling it out to every room. The previous Storybook preference is provisional. Art rules/pipeline: `docs/ART.md`. Run Prototype 0.1 remains the gameplay baseline. Blender/background authoring and free local asset tools are authorized. Preserve both old art proofs, old Lab/trial scenes, accepted controls, four families, damage and co-op architecture. No classes, new Principles, economy or broad content expansion. Run structure/authority/evidence: `docs/RUN.md`. Co-op connection steps: `docs/COOP.md`.
 
 - Stack: TypeScript, Vite, vanilla Three.js WebGL, Rapier, DOM UI, Vitest, Playwright. Free tooling; existing GitHub/Cloudflare integration.
 - Commands: `npm install`, `npm run dev`, `npm run build`, `npm test`, `npm run test:e2e`, `npm run benchmark`, `npm run evaluate`, `npm run evaluate:coop`, `npm run measure:pursuit`, `npm run evaluate:run`. Evaluation method/results: `docs/EVALUATION.md`. Preserve historical benchmark evidence.

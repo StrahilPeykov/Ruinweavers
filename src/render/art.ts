@@ -2,8 +2,26 @@ import { BUILD_ID } from "../network/protocol";
 import * as T from "three";
 import { GLTFLoader, type GLTF } from "three/addons/loaders/GLTFLoader.js";
 import type { Entity, State } from "../simulation/types";
-export type ArtMode = "off" | "storybook" | "ink";
+export type ArtMode = "off" | "storybook" | "ink" | "illustrated";
+const PIGMENT = {
+  cloth: 0x754966,
+  trim: 0xe3b976,
+  stone: 0xe5d8b5,
+  dark: 0x334554,
+  patina: 0x447e8b,
+  light: 0xffedc9,
+  wood: 0x976450,
+};
 export const ART = {
+  illustrated: {
+    title: "The painted court",
+    floor: 0xb8b6a4,
+    tile: 0xc8c7b5,
+    wall: 0x79969b,
+    dark: 0x334554,
+    sky: 0xb8c9c7,
+    sun: 0xffe8cf,
+  },
   storybook: {
     title: "The fitted court",
     floor: 0x9d9981,
@@ -36,10 +54,13 @@ export class ArtStudy {
   mixers = new Map<T.Object3D, T.AnimationMixer>();
   bounds: Record<string, number[]> = {};
   gradient?: T.DataTexture;
+  treatment: string;
   constructor() {
     const q = new URLSearchParams(location.search);
     const value = q.get("art") ?? (!q.has("scene") ? "storybook" : "off");
     this.mode = value === "storybook" || value === "ink" ? value : "off";
+    this.treatment =
+      q.get("treatment") === "illustrated" ? "illustrated" : "original";
   }
   async load() {
     if (this.mode === "off") return;
@@ -97,6 +118,7 @@ export class ArtStudy {
     return this.ready && this.mode !== "off" && s.trial?.encounter === 2;
   }
   get palette() {
+    if (this.treatment === "illustrated") return ART.illustrated;
     return ART[this.mode === "ink" ? "ink" : "storybook"];
   }
   clone(name: string, actor?: string) {
@@ -108,12 +130,14 @@ export class ArtStudy {
       o.castShadow = o.receiveShadow = true;
       const convert = (base: T.MeshStandardMaterial) => {
         const color = base.color.clone();
+        if (this.treatment === "illustrated" && base.name in PIGMENT)
+          color.setHex(PIGMENT[base.name as keyof typeof PIGMENT]);
         // Stable personal mantle/accent, independent of the selected Principle.
         if (actor === "mage-2" && base.name === "cloth")
           color.setHex(this.mode === "ink" ? 0x915b43 : 0x3d676a);
         if (actor === "mage-2" && base.name === "trim") color.setHex(0xe0dac2);
         const m =
-          this.mode === "ink"
+          this.mode === "ink" || this.treatment === "illustrated"
             ? new T.MeshToonMaterial({ color, gradientMap: this.gradient })
             : new T.MeshStandardMaterial({
                 color,
@@ -264,6 +288,7 @@ export class ArtStudy {
   metrics() {
     return {
       mode: this.mode,
+      treatment: this.treatment,
       active: this.active,
       ready: this.ready,
       error: this.error,
