@@ -2,7 +2,13 @@ import type { Object3D } from "three";
 import type { Entity, State } from "../simulation/types";
 
 /** Cosmetic joint performance only. No input, gameplay clocks or outcome writes. */
-export function performMage(model: Object3D, entity: Entity, state: State) {
+export function performMage(
+  model: Object3D,
+  entity: Entity,
+  state: State,
+  elapsed = 0,
+  paused = false,
+) {
   const data = model.userData;
   const joints: Record<string, Object3D> = (data.joints ??= Object.fromEntries(
     [
@@ -21,12 +27,36 @@ export function performMage(model: Object3D, entity: Entity, state: State) {
     ].map((n) => [n, model.getObjectByName(n)!]),
   ));
   if (!joints.hips) return;
-  const dt = Math.max(
-    0,
-    Math.min(0.1, state.time - (data.previousTime ?? state.time)),
-  );
-  data.previousTime = state.time;
-  const speed = Math.hypot(entity.velocity.x, entity.velocity.z);
+  // Advance only cosmetics. Motion comes from the displayed pose, including
+  // local guest prediction; frozen network truth cannot keep walking in place.
+  const previous = data.motion;
+  const reset =
+    !previous ||
+    previous.epoch !== state.party?.epoch ||
+    previous.run !== state.run?.id ||
+    previous.tick > state.tick ||
+    previous.alive !== entity.hp > 0 ||
+    elapsed > 0.25;
+  const dt = paused || reset ? 0 : Math.max(0, Math.min(0.05, elapsed));
+  const dx = previous ? entity.pos.x - previous.x : 0;
+  const dz = previous ? entity.pos.z - previous.z : 0;
+  const distance = Math.hypot(dx, dz);
+  const validMotion =
+    dt > 0 && distance < Math.max(0.3, dt * 12) && entity.hp > 0;
+  const vx = validMotion ? dx / dt : 0,
+    vz = validMotion ? dz / dt : 0;
+  const speed = Math.min(8, Math.hypot(vx, vz));
+  data.motion = {
+    x: entity.pos.x,
+    z: entity.pos.z,
+    epoch: state.party?.epoch,
+    run: state.run?.id,
+    tick: state.tick,
+    alive: entity.hp > 0,
+  };
+  if (paused && !reset) return;
+  if (reset || (!validMotion && distance > 0.3)) data.gait = 0;
+  data.cosmeticTime = (reset ? 0 : (data.cosmeticTime ?? 0)) + dt;
   data.gait = (data.gait ?? 0) + speed * dt * 3.6;
   const stride = Math.sin(data.gait) * Math.min(1, speed / 4.8);
   for (const joint of Object.values(joints)) joint.rotation.set(0, 0, 0);
@@ -34,20 +64,12 @@ export function performMage(model: Object3D, entity: Entity, state: State) {
   hips.position.y =
     speed > 0.2
       ? Math.abs(Math.cos(data.gait)) * 0.035
-      : Math.sin(state.time * 2) * 0.008;
+      : Math.sin(data.cosmeticTime * 2) * 0.008;
   const heading = (model.parent?.rotation.y ?? 0) + Math.PI;
   const forward =
-    speed > 0.1
-      ? (entity.velocity.x * Math.sin(heading) +
-          entity.velocity.z * Math.cos(heading)) /
-        speed
-      : 1;
+    speed > 0.1 ? (vx * Math.sin(heading) + vz * Math.cos(heading)) / speed : 1;
   const side =
-    speed > 0.1
-      ? (entity.velocity.x * Math.cos(heading) -
-          entity.velocity.z * Math.sin(heading)) /
-        speed
-      : 0;
+    speed > 0.1 ? (vx * Math.cos(heading) - vz * Math.sin(heading)) / speed : 0;
   joints.thighL.rotation.x = stride * 0.65 * forward;
   joints.thighR.rotation.x = -stride * 0.65 * forward;
   joints.thighL.rotation.z = stride * 0.42 * side;
@@ -65,7 +87,12 @@ export function performMage(model: Object3D, entity: Entity, state: State) {
   const cast = [...state.events]
     .reverse()
     .find((e) => e.source === entity.id && e.type === "cast");
-  const age = cast ? state.time - cast.time : 99;
+  const castKey = cast ? `${cast.id}:${cast.time}` : "";
+  if (reset || data.castKey !== castKey) {
+    data.castAge = cast ? Math.max(0, state.time - cast.time) : 99;
+    data.castKey = castKey;
+  } else if (cast) data.castAge += dt;
+  const age = data.castAge;
   const secondary =
     cast &&
     state.events.some(
@@ -85,7 +112,11 @@ export function performMage(model: Object3D, entity: Entity, state: State) {
     joints.chest.rotation.x = -0.09 * strength;
     joints.cape.rotation.x += 0.16 * strength;
   }
-  const hitAge = state.time - entity.hitAt;
+  if (reset || data.hitAt !== entity.hitAt) {
+    data.hitAge = Math.max(0, state.time - entity.hitAt);
+    data.hitAt = entity.hitAt;
+  } else data.hitAge += dt;
+  const hitAge = data.hitAge;
   if (hitAge >= 0 && hitAge < 0.24) {
     joints.chest.rotation.x += 0.2 * (1 - hitAge / 0.24);
     joints.head.rotation.x -= 0.1;
@@ -104,6 +135,8 @@ export function performMage(model: Object3D, entity: Entity, state: State) {
   }
   data.pose = {
     stride,
+    cosmeticTime: data.cosmeticTime,
+    speed,
     castAge: age,
     secondary: !!secondary,
     downed: entity.hp <= 0,

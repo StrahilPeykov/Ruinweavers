@@ -272,11 +272,11 @@ export class ArtStudy {
       }
     }
   }
-  updateEntity(group: T.Group, e: Entity, s: State) {
+  updateEntity(group: T.Group, e: Entity, s: State, delta = 0, paused = false) {
     const model = group.getObjectByName("art-model");
     if (!model) return;
     if (this.mode === "illustrated" && e.kind === "player")
-      performMage(model, e, s);
+      performMage(model, e, s, delta, paused);
     const mixer = this.mixers.get(model);
     if (mixer)
       mixer.setTime(

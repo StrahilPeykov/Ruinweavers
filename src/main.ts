@@ -393,7 +393,11 @@ async function boot() {
     if (net.role === "guest" && net.connected && shown.actors[view.actorId])
       shown.actors[view.actorId].aim =
         view.previewAim ?? shown.actors[view.actorId].aim;
-    view.render(shown, rawElapsed);
+    view.render(
+      shown,
+      rawElapsed,
+      (net.active ? net.paused : paused) || document.hidden,
+    );
     audio.update(sim.state);
     ui.update(shown, view, net.active ? net.paused : paused);
     requestAnimationFrame(frame);

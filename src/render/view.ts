@@ -418,7 +418,7 @@ export class View {
     this.dangers.forEach((g) => this.destroy(g));
     this.dangers.clear();
   }
-  render(s: State, delta: number) {
+  render(s: State, delta: number, paused = false) {
     const artActive = this.art.enabled(s);
     if (artActive !== this.art.active) {
       this.reset();
@@ -588,7 +588,14 @@ export class View {
         body.material.color.setHex(e.id === "mage-1" ? 0xe4e8cf : 0xb6cbea);
         orb.material.emissive.setHex(COLORS[s.actors[e.id].activePrinciple]);
       }
-      if (this.art.active) this.art.updateEntity(g, e, s);
+      if (this.art.active)
+        this.art.updateEntity(
+          g,
+          e,
+          s,
+          delta,
+          paused || (!!s.trial && s.trial.status !== "active"),
+        );
     }
     for (const f of s.fields) {
       let g = this.fields.get(f.id);
