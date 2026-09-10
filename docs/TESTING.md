@@ -1,14 +1,22 @@
-## Run Prototype 0.1 validation (2026-09-10)
+# Run Prototype 0.1 validation (2026-09-10)
 
-Started clean at reviewed 9bfaa68. Baseline: 59 unit tests and production build passed. Correction a0cffdf was checked, pushed and confirmed on origin/main; existing Cloudflare Workers build succeeded.
+Started clean at reviewed 9bfaa68: 59 unit tests and production build passed. Guest-input correction a0cffdf was reproduced before editing, checked, pushed and confirmed on origin/main; the existing Cloudflare build succeeded. Run checkpoint 450864e also built successfully through that pipeline.
 
-Run checkpoint: 73 unit tests and production build pass (existing Rapier chunk warning). A complete headless Chromium/SwiftShader sweep passed 29 browser tests, with only the opt-in live TURN probe skipped. That sweep included full solo and two-client real-input runs, both personal rewards, restart, held guest input, shared cover/reactions, revive/lifecycle, Lab controls/aiming and unchanged trial regressions. A subsequent focused JSON regression found default-run state leaking into an old-trial guest when an absent field was omitted; Protocol 3 now sends explicit null and clears it on decode. The new real two-browser default-run-to-trial join test also passes.
+Current runtime **906b3ba99fd4 / protocol 3**: **74 unit tests and production build pass**, with the existing Rapier bundle-size warning. Each modifier, four bounded pairs (including identical partner builds), deterministic/personal offers, stale/duplicate requests, attributed aftershock damage, health/build carry, revive, victory/defeat/restart, explicit wire absence and Model A run scope are covered.
 
-Graphical journeys used normal enemy HP and active AI, actual keyboard/mouse and DOM reward choices. No combat fixture or direct cast injection. Separate labelled lifecycle fixtures cover death/revive, stale choices and victory/defeat cleanup. Unit tests exercise each modifier and four bounded pairs, including duplicate partner builds and attributed Stone aftershock damage. Renderer/viewport/build and durations accompany sanitized captures in artifacts/run-0.1. Software rendering under automation is not a laptop GPU performance or remote TURN claim.
+Browser evidence is not one clean final sweep. An earlier complete sweep passed 29 tests and skipped the opt-in live TURN probe. The final current-runtime sweep passed **28, failed 3, skipped 1**. Both complete solo/co-op runs, rewards/restart and held-input regressions passed. The three failures were resolved and each passed in focused reruns:
 
-Historical benchmark artifacts are preserved. The 12-case seeded run evaluation is separate; it does not establish human duration, fun, balance or equal upgrade value. No remote laptop or fresh live relay session was tested during this milestone.
+- Shared-magic fixture did not record an allied projectile hit during a fixed 800 ms hold. It now uses a clear corridor, waits for authoritative recovery and waits for the actual attributed hit; the original obstruction/timing cause was not captured.
+- Inverse-cooling fixture had zero heat before cooling. Real priming/steam remains tested; inverse cooling now begins from an explicit heated fixture and uses real keyboard Secondary. This avoids treating a timed warm-up as evidence of heat.
+- Stone expiry reached capture but Windows rejected overwriting an old PNG. Lab and reliability screenshots now use fresh ignored test-results directories. The focused Lab rerun also encountered an old camera PNG overwrite error before this path correction, then passed.
 
-Current milestone: Run Prototype 0.1. Baseline at 9bfaa68: 59 unit tests and build passed. Reproduced guest held-input cancellation on a non-final enemy death in the actual two-client browser and snapshot-handler unit regression. The fix scopes intent cancellation to the local actor/session and presentation discontinuities to each affected entity.
+Thus all **31 non-opt-in browser journeys passed across the sweep and focused reruns**, not in a single clean final suite. Earlier checks also corrected a revive fixture that ignored an already-fired hostile bolt, a feet-wet fixture that was still evaporating, and a browser driver emitting repeated mouse-down while held. The product additionally requires a fresh reward-card press and clears combat intent on menu entry. A held combat release/repeated down cannot choose a card; actual fresh click succeeds. Ordinary active-combat deaths still preserve guest intent.
+
+Whole-run journeys used normal HP, active AI, actual keyboard/mouse and personal reward-card clicks: no combat fixture, teleport or cast injection. Solo completed in **56.22 s combat / 63.91 s wall**; two-client play in **51.72 s combat / 67.66 s wall**. Automated decisions/choices make these synthetic durations, not several-minute human-run validation. Separate labelled lifecycle fixtures cover down/revive and transition edge cases.
+
+Environment: headless Chromium 153, ANGLE Vulkan SwiftShader, 1440x900 CSS / 1152x720 drawing buffer, Lightweight. Recorded solo mean/p95 frame times were 46.94/99.90 ms; co-op 102.38/183.40 ms under local automation. Requesting native rendering still reported SwiftShader. These are not laptop GPU or remote TURN measurements. No fresh remote laptop, live relay, physical trackpad or human comfort test was performed.
+
+The separate 12-case seeded run evaluation completed all cases. Historical benchmark artifacts remain intact. Sanitized current build/config/state/captures and a compact validation manifest are in artifacts/run-0.1. No damage/HP rebalance, new provider or direct deployment was performed. See RUN.md for interpretation and remaining gameplay questions.
 
 # Validation and limits
 

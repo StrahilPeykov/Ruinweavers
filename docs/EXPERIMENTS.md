@@ -2,7 +2,7 @@ Current milestone: [Run Prototype 0.1](RUN.md). Default is the five-beat run; pr
 
 # Experiments / current recommendation
 
-**Current: Co-op Trial 0.1.** Solo remains the default Start path; Create/Join adds one independent mage using host-authoritative WebRTC. Model A, balanced camera/tempo, capacity 1 per mage and 120 ms buffer remain unchanged. Public and loopback signaling passed same-machine real-browser tests, not remote-network validation. [COOP](COOP.md) records shared-world rules, connection steps and matched exploratory results. No tuning was changed. Earlier Lab and Combat Trial evidence below is historical.
+**Historical Co-op Trial 0.1 checkpoint.** Solo remains the default Start path; Create/Join adds one independent mage using host-authoritative WebRTC. Model A, balanced camera/tempo, capacity 1 per mage and 120 ms buffer remain unchanged. Public and loopback signaling passed same-machine real-browser tests, not remote-network validation. [COOP](COOP.md) records shared-world rules, connection steps and matched exploratory results. No tuning was changed. Earlier Lab and Combat Trial evidence below is historical.
 
 The keyboard-faithful motor preserves clears but removes the old control policy's zero-damage result (delayed mean 3.5 HP versus 0 with continuous headings). The current chase steering setting of 6 yields about 2.56 units/s in the measured damped lane; retreating/casting still increases the gap. Stone exclusion remains inadequate evidence about Stone: that heuristic never uses slabs. See EVALUATION corrections.
 

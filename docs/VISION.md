@@ -1,11 +1,13 @@
-Current authorization: Run Prototype 0.1 adds a five-beat solo/co-op run and personal behavior modifiers. Earlier pre-production scope limits below are historical. No classes, economy or broader content expansion is authorized. Every checked commit is pushed immediately to the configured upstream; AGENTS.md owns current workflow.
-
 # Ruinweavers / experimental pre-production
 
-Magic as craft in an ancient world. A few understandable properties should produce many situations. Future solo and two-player action roguelite, elevated 3/4 camera, keyboard/mouse first. The current Co-op Trial phase tests the same magic and three encounters with one or two independent mages; it adds no roguelite structure.
+Magic as craft in an ancient world. A few understandable properties should produce many situations. The long-term vision is a solo and two-player action roguelite with an elevated 3/4 camera and keyboard/mouse controls.
 
-Combat Trial 0.1 adds a short ranged → pursuit → mixed sequence with carried health. The user found movement/casting broadly pleasant and authorized this encounter milestone. That retains the control baseline; it does not validate balance. The former single-sentinel restriction is superseded. Stop at this trial; actual two-player validation should precede substantial classes, progression or content expansion.
+Current phase: Run Prototype 0.1. Five authored encounter beats, two personal behavioral-upgrade stops, carried health, victory/defeat and restart. Preserve the unmodified Lab/trial as regression scenes. The user found movement/casting broadly pleasant; that accepts the control baseline, not solved balance.
 
-Four hypotheses: Ember (thermal energy), Tide (saturation/flow), Gale (force), Stone (cohesion/structure). Consistent intent, asymmetric behavior. No mana, Runes, classes, final art, networking, progression or generated levels.
+Four experimental families: Ember (thermal energy), Tide (saturation/flow), Gale (force), Stone (cohesion/structure). Consistent intent, asymmetric behavior. Solo sequences magical operations; two actors can share terrain, prime/transform states and revive without a required class composition. Upgrades change behavior rather than global stats.
 
-The loop is move → aim → establish a state → transform or reposition → observe. Solo can sequence operations; source provenance leaves room for future cross-actor interactions. Success is a useful instrument for human playtesting, not proof of subjective fun.
+Keep host authority, existing connection/relay setup and source provenance. No classes, additional Principles, economy, permanent progression, procedural generation or broader content expansion in this milestone. No final-art pipeline.
+
+Success is a small complete playable run and reliable evidence, not proof of subjective fun. The next intended milestone is making one compact slice visually distinctive. No automatic phase expansion.
+
+Every checked commit is pushed immediately to the existing upstream under AGENTS.md. Historical no-run/no-push restrictions are superseded by the current user authorization.

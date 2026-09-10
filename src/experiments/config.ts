@@ -72,16 +72,16 @@ export function configFromQuery(query = ""): Config {
   const q = new URLSearchParams(query);
   const tempo = q.get("tempo") as Tempo;
   const camera = q.get("camera") as CameraPreset;
+  const requestedScene = (q.get("scene") || "").replace("magic-lab/", "");
+  const scene = SCENES.includes(requestedScene) ? requestedScene : "run";
   return {
     model:
-      q.get("model") === "weave-unweave"
+      scene !== "run" && q.get("model") === "weave-unweave"
         ? "weave-unweave"
         : "primary-secondary",
     camera: camera in CAMERAS ? camera : "balanced",
     tempo: tempo in TEMPOS ? tempo : "balanced",
-    scene: SCENES.includes((q.get("scene") || "").replace("magic-lab/", ""))
-      ? q.get("scene")!.replace("magic-lab/", "")
-      : "run",
+    scene,
     scenario: q.get("scenario") || "cross-cover",
     encounterVersion:
       q.get("encounterVersion") === "baseline" ? "baseline" : "candidate",

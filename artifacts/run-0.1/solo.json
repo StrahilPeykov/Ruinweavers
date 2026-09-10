@@ -1,6 +1,6 @@
 {
   "environment": {
-    "build": "bdf62db55c5d",
+    "build": "906b3ba99fd4",
     "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
     "viewport": [
       1440,
@@ -21,44 +21,44 @@
       "pixelRatio": 0.8,
       "shadows": false,
       "samples": 300,
-      "frameMs": 50.77566666666668,
-      "p95FrameMs": 100,
-      "drawCalls": 65,
-      "triangles": 4488,
-      "activeVfx": 11,
-      "geometries": 36,
+      "frameMs": 46.942666666666675,
+      "p95FrameMs": 99.90000000000146,
+      "drawCalls": 72,
+      "triangles": 5088,
+      "activeVfx": 12,
+      "geometries": 38,
       "textures": 1,
       "contextLost": false
     }
   },
-  "wallSeconds": 65.532,
-  "combatSeconds": 58.483333333331295,
+  "wallSeconds": 63.914,
+  "combatSeconds": 56.21666666666476,
   "status": "victory",
   "results": [
     {
       "encounter": 0,
-      "seconds": 6.966666666666647,
+      "seconds": 8.600000000000007,
       "health": 100
     },
     {
       "encounter": 1,
-      "seconds": 18.916666666666497,
+      "seconds": 13.083333333333377,
       "health": 100
     },
     {
       "encounter": 2,
-      "seconds": 10.349999999999415,
+      "seconds": 12.399999999999299,
       "health": 100
     },
     {
       "encounter": 3,
-      "seconds": 7.183333333332925,
-      "health": 100
+      "seconds": 8.699999999999505,
+      "health": 86
     },
     {
       "encounter": 4,
-      "seconds": 15.06666666666581,
-      "health": 100
+      "seconds": 13.43333333333257,
+      "health": 86
     }
   ],
   "upgrades": {
@@ -68,57 +68,64 @@
     ]
   },
   "casts": {
-    "Tide:secondary": 33,
-    "Ember:primary": 157,
-    "Tide:primary": 4
+    "Tide:secondary": 37,
+    "Ember:primary": 144,
+    "Tide:primary": 9
   },
   "reactions": {
-    "vaporize": 119,
-    "thermal fracture": 114,
-    "shatter impulse": 86
+    "vaporize": 110,
+    "thermal fracture": 110,
+    "shatter impulse": 94,
+    "physical impact": 1
   },
   "damageRoutes": {
     "[\"mage-1\",\"encounter-0-sentinel-0\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-0-sentinel-0",
       "reason": "steam",
-      "amount": 82.80999999999999
+      "amount": 94.08
     },
     "[\"mage-1\",\"encounter-0-sentinel-0\",\"heat bolt\"]": {
       "source": "mage-1",
       "recipient": "encounter-0-sentinel-0",
       "reason": "heat bolt",
-      "amount": 71.99000000000005
+      "amount": 63
     },
     "[\"mage-1\",\"encounter-0-sentinel-0\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-0-sentinel-0",
       "reason": "fracture impulse",
-      "amount": 25.200000000000003
+      "amount": 22.920000000000037
     },
     "[\"mage-1\",\"timber\",\"heat bolt\"]": {
       "source": "mage-1",
       "recipient": "timber",
       "reason": "heat bolt",
-      "amount": 54
+      "amount": 27
+    },
+    "[\"mage-1\",\"timber\",\"burning\"]": {
+      "source": "mage-1",
+      "recipient": "timber",
+      "reason": "burning",
+      "amount": 28.083333333333204
     },
     "[\"mage-1\",\"encounter-0-sentinel-1\",\"heat bolt\"]": {
       "source": "mage-1",
       "recipient": "encounter-0-sentinel-1",
       "reason": "heat bolt",
-      "amount": 81
+      "amount": 74.00000000000003
     },
     "[\"mage-1\",\"encounter-0-sentinel-1\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-0-sentinel-1",
       "reason": "steam",
-      "amount": 66.60000000000002
+      "amount": 70
     },
     "[\"mage-1\",\"encounter-0-sentinel-1\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-0-sentinel-1",
       "reason": "fracture impulse",
-      "amount": 32.400000000000006
+      "amount": 36.00000000000001
     },
     "[\"mage-1\",\"encounter-1-pursuer-2\",\"jet\"]": {
       "source": "mage-1",
@@ -126,39 +133,15 @@
       "reason": "jet",
       "amount": 6
     },
-    "[\"mage-1\",\"encounter-1-pursuer-0\",\"steam\"]": {
-      "source": "mage-1",
-      "recipient": "encounter-1-pursuer-0",
-      "reason": "steam",
-      "amount": 26.00500000000005
-    },
-    "[\"mage-1\",\"encounter-1-pursuer-0\",\"heat bolt\"]": {
-      "source": "mage-1",
-      "recipient": "encounter-1-pursuer-0",
-      "reason": "heat bolt",
-      "amount": 63.994999999999955
-    },
     "[\"mage-1\",\"encounter-1-pursuer-2\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-1-pursuer-2",
       "reason": "steam",
-      "amount": 41.218333333334094
+      "amount": 35.400000000000006
     },
     "[\"mage-1\",\"encounter-1-pursuer-2\",\"heat bolt\"]": {
       "source": "mage-1",
       "recipient": "encounter-1-pursuer-2",
-      "reason": "heat bolt",
-      "amount": 35.5816666666659
-    },
-    "[\"mage-1\",\"loose-1\",\"steam\"]": {
-      "source": "mage-1",
-      "recipient": "loose-1",
-      "reason": "steam",
-      "amount": 46.04833333333336
-    },
-    "[\"mage-1\",\"loose-1\",\"heat bolt\"]": {
-      "source": "mage-1",
-      "recipient": "loose-1",
       "reason": "heat bolt",
       "amount": 45
     },
@@ -166,13 +149,43 @@
       "source": "mage-1",
       "recipient": "encounter-1-pursuer-2",
       "reason": "fracture impulse",
-      "amount": 7.2
+      "amount": 3.600000000000001
     },
-    "[\"mage-1\",\"encounter-1-pursuer-1\",\"steam\"]": {
+    "[\"mage-1\",\"timber\",\"jet\"]": {
       "source": "mage-1",
-      "recipient": "encounter-1-pursuer-1",
+      "recipient": "timber",
+      "reason": "jet",
+      "amount": 6
+    },
+    "[\"mage-1\",\"encounter-1-pursuer-0\",\"jet\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-1-pursuer-0",
+      "reason": "jet",
+      "amount": 6
+    },
+    "[\"mage-1\",\"encounter-1-pursuer-0\",\"steam\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-1-pursuer-0",
       "reason": "steam",
-      "amount": 52.2
+      "amount": 46.2
+    },
+    "[\"mage-1\",\"encounter-1-pursuer-0\",\"heat bolt\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-1-pursuer-0",
+      "reason": "heat bolt",
+      "amount": 27
+    },
+    "[\"mage-1\",\"encounter-1-pursuer-0\",\"fracture impulse\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-1-pursuer-0",
+      "reason": "fracture impulse",
+      "amount": 10.8
+    },
+    "[\"mage-1\",\"loose-1\",\"heat bolt\"]": {
+      "source": "mage-1",
+      "recipient": "loose-1",
+      "reason": "heat bolt",
+      "amount": 81
     },
     "[\"mage-1\",\"encounter-1-pursuer-1\",\"heat bolt\"]": {
       "source": "mage-1",
@@ -180,23 +193,47 @@
       "reason": "heat bolt",
       "amount": 27
     },
+    "[\"mage-1\",\"encounter-1-pursuer-1\",\"steam\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-1-pursuer-1",
+      "reason": "steam",
+      "amount": 42.6
+    },
     "[\"mage-1\",\"encounter-1-pursuer-1\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-1-pursuer-1",
       "reason": "fracture impulse",
-      "amount": 10.799999999999999
+      "amount": 14.4
+    },
+    "[\"mage-1\",\"encounter-1-pursuer-1\",\"jet\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-1-pursuer-1",
+      "reason": "jet",
+      "amount": 6
+    },
+    "[\"mage-1\",\"ballast\",\"heat bolt\"]": {
+      "source": "mage-1",
+      "recipient": "ballast",
+      "reason": "heat bolt",
+      "amount": 36
+    },
+    "[\"mage-1\",\"encounter-2-sentinel-0\",\"heat bolt\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-2-sentinel-0",
+      "reason": "heat bolt",
+      "amount": 81
     },
     "[\"mage-1\",\"encounter-2-pursuer-3\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-2-pursuer-3",
       "reason": "steam",
-      "amount": 43.199999999999996
+      "amount": 39.98399999999998
     },
     "[\"mage-1\",\"encounter-2-pursuer-3\",\"heat bolt\"]": {
       "source": "mage-1",
       "recipient": "encounter-2-pursuer-3",
       "reason": "heat bolt",
-      "amount": 36
+      "amount": 27
     },
     "[\"mage-1\",\"encounter-2-pursuer-3\",\"fracture impulse\"]": {
       "source": "mage-1",
@@ -204,83 +241,89 @@
       "reason": "fracture impulse",
       "amount": 10.8
     },
-    "[\"mage-1\",\"encounter-2-sentinel-1\",\"heat bolt\"]": {
+    "[\"mage-1\",\"encounter-2-pursuer-3\",\"jet\"]": {
       "source": "mage-1",
-      "recipient": "encounter-2-sentinel-1",
-      "reason": "heat bolt",
-      "amount": 63
+      "recipient": "encounter-2-pursuer-3",
+      "reason": "jet",
+      "amount": 6
+    },
+    "[\"encounter-2-sentinel-1\",\"encounter-2-pursuer-3\",\"sentinel bolt\"]": {
+      "source": "encounter-2-sentinel-1",
+      "recipient": "encounter-2-pursuer-3",
+      "reason": "sentinel bolt",
+      "amount": 6.216000000000019
     },
     "[\"mage-1\",\"encounter-2-sentinel-1\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-2-sentinel-1",
       "reason": "steam",
-      "amount": 88.2
+      "amount": 88.74833333333333
+    },
+    "[\"mage-1\",\"encounter-2-sentinel-1\",\"heat bolt\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-2-sentinel-1",
+      "reason": "heat bolt",
+      "amount": 66.0516666666667
     },
     "[\"mage-1\",\"encounter-2-sentinel-1\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-2-sentinel-1",
       "reason": "fracture impulse",
-      "amount": 28.800000000000004
+      "amount": 25.200000000000003
     },
     "[\"mage-1\",\"encounter-2-pursuer-2\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-2-pursuer-2",
       "reason": "steam",
-      "amount": 47.78666666666666
+      "amount": 34.69666666666666
     },
     "[\"mage-1\",\"encounter-2-pursuer-2\",\"heat bolt\"]": {
       "source": "mage-1",
       "recipient": "encounter-2-pursuer-2",
       "reason": "heat bolt",
-      "amount": 31.41333333333334
+      "amount": 40.90333333333335
     },
     "[\"mage-1\",\"encounter-2-pursuer-2\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-2-pursuer-2",
       "reason": "fracture impulse",
-      "amount": 10.799999999999999
-    },
-    "[\"mage-1\",\"encounter-2-sentinel-0\",\"heat bolt\"]": {
-      "source": "mage-1",
-      "recipient": "encounter-2-sentinel-0",
-      "reason": "heat bolt",
-      "amount": 74.00000000000003
+      "amount": 14.399999999999999
     },
     "[\"mage-1\",\"encounter-2-sentinel-0\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-2-sentinel-0",
       "reason": "steam",
-      "amount": 70
+      "amount": 66.60000000000002
     },
     "[\"mage-1\",\"encounter-2-sentinel-0\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-2-sentinel-0",
       "reason": "fracture impulse",
-      "amount": 36.00000000000001
-    },
-    "[\"mage-1\",\"encounter-3-pursuer-1\",\"heat bolt\"]": {
-      "source": "mage-1",
-      "recipient": "encounter-3-pursuer-1",
-      "reason": "heat bolt",
-      "amount": 36
+      "amount": 32.400000000000006
     },
     "[\"mage-1\",\"encounter-3-sentinel-3\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-3-sentinel-3",
       "reason": "steam",
-      "amount": 94.08
+      "amount": 93.7766666666668
     },
     "[\"mage-1\",\"encounter-3-sentinel-3\",\"heat bolt\"]": {
       "source": "mage-1",
       "recipient": "encounter-3-sentinel-3",
       "reason": "heat bolt",
-      "amount": 54.72000000000003
+      "amount": 58.62333333333322
     },
     "[\"mage-1\",\"encounter-3-sentinel-3\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-3-sentinel-3",
       "reason": "fracture impulse",
-      "amount": 25.200000000000003
+      "amount": 21.6
+    },
+    "[\"mage-1\",\"encounter-3-pursuer-2\",\"steam\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-3-pursuer-2",
+      "reason": "steam",
+      "amount": 46.2
     },
     "[\"mage-1\",\"encounter-3-pursuer-2\",\"heat bolt\"]": {
       "source": "mage-1",
@@ -288,51 +331,57 @@
       "reason": "heat bolt",
       "amount": 27
     },
+    "[\"mage-1\",\"encounter-3-pursuer-2\",\"fracture impulse\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-3-pursuer-2",
+      "reason": "fracture impulse",
+      "amount": 10.8
+    },
     "[\"mage-1\",\"encounter-3-pursuer-0\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-3-pursuer-0",
       "reason": "steam",
-      "amount": 45.93166666666666
+      "amount": 46.2
     },
     "[\"mage-1\",\"encounter-3-pursuer-0\",\"heat bolt\"]": {
       "source": "mage-1",
       "recipient": "encounter-3-pursuer-0",
       "reason": "heat bolt",
-      "amount": 33.268333333333345
+      "amount": 27
     },
     "[\"mage-1\",\"encounter-3-pursuer-0\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-3-pursuer-0",
       "reason": "fracture impulse",
-      "amount": 10.800000000000002
+      "amount": 10.8
     },
-    "[\"mage-1\",\"timber\",\"steam\"]": {
+    "[\"mage-1\",\"encounter-3-pursuer-0\",\"jet\"]": {
       "source": "mage-1",
-      "recipient": "timber",
-      "reason": "steam",
-      "amount": 62.440000000000005
+      "recipient": "encounter-3-pursuer-0",
+      "reason": "jet",
+      "amount": 6
     },
     "[\"mage-1\",\"encounter-3-pursuer-1\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-3-pursuer-1",
       "reason": "steam",
-      "amount": 43.19999999999999
+      "amount": 52.20000000000001
+    },
+    "[\"mage-1\",\"encounter-3-pursuer-1\",\"heat bolt\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-3-pursuer-1",
+      "reason": "heat bolt",
+      "amount": 27
+    },
+    "[\"encounter-3-sentinel-3\",\"mage-1\",\"sentinel bolt\"]": {
+      "source": "encounter-3-sentinel-3",
+      "recipient": "mage-1",
+      "reason": "sentinel bolt",
+      "amount": 14
     },
     "[\"mage-1\",\"encounter-3-pursuer-1\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-3-pursuer-1",
-      "reason": "fracture impulse",
-      "amount": 10.8
-    },
-    "[\"mage-1\",\"encounter-3-pursuer-2\",\"steam\"]": {
-      "source": "mage-1",
-      "recipient": "encounter-3-pursuer-2",
-      "reason": "steam",
-      "amount": 46.199999999999996
-    },
-    "[\"mage-1\",\"encounter-3-pursuer-2\",\"fracture impulse\"]": {
-      "source": "mage-1",
-      "recipient": "encounter-3-pursuer-2",
       "reason": "fracture impulse",
       "amount": 10.8
     },
@@ -352,37 +401,43 @@
       "source": "mage-1",
       "recipient": "encounter-4-pursuer-3",
       "reason": "steam",
-      "amount": 52.117333333333335
+      "amount": 41.13666666666665
     },
     "[\"mage-1\",\"encounter-4-pursuer-3\",\"heat bolt\"]": {
       "source": "mage-1",
       "recipient": "encounter-4-pursuer-3",
       "reason": "heat bolt",
-      "amount": 27.082666666666665
+      "amount": 36
     },
     "[\"mage-1\",\"ballast\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "ballast",
       "reason": "steam",
-      "amount": 53.2
-    },
-    "[\"mage-1\",\"ballast\",\"heat bolt\"]": {
-      "source": "mage-1",
-      "recipient": "ballast",
-      "reason": "heat bolt",
-      "amount": 36
+      "amount": 34.21833333333331
     },
     "[\"mage-1\",\"ballast\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "ballast",
       "reason": "fracture impulse",
-      "amount": 10.799999999999997
+      "amount": 10.799999999999999
     },
     "[\"mage-1\",\"encounter-4-pursuer-3\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-4-pursuer-3",
       "reason": "fracture impulse",
-      "amount": 10.799999999999999
+      "amount": 12.86333333333334
+    },
+    "[\"mage-1\",\"loose-1\",\"steam\"]": {
+      "source": "mage-1",
+      "recipient": "loose-1",
+      "reason": "steam",
+      "amount": 47.635000000000105
+    },
+    "[\"mage-1\",\"loose-1\",\"fracture impulse\"]": {
+      "source": "mage-1",
+      "recipient": "loose-1",
+      "reason": "fracture impulse",
+      "amount": 14.4
     },
     "[\"mage-1\",\"encounter-4-pursuer-2\",\"steam\"]": {
       "source": "mage-1",
@@ -402,17 +457,11 @@
       "reason": "fracture impulse",
       "amount": 10.8
     },
-    "[\"mage-1\",\"loose-1\",\"fracture impulse\"]": {
-      "source": "mage-1",
-      "recipient": "loose-1",
-      "reason": "fracture impulse",
-      "amount": 3.6
-    },
     "[\"mage-1\",\"encounter-4-pursuer-4\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-4-pursuer-4",
       "reason": "steam",
-      "amount": 52.2
+      "amount": 48.26392455472063
     },
     "[\"mage-1\",\"encounter-4-pursuer-4\",\"heat bolt\"]": {
       "source": "mage-1",
@@ -426,53 +475,47 @@
       "reason": "fracture impulse",
       "amount": 10.8
     },
-    "[\"encounter-4-sentinel-0\",\"timber\",\"sentinel bolt\"]": {
-      "source": "encounter-4-sentinel-0",
-      "recipient": "timber",
-      "reason": "sentinel bolt",
-      "amount": 14
-    },
-    "[\"mage-1\",\"encounter-4-sentinel-0\",\"heat bolt\"]": {
+    "[\"mage-1\",\"encounter-4-pursuer-4\",\"physical impact\"]": {
       "source": "mage-1",
-      "recipient": "encounter-4-sentinel-0",
-      "reason": "heat bolt",
-      "amount": 54
+      "recipient": "encounter-4-pursuer-4",
+      "reason": "physical impact",
+      "amount": 3.9360754452793714
     },
     "[\"mage-1\",\"encounter-4-sentinel-0\",\"steam\"]": {
       "source": "mage-1",
       "recipient": "encounter-4-sentinel-0",
       "reason": "steam",
-      "amount": 90.4
+      "amount": 92.56800000000001
+    },
+    "[\"mage-1\",\"encounter-4-sentinel-0\",\"heat bolt\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-4-sentinel-0",
+      "reason": "heat bolt",
+      "amount": 63
     },
     "[\"mage-1\",\"encounter-4-sentinel-0\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-4-sentinel-0",
       "reason": "fracture impulse",
-      "amount": 21.600000000000005
-    },
-    "[\"encounter-4-sentinel-1\",\"encounter-4-sentinel-0\",\"sentinel bolt\"]": {
-      "source": "encounter-4-sentinel-1",
-      "recipient": "encounter-4-sentinel-0",
-      "reason": "sentinel bolt",
-      "amount": 14
-    },
-    "[\"mage-1\",\"encounter-4-sentinel-1\",\"steam\"]": {
-      "source": "mage-1",
-      "recipient": "encounter-4-sentinel-1",
-      "reason": "steam",
-      "amount": 94.08
+      "amount": 24.432000000000038
     },
     "[\"mage-1\",\"encounter-4-sentinel-1\",\"heat bolt\"]": {
       "source": "mage-1",
       "recipient": "encounter-4-sentinel-1",
       "reason": "heat bolt",
-      "amount": 63
+      "amount": 60.83000000000003
+    },
+    "[\"mage-1\",\"encounter-4-sentinel-1\",\"steam\"]": {
+      "source": "mage-1",
+      "recipient": "encounter-4-sentinel-1",
+      "reason": "steam",
+      "amount": 90.37
     },
     "[\"mage-1\",\"encounter-4-sentinel-1\",\"fracture impulse\"]": {
       "source": "mage-1",
       "recipient": "encounter-4-sentinel-1",
       "reason": "fracture impulse",
-      "amount": 22.920000000000037
+      "amount": 28.799999999999994
     }
   }
 }

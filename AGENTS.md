@@ -1,6 +1,6 @@
 # Ruinweavers
 
-Run Prototype 0.1 is authorized: a small five-beat solo/co-op run with personal behavioral upgrades. Preserve the old Lab/trial regression scenes, accepted controls, four families, damage and co-op architecture. No classes, new Principles, economy or broad content expansion. Run structure/authority/evidence: `docs/RUN.md`. Co-op connection steps: `docs/COOP.md`.
+Current milestone is Run Prototype 0.1: a small five-beat solo/co-op run with personal behavioral upgrades. Preserve the old Lab/trial regression scenes, accepted controls, four families, damage and co-op architecture. No classes, new Principles, economy or broad content expansion. Run structure/authority/evidence: `docs/RUN.md`. Co-op connection steps: `docs/COOP.md`.
 
 - Stack: TypeScript, Vite, vanilla Three.js WebGL, Rapier, DOM UI, Vitest, Playwright. Free tooling; existing GitHub/Cloudflare integration.
 - Commands: `npm install`, `npm run dev`, `npm run build`, `npm test`, `npm run test:e2e`, `npm run benchmark`, `npm run evaluate`, `npm run evaluate:coop`, `npm run measure:pursuit`, `npm run evaluate:run`. Evaluation method/results: `docs/EVALUATION.md`. Preserve historical benchmark evidence.

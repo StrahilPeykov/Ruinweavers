@@ -5,6 +5,7 @@
 - Protocol 3 explicitly carries the run state. Full telemetry stays local. New snapshot properties are never assumed to replicate automatically.
 - Fixed guest cancellation first and pushed a0cffdf: unrelated entity changes only reset that entity's presentation, not local held input. The existing Cloudflare pipeline succeeded.
 - Standing user workflow supersedes historical no-push notes: check each coherent commit, push immediately to origin/main, verify remote, inspect the existing pipeline. No force-push or direct deployment/provider/billing changes.
+- Run fixes Model A so reward compatibility is honest; Model B remains in the old Lab/trial. Fresh reward-card presses are required; combat holds cannot select an alteration when menus appear.
 - Stop at this run prototype. Next milestone: a visually distinctive compact slice, not broad content/system growth. Detailed behavior and limits: RUN.md.
 
 # Decisions

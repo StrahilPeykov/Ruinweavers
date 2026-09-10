@@ -1,6 +1,9 @@
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
-mkdirSync("artifacts/coop-trial/solo-regression/validation/lab", { recursive: true });
+const labDir = `test-results/lab-${Date.now()}`;
+mkdirSync(labDir, {
+  recursive: true,
+});
 
 test("pause at reset displays resume and preserves a ready handoff", async ({
   page,
@@ -146,9 +149,11 @@ test("actual movement, independent aim, all essential input paths, reset and res
     (await page.evaluate(() => window.__RUINWEAVERS__.getInputProfile()))
       .wheelOptional,
   ).toBe(false);
-  mkdirSync("artifacts/coop-trial/solo-regression/validation/lab", { recursive: true });
+  mkdirSync(labDir, {
+    recursive: true,
+  });
   await page.screenshot({
-    path: "artifacts/coop-trial/solo-regression/validation/lab/inputs.png",
+    path: `${labDir}/inputs.png`,
   });
   await page.getByRole("button", { name: "Reset lab", exact: true }).click();
   await ticks(page, 5);
@@ -161,7 +166,7 @@ test("actual movement, independent aim, all essential input paths, reset and res
   await aim(page, 0, -4.5);
   await ticks(page, 5);
   await page.screenshot({
-    path: "artifacts/coop-trial/solo-regression/validation/lab/compact.png",
+    path: `${labDir}/compact.png`,
   });
   expect(await page.locator("canvas").boundingBox()).toMatchObject({
     width: 860,
@@ -194,21 +199,21 @@ test("real state priming and transformation, models and camera evidence", async 
     0,
   );
   await page.screenshot({
-    path: "artifacts/coop-trial/solo-regression/validation/lab/thermal-states.png",
+    path: `${labDir}/thermal-states.png`,
   });
   await page.getByRole("button", { name: "Experiments", exact: true }).click();
   await page.locator("#camera").selectOption("tactical");
   await page.getByRole("button", { name: "×", exact: true }).click();
   await ticks(page, 10);
   await page.screenshot({
-    path: "artifacts/coop-trial/solo-regression/validation/lab/camera-tactical.png",
+    path: `${labDir}/camera-tactical.png`,
   });
   await page.evaluate(() =>
     window.__RUINWEAVERS__.setCameraPreset("cinematic"),
   );
   await ticks(page, 10);
   await page.screenshot({
-    path: "artifacts/coop-trial/solo-regression/validation/lab/camera-cinematic.png",
+    path: `${labDir}/camera-cinematic.png`,
   });
   await page.evaluate(() =>
     window.__RUINWEAVERS__.setExperimentConfig({
@@ -216,12 +221,18 @@ test("real state priming and transformation, models and camera evidence", async 
       camera: "balanced",
     }),
   );
+  // The earlier real casts already test priming/steam. Give the inverse cooling
+  // check a known live, heated target instead of assuming a timed hold heated it.
+  await page.evaluate(() => {
+    const api = window.__RUINWEAVERS__;
+    api.setPaused(true);
+    api.setupTestState({
+      entities: [{ id: "timber", hp: 90, heat: 120, wet: 0 }],
+    });
+    api.setPaused(false);
+  });
   await aim(page, -5, -5.5);
   await page.keyboard.press("1");
-  await page.mouse.down();
-  await ticks(page, 65);
-  await page.mouse.up();
-  await ticks(page, 35);
   const heatBefore = (await state(page)).entities.find(
     (e: any) => e.id === "timber",
   ).heat;
@@ -233,7 +244,7 @@ test("real state priming and transformation, models and camera evidence", async 
   expect(cooled.heat).toBeLessThan(heatBefore - 90);
   expect(cooled.burning).toBe(false);
   writeFileSync(
-    "artifacts/coop-trial/solo-regression/validation/lab/browser-state.json",
+    `${labDir}/browser-state.json`,
     JSON.stringify(
       {
         state: await state(page),
@@ -262,7 +273,7 @@ test("combat pressure, dodge, field placement and traversal", async ({
   await ticks(page, 10);
   expect((await state(page)).fields).toHaveLength(1);
   await page.screenshot({
-    path: "artifacts/coop-trial/solo-regression/validation/lab/combat.png",
+    path: `${labDir}/combat.png`,
   });
   await page.evaluate(() =>
     window.__RUINWEAVERS__.setExperimentConfig({ scene: "traversal" }),
@@ -279,6 +290,6 @@ test("combat pressure, dodge, field placement and traversal", async ({
   expect(s.entities[0].pos.x).toBeGreaterThan(11);
   expect(s.metrics.falls).toBe(0);
   await page.screenshot({
-    path: "artifacts/coop-trial/solo-regression/validation/lab/traversal.png",
+    path: `${labDir}/traversal.png`,
   });
 });

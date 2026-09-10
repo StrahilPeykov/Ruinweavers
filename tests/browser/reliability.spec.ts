@@ -4,7 +4,7 @@ import { execFileSync } from "node:child_process";
 const runtimeCommit = execFileSync("git", ["rev-parse", "--short", "HEAD"])
   .toString()
   .trim();
-const dir = "artifacts/coop-trial/solo-regression/validation/reliability";
+const dir = `test-results/reliability-${Date.now()}`;
 const state = (p: Page) => p.evaluate(() => window.__RUINWEAVERS__.getState());
 async function ticks(p: Page, n: number) {
   const t = (await state(p)).tick;
@@ -76,6 +76,13 @@ test("body and feet aiming, raised casts and preview execution through real poin
     0,
   );
   await capture(page, "01-body-thermal-reaction");
+  // Test feet geometry independently: residual heat legitimately vaporizes a new jet.
+  await page.evaluate(() => {
+    const api = window.__RUINWEAVERS__;
+    api.setPaused(true);
+    api.setupTestState({ entities: [{ id: "timber", heat: 0, wet: 0 }] });
+    api.setPaused(false);
+  });
   await aim(page, { x: -5, y: 0, z: -5.5 });
   await page.keyboard.press("2");
   await ticks(page, 30);

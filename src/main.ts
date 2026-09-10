@@ -115,6 +115,7 @@ async function boot() {
       !!patch.encounterVersion;
     Object.assign(config, patch);
     if (patch.scene) config.scene = patch.scene.replace("magic-lab/", "");
+    if (config.scene === "run") config.model = "primary-secondary";
     if (patch.secondaryCapacity !== undefined) {
       const counts = new Map<string, number>();
       // Keep each actor's newest fields; camera-only changes never touch them.

@@ -10,6 +10,9 @@ export class UI {
   root: HTMLElement;
   last = 0;
   rewardKey = "";
+  phaseKey = "";
+  pointerButtons = 0;
+  freshPointerPress = false;
   network?: CoopSession;
   constructor(
     public config: Config,
@@ -31,6 +34,26 @@ export class UI {
     this.root = document.createElement("div");
     this.root.id = "ui";
     document.body.append(this.root);
+    // Physical pointer state survives semantic combat cancellation. A release or
+    // repeated down carried over from the arena must not activate a new card.
+    window.addEventListener(
+      "pointerdown",
+      (e) => {
+        this.freshPointerPress = e.button === 0 && !(this.pointerButtons & 1);
+        this.pointerButtons = e.buttons;
+      },
+      true,
+    );
+    window.addEventListener(
+      "pointerup",
+      (e) => {
+        this.pointerButtons = e.buttons;
+      },
+      true,
+    );
+    window.addEventListener("blur", () => {
+      this.pointerButtons = 0;
+    });
     this.root.innerHTML = `<header><div class="eyebrow">EXPERIMENTAL PRE-PRODUCTION</div><h1>RUINWEAVERS <span id="mode-title">/ MAGIC LAB</span></h1><div id="connection-status"></div><div id="status">Explore the rules. Reset freely.</div></header>
       <div class="top-actions"><button id="disconnect" hidden>Leave co-op</button><button id="mute" aria-pressed="false">Mute</button><button id="pause">Pause</button><button id="reset">Reset lab</button><button id="experiments" aria-expanded="false">Experiments</button></div>
       <aside id="panel" hidden><div class="panel-title">Lab instruments <button id="close">×</button></div>
@@ -341,6 +364,13 @@ export class UI {
       );
     const trial = s.trial,
       card = get("trial-card");
+    const phaseKey = trial
+      ? `${s.run?.id ?? ""}:${trial.encounter}:${trial.status}`
+      : "";
+    if (phaseKey !== this.phaseKey) {
+      this.phaseKey = phaseKey;
+      if (trial && trial.status !== "active") this.input.clear();
+    }
     card.hidden = !trial || trial.status === "active" || paused;
     get("cast-feedback").hidden = !!trial && trial.status !== "active";
     get("inspect").hidden = !!trial && trial.status !== "active";
@@ -439,7 +469,13 @@ export class UI {
         button.innerHTML = `<small>${upgrade.family}</small><strong>${upgrade.name}</strong><span>${upgrade.description}</span>`;
         button.disabled = !!reward?.choices[player.id];
         button.classList.toggle("chosen", reward?.choices[player.id] === id);
-        button.onclick = () => {
+        let deliberate = false;
+        button.onpointerdown = () => {
+          deliberate = this.freshPointerPress;
+        };
+        button.onclick = (event) => {
+          if (event.detail !== 0 && !deliberate) return;
+          deliberate = false;
           this.actions.choose(s.run!.id, reward!.id, id);
           this.unfocus();
         };
@@ -491,6 +527,7 @@ export class UI {
       ])
         (get(id) as HTMLInputElement).disabled = net.active;
     }
+    (get("model") as HTMLSelectElement).disabled = !!s.run || !!net?.active;
     const notice = get("notice");
     notice.hidden = !(paused || (!trial && player.hp <= 0) || view.contextLost);
     labels["notice"] = view.contextLost

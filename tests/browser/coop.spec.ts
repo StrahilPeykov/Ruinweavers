@@ -241,22 +241,33 @@ test("co-op fields, cross-player reaction, allied safety, stale inputs and delay
     () => window.__RUINWEAVERS__.getState().actors["mage-2"].dodgeReady > 0,
   );
   expect((await state(a)).actors["mage-1"].dodgeReady).toBe(0);
+  // Isolate allied damage from the updraft/loose props used above. An 800 ms
+  // wall-clock hold is not proof of an unobstructed authoritative projectile hit.
   await arrange(a, b, {
     entities: [
-      { id: "mage-1", pos: { x: -2, y: 0.75, z: 4 }, wet: 0, heat: 0 },
-      { id: "mage-2", pos: { x: 2, y: 0.75, z: 4 } },
+      { id: "mage-1", pos: { x: -8, y: 0.75, z: 6 }, wet: 0, heat: 0 },
+      { id: "mage-2", pos: { x: -4, y: 0.75, z: 6 } },
     ],
   });
+  await a.waitForFunction(() => {
+    const s = window.__RUINWEAVERS__.getState();
+    return (
+      s.time >= s.actors["mage-2"].dodgeUntil &&
+      s.time >= s.actors["mage-2"].primaryReady
+    );
+  });
   await b.keyboard.press("1");
-  await aim(b, { x: -2, y: 0.75, z: 4 });
+  await aim(b, { x: -8, y: 0.75, z: 6 });
   await b.keyboard.down("j");
-  await b.waitForTimeout(800);
-  await b.keyboard.up("j");
-  await a.waitForFunction(() =>
-    Object.keys(window.__RUINWEAVERS__.getState().metrics.outcomes).some((k) =>
-      k.startsWith("allied-damage-suppressed:mage-2:mage-1"),
-    ),
+  await a.waitForFunction(
+    () =>
+      Object.keys(window.__RUINWEAVERS__.getState().metrics.outcomes).some(
+        (k) => k.startsWith("allied-damage-suppressed:mage-2:mage-1"),
+      ),
+    undefined,
+    { timeout: 5000 },
   );
+  await b.keyboard.up("j");
   expect((await state(a)).entities.find((e: any) => e.id === "mage-1").hp).toBe(
     100,
   );
@@ -365,6 +376,15 @@ test("hostile targeting, revive and synchronized three-encounter lifecycle", asy
   );
   await a.keyboard.up("e");
   await capture(a, "09-revived");
+  // Disabling AI does not erase a bolt already fired at the surviving mage.
+  // Let that real damage resolve before measuring encounter-to-encounter carry.
+  await a.waitForFunction(
+    () => window.__RUINWEAVERS__.getState().bolts.length === 0,
+  );
+  const carriedHealth = (await state(a)).entities.find(
+    (e: any) => e.id === "mage-1",
+  ).hp;
+  expect(carriedHealth).toBeGreaterThan(0);
   for (let stage = 0; stage < 3; stage++) {
     enemies = (await state(a)).entities.filter((e: any) => e.ai);
     // Reduced-health lifecycle fixture: one actual keyboard cast ends each encounter.
@@ -395,7 +415,7 @@ test("hostile targeting, revive and synchronized three-encounter lifecycle", asy
     ).toBe(35);
     expect(
       (await state(a)).entities.find((e: any) => e.id === "mage-1").hp,
-    ).toBe(80);
+    ).toBe(carriedHealth);
     expect((await state(a)).trial.status).toBe(
       stage === 2 ? "victory" : "between",
     );

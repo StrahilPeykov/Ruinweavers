@@ -1,6 +1,51 @@
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
 const dir = "artifacts/run-0.1";
+const primaryHeld = new WeakMap<Page, boolean>();
+test("a held combat press cannot choose a reward; a fresh card press can", async ({
+  page,
+}) => {
+  await boot(page);
+  await page.locator("#trial-action").click();
+  const target = await page.evaluate(() => {
+    const api = window.__RUINWEAVERS__,
+      s = api.getState(),
+      enemies = s.entities.filter((e: any) => e.ai);
+    api.setPaused(true);
+    api.setupTestState({
+      enemyEnabled: false,
+      entities: [
+        { id: "mage-1", pos: { x: 0, y: 0.75, z: 4 } },
+        ...enemies.map((e: any, i: number) => ({
+          id: e.id,
+          hp: i === 0 ? 8 : 0,
+          pos: { x: 0, y: 0.8, z: 0 },
+        })),
+      ],
+    });
+    api.setPaused(false);
+    return api.projectWorld({ x: 0, y: 0.8, z: 0 });
+  });
+  await page.mouse.move(target.x, target.y);
+  await page.mouse.down();
+  await page.waitForFunction(
+    () => window.__RUINWEAVERS__.getState().trial.status === "between",
+  );
+  const card = page.locator("#reward-cards button").first();
+  await expect(card).toBeVisible();
+  const box = (await card.boundingBox())!;
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  // Also cover the malformed repeated-down sequence that the old driver emitted.
+  await page.mouse.down();
+  await page.mouse.up();
+  expect(
+    await page.evaluate(
+      () => window.__RUINWEAVERS__.getState().run.reward.choices["mage-1"],
+    ),
+  ).toBeUndefined();
+  await card.click();
+  await expect(page.locator("#reward-cards .chosen")).toBeVisible();
+});
 async function boot(p: Page) {
   await p.goto("/?quality=lightweight");
   await p.waitForFunction(() => !!window.__RUINWEAVERS__);
@@ -44,6 +89,7 @@ test("guest opening the default run can join an unchanged trial host", async ({
 async function release(p: Page) {
   for (const k of ["w", "a", "s", "d", "j"]) await p.keyboard.up(k);
   await p.mouse.up();
+  primaryHeld.set(p, false);
 }
 async function installPolicy(p: Page) {
   await p.evaluate(async () => {
@@ -94,8 +140,11 @@ async function drive(p: Page) {
     String(["Ember", "Tide", "Gale", "Stone"].indexOf(f.select) + 1),
   );
   await p.mouse.move(command.pixel.x, command.pixel.y);
-  if (f.primary) await p.mouse.down();
-  else await p.mouse.up();
+  if (f.primary !== (primaryHeld.get(p) ?? false)) {
+    if (f.primary) await p.mouse.down();
+    else await p.mouse.up();
+    primaryHeld.set(p, f.primary);
+  }
   if (f.secondary) await p.keyboard.press("f");
   if (f.dodge) await p.keyboard.press("Space");
 }
@@ -159,6 +208,13 @@ async function complete(pages: Page[], label: string) {
           () => window.__RUINWEAVERS__.getState().trial.status === "between",
         );
         if (s.run.reward) {
+          expect(
+            await p.evaluate(() => {
+              const api = window.__RUINWEAVERS__,
+                state = api.getState();
+              return state.run.reward.choices[api.getPlayerState().id];
+            }),
+          ).toBeUndefined();
           await p.locator("#reward-cards button").first().click();
           await expect(p.locator("#reward-cards .chosen")).toBeVisible();
         }

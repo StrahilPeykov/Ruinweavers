@@ -11,6 +11,14 @@ import {
 import { idleInput, vec } from "../../src/simulation/types";
 import { encodeSnapshot, WireReader } from "../../src/network/wire";
 beforeAll(initPhysics);
+it("run uses Model A; the existing Lab retains Model B", () => {
+  expect(configFromQuery("?scene=run&model=weave-unweave").model).toBe(
+    "primary-secondary",
+  );
+  expect(configFromQuery("?scene=free&model=weave-unweave").model).toBe(
+    "weave-unweave",
+  );
+});
 it("a guest entering the old trial discards its default-run state across JSON transport", () => {
   const host = new Simulation(configFromQuery("?scene=trial"));
   host.addPartner();

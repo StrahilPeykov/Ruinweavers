@@ -17,13 +17,13 @@ After beats 1 and 3, each mage chooses one of three seeded offers, then continue
 | Travelling basin | Tide Secondary: travels away from caster at 1.2 m/s; stops at solid terrain or unsupported height changes. |
 | Tethered updraft | Gale Secondary: placements within 3 m follow the caster along connected ground; farther placements remain stationary. |
 
-The pool is deliberately asymmetric. Capacity + moving fields and piercing + Stone echo are bounded pair checks, not promises of equal power. Model B remains available in the Lab; its inverse operations do not acquire new Secondaries.
+The pool is deliberately asymmetric. Capacity + moving fields and piercing + Stone echo are bounded pair checks, not promises of equal power. The run fixes Model A so every offered alteration is compatible. Model B remains available in the Lab and old trial; its inverse operations do not acquire new Secondaries.
 
 ## Authority and bounds
 
 `simulation/run.ts` owns the small catalogue, five lineups, deterministic offers and validation. `State.run` stores run ID, actor-owned upgrades and the current reward. No shared CAST/config mutation. Restart increments the run generation, clears upgrades/rewards/effects and restores starting health. Offers exclude already-owned upgrades; partners can independently own the same upgrade.
 
-Host controls identify the authenticated peer as mage-2 and validate run ID, reward ID, encounter, offered option and absence of an earlier choice. Clients cannot nominate another actor. Choice does not imply readiness. Both personal choices and both ready states gate advancement. Between menus freeze combat and clear combat intent through the existing epoch boundary. Ordinary enemy/prop deaths and partner downing do not clear living guest input.
+Host controls identify the authenticated peer as mage-2 and validate run ID, reward ID, encounter, offered option and absence of an earlier choice. Clients cannot nominate another actor. Choice does not imply readiness. Both personal choices and both ready states gate advancement. Between menus freeze combat and clear combat intent through the existing epoch boundary and local menu-entry cancellation. Reward cards require a fresh press; releasing a combat hold cannot choose one. Ordinary enemy/prop deaths and partner downing do not clear living guest input.
 
 Protocol 3 explicitly adds run/reward/upgrades to compact snapshots. Build fingerprints prevent mixed clients. Existing bounded events, input acknowledgements, interpolation/prediction, ally-damage suppression and TURN credential exchange remain intact. No provider or billing changes.
 
@@ -37,6 +37,6 @@ Lifecycle correction a0cffdf was reproduced before editing: a non-final enemy ki
 
 Initial 12-case batch: all completed five beats. Solo attack-move 89–99 s, Basin+Ember 47–50 s, mixed 51–54 s. Pair attack-move 60 s, Basin+Ember 31–32 s, mixed 38–39 s. No damage/HP tuning was applied to stretch duration or equalize these strategies. A several-minute human duration remains unvalidated; stronger play can finish quickly.
 
-Browser journeys use those policies only to choose intent, then execute real Playwright keyboard/mouse and reward-card clicks. They do not change HP, disable AI, teleport or inject casts. Separate lifecycle fixtures cover down/revive and stale choices. Local two-browser WebRTC proves the local integration, not remote laptop/TURN performance. Full test and screenshot results are recorded in TESTING.md.
+Browser journeys use those policies only to choose intent, then execute real Playwright keyboard/mouse and reward-card clicks. They do not change HP, disable AI, teleport or inject casts. Separate lifecycle fixtures cover down/revive and stale choices. Local two-browser WebRTC proves the local integration, not remote laptop/TURN performance. Current build 906b3ba99fd4 completed the graphical solo run in 56.22 seconds of combat (63.91 wall) and the pair run in 51.72 seconds (67.66 wall), including both reward stops. Automated choices are fast; human duration remains unvalidated. Full test and screenshot results, including failed sweeps and focused reruns, are recorded in TESTING.md.
 
 Remaining gameplay questions: whether the five beats sustain interest beyond the first run; whether moving-field tradeoffs and the second reward are understandable; whether the short co-op duration feels like a satisfying culmination. The following milestone is visual distinction for this compact slice, not more systems.
