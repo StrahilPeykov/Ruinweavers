@@ -232,7 +232,9 @@ export class UI {
         "",
       );
       (get("room-code") as HTMLInputElement).value = code;
-      if (this.config.scene !== "run") this.config.scene = "trial";
+      // Keep the selected isolated art-proof footprint when creating a party.
+      if (this.config.scene !== "run" && this.config.scene !== "trial/mixed")
+        this.config.scene = "trial";
       this.config.model = "primary-secondary";
       void net.connect(
         "host",
@@ -242,7 +244,8 @@ export class UI {
       this.unfocus();
     };
     const join = () => {
-      if (this.config.scene !== "run") this.config.scene = "trial";
+      if (this.config.scene !== "run" && this.config.scene !== "trial/mixed")
+        this.config.scene = "trial";
       this.config.model = "primary-secondary";
       void net.connect(
         "guest",

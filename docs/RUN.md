@@ -1,6 +1,6 @@
 # Run Prototype 0.1 — The Broken Court
 
-Current playable milestone. Default `/?scene=run`; `?scene=trial` and all Lab/isolated trial scenes preserve their unmodified no-upgrade baseline. Model A, balanced camera/tempo and accepted bindings remain the default. No classes, economy, permanent progression or new enemies.
+Current gameplay baseline. Explicit `/?scene=run`; the browser root now opens the bounded art proof (ART.md). `?scene=trial` and all Lab/isolated trial scenes preserve their unmodified no-upgrade baseline. Model A, balanced camera/tempo and accepted bindings remain the default. No classes, economy, permanent progression or new enemies.
 
 ## Route and choices
 

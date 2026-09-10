@@ -1,0 +1,681 @@
+{
+  "invalidReason": "Create co-op replaced trial/mixed with trial: art was inactive in all samples. Excluded from art performance comparisons. Entry now preserves trial/mixed; active scene assertions added.",
+  "samples": {
+    "ink": {
+      "conditions": "Two same-machine WebRTC browsers; four existing enemies with AI disabled for repeatability; two real fields and held Ember/Stone casting; 60 requestAnimationFrame intervals per client; no video/encoding; software renderer is reported, not hardware GPU extrapolation.",
+      "samples": [
+        {
+          "build": "4e77a82f1323",
+          "role": "host",
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "shadows": false,
+            "samples": 183,
+            "frameMs": 90.07049180327667,
+            "p95FrameMs": 233.39999999999964,
+            "drawCalls": 57,
+            "triangles": 2340,
+            "activeVfx": 2,
+            "geometries": 59,
+            "textures": 2,
+            "contextLost": false,
+            "art": {
+              "mode": "ink",
+              "active": false,
+              "ready": true,
+              "error": "",
+              "loadMs": 26.799999998882413,
+              "downloadBytes": 174132,
+              "assets": 9,
+              "animationMixers": 0,
+              "sharedGeometries": 35,
+              "bounds": {
+                "mage": [
+                  -0.44291189312934875,
+                  0.015000000596046448,
+                  -0.415431770415555,
+                  0.5622092485427856,
+                  1.8971210718154907,
+                  0.36000001430511475
+                ],
+                "sentinel": [
+                  -0.5598497986793518,
+                  0,
+                  -0.5400000214576721,
+                  0.5598497986793518,
+                  1.584999918937683,
+                  0.5099999904632568
+                ],
+                "pursuer": [
+                  -0.5174112915992737,
+                  0.02499997615814209,
+                  -0.5699999928474426,
+                  0.5174112915992737,
+                  1.0399999618530273,
+                  0.6299999952316284
+                ],
+                "cover": [
+                  -0.8999999761581421,
+                  0,
+                  -1.100000023841858,
+                  0.8999999761581421,
+                  1.7000000476837158,
+                  1.100000023841858
+                ],
+                "landmark": [
+                  -5.295954263611179,
+                  -1.8390303615046149,
+                  -1.350000023841858,
+                  5.633797480246888,
+                  7.012628592743989,
+                  1.350000023841858
+                ],
+                "vessel": [
+                  -0.5299999713897705,
+                  0,
+                  -0.36000001430511475,
+                  0.5299999713897705,
+                  0.8739999532699585,
+                  0.2912461459636688
+                ],
+                "timber": [
+                  -0.5950000286102295,
+                  0,
+                  -0.5950000286102295,
+                  0.5950000286102295,
+                  1.5800000429153442,
+                  0.5950000286102295
+                ],
+                "ballast": [
+                  -0.7850000262260437,
+                  0,
+                  -0.7950000166893005,
+                  0.7850000262260437,
+                  1.7200000286102295,
+                  0.7950000166893005
+                ],
+                "loose": [
+                  -0.31176915764808655,
+                  0,
+                  -0.36000001430511475,
+                  0.31176915764808655,
+                  0.699999988079071,
+                  0.36000001430511475
+                ]
+              }
+            },
+            "fieldFeedback": [
+              {
+                "id": "field-2",
+                "expiryOpacity": 0.7
+              },
+              {
+                "id": "field-8",
+                "expiryOpacity": 0.7
+              }
+            ]
+          },
+          "frameSample": {
+            "count": 60,
+            "mean": 95.52499999998757,
+            "p50": 100,
+            "p95": 166.8000000000011,
+            "max": 299.89999999999964
+          },
+          "fields": 2,
+          "casts": {
+            "Tide:secondary": 1,
+            "Gale:secondary": 1,
+            "Ember:primary": 18,
+            "Stone:primary": 9
+          }
+        },
+        {
+          "build": "4e77a82f1323",
+          "role": "guest",
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "shadows": false,
+            "samples": 102,
+            "frameMs": 128.1,
+            "p95FrameMs": 250,
+            "drawCalls": 54,
+            "triangles": 2068,
+            "activeVfx": 1,
+            "geometries": 60,
+            "textures": 2,
+            "contextLost": false,
+            "art": {
+              "mode": "ink",
+              "active": false,
+              "ready": true,
+              "error": "",
+              "loadMs": 954.1999999992549,
+              "downloadBytes": 174132,
+              "assets": 9,
+              "animationMixers": 0,
+              "sharedGeometries": 35,
+              "bounds": {
+                "mage": [
+                  -0.44291189312934875,
+                  0.015000000596046448,
+                  -0.415431770415555,
+                  0.5622092485427856,
+                  1.8971210718154907,
+                  0.36000001430511475
+                ],
+                "sentinel": [
+                  -0.5598497986793518,
+                  0,
+                  -0.5400000214576721,
+                  0.5598497986793518,
+                  1.584999918937683,
+                  0.5099999904632568
+                ],
+                "landmark": [
+                  -5.295954263611179,
+                  -1.8390303615046149,
+                  -1.350000023841858,
+                  5.633797480246888,
+                  7.012628592743989,
+                  1.350000023841858
+                ],
+                "cover": [
+                  -0.8999999761581421,
+                  0,
+                  -1.100000023841858,
+                  0.8999999761581421,
+                  1.7000000476837158,
+                  1.100000023841858
+                ],
+                "pursuer": [
+                  -0.5174112915992737,
+                  0.02499997615814209,
+                  -0.5699999928474426,
+                  0.5174112915992737,
+                  1.0399999618530273,
+                  0.6299999952316284
+                ],
+                "vessel": [
+                  -0.5299999713897705,
+                  0,
+                  -0.36000001430511475,
+                  0.5299999713897705,
+                  0.8739999532699585,
+                  0.2912461459636688
+                ],
+                "timber": [
+                  -0.5950000286102295,
+                  0,
+                  -0.5950000286102295,
+                  0.5950000286102295,
+                  1.5800000429153442,
+                  0.5950000286102295
+                ],
+                "ballast": [
+                  -0.7850000262260437,
+                  0,
+                  -0.7950000166893005,
+                  0.7850000262260437,
+                  1.7200000286102295,
+                  0.7950000166893005
+                ],
+                "loose": [
+                  -0.31176915764808655,
+                  0,
+                  -0.36000001430511475,
+                  0.31176915764808655,
+                  0.699999988079071,
+                  0.36000001430511475
+                ]
+              }
+            },
+            "fieldFeedback": [
+              {
+                "id": "field-2",
+                "expiryOpacity": 0.7
+              },
+              {
+                "id": "field-8",
+                "expiryOpacity": 0.7
+              }
+            ]
+          },
+          "frameSample": {
+            "count": 60,
+            "mean": 96.25833333332712,
+            "p50": 100,
+            "p95": 200,
+            "max": 233.3000000000011
+          },
+          "fields": 2,
+          "casts": {}
+        }
+      ]
+    },
+    "off": {
+      "conditions": "Two same-machine WebRTC browsers; four existing enemies with AI disabled for repeatability; two real fields and held Ember/Stone casting; 60 requestAnimationFrame intervals per client; no video/encoding; software renderer is reported, not hardware GPU extrapolation.",
+      "samples": [
+        {
+          "build": "4e77a82f1323",
+          "role": "host",
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "shadows": false,
+            "samples": 185,
+            "frameMs": 73.42054054054054,
+            "p95FrameMs": 166.70000000000073,
+            "drawCalls": 54,
+            "triangles": 2068,
+            "activeVfx": 1,
+            "geometries": 24,
+            "textures": 1,
+            "contextLost": false,
+            "art": {
+              "mode": "off",
+              "active": false,
+              "ready": false,
+              "error": "",
+              "loadMs": 0,
+              "downloadBytes": 0,
+              "assets": 0,
+              "animationMixers": 0,
+              "sharedGeometries": 0,
+              "bounds": {}
+            },
+            "fieldFeedback": [
+              {
+                "id": "field-2",
+                "expiryOpacity": 0.7
+              },
+              {
+                "id": "field-7",
+                "expiryOpacity": 0.7
+              }
+            ]
+          },
+          "frameSample": {
+            "count": 60,
+            "mean": 84.86000000001862,
+            "p50": 83.30000000000109,
+            "p95": 133.39999999999964,
+            "max": 350
+          },
+          "fields": 2,
+          "casts": {
+            "Tide:secondary": 1,
+            "Gale:secondary": 1,
+            "Ember:primary": 18,
+            "Stone:primary": 9
+          }
+        },
+        {
+          "build": "4e77a82f1323",
+          "role": "guest",
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "shadows": false,
+            "samples": 120,
+            "frameMs": 104.30111666666669,
+            "p95FrameMs": 216.60000000000036,
+            "drawCalls": 57,
+            "triangles": 2340,
+            "activeVfx": 2,
+            "geometries": 26,
+            "textures": 1,
+            "contextLost": false,
+            "art": {
+              "mode": "off",
+              "active": false,
+              "ready": false,
+              "error": "",
+              "loadMs": 0,
+              "downloadBytes": 0,
+              "assets": 0,
+              "animationMixers": 0,
+              "sharedGeometries": 0,
+              "bounds": {}
+            },
+            "fieldFeedback": [
+              {
+                "id": "field-2",
+                "expiryOpacity": 0.7
+              },
+              {
+                "id": "field-7",
+                "expiryOpacity": 0.7
+              }
+            ]
+          },
+          "frameSample": {
+            "count": 60,
+            "mean": 87.02666666666667,
+            "p50": 83.39999999999964,
+            "p95": 150,
+            "max": 316.60000000000036
+          },
+          "fields": 2,
+          "casts": {}
+        }
+      ]
+    },
+    "storybook": {
+      "conditions": "Two same-machine WebRTC browsers; four existing enemies with AI disabled for repeatability; two real fields and held Ember/Stone casting; 60 requestAnimationFrame intervals per client; no video/encoding; software renderer is reported, not hardware GPU extrapolation.",
+      "samples": [
+        {
+          "build": "4e77a82f1323",
+          "role": "host",
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "shadows": false,
+            "samples": 217,
+            "frameMs": 86.55576036866358,
+            "p95FrameMs": 216.60000000000036,
+            "drawCalls": 54,
+            "triangles": 2068,
+            "activeVfx": 1,
+            "geometries": 59,
+            "textures": 1,
+            "contextLost": false,
+            "art": {
+              "mode": "storybook",
+              "active": false,
+              "ready": true,
+              "error": "",
+              "loadMs": 41.29999999888241,
+              "downloadBytes": 280860,
+              "assets": 9,
+              "animationMixers": 0,
+              "sharedGeometries": 35,
+              "bounds": {
+                "mage": [
+                  -0.4522479772567749,
+                  0.015000000596046448,
+                  -0.39050747767604066,
+                  0.5618481040000916,
+                  1.8712764978408813,
+                  0.3799999952316284
+                ],
+                "sentinel": [
+                  -0.6000000238418579,
+                  0,
+                  -0.5400000214576721,
+                  0.6000000238418579,
+                  1.659999966621399,
+                  0.5400000214576721
+                ],
+                "pursuer": [
+                  -0.5174112915992737,
+                  0.02499997615814209,
+                  -0.5699999928474426,
+                  0.5174112915992737,
+                  0.949999988079071,
+                  0.5600000023841858
+                ],
+                "cover": [
+                  -0.8999999761581421,
+                  0,
+                  -1.100000023841858,
+                  0.8999999761581421,
+                  1.7000000476837158,
+                  1.100000023841858
+                ],
+                "landmark": [
+                  -5.25,
+                  0,
+                  -1.350000023841858,
+                  5.25,
+                  6.7093706130981445,
+                  1.350000023841858
+                ],
+                "vessel": [
+                  -0.5299999713897705,
+                  0,
+                  -0.36000001430511475,
+                  0.5299999713897705,
+                  0.8739999532699585,
+                  0.36000001430511475
+                ],
+                "timber": [
+                  -0.5950000286102295,
+                  0,
+                  -0.5950000286102295,
+                  0.5950000286102295,
+                  1.5800000429153442,
+                  0.5950000286102295
+                ],
+                "ballast": [
+                  -0.7850000262260437,
+                  0,
+                  -0.7950000166893005,
+                  0.7850000262260437,
+                  1.7200000286102295,
+                  0.7950000166893005
+                ],
+                "loose": [
+                  -0.31176915764808655,
+                  0,
+                  -0.36000001430511475,
+                  0.31176915764808655,
+                  0.699999988079071,
+                  0.36000001430511475
+                ]
+              }
+            },
+            "fieldFeedback": [
+              {
+                "id": "field-2",
+                "expiryOpacity": 0.7
+              },
+              {
+                "id": "field-7",
+                "expiryOpacity": 0.7
+              }
+            ]
+          },
+          "frameSample": {
+            "count": 60,
+            "mean": 90.61999999998758,
+            "p50": 83.40000000000146,
+            "p95": 149.89999999999964,
+            "max": 266.7000000000007
+          },
+          "fields": 2,
+          "casts": {
+            "Tide:secondary": 1,
+            "Gale:secondary": 1,
+            "Ember:primary": 18,
+            "Stone:primary": 9
+          }
+        },
+        {
+          "build": "4e77a82f1323",
+          "role": "guest",
+          "render": {
+            "quality": "lightweight",
+            "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "pixelRatio": 0.8,
+            "shadows": false,
+            "samples": 99,
+            "frameMs": 114.30505050505047,
+            "p95FrameMs": 266.60000000000036,
+            "drawCalls": 54,
+            "triangles": 2068,
+            "activeVfx": 1,
+            "geometries": 60,
+            "textures": 1,
+            "contextLost": false,
+            "art": {
+              "mode": "storybook",
+              "active": false,
+              "ready": true,
+              "error": "",
+              "loadMs": 1744.9000000003725,
+              "downloadBytes": 280860,
+              "assets": 9,
+              "animationMixers": 0,
+              "sharedGeometries": 35,
+              "bounds": {
+                "mage": [
+                  -0.4522479772567749,
+                  0.015000000596046448,
+                  -0.39050747767604066,
+                  0.5618481040000916,
+                  1.8712764978408813,
+                  0.3799999952316284
+                ],
+                "sentinel": [
+                  -0.6000000238418579,
+                  0,
+                  -0.5400000214576721,
+                  0.6000000238418579,
+                  1.659999966621399,
+                  0.5400000214576721
+                ],
+                "landmark": [
+                  -5.25,
+                  0,
+                  -1.350000023841858,
+                  5.25,
+                  6.7093706130981445,
+                  1.350000023841858
+                ],
+                "cover": [
+                  -0.8999999761581421,
+                  0,
+                  -1.100000023841858,
+                  0.8999999761581421,
+                  1.7000000476837158,
+                  1.100000023841858
+                ],
+                "pursuer": [
+                  -0.5174112915992737,
+                  0.02499997615814209,
+                  -0.5699999928474426,
+                  0.5174112915992737,
+                  0.949999988079071,
+                  0.5600000023841858
+                ],
+                "vessel": [
+                  -0.5299999713897705,
+                  0,
+                  -0.36000001430511475,
+                  0.5299999713897705,
+                  0.8739999532699585,
+                  0.36000001430511475
+                ],
+                "timber": [
+                  -0.5950000286102295,
+                  0,
+                  -0.5950000286102295,
+                  0.5950000286102295,
+                  1.5800000429153442,
+                  0.5950000286102295
+                ],
+                "loose": [
+                  -0.31176915764808655,
+                  0,
+                  -0.36000001430511475,
+                  0.31176915764808655,
+                  0.699999988079071,
+                  0.36000001430511475
+                ],
+                "ballast": [
+                  -0.7850000262260437,
+                  0,
+                  -0.7950000166893005,
+                  0.7850000262260437,
+                  1.7200000286102295,
+                  0.7950000166893005
+                ]
+              }
+            },
+            "fieldFeedback": [
+              {
+                "id": "field-2",
+                "expiryOpacity": 0.7
+              },
+              {
+                "id": "field-7",
+                "expiryOpacity": 0.7
+              }
+            ]
+          },
+          "frameSample": {
+            "count": 60,
+            "mean": 91.49833333332711,
+            "p50": 100,
+            "p95": 133.39999999999964,
+            "max": 349.89999999999964
+          },
+          "fields": 2,
+          "casts": {}
+        }
+      ]
+    }
+  }
+}

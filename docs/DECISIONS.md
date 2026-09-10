@@ -1,3 +1,11 @@
+## 2026-09-10 — Bounded art direction proof
+
+- Recommend Sculptural Storybook: fitted construction, compact travelling mages, upright aperture sentinels versus low carapace pursuers. Retain Ink & Pigment for direct comparison; Weathered Mythic stays a labelled concept proposal. This is visual judgment, not a numerical taste score.
+- Original scripted Blender → GLB assets; standard glTF material vocabulary, built-in Three.js Standard/Toon materials and small exported mantle animation. No texture pack, external art or new renderer. Lightweight carries the identity without shadows.
+- Browser root is the single existing mixed-court proof; explicit run/Lab/trial links retain their baseline. Only the third run court and its reward screen are dressed when `art` is selected. Create/Join now preserve the selected mixed-court diagnostic instead of silently switching to the first trial encounter.
+- Geometry is presentation only. Existing collision/query surfaces, damage, timing, upgrades, party rules and networking remain authoritative. Corrected field-expiry cue selection and Stone owner-mark height in rendering.
+- Stop at the proof. Small rollout steps and uncertainties are in ART.md; this does not authorize dressing every room or adding systems. Check, immediately push and verify every coherent commit through the existing integration.
+
 ## 2026-09-10 — Run Prototype 0.1
 
 - Accepted the existing combat/co-op baseline. New default is five authored beats; old trial/Lab remain unchanged. Two personal seeded reward stops, six asymmetric behavioral alterations, no global damage/HP changes or new enemy archetypes.

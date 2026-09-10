@@ -15,7 +15,9 @@
     "evaluate:coop": "tsx scripts/evaluate-coop.ts",
     "measure:pursuit": "tsx scripts/measure-pursuit.ts",
     "evaluate:run": "tsx scripts/evaluate-run.ts",
-    "art:package": "node scripts/art/package.mjs"
+    "art:package": "node scripts/art/package.mjs",
+    "art:build": "node scripts/art/build.mjs",
+    "art:captures": "node scripts/art/captures.mjs"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.20.0",

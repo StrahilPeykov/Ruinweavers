@@ -30,7 +30,13 @@ Materials: standard glTF base color/roughness/metalness only, texture-free. Pale
 
 Mantle node animation is exported to GLB and played through AnimationMixer. Movement changes its playback rate; a bounded pursuing wind-up lean never changes the collision body. No animation controls damage/timing. Clones share immutable geometry, own disposable materials, and stop/uncache their mixers on reset. The library lives for the page lifetime; reset must not dispose shared geometry. Asset bytes participate in the build hash and fetch version.
 
-## Durable visual rules (provisional until motion comparison)
+One-command rebuild: `npm run art:build` (free Blender on PATH, `BLENDER_BIN`, or the installed Windows 5.2 location). Runtime deployment uses the committed GLBs and does not need Blender. A second complete generation/export/validation succeeded. Blender may reorder internal exported data and change bytes without changing asset counts/bounds; this is a reproducible authoring recipe, not a claim of byte-identical Blender output. All 18 final files validate with zero errors/warnings. The matching vessel uses exactly the same palette/export rules as the actors and architecture. No external asset licenses are required; source meshes are original.
+
+Art additions exposed a child-order dependency in the existing expiry feedback: the last added owner dot received the pulse instead of the field cue. The renderer now names its expiry cue explicitly; Stone's owner dots sit above its top surface. Real-input browser regressions check a steady owner mark and a pulsing expiry cue. This changes presentation only, not field lifetime/collision/capacity.
+
+The existing Create/Join buttons previously replaced every non-run scene with the full trial. They now retain `trial/mixed`, so both mages can enter the actual selected proof immediately. Other connection settings, host authority and party rules remain unchanged. Both clients assert encounter 2 and art activation before the performance sample. Earlier measurements with inactive art are retained as explicitly invalid evidence, not used to compare the directions.
+
+## Durable visual rules — recommended fitted court
 
 - Large upper-body mass, dark face opening, asymmetric implement and satchel. Avoid detail below roughly a few gameplay pixels.
 - Mages retain personal cloth/accent plus one-disc/two-bar ground identification regardless of Principle. Shared spells never recolor the entire actor.
@@ -40,4 +46,32 @@ Mantle node animation is exported to GLB and played through AnimationMixer. Move
 - Warm/cool and light/dark relationships matter more than one permanent regional palette. The Broken Court does not define all future regions.
 - Reward cards use the same material vocabulary. Instruments remain collapsed; links between studies appear at the stopped encounter screen, not across the combat view.
 
-Evaluation, recommendation, named environment measurements and rollout boundary will be added after matched in-engine motion checks. Do not roll this treatment across all five encounters automatically.
+## Recommendation and scope of confidence
+
+Choose **A, Sculptural Storybook / the fitted court**, as the production starting point. In matched gameplay views its upper masses stay distinct from the floor, the aperture/carapace split explains the two roles, and plum versus jade plus disc/bar marks keeps the mages identifiable. The warm fitted construction better supports capable travellers and curiosity than B's darker folded planes. This is a visual judgment, not a numerical proof of taste. B remains playable; its angular forms are useful, cheaper in triangles/bytes, and may suit a different region, but its dark face/cloth planes merge more at the current screen footprint.
+
+The generated concept sheet has much more surface finish and environmental composition than these engine samples. It is not evidence that we have already achieved that finish. The proof establishes original asset forms, the material/animation/export contract and readable spells in motion. Fine garment detail is mostly lost at this camera; the arch becomes clear when moving north, but its crown is cropped from the southern start. Neither issue justifies changing the combat camera during this study.
+
+Matched motion cases use seed 3, the same third-court layout, two actors/four enemies, real WebRTC, real casts/movement and personal reward clicks. Labelled HP/position/AI fixtures reach and arrange the visual sample, not a human run. The two loadouts demonstrate travelling Basin + Stone echo and capacity + tethered Updraft. Existing upgrade rules, timing, damage, interference and collision remain authoritative. A/B captures use identical scripted intents but wall-clock automation under software rendering is not pixel- or tick-identical playback. Grayscale and deuteranopia emulation help inspect grouping, not validate complete accessibility. Both templates returned from the real reward menu into the unchanged next encounter.
+
+## Measured proof footprint
+
+Build **dc555541c837**, Windows, headless Chromium 153 / ANGLE Vulkan **SwiftShader**, i7-10750H (6 cores/12 logical). The machine reports Quadro T1000 Max-Q and Intel UHD adapters, but neither was the renderer used for these measurements. Two same-machine WebRTC clients, 1440×900 CSS / 1152×720 buffer, Lightweight; four existing enemies, two fields, actual held Ember/Stone casts. AI disabled only for the matched resource sample; active pursuit/danger is covered in the motion journeys. No video recording/encoding during these samples. Each row is one 60-rAF-window/client, not repeated statistical benchmarking.
+
+| Sample | Draw calls | Triangles | Geometry resources host/guest | Textures | Mean frame ms host/guest | p95 ms host/guest |
+|---|---:|---:|---:|---:|---:|---:|
+| Greybox | 75 | 3,092 | 30/31 | 1 | 92.8/93.5 | 166.6/166.6 |
+| Storybook | 112 | 12,738 | 71/72 | 1 | 153.4/153.4 | 233.4/233.3 |
+| Ink | 112 | 7,290 | 71/72 | 2 | 132.2/131.4 | 199.9/183.4 |
+
+These slow software frames are not laptop GPU predictions. A is the visual recommendation despite greater measured cost; B is the cheaper geometry/material alternative. There is no measured hardware 60 FPS claim. The extra texture in B is its tiny diffuse ramp; the GLBs themselves have zero textures. The nine GLBs total **280,860 bytes A / 174,132 bytes B**, raw file sizes, not compressed transfer. Local fetch+parse measured A 26.6/668.5 ms host/guest and B 58.3/206.7 ms; contention/cache/order makes these observations unsuitable as Internet loading estimates. Existing Rapier remains the largest bundle component.
+
+Four reset cycles per direction did not grow texture or geometry counts; a single local mage retained one mixer. Standard screenshots use the same posed scene at 1440×900 buffer with existing shadows enabled; the visual identity is already present in Lightweight. Keep this proof's measured resource footprint as a rollout reference, not a universal polygon budget. Avoid multiplying per-object material variants, floor pieces or transparent effect layers as the room vocabulary grows. Full samples and reset data are in `artifacts/art-proof`.
+
+### Small rollout, not automatic expansion
+
+1. Refine this one mage's cloth/step animation and replace very fine trim with wider, calmer fitted joints. Keep the validated scale/pivots and stable personal identity.
+2. Extend the winning stone/brace vocabulary into a few wall/cap/floor modules inside the existing colliders. Compose one readable landmark per existing arrangement; do not clone five identical arches or add obstacles.
+3. Apply the chosen UI/effect treatment to the run and recheck the same paired reaction/upgrade/reset clips in both quality modes. Broader regional palettes come later; no new gameplay systems are needed.
+
+Stop here. Do not reskin all five encounters or expand mechanics without the next task.

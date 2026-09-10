@@ -1,0 +1,38 @@
+{
+  "build": "dc555541c837",
+  "baseline": "c3fc5e6 clean; 74 units/build passed",
+  "checkpoint": "af05c99 pushed/remote confirmed; Cloudflare success",
+  "unitTests": {
+    "passed": 74
+  },
+  "productionBuild": "pass; existing Rapier bundle warning",
+  "fullBrowserSweep": {
+    "build": "7b516950863a",
+    "passed": 36,
+    "failed": 1,
+    "skipped": 1,
+    "failure": "Existing stale-input freeze timing; passed isolated reruns. Capture encoding/public writes overlapped original sweep; exact cause unproven."
+  },
+  "finalFocusedBrowser": {
+    "passed": 10,
+    "failed": 0,
+    "includes": "4 paired motion, 3 active-art performance, 2 asset/reset/quality/expiry, 1 shared-magic/stale-input/delay"
+  },
+  "gallery": {
+    "passed": 1,
+    "videoCount": 4,
+    "note": "Explicit index.html and nonzero media assertions corrected initial false-positive directory-route test"
+  },
+  "glb": {
+    "count": 18,
+    "errors": 0,
+    "warnings": 0
+  },
+  "limits": [
+    "No final whole-suite clean sweep",
+    "Same-machine WebRTC; no remote laptop/TURN revalidation",
+    "SwiftShader measurements are not laptop GPU claims",
+    "Motion uses labelled lifecycle/position fixtures and real controls; not a human run",
+    "No physical trackpad or full accessibility validation"
+  ]
+}

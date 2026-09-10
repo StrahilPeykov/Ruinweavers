@@ -1,4 +1,6 @@
-Current milestone: [Run Prototype 0.1](RUN.md). Default is the five-beat run; previous trial and networking sections below are dated evidence, not restrictions on this authorized milestone. Current controls remain accepted; no claim of solved balance.
+Current visual milestone: [Art Direction Proof](ART.md). Root opens one mixed court; use ?scene=run for the unchanged run. The following run/combat sections retain gameplay evidence.
+
+Gameplay baseline: [Run Prototype 0.1](RUN.md). The explicit run entry is the five-beat run; previous trial and networking sections below are dated evidence, not restrictions on this authorized milestone. Current controls remain accepted; no claim of solved balance.
 
 # Experiments / current recommendation
 

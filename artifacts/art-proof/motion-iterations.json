@@ -1,0 +1,13 @@
+{
+  "build": "7b516950863a",
+  "attempt": "initial motion fixtures",
+  "passed": [
+    "ink flow-echo"
+  ],
+  "failed": {
+    "storybook flow-echo": "No Stone cast recorded: guest remained Ember after epoch/teleport; fixture now waits for epoch and camera settling before input.",
+    "storybook capacity-tether": "Slab fixture raised support under guest; tether correctly stopped at height change. Slab moved away.",
+    "ink capacity-tether": "Same slab/support fixture error."
+  },
+  "gameplayRuleChanges": false
+}

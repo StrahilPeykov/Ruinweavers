@@ -1,5 +1,5 @@
 {
-  "build": "7b516950863a",
+  "build": "dc555541c837",
   "config": {
     "model": "primary-secondary",
     "camera": "balanced",
@@ -49,8 +49,8 @@
     },
     "verticalSpeed": 0,
     "reviveProgress": 0,
-    "time": 2.2333333333333303,
-    "tick": 134,
+    "time": 2.3166666666666633,
+    "tick": 139,
     "seed": 123,
     "entities": [
       {
@@ -479,7 +479,7 @@
       "encounter": 2,
       "isolated": true,
       "scenario": "cross-cover",
-      "elapsed": 2.2333333333333303,
+      "elapsed": 2.3166666666666633,
       "started": 0,
       "results": []
     },
@@ -573,9 +573,9 @@
       },
       "pixelRatio": 0.8,
       "shadows": false,
-      "samples": 121,
-      "frameMs": 79.0595041322314,
-      "p95FrameMs": 233.29999999999927,
+      "samples": 134,
+      "frameMs": 71.38955223880596,
+      "p95FrameMs": 200,
       "drawCalls": 76,
       "triangles": 9844,
       "activeVfx": 0,
@@ -587,7 +587,7 @@
         "active": true,
         "ready": true,
         "error": "",
-        "loadMs": 40.19999999925494,
+        "loadMs": 30.200000001117587,
         "downloadBytes": 280860,
         "assets": 9,
         "animationMixers": 1,
@@ -609,14 +609,6 @@
             1.659999966621399,
             0.5400000214576721
           ],
-          "pursuer": [
-            -0.5174112915992737,
-            0.02499997615814209,
-            -0.5699999928474426,
-            0.5174112915992737,
-            0.949999988079071,
-            0.5600000023841858
-          ],
           "cover": [
             -0.8999999761581421,
             0,
@@ -624,6 +616,14 @@
             0.8999999761581421,
             1.7000000476837158,
             1.100000023841858
+          ],
+          "pursuer": [
+            -0.5174112915992737,
+            0.02499997615814209,
+            -0.5699999928474426,
+            0.5174112915992737,
+            0.949999988079071,
+            0.5600000023841858
           ],
           "landmark": [
             -5.25,
@@ -666,12 +666,13 @@
             0.36000001430511475
           ]
         }
-      }
+      },
+      "fieldFeedback": []
     },
     "audio": {
       "muted": false,
       "context": "running",
-      "played": 6
+      "played": 4
     },
     "activeManifestations": 0
   }

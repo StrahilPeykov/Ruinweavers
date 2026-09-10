@@ -1,5 +1,5 @@
 {
-  "build": "7b516950863a",
+  "build": "dc555541c837",
   "config": {
     "model": "primary-secondary",
     "camera": "balanced",
@@ -26,31 +26,31 @@
       "mage-1": {
         "activePrinciple": "Ember",
         "aim": {
-          "x": -0.285295620793681,
+          "x": -0.22272096604410274,
           "y": 0.000001429491405247063,
-          "z": -2.11720993996947,
+          "z": -1.9135399219368097,
           "body": false,
           "invalid": false
         },
-        "primaryReady": 1.4033333333333344,
+        "primaryReady": 0.9200000000000002,
         "secondaryReady": 0,
-        "dodgeReady": 1.650000000000001,
-        "dodgeUntil": 1.070000000000001,
-        "invulnerableUntil": 1.020000000000001,
+        "dodgeReady": 1.600000000000001,
+        "dodgeUntil": 1.020000000000001,
+        "invulnerableUntil": 0.9700000000000009,
         "dodgeDirection": {
           "x": -0.7071067811865475,
           "y": 0,
           "z": -0.7071067811865475
         },
-        "castUntil": 1.2033333333333345,
+        "castUntil": 0.7200000000000002,
         "verticalSpeed": 0,
         "reviveProgress": 0
       }
     },
     "verticalSpeed": 0,
     "reviveProgress": 0,
-    "time": 3.1666666666666603,
-    "tick": 190,
+    "time": 2.8666666666666614,
+    "tick": 172,
     "seed": 123,
     "entities": [
       {
@@ -58,14 +58,14 @@
         "kind": "player",
         "label": "You",
         "pos": {
-          "x": -3.9603025913238525,
-          "y": 2.325282573699951,
-          "z": 1.3514879941940308
+          "x": -3.8839285373687744,
+          "y": 0.7200842499732971,
+          "z": 1.5990631580352783
         },
         "velocity": {
-          "x": -0.0008446829742752016,
-          "y": 0.004359653685241938,
-          "z": 0.0035899025388062
+          "x": 0,
+          "y": 0.0001634870277484879,
+          "z": -0.005715233739465475
         },
         "rotation": {
           "x": 0,
@@ -76,7 +76,7 @@
         "radius": 0.38,
         "height": 1.4,
         "mass": 2,
-        "hp": 88,
+        "hp": 74,
         "maxHp": 100,
         "material": {
           "wettable": true,
@@ -91,9 +91,9 @@
         "stagger": 0,
         "staggerReady": 0,
         "sources": {
-          "damage": "encounter-2-pursuer-2"
+          "damage": "encounter-2-sentinel-0"
         },
-        "hitAt": 2.0166666666666644
+        "hitAt": 2.666666666666662
       },
       {
         "id": "timber",
@@ -180,20 +180,20 @@
         "kind": "loose",
         "label": "Loose stone",
         "pos": {
-          "x": -2.7445640563964844,
-          "y": 0.37488624453544617,
-          "z": 2.3698718547821045
+          "x": -2.243670701980591,
+          "y": 0.37488827109336853,
+          "z": 2.595245361328125
         },
         "velocity": {
-          "x": -1.7867721319198608,
-          "y": -0.0008542082505300641,
-          "z": -0.6748717427253723
+          "x": -1.8218166828155518,
+          "y": -0.0005752292345277965,
+          "z": -0.5733439922332764
         },
         "rotation": {
-          "x": -0.000056192260672105476,
-          "y": 0.007774568162858486,
-          "z": 0.000013091461369185708,
-          "w": 0.9999698400497437
+          "x": -0.0000504962372360751,
+          "y": 0.005347451660782099,
+          "z": 0.00002071139715553727,
+          "w": 0.9999856948852539
         },
         "radius": 0.38,
         "height": 0.75,
@@ -220,9 +220,9 @@
         "kind": "sentinel",
         "label": "Sentinel",
         "pos": {
-          "x": -5.9156413078308105,
+          "x": -5.922049522399902,
           "y": 0.7999644875526428,
-          "z": -5.814703464508057
+          "z": -5.82280969619751
         },
         "velocity": {
           "x": 0,
@@ -257,11 +257,11 @@
         "ai": {
           "enabled": true,
           "phase": "telegraph",
-          "timer": 0.6333333333333324,
+          "timer": 0.9333333333333333,
           "locked": {
-            "x": -3.9602878093719482,
-            "y": 2.3252062797546387,
-            "z": 1.3514251708984375
+            "x": -3.8839285373687744,
+            "y": 0.7200813889503479,
+            "z": 1.5991631746292114
           },
           "started": 2.749999999999995,
           "targetId": "mage-1"
@@ -272,14 +272,14 @@
         "kind": "sentinel",
         "label": "Sentinel",
         "pos": {
-          "x": 5.671753883361816,
+          "x": 5.598369598388672,
           "y": 0.7999645471572876,
-          "z": -5.666330337524414
+          "z": -5.616497039794922
         },
         "velocity": {
-          "x": 0,
+          "x": -0.0994739830493927,
           "y": 0,
-          "z": 0
+          "z": 0.0756964311003685
         },
         "rotation": {
           "x": 0,
@@ -308,14 +308,14 @@
         "hitAt": -10,
         "ai": {
           "enabled": true,
-          "phase": "telegraph",
-          "timer": 1.0166666666666668,
+          "phase": "recover",
+          "timer": 0.26666666666666566,
           "locked": {
-            "x": -3.9602878093719482,
-            "y": 2.3252062797546387,
-            "z": 1.3514251708984375
+            "x": -3.883451223373413,
+            "y": 0.720073401927948,
+            "z": 1.6047173738479614
           },
-          "started": 3.133333333333327,
+          "started": 0.9833333333333347,
           "targetId": "mage-1"
         }
       },
@@ -324,13 +324,13 @@
         "kind": "pursuer",
         "label": "Pursuer",
         "pos": {
-          "x": -3.9648823738098145,
-          "y": 0.5499646067619324,
-          "z": 1.598387360572815
+          "x": -3.9997806549072266,
+          "y": 0.5499645471572876,
+          "z": 2.4982194900512695
         },
         "velocity": {
           "x": 0,
-          "y": -8.644531201973393e-10,
+          "y": 0,
           "z": 0
         },
         "rotation": {
@@ -342,7 +342,7 @@
         "radius": 0.5,
         "height": 1.1,
         "mass": 4,
-        "hp": 76,
+        "hp": 90,
         "maxHp": 90,
         "material": {
           "wettable": true,
@@ -356,18 +356,16 @@
         "burning": false,
         "stagger": 0,
         "staggerReady": 0,
-        "sources": {
-          "damage": "encounter-2-sentinel-0"
-        },
-        "hitAt": 2.749999999999995,
+        "sources": {},
+        "hitAt": -10,
         "ai": {
           "enabled": true,
           "phase": "recover",
-          "timer": -0.050000000000000946,
+          "timer": 0.249999999999999,
           "locked": {
-            "x": -3.9602878093719482,
-            "y": 2.3252062797546387,
-            "z": 1.3514251708984375
+            "x": -3.8839285373687744,
+            "y": 0.7200813889503479,
+            "z": 1.5991631746292114
           },
           "started": 1.3666666666666667,
           "targetId": "mage-1"
@@ -378,14 +376,14 @@
         "kind": "pursuer",
         "label": "Pursuer",
         "pos": {
-          "x": -1.859919548034668,
-          "y": 0.5499645471572876,
-          "z": 2.1557347774505615
+          "x": -1.3608644008636475,
+          "y": 0.5499644875526428,
+          "z": 2.375662326812744
         },
         "velocity": {
-          "x": -1.7292308807373047,
-          "y": -3.8805109126016646e-10,
-          "z": -0.6637492775917053
+          "x": -1.7711111307144165,
+          "y": 4.712049084254488e-10,
+          "z": -0.5424121618270874
         },
         "rotation": {
           "x": 0,
@@ -396,7 +394,7 @@
         "radius": 0.5,
         "height": 1.1,
         "mass": 4,
-        "hp": 86.63619048283235,
+        "hp": 86.8156518238965,
         "maxHp": 90,
         "material": {
           "wettable": true,
@@ -413,15 +411,15 @@
         "sources": {
           "damage": "world"
         },
-        "hitAt": 2.2666666666666635,
+        "hitAt": 2.2333333333333303,
         "ai": {
           "enabled": true,
           "phase": "idle",
-          "timer": -1.4266666666666652,
+          "timer": -1.1266666666666663,
           "locked": {
-            "x": -3.9602878093719482,
-            "y": 2.3252062797546387,
-            "z": 1.3514251708984375
+            "x": -3.8839285373687744,
+            "y": 0.7200813889503479,
+            "z": 1.5991631746292114
           },
           "started": 0,
           "targetId": "mage-1"
@@ -430,73 +428,73 @@
     ],
     "activePrinciple": "Ember",
     "aim": {
-      "x": -0.285295620793681,
+      "x": -0.22272096604410274,
       "y": 0.000001429491405247063,
-      "z": -2.11720993996947,
+      "z": -1.9135399219368097,
       "body": false,
       "invalid": false
     },
-    "primaryReady": 1.4033333333333344,
+    "primaryReady": 0.9200000000000002,
     "secondaryReady": 0,
-    "dodgeReady": 1.650000000000001,
-    "dodgeUntil": 1.070000000000001,
-    "invulnerableUntil": 1.020000000000001,
+    "dodgeReady": 1.600000000000001,
+    "dodgeUntil": 1.020000000000001,
+    "invulnerableUntil": 0.9700000000000009,
     "dodgeDirection": {
       "x": -0.7071067811865475,
       "y": 0,
       "z": -0.7071067811865475
     },
-    "castUntil": 1.2033333333333345,
+    "castUntil": 0.7200000000000002,
     "fields": [],
     "bolts": [
       {
-        "id": "enemy-12",
+        "id": "enemy-9",
         "source": "encounter-2-sentinel-1",
         "originalSource": "encounter-2-sentinel-1",
         "principle": "hostile",
         "pos": {
-          "x": -0.6270778127867108,
-          "y": 0.7473020650085944,
-          "z": -0.9819848908830552
+          "x": 1.0929045934474693,
+          "y": 0.7614129582375768,
+          "z": -2.1851707144130916
         },
         "velocity": {
-          "x": -5.61698723789157,
-          "y": -0.04646689601355366,
-          "z": 4.177254405630956
+          "x": -5.568896453500244,
+          "y": -0.04626190670365474,
+          "z": 4.2411545939982425
         },
-        "life": 1.8666666666666707,
+        "life": 2.1666666666666696,
         "radius": 0.3
       }
     ],
     "pending": [],
     "events": [
       {
-        "id": 11,
+        "id": 8,
         "time": 2.0166666666666644,
         "type": "melee-strike",
         "source": "encounter-2-pursuer-2",
         "pos": {
-          "x": -3.9593000411987305,
-          "y": 0.7199360728263855,
-          "z": 1.4961299896240234
+          "x": -3.8834872245788574,
+          "y": 0.7200988531112671,
+          "z": 1.6040964126586914
         },
         "duration": 0.3
       },
       {
-        "id": 13,
-        "time": 2.749999999999995,
+        "id": 10,
+        "time": 2.666666666666662,
         "type": "impact",
         "source": "encounter-2-sentinel-0",
         "pos": {
-          "x": -3.9804766178131104,
-          "y": 0.5499606728553772,
-          "z": 2.349139928817749
+          "x": -3.8838443756103516,
+          "y": 0.7200963497161865,
+          "z": 1.6001107692718506
         },
         "duration": 0.45,
         "principle": "Ember"
       }
     ],
-    "serial": 13,
+    "serial": 10,
     "sentinel": {
       "enabled": false,
       "phase": "idle",
@@ -521,32 +519,32 @@
           "source": "world",
           "recipient": "encounter-2-pursuer-3",
           "reason": "physical impact",
-          "amount": 3.3638095171676587
+          "amount": 3.1843481761035024
         },
-        "[\"encounter-2-sentinel-0\",\"encounter-2-pursuer-2\",\"sentinel bolt\"]": {
+        "[\"encounter-2-sentinel-0\",\"mage-1\",\"sentinel bolt\"]": {
           "source": "encounter-2-sentinel-0",
-          "recipient": "encounter-2-pursuer-2",
+          "recipient": "mage-1",
           "reason": "sentinel bolt",
           "amount": 14
         }
       },
       "outcomes": {
-        "mage-1:cast:Ember:primary": 3,
+        "mage-1:cast:Ember:primary": 2,
         "projectile:mage-1:expired": 1,
-        "projectile:mage-1:blocked": 2,
+        "projectile:mage-1:blocked": 1,
         "encounter-2-sentinel-0:projectile:attempt": 1,
         "encounter-2-pursuer-2:melee:attempt": 1,
         "encounter-2-pursuer-2:melee:contact": 1,
         "encounter-2-sentinel-1:projectile:attempt": 1,
-        "projectile:encounter-2-sentinel-0:hit:encounter-2-pursuer-2": 1
+        "projectile:encounter-2-sentinel-0:hit:mage-1": 1
       },
       "casts": {
-        "Ember:primary": 3
+        "Ember:primary": 2
       },
       "inputs": {
         "up:keyboard": 1,
         "left:keyboard": 1,
-        "primary:mouse": 3,
+        "primary:mouse": 2,
         "dodge:keyboard": 1
       },
       "switches": 0,
@@ -557,11 +555,11 @@
       },
       "damage": {
         "encounter-2-pursuer-2:melee strike": 12,
-        "world:physical impact": 3.3638095171676587,
+        "world:physical impact": 3.1843481761035024,
         "encounter-2-sentinel-0:sentinel bolt": 14
       },
-      "playerDamage": 12,
-      "blockedBolts": 2,
+      "playerDamage": 26,
+      "blockedBolts": 1,
       "sentinelDefeatTime": null,
       "combatStartedAt": null,
       "falls": 0
@@ -571,7 +569,7 @@
       "encounter": 2,
       "isolated": true,
       "scenario": "cross-cover",
-      "elapsed": 3.1666666666666603,
+      "elapsed": 2.8666666666666614,
       "started": 0,
       "results": []
     },
@@ -648,32 +646,32 @@
         "source": "world",
         "recipient": "encounter-2-pursuer-3",
         "reason": "physical impact",
-        "amount": 3.3638095171676587
+        "amount": 3.1843481761035024
       },
-      "[\"encounter-2-sentinel-0\",\"encounter-2-pursuer-2\",\"sentinel bolt\"]": {
+      "[\"encounter-2-sentinel-0\",\"mage-1\",\"sentinel bolt\"]": {
         "source": "encounter-2-sentinel-0",
-        "recipient": "encounter-2-pursuer-2",
+        "recipient": "mage-1",
         "reason": "sentinel bolt",
         "amount": 14
       }
     },
     "outcomes": {
-      "mage-1:cast:Ember:primary": 3,
+      "mage-1:cast:Ember:primary": 2,
       "projectile:mage-1:expired": 1,
-      "projectile:mage-1:blocked": 2,
+      "projectile:mage-1:blocked": 1,
       "encounter-2-sentinel-0:projectile:attempt": 1,
       "encounter-2-pursuer-2:melee:attempt": 1,
       "encounter-2-pursuer-2:melee:contact": 1,
       "encounter-2-sentinel-1:projectile:attempt": 1,
-      "projectile:encounter-2-sentinel-0:hit:encounter-2-pursuer-2": 1
+      "projectile:encounter-2-sentinel-0:hit:mage-1": 1
     },
     "casts": {
-      "Ember:primary": 3
+      "Ember:primary": 2
     },
     "inputs": {
       "up:keyboard": 1,
       "left:keyboard": 1,
-      "primary:mouse": 3,
+      "primary:mouse": 2,
       "dodge:keyboard": 1
     },
     "switches": 0,
@@ -684,11 +682,11 @@
     },
     "damage": {
       "encounter-2-pursuer-2:melee strike": 12,
-      "world:physical impact": 3.3638095171676587,
+      "world:physical impact": 3.1843481761035024,
       "encounter-2-sentinel-0:sentinel bolt": 14
     },
-    "playerDamage": 12,
-    "blockedBolts": 2,
+    "playerDamage": 26,
+    "blockedBolts": 1,
     "sentinelDefeatTime": null,
     "combatStartedAt": null,
     "falls": 0,
@@ -706,11 +704,11 @@
       },
       "pixelRatio": 0.8,
       "shadows": false,
-      "samples": 83,
-      "frameMs": 75.29759036144577,
-      "p95FrameMs": 233.30000000000018,
-      "drawCalls": 92,
-      "triangles": 11036,
+      "samples": 94,
+      "frameMs": 67.01808510638297,
+      "p95FrameMs": 183.4000000000001,
+      "drawCalls": 86,
+      "triangles": 10616,
       "activeVfx": 1,
       "geometries": 53,
       "textures": 1,
@@ -720,7 +718,7 @@
         "active": true,
         "ready": true,
         "error": "",
-        "loadMs": 40.19999999925494,
+        "loadMs": 30.200000001117587,
         "downloadBytes": 280860,
         "assets": 9,
         "animationMixers": 1,
@@ -742,14 +740,6 @@
             1.659999966621399,
             0.5400000214576721
           ],
-          "pursuer": [
-            -0.5174112915992737,
-            0.02499997615814209,
-            -0.5699999928474426,
-            0.5174112915992737,
-            0.949999988079071,
-            0.5600000023841858
-          ],
           "cover": [
             -0.8999999761581421,
             0,
@@ -757,6 +747,14 @@
             0.8999999761581421,
             1.7000000476837158,
             1.100000023841858
+          ],
+          "pursuer": [
+            -0.5174112915992737,
+            0.02499997615814209,
+            -0.5699999928474426,
+            0.5174112915992737,
+            0.949999988079071,
+            0.5600000023841858
           ],
           "landmark": [
             -5.25,
@@ -799,12 +797,13 @@
             0.36000001430511475
           ]
         }
-      }
+      },
+      "fieldFeedback": []
     },
     "audio": {
       "muted": false,
       "context": "running",
-      "played": 6
+      "played": 4
     },
     "activeManifestations": 0
   }

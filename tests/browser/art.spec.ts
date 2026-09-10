@@ -52,6 +52,14 @@ for (const art of ["storybook", "ink"])
     await page.locator("#trial-action").click();
     await page.waitForTimeout(200);
     await capture(page, `${art}-quiet`);
+    await page.keyboard.down("w");
+    await page.waitForTimeout(800);
+    await page.keyboard.up("w");
+    await page.waitForTimeout(350);
+    await capture(page, `${art}-landmark`);
+    const landmarkPos = await page.evaluate(
+      () => window.__RUINWEAVERS__.getPlayerState().pos,
+    );
     const before = await page.evaluate(
       () => window.__RUINWEAVERS__.getMetrics().render,
     );
@@ -69,4 +77,55 @@ for (const art of ["storybook", "ink"])
       `${dir}/${art}-resets.json`,
       JSON.stringify({ before, after }, null, 2),
     );
+    await page.locator("#experiments").click();
+    await page.locator("#quality").selectOption("standard");
+    await page.locator("#close").click();
+    await page.evaluate((pos) => {
+      const api = window.__RUINWEAVERS__;
+      api.setPaused(true);
+      api.setupTestState({
+        enemyEnabled: false,
+        entities: [{ id: "mage-1", pos }],
+      });
+      api.setPaused(false);
+    }, landmarkPos);
+    await page.locator("#trial-action").click();
+    await page.waitForFunction(
+      () => window.__RUINWEAVERS__.getMetrics().render.samples >= 60,
+    );
+    await capture(page, `${art}-standard`);
+    expect(
+      await page.evaluate(
+        () => window.__RUINWEAVERS__.getMetrics().render.shadows,
+      ),
+    ).toBe(true);
+    // Cast normally; only shorten its life with the existing paused fixture.
+    await page.keyboard.press("4");
+    const point = await page.evaluate(() =>
+      window.__RUINWEAVERS__.projectWorld({ x: 0, y: 0, z: -2 }),
+    );
+    await page.mouse.move(point.x, point.y);
+    await page.keyboard.press("f");
+    await page.waitForFunction(() =>
+      window.__RUINWEAVERS__
+        .getState()
+        .fields.some((f: { principle: string }) => f.principle === "Stone"),
+    );
+    await page.evaluate(() => {
+      const api = window.__RUINWEAVERS__;
+      api.setPaused(true);
+      api.setupTestState({ fieldLife: 1.5 });
+      api.setPaused(false);
+    });
+    await page.waitForFunction(
+      () =>
+        window.__RUINWEAVERS__.getMetrics().render.fieldFeedback[0]
+          ?.expiryOpacity < 0.69,
+    );
+    const feedback = await page.evaluate(
+      () => window.__RUINWEAVERS__.getMetrics().render.fieldFeedback[0],
+    );
+    expect(feedback.ownerOpacity).toBe(0.8);
+    expect(feedback.ownerHeight).toBe(0.8);
+    expect(feedback.expiryOpacity).toBeGreaterThanOrEqual(0.35);
   });

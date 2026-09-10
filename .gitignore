@@ -19,3 +19,6 @@ assets/art-source/*/*.glb
 
 # Full art study videos stay local; selected short clips are tracked.
 artifacts/art-proof/raw/
+
+artifacts/art-proof/iterations/
+artifacts/art-proof/**/raw/

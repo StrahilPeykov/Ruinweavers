@@ -616,6 +616,7 @@ export class View {
               g.add(r);
             }
         }
+        g.children[g.children.length - 1].name = "expiry-cue";
         if (this.art.active) {
           // Fitted, open strokes: boundaries remain exact; nothing hides bodies.
           if (f.principle === "Tide" || f.principle === "Gale") {
@@ -652,11 +653,12 @@ export class View {
             g.add(joint);
           }
           const owner = this.disc(0.1, 0xffeac4, 0.8);
-          owner.position.set(-0.18, 0.12, 0);
+          owner.name = "owner-mark";
+          owner.position.set(-0.18, f.principle === "Stone" ? 0.8 : 0.12, 0);
           g.add(owner);
           if (f.source === "mage-2") {
             const second = this.disc(0.1, 0xffeac4, 0.8);
-            second.position.set(0.18, 0.12, 0);
+            second.position.set(0.18, f.principle === "Stone" ? 0.8 : 0.12, 0);
             g.add(second);
           }
         }
@@ -666,7 +668,7 @@ export class View {
       g.position.set(f.pos.x, f.pos.y + 0.07, f.pos.z);
       if (f.principle === "Gale") g.rotation.y = t;
       // Solid cover never blinks out visually while it still has a collider.
-      const rim = g.children[g.children.length - 1] as T.Mesh;
+      const rim = g.getObjectByName("expiry-cue") as T.Mesh;
       if (rim.material && "opacity" in rim.material)
         rim.material.opacity =
           f.life < 2 ? 0.35 + 0.35 * Math.sin(t * 7) ** 2 : 0.7;
@@ -1003,6 +1005,20 @@ export class View {
       textures: this.renderer.info.memory.textures,
       contextLost: this.contextLost,
       art: this.art.metrics(),
+      fieldFeedback: [...this.fields].map(([id, group]) => {
+        const cue = group.getObjectByName("expiry-cue") as T.Mesh<
+          T.BufferGeometry,
+          T.Material
+        >;
+        const owner = group.getObjectByName("owner-mark") as
+          T.Mesh<T.BufferGeometry, T.Material> | undefined;
+        return {
+          id,
+          expiryOpacity: cue?.material.opacity,
+          ownerOpacity: owner?.material.opacity,
+          ownerHeight: owner?.position.y,
+        };
+      }),
     };
   }
 }
