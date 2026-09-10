@@ -85,7 +85,12 @@ export function configFromQuery(query = ""): Config {
     scenario: q.get("scenario") || "cross-cover",
     encounterVersion:
       q.get("encounterVersion") === "baseline" ? "baseline" : "candidate",
-    seed: Number(q.get("seed")) || 123,
+    seed:
+      q.has("seed") &&
+      q.get("seed") !== "" &&
+      Number.isFinite(Number(q.get("seed")))
+        ? Number(q.get("seed"))
+        : 123,
     ...TEMPOS[tempo in TEMPOS ? tempo : "balanced"],
     ...CAMERAS[camera in CAMERAS ? camera : "balanced"],
     secondaryCapacity: 1,

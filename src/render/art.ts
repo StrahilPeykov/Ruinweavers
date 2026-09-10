@@ -1,3 +1,4 @@
+import { roomPresentation } from "./rooms";
 import { BUILD_ID } from "../network/protocol";
 import { performMage } from "./performance";
 import * as T from "three";
@@ -59,7 +60,9 @@ export class ArtStudy {
   treatment: string;
   constructor() {
     const q = new URLSearchParams(location.search);
-    const value = q.get("art") ?? (!q.has("scene") ? "illustrated" : "off");
+    const value =
+      q.get("art") ??
+      (!q.has("scene") || q.get("scene") === "run" ? "illustrated" : "off");
     this.mode =
       value === "storybook" || value === "ink" || value === "illustrated"
         ? value
@@ -136,7 +139,12 @@ export class ArtStudy {
     this.loadMs = performance.now() - start;
   }
   enabled(s: State) {
-    return this.ready && this.mode !== "off" && s.trial?.encounter === 2;
+    return (
+      this.ready &&
+      this.mode !== "off" &&
+      ((this.mode === "illustrated" && !!roomPresentation(s)) ||
+        s.trial?.encounter === 2)
+    );
   }
   get palette() {
     if (this.treatment === "illustrated") return ART.illustrated;
@@ -322,6 +330,7 @@ export class ArtStudy {
     });
   }
   decorate(terrain: T.Group, s: State) {
+    const room = this.mode === "illustrated" ? roomPresentation(s) : undefined;
     // Thin inlay, not extra walking/collision geometry. Broad quiet tiles avoid
     // concentric ground symbols that could be mistaken for active fields.
     const tiles = new T.InstancedMesh(
@@ -352,7 +361,7 @@ export class ArtStudy {
     if (this.mode === "illustrated") {
       // Surviving pigment is confined to the court's edges; no luminous floor sigils.
       const pigment = new T.MeshStandardMaterial({
-        color: 0x748f93,
+        color: room?.pigment ?? 0x748f93,
         roughness: 1,
       });
       for (const x of [-11.5, 11.5]) {
@@ -375,10 +384,49 @@ export class ArtStudy {
     }
     const landmark = this.clone("landmark");
     if (this.mode === "illustrated") {
-      landmark.position.set(-12.84, 1.5, -3);
-      landmark.scale.setScalar(0.65);
+      const location = room?.landmark ?? [-12.84, 1.5, -3];
+      landmark.position.set(location[0], location[1], location[2]);
+      landmark.scale.setScalar(room?.scale ?? 0.65);
       landmark.rotation.y = Math.PI / 2;
       terrain.add(this.clone("surround"));
+      if (room) {
+        // Remote colonnade stays outside the solid arena boundary. Reuse one kit.
+        for (const x of room.columns) {
+          const column = this.clone("cover");
+          column.position.set(x, 0, -12.4);
+          column.scale.set(0.6, room.role === "approach" ? 1.6 : 2.2, 0.6);
+          terrain.add(column);
+        }
+      }
+      if (room?.role === "ward") {
+        landmark.name = "final-ward";
+        const binding = new T.Group();
+        binding.name = "ward-binding";
+        for (let i = 0; i < 3; i++) {
+          const stroke = new T.Mesh(
+            new T.BoxGeometry(0.09, 3, 0.09),
+            new T.MeshBasicMaterial({ color: 0xdca071 }),
+          );
+          stroke.position.set(0, 3.5, (i - 1) * 0.85);
+          stroke.rotation.x = (i - 1) * 0.22;
+          binding.add(stroke);
+        }
+        landmark.add(binding);
+        // A fitted wall crest closes when authority declares victory. It is on
+        // existing solid masonry, not an interactive door or a ground hazard.
+        const crest = new T.Group();
+        crest.name = "ward-crest";
+        crest.position.set(0, 1.08, -10.96);
+        for (let i = 0; i < 3; i++) {
+          const arc = new T.Mesh(
+            new T.TorusGeometry(0.75, 0.065, 5, 16, Math.PI * 0.59),
+            new T.MeshBasicMaterial({ color: 0xd6ad78 }),
+          );
+          arc.rotation.z = (i * Math.PI * 2) / 3 + 0.15;
+          crest.add(arc);
+        }
+        terrain.add(crest);
+      }
     } else landmark.position.set(0, 0, -13.2);
     terrain.add(landmark);
     for (const x of [-8, 8]) {
@@ -392,6 +440,30 @@ export class ArtStudy {
         cover.position.set(box.x, box.y - box.h / 2, box.z);
         terrain.add(cover);
       }
+  }
+  updateRoom(terrain: T.Group, s: State) {
+    const crest = terrain.getObjectByName("ward-crest");
+    if (crest)
+      crest.children.forEach((arc, i) => {
+        arc.rotation.z =
+          (i * Math.PI * 2) / 3 + (s.trial?.status === "victory" ? 0 : 0.15);
+        arc.position.y = s.trial?.status === "victory" ? 0 : (i - 1) * 0.08;
+        ((arc as T.Mesh).material as T.MeshBasicMaterial).color.setHex(
+          s.trial?.status === "victory" ? 0xc3e3cc : 0xd6ad78,
+        );
+      });
+    const ward = terrain.getObjectByName("ward-binding");
+    if (ward) {
+      const resolved = s.trial?.status === "victory";
+      ward.rotation.x = resolved ? Math.PI / 2 : 0;
+      ward.scale.y = resolved ? 0.12 : 1;
+      ward.traverse((o) => {
+        if (o instanceof T.Mesh)
+          (o.material as T.MeshBasicMaterial).color.setHex(
+            resolved ? 0xb8dfcc : 0xdca071,
+          );
+      });
+    }
   }
   metrics() {
     return {

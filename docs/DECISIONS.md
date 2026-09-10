@@ -1,3 +1,9 @@
+## Current: complete illustrated Broken Court
+
+Bright illustrated treatment now covers the existing five-beat run through an explicit room-presentation map and one shared asset library. Normal entry is the run; old proofs remain developer links. New run uses a fresh host-owned seed, Retry same seed preserves offers with fresh run identity and party readiness. Cosmetic clocks are separate from simulation time. No tuning, mechanics or provider changes. Stop at this complete small run; every checked commit is immediately pushed and verified.
+
+The earlier milestones below are historical, not current no-rollout restrictions.
+
 ## 2026-09-10 — One illustrated benchmark
 
 - Replace the provisional Storybook preference with a bright illustrated working treatment for one court. Shared-geometry comparison shows graphic treatment need not be dark; it does not isolate palette from shading. Preserve both old proofs and evidence.

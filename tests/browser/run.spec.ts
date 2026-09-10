@@ -1,6 +1,7 @@
+const evidenceRoot = `test-results/evidence-run.spec-${Date.now()}`;
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
-const dir = "artifacts/run-0.1";
+const dir = process.env.RUIN_RUN_CAPTURE_ROOT ?? `${evidenceRoot}/run-0.1`;
 const primaryHeld = new WeakMap<Page, boolean>();
 test("a held combat press cannot choose a reward; a fresh card press can", async ({
   page,
@@ -47,14 +48,34 @@ test("a held combat press cannot choose a reward; a fresh card press can", async
   await expect(page.locator("#reward-cards .chosen")).toBeVisible();
 });
 async function boot(p: Page) {
-  await p.goto("/?scene=run&quality=lightweight");
+  await p.goto(
+    `/?scene=run&seed=123&quality=${process.env.RUIN_RUN_QUALITY ?? "lightweight"}`,
+  );
   await p.waitForFunction(() => !!window.__RUINWEAVERS__);
 }
 test("guest opening the default run can join an unchanged trial host", async ({
   browser,
 }) => {
-  const ca = await browser.newContext(),
-    cb = await browser.newContext(),
+  const ca = await browser.newContext(
+      process.env.RUIN_RUN_VIDEO
+        ? {
+            recordVideo: {
+              dir: `${dir}/raw`,
+              size: { width: 1440, height: 900 },
+            },
+          }
+        : {},
+    ),
+    cb = await browser.newContext(
+      process.env.RUIN_RUN_VIDEO
+        ? {
+            recordVideo: {
+              dir: `${dir}/raw`,
+              size: { width: 1440, height: 900 },
+            },
+          }
+        : {},
+    ),
     a = await ca.newPage(),
     b = await cb.newPage();
   try {
@@ -154,13 +175,82 @@ async function capture(p: Page, name: string) {
 }
 async function complete(pages: Page[], label: string) {
   const started = Date.now();
-  const menus = new Set<number>();
+  const menus = new Set<number>(),
+    rooms = new Set<number>();
+  for (const p of pages)
+    await p.evaluate(() => {
+      const w = window as any;
+      w.runFrames = [];
+      w.measureRun = true;
+      let last = performance.now();
+      function sample(now: number) {
+        if (!w.measureRun) return;
+        const api = w.__RUINWEAVERS__,
+          s = api.getState(),
+          m = api.getMetrics().render;
+        if (w.runFrames.length < 30000)
+          w.runFrames.push({
+            ms: now - last,
+            room: s.trial.encounter,
+            status: s.trial.status,
+            draws: m.drawCalls,
+            geometries: m.geometries,
+            textures: m.textures,
+            fields: s.fields.length,
+          });
+        last = now;
+        requestAnimationFrame(sample);
+      }
+      requestAnimationFrame(sample);
+    });
   for (const p of pages) await installPolicy(p);
   while (Date.now() - started < 240000) {
     const s = await pages[0].evaluate(() => window.__RUINWEAVERS__.getState());
     if (["victory", "defeat"].includes(s.trial.status)) {
       for (const p of pages) await release(p);
+      await pages[0].waitForTimeout(650);
       await capture(pages[pages.length - 1], `${label}-${s.trial.status}`);
+      const measurements = [];
+      for (const p of pages)
+        measurements.push(
+          await p.evaluate(() => {
+            const w = window as any;
+            w.measureRun = false;
+            const samples = w.runFrames.filter(
+              (f: any) => f.status === "active",
+            );
+            const stats = (values: number[]) => {
+              values.sort((a, b) => a - b);
+              return {
+                n: values.length,
+                mean: values.reduce((a, b) => a + b, 0) / values.length,
+                p50: values[Math.floor(values.length * 0.5)],
+                p95: values[Math.floor(values.length * 0.95)],
+                p99: values[Math.floor(values.length * 0.99)],
+                max: values.at(-1),
+              };
+            };
+            return {
+              role: w.__RUINWEAVERS__.getNetworkState().role,
+              frames: stats(samples.map((f: any) => f.ms)),
+              rooms: [0, 1, 2, 3, 4].map((room) => ({
+                room,
+                frames: stats(
+                  samples
+                    .filter((f: any) => f.room === room)
+                    .map((f: any) => f.ms),
+                ),
+                maxDraws: Math.max(
+                  ...samples
+                    .filter((f: any) => f.room === room)
+                    .map((f: any) => f.draws),
+                ),
+              })),
+              maxFields: Math.max(...samples.map((f: any) => f.fields)),
+              render: w.__RUINWEAVERS__.getMetrics().render,
+            };
+          }),
+        );
       const environment = await pages[0].evaluate(() => ({
         build: window.__RUINWEAVERS__.getNetworkState().build,
         browser: navigator.userAgent,
@@ -172,6 +262,7 @@ async function complete(pages: Page[], label: string) {
         JSON.stringify(
           {
             environment,
+            measurements,
             wallSeconds: (Date.now() - started) / 1000,
             combatSeconds: s.trial.elapsed,
             status: s.trial.status,
@@ -186,6 +277,11 @@ async function complete(pages: Page[], label: string) {
         ),
       );
       expect(s.trial.status).toBe("victory");
+      expect(rooms.size).toBe(5);
+      for (const p of pages)
+        await p.waitForFunction(
+          () => window.__RUINWEAVERS__.getMetrics().render.courtResolved,
+        );
       expect(s.trial.results).toHaveLength(5);
       for (const p of pages) {
         const remote = await p.evaluate(() =>
@@ -231,6 +327,17 @@ async function complete(pages: Page[], label: string) {
         () => window.__RUINWEAVERS__.getState().trial.status === "active",
       );
     } else {
+      if (!rooms.has(s.trial.encounter)) {
+        for (const p of pages)
+          await p.waitForFunction(
+            () => window.__RUINWEAVERS__.getMetrics().render.art.active,
+          );
+        rooms.add(s.trial.encounter);
+        await capture(
+          pages[pages.length - 1],
+          `${label}-room-${s.trial.encounter + 1}`,
+        );
+      }
       for (const p of pages) await drive(p);
       await pages[0].waitForTimeout(75);
     }
@@ -254,8 +361,26 @@ test("complete two-client run with personal offers, waiting and synchronized res
   browser,
 }) => {
   test.setTimeout(290000);
-  const ca = await browser.newContext(),
-    cb = await browser.newContext(),
+  const ca = await browser.newContext(
+      process.env.RUIN_RUN_VIDEO
+        ? {
+            recordVideo: {
+              dir: `${dir}/raw`,
+              size: { width: 1440, height: 900 },
+            },
+          }
+        : {},
+    ),
+    cb = await browser.newContext(
+      process.env.RUIN_RUN_VIDEO
+        ? {
+            recordVideo: {
+              dir: `${dir}/raw`,
+              size: { width: 1440, height: 900 },
+            },
+          }
+        : {},
+    ),
     a = await ca.newPage(),
     b = await cb.newPage();
   try {
@@ -274,7 +399,11 @@ test("complete two-client run with personal offers, waiting and synchronized res
     );
     for (const p of [a, b]) await p.locator("#trial-action").click();
     await complete([a, b], "coop");
-    for (const p of [a, b]) await p.locator("#trial-action").click();
+    await a.locator("#trial-action").click();
+    await b.waitForFunction(
+      () => window.__RUINWEAVERS__.getState().trial.status === "ready",
+    );
+    await b.locator("#trial-action").click();
     for (const p of [a, b]) {
       await p.waitForFunction(
         () => window.__RUINWEAVERS__.getState().trial.status === "active",

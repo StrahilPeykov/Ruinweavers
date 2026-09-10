@@ -1,3 +1,4 @@
+const evidenceRoot = `test-results/evidence-art-performance.spec-${Date.now()}`;
 import { test, expect } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
 // Run this separately, without video recording/encoding or another browser suite.
@@ -5,8 +6,8 @@ const finish = process.env.RUIN_ART_FINISH === "1";
 const quality =
   process.env.RUIN_ART_QUALITY === "standard" ? "standard" : "lightweight";
 const output = finish
-  ? "artifacts/art-finish/performance"
-  : "artifacts/art-proof/performance";
+  ? `${evidenceRoot}/art-finish/performance`
+  : `${evidenceRoot}/art-proof/performance`;
 for (const art of finish
   ? ["storybook", "illustrated"]
   : ["off", "storybook", "ink"])

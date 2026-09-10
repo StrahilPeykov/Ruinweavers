@@ -1,3 +1,4 @@
+const evidenceRoot = `test-results/evidence-render-quality.spec-${Date.now()}`;
 import { test, expect } from "@playwright/test";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -74,10 +75,12 @@ test("local rendering quality reduces work, preserves fields, persists, and expo
   expect(report.render.renderer).toBeTruthy();
   expect(report.network).toMatchObject({ role: "solo", paths: [] });
   await page.locator("#close").click();
-  mkdirSync("artifacts/render-quality", { recursive: true });
-  await page.screenshot({ path: "artifacts/render-quality/lightweight.png" });
+  mkdirSync(`${evidenceRoot}/render-quality`, { recursive: true });
+  await page.screenshot({
+    path: `${evidenceRoot}/render-quality/lightweight.png`,
+  });
   writeFileSync(
-    "artifacts/render-quality/comparison.json",
+    `${evidenceRoot}/render-quality/comparison.json`,
     JSON.stringify(
       {
         context:

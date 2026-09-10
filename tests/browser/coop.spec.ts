@@ -1,3 +1,4 @@
+const evidenceRoot = `test-results/evidence-coop.spec-${Date.now()}`;
 import { test, expect, type Page } from "@playwright/test";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -5,7 +6,7 @@ import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
 const signaling = process.env.RUIN_SIGNALING ?? "local";
 const dir =
   process.env.RUIN_COOP_ARTIFACTS ??
-  `artifacts/coop-trial/browser/${signaling}`;
+  `${evidenceRoot}/coop-trial/browser/${signaling}`;
 const state = (p: Page) => p.evaluate(() => window.__RUINWEAVERS__.getState());
 async function ready(p: Page) {
   await p.goto("/?scene=trial&scenario=open-near");

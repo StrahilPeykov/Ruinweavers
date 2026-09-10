@@ -1,9 +1,10 @@
+const evidenceRoot = `test-results/evidence-art-motion.spec-${Date.now()}`;
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
 const finish = process.env.RUIN_ART_FINISH === "1";
 const dir = finish
-  ? "artifacts/art-finish/motion"
-  : "artifacts/art-proof/motion";
+  ? `${evidenceRoot}/art-finish/motion`
+  : `${evidenceRoot}/art-proof/motion`;
 // Keep reviewable visual evidence; full diagnostic histories stay local/on demand.
 const compactState = (s: any) =>
   s && {
@@ -319,7 +320,7 @@ for (const art of finish ? ["storybook", "illustrated"] : ["storybook", "ink"])
           await a.evaluate(
             () => window.__RUINWEAVERS__.getMetrics().render.art.active,
           ),
-        ).toBe(false);
+        ).toBe(art === "illustrated");
         evidence.returnToPlay = true;
         expect(errors).toEqual([]);
       } finally {

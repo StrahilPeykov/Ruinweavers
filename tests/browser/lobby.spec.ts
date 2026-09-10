@@ -1,3 +1,4 @@
+const evidenceRoot = `test-results/evidence-lobby.spec-${Date.now()}`;
 import { test, expect } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
 
@@ -52,12 +53,12 @@ test("short room codes copy, paste and join; connected labels keep their selecti
   expect(selected?.length).toBeGreaterThan(0);
   await host.waitForTimeout(400);
   expect(await host.evaluate(() => getSelection()?.toString())).toBe(selected);
-  mkdirSync("artifacts/room-sharing", { recursive: true });
+  mkdirSync(`${evidenceRoot}/room-sharing`, { recursive: true });
   await host.screenshot({
-    path: "artifacts/room-sharing/copied-connected.png",
+    path: `${evidenceRoot}/room-sharing/copied-connected.png`,
   });
   writeFileSync(
-    "artifacts/room-sharing/connected.json",
+    `${evidenceRoot}/room-sharing/connected.json`,
     JSON.stringify(
       await host.evaluate(() => ({
         network: window.__RUINWEAVERS__.getNetworkState(),
@@ -110,8 +111,8 @@ test("clipboard denial leaves a stable selected code for manual copying", async 
     await page.locator("#share-code").inputValue(),
   );
   await page.setViewportSize({ width: 860, height: 640 });
-  mkdirSync("artifacts/room-sharing", { recursive: true });
+  mkdirSync(`${evidenceRoot}/room-sharing`, { recursive: true });
   await page.screenshot({
-    path: "artifacts/room-sharing/manual-copy-compact.png",
+    path: `${evidenceRoot}/room-sharing/manual-copy-compact.png`,
   });
 });

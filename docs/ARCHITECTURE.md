@@ -1,5 +1,9 @@
 # Architecture
 
+Current illustrated-run additions: cosmetic mage pose accepts render delta and paused state; displayed displacement supplies locomotion, bounded against correction strides. Snapshot time remains authoritative. `render/rooms.ts` maps authored room identity to presentation; shared GLBs survive room replacement and instance resources are disposed. Victory presentation reads trial status only.
+
+Terminal `replay` controls carry epoch, run ID and fresh/same choice. Host alone generates fresh seeds; old messages fail epoch/run validation. The requester readies in the new run, partner must still ready. Static wire seed/config refresh on the epoch boundary; run identity remains separately generated. Legacy deterministic reset APIs remain available.
+
 `src/simulation/` owns plain serializable state, fixed-step timing, actors, operations, events, materials, projectiles and AI. No DOM or Three.js imports. `lab.ts` defines physical layout and stable entity IDs.
 
 `trial.ts` defines six reproducible arena configurations, two small enemy lineups plus their mixed encounter, and baseline/candidate enemy tuning. Trial enemies each own `Entity.ai`; the legacy singleton is retained only for the old Lab sentinel. `State.trial` owns ready/active/between/victory/defeat, stage results and elapsed combat time. Between encounters, positions and temporary manifestations reset while player health carries. Physics is rebuilt only at that boundary. Lab-only water/plate behavior is excluded from the trial.

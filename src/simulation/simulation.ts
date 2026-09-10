@@ -118,6 +118,19 @@ export class Simulation {
       initializeTrial(this.state, this.config);
     this.physics = new Physics(this.state);
   }
+  restartRun(expectedRun: string, seed: number) {
+    if (
+      this.replica ||
+      this.state.run?.id !== expectedRun ||
+      !Number.isSafeInteger(seed) ||
+      seed < 0 ||
+      seed > 0xffffffff
+    )
+      return false;
+    this.config.seed = seed;
+    this.reset();
+    return true;
+  }
   addPartner() {
     if (
       !this.state.trial ||

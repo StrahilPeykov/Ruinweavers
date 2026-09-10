@@ -1,3 +1,4 @@
+const evidenceRoot = `test-results/evidence-art-gallery.spec-${Date.now()}`;
 import { test, expect } from "@playwright/test";
 
 test("painted benchmark media and direct playable entry", async ({ page }) => {
@@ -56,12 +57,16 @@ test("art comparison media, compact layout and recommended entry", async ({
     ).toBe(960);
     await video.evaluate((node: HTMLVideoElement) => node.pause());
   }
-  await page.screenshot({ path: "artifacts/art-proof/gallery-desktop.png" });
+  await page.screenshot({
+    path: `${evidenceRoot}/art-proof/gallery-desktop.png`,
+  });
   await page.setViewportSize({ width: 860, height: 640 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(
     860,
   );
-  await page.screenshot({ path: "artifacts/art-proof/gallery-compact.png" });
+  await page.screenshot({
+    path: `${evidenceRoot}/art-proof/gallery-compact.png`,
+  });
   await page.goto("/?quality=lightweight");
   await page.waitForFunction(() => !!window.__RUINWEAVERS__);
   expect(

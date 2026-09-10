@@ -1,6 +1,7 @@
+const evidenceRoot = `test-results/evidence-art.spec-${Date.now()}`;
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
-const dir = "artifacts/art-proof";
+const dir = `${evidenceRoot}/art-proof`;
 mkdirSync(dir, { recursive: true });
 async function capture(p: Page, name: string) {
   await p.screenshot({ path: `${dir}/${name}.png` });

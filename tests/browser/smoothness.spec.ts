@@ -1,3 +1,4 @@
+const evidenceRoot = `test-results/evidence-smoothness.spec-${Date.now()}`;
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -34,9 +35,9 @@ test("measure real guest taps, held cast and movement over WebRTC with matched a
     await a.waitForFunction(
       () => window.__RUINWEAVERS__.getState().trial.status === "active",
     );
-    mkdirSync("artifacts/smoothness", { recursive: true });
+    mkdirSync(`${evidenceRoot}/smoothness`, { recursive: true });
     writeFileSync(
-      `artifacts/smoothness/${label}-environment.json`,
+      `${evidenceRoot}/smoothness/${label}-environment.json`,
       JSON.stringify(
         await b.evaluate(() => ({
           build: window.__RUINWEAVERS__.getNetworkState().build,
@@ -363,9 +364,9 @@ test("measure real guest taps, held cast and movement over WebRTC with matched a
       remoteTrace.some((r: any) => Math.abs(r.auth.x - r.visible.x) > 0.005),
     ).toBe(true);
     expect(mouseTaps).toEqual([1, 1, 1]);
-    mkdirSync("artifacts/smoothness", { recursive: true });
+    mkdirSync(`${evidenceRoot}/smoothness`, { recursive: true });
     writeFileSync(
-      `artifacts/smoothness/${label}-browser.json`,
+      `${evidenceRoot}/smoothness/${label}-browser.json`,
       JSON.stringify(
         {
           build: execFileSync("git", ["rev-parse", "HEAD"]).toString().trim(),
@@ -381,7 +382,9 @@ test("measure real guest taps, held cast and movement over WebRTC with matched a
         2,
       ),
     );
-    await b.screenshot({ path: `artifacts/smoothness/${label}-guest.png` });
+    await b.screenshot({
+      path: `${evidenceRoot}/smoothness/${label}-guest.png`,
+    });
     expect(errors).toEqual([]);
     if (label !== "baseline")
       for (const o of observations) expect(o.taps).toBe(3);

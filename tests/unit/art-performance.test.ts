@@ -96,6 +96,15 @@ test("rendered displacement animates between unchanged snapshots; corrections an
   e.pos.z = 8;
   performMage(model, e, state, 0.016);
   expect(model.userData.pose.stride).toBe(0);
+  model.userData.gait = Math.PI / 2;
+  e.pos.z += 0.2;
+  performMage(model, e, state, 0.001);
+  expect(
+    Math.abs(model.getObjectByName("thighL")!.rotation.x),
+  ).toBeLessThanOrEqual(0.65);
+  expect(
+    Math.abs(model.getObjectByName("thighL")!.rotation.z),
+  ).toBeLessThanOrEqual(0.42);
   e.pos.z = 9;
   performMage(model, e, state, 1);
   expect(model.userData.pose.stride).toBe(0);

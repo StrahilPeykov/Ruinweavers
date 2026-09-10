@@ -1,12 +1,14 @@
 # Run Prototype 0.1 — The Broken Court
 
-Current gameplay baseline. Explicit `/?scene=run`; the browser root now opens the bounded art proof (ART.md). `?scene=trial` and all Lab/isolated trial scenes preserve their unmodified no-upgrade baseline. Model A, balanced camera/tempo and accepted bindings remain the default. No classes, economy, permanent progression or new enemies.
+Current gameplay and presentation baseline. Root and `/?scene=run` open the illustrated five-beat run (ART.md). `?scene=trial` and all Lab/isolated trial scenes preserve their unmodified no-upgrade baseline. Model A, balanced camera/tempo and accepted bindings remain the default. No classes, economy, permanent progression or new enemies.
 
 ## Route and choices
 
 Five authored beats: The threshold (two sentinels), Footsteps in the court (three pursuers), The divided hall (two of each), The closing circle (three pursuers and a sentinel), The last ward (two sentinels and three pursuers). They reuse the open, cross-cover and side-cover courts. Enemy HP/damage and party rules are unchanged.
 
-After beats 1 and 3, each mage chooses one of three seeded offers, then continues/readies. No timer, contested pickup or forced shared build. Health and chosen alterations carry. Existing 35-HP downed revival and encounter-clear recovery remain; no extra healing. Victory/defeat offers a complete restart. The same seed produces the same offers; change seed in the URL for another reproducible offer sequence.
+After beats 1 and 3, each mage chooses one of three seeded offers, then continues/readies. No timer, contested pickup or forced shared build. Health and chosen alterations carry. Existing 35-HP downed revival and encounter-clear recovery remain; no extra healing. Victory/defeat offers New run (fresh host-owned uint32 seed) and Retry same seed (same offers given the same choices). Both clear health/build/effects; run generation increments separately from seed. Explicit seed URLs remain deterministic; no-seed ordinary entry starts fresh. Top Restart same seed resets the attempt. A fresh seed need not yield different cards.
+
+In co-op a terminal replay request carries epoch and run ID. The host validates it, generates any fresh seed, resets and readies the requester. The other mage must still ready. Duplicate/stale old-run requests are ignored; the guest receives seed/config through the existing refreshed static wire data. Legacy deterministic reset/ready methods remain available for diagnostics.
 
 | Alteration | Compatibility and behavior |
 | --- | --- |
@@ -39,4 +41,4 @@ Initial 12-case batch: all completed five beats. Solo attack-move 89–99 s, Bas
 
 Browser journeys use those policies only to choose intent, then execute real Playwright keyboard/mouse and reward-card clicks. They do not change HP, disable AI, teleport or inject casts. Separate lifecycle fixtures cover down/revive and stale choices. Local two-browser WebRTC proves the local integration, not remote laptop/TURN performance. Current build 906b3ba99fd4 completed the graphical solo run in 56.22 seconds of combat (63.91 wall) and the pair run in 51.72 seconds (67.66 wall), including both reward stops. Automated choices are fast; human duration remains unvalidated. Full test and screenshot results, including failed sweeps and focused reruns, are recorded in TESTING.md.
 
-Remaining gameplay questions: whether the five beats sustain interest beyond the first run; whether moving-field tradeoffs and the second reward are understandable; whether the short co-op duration feels like a satisfying culmination. The following milestone is visual distinction for this compact slice, not more systems.
+Remaining gameplay questions: whether the five beats sustain interest beyond the first run; whether moving-field tradeoffs and the second reward are understandable; whether the short co-op duration feels like a satisfying culmination. The illustrated rollout preserves these questions and does not rebalance combat or add systems.

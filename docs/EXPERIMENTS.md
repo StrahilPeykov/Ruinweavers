@@ -1,6 +1,6 @@
-Current visual milestone: [Art Direction Proof](ART.md). Root opens one mixed court; use ?scene=run for the unchanged run. The following run/combat sections retain gameplay evidence.
+Current baseline: the complete illustrated [Broken Court](ART.md). Root opens the five-beat run. Model A, balanced camera/tempo, accepted controls, spells, six alterations and party tuning remain unchanged. New run draws a fresh host-owned seed; Retry same seed repeats offers given the same choices. TESTING.md records current whole-run evidence. This is not proof of balance or subjective fun.
 
-Gameplay baseline: [Run Prototype 0.1](RUN.md). The explicit run entry is the five-beat run; previous trial and networking sections below are dated evidence, not restrictions on this authorized milestone. Current controls remain accepted; no claim of solved balance.
+Gameplay rules: [RUN.md](RUN.md). The previous trial/networking sections below are dated evidence, not restrictions on the illustrated rollout.
 
 # Experiments / current recommendation
 

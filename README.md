@@ -1,8 +1,10 @@
-# Ruinweavers — Illustrated benchmark
+# Ruinweavers — The Broken Court
 
-The current default is one refined painted court, with articulated travelling mages and selective pigment detail. [Play the benchmark](https://ruinweavers.strahil-peykov.workers.dev/) or [compare actual in-engine frames and clips](https://ruinweavers.strahil-peykov.workers.dev/art-finish/index.html). The existing solo/co-op run remains at `?scene=run`.
+The default is the complete illustrated five-encounter solo/co-op run. [Play](https://ruinweavers.strahil-peykov.workers.dev/). Personal alterations arrive after encounters one and three.
 
-`npm install` then `npm run dev` → http://127.0.0.1:5173/. Root opens the bright illustrated benchmark. Both earlier proofs remain at `?scene=trial/mixed&art=storybook|ink`. The shared-geometry corrective comparison uses `art=storybook&treatment=original|illustrated`. Explicit Lab/trial/run links without `art` retain old visuals. With `?scene=run&art=illustrated`, only the third court and its reward stop receive the treatment. No five-room reskin.
+`npm install` then `npm run dev` → http://127.0.0.1:5173/. New run obtains a fresh host-owned seed; Retry same seed reproduces offers given the same choices. Both clear health/build/effects and retain fresh run identity. Explicit `?scene=run&seed=123` remains reproducible. Co-op readies together again.
+
+Development links: `?scene=free`, `?scene=trial`, `?scene=run&art=off`, `?scene=trial/mixed&art=storybook|ink|illustrated`. Historical comparison pages remain at `/art-study/index.html` and `/art-finish/index.html`. Controls/settings and instruments stay collapsed during normal play.
 
 Both remote players refresh the same deployed build. Create co-op → copy the six-character code → partner enters it and presses Enter → both Ready. Keep Public Nostr selected. Existing TURN arrangement is unchanged; [connection limits](docs/COOP.md).
 
@@ -14,4 +16,4 @@ Validation: `npm test`, `npm run test:e2e`, `npm run build`. Run tests and histo
 
 After every checked coherent commit, immediately push to the existing upstream and verify it. Existing Cloudflare integration may deploy that push. No force-push, new providers/accounts, billing changes or unrelated direct deployment. See AGENTS.md.
 
-Stop at the visual proof. Applying the winner across the run is a separate bounded rollout, not authorization for more gameplay systems.
+Stop at the complete small illustrated run. Further systems or content expansion require a separate milestone.

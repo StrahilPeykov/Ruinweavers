@@ -1,3 +1,4 @@
+const evidenceRoot = `test-results/evidence-turn-live.spec-${Date.now()}`;
 import { test, expect } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
 // Opt-in: a small amount of real provider bandwidth; no game rendering.
@@ -100,9 +101,9 @@ test("TLS 443 relays data between two peers on ONE computer", async ({
       b.close();
     }
   }, servers);
-  mkdirSync("artifacts/turn-live", { recursive: true });
+  mkdirSync(`${evidenceRoot}/turn-live`, { recursive: true });
   writeFileSync(
-    "artifacts/turn-live/tls-443-transport.json",
+    `${evidenceRoot}/turn-live/tls-443-transport.json`,
     JSON.stringify(
       {
         at: new Date().toISOString(),

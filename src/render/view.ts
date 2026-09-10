@@ -509,6 +509,7 @@ export class View {
       }
       this.terrainKey = key;
     }
+    if (this.art.active) this.art.updateRoom(this.terrainGroup, s);
     this.labDecor.visible = !s.trial;
     this.labels.forEach((label) => (label.sprite.visible = !s.trial));
     for (const [id, g] of this.entities)
@@ -517,7 +518,11 @@ export class View {
         this.entities.delete(id);
       }
     this.center.lerp(
-      new T.Vector3(p.pos.x * 0.82, 0, p.pos.z * 0.82),
+      new T.Vector3(
+        s.run && s.trial?.status === "victory" ? 0 : p.pos.x * 0.82,
+        0,
+        s.run && s.trial?.status === "victory" ? 0 : p.pos.z * 0.82,
+      ),
       1 - Math.exp(-delta * 12),
     );
     const pitch = (this.config.cameraPitch * Math.PI) / 180,
@@ -1022,6 +1027,9 @@ export class View {
       textures: this.renderer.info.memory.textures,
       contextLost: this.contextLost,
       art: this.art.metrics(),
+      courtResolved:
+        !!this.terrainGroup.getObjectByName("ward-binding") &&
+        this.displayedState?.trial?.status === "victory",
       performances:
         this.art.mode === "illustrated"
           ? [...this.entities]

@@ -84,7 +84,7 @@ test("guest cosmetic gait advances between snapshots for both displayed mages", 
                 f.poses.find((p: any) => p.id === id)?.pose?.stride,
               ) !==
                 JSON.stringify(
-                  frames[i].poses.find((p: any) => p.id === id)?.pose,
+                  frames[i].poses.find((p: any) => p.id === id)?.pose?.stride,
                 ),
           );
         expect(

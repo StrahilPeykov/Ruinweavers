@@ -7,6 +7,7 @@ export class LabAudio {
   muted = readPreference("ruinweavers-muted-v1") === true;
   lastEvent = 0;
   played = 0;
+  roomCue = "";
   constructor() {
     const unlock = () => {
       this.context ??= new AudioContext();
@@ -28,6 +29,34 @@ export class LabAudio {
     this.lastEvent = Math.max(this.lastEvent, ...events.map((e) => e.id));
     const ctx = this.context;
     if (!ctx || ctx.state !== "running" || this.muted) return;
+    const cueKey = s.run
+      ? `${s.run.id}:${s.trial?.encounter}:${s.trial?.status}`
+      : "";
+    if (cueKey !== this.roomCue) {
+      this.roomCue = cueKey;
+      if (s.run && ["active", "victory"].includes(s.trial?.status ?? "")) {
+        const resolved = s.trial?.status === "victory";
+        for (const [i, hz] of (resolved
+          ? [196, 247, 294, 392]
+          : [147, 196]
+        ).entries()) {
+          const osc = ctx.createOscillator(),
+            gain = ctx.createGain(),
+            at = ctx.currentTime + i * 0.18;
+          osc.frequency.value = hz;
+          gain.gain.setValueAtTime(0, at);
+          gain.gain.linearRampToValueAtTime(0.012, at + 0.04);
+          gain.gain.exponentialRampToValueAtTime(0.0001, at + 1.3);
+          osc.connect(gain).connect(ctx.destination);
+          osc.start(at);
+          osc.stop(at + 1.4);
+          osc.onended = () => {
+            osc.disconnect();
+            gain.disconnect();
+          };
+        }
+      }
+    }
     let voices = 0;
     for (const e of events) {
       if (s.time - e.time > 0.2 || voices >= 4) continue;

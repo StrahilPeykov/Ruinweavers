@@ -1,3 +1,4 @@
+const evidenceRoot = `test-results/evidence-turn.spec-${Date.now()}`;
 import { test, expect } from "@playwright/test";
 import { mkdirSync } from "node:fs";
 test("relay-only diagnosis fails clearly before attempting direct-only matchmaking", async ({
@@ -12,9 +13,9 @@ test("relay-only diagnosis fails clearly before attempting direct-only matchmaki
   expect(
     await page.evaluate(() => window.__RUINWEAVERS__.getNetworkState().status),
   ).toBe("failed");
-  mkdirSync("artifacts/turn-setup", { recursive: true });
+  mkdirSync(`${evidenceRoot}/turn-setup`, { recursive: true });
   await page.screenshot({
-    path: "artifacts/turn-setup/missing-credentials.png",
+    path: `${evidenceRoot}/turn-setup/missing-credentials.png`,
   });
   await page
     .getByRole("button", { name: "Return to solo", exact: true })

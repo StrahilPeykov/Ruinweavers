@@ -642,3 +642,48 @@ body[data-art="illustrated"] #reward-cards strong {
     font-size: 24px;
   }
 }
+
+/* The complete court keeps instruments and reference links inside settings. */
+body.run-mode #control-hint,
+body.run-mode .trial-keys {
+  display: none;
+}
+body.run-mode header > .eyebrow {
+  display: none;
+}
+body.run-mode #trial-card {
+  border-radius: 3px 28px 3px 28px;
+  max-width: 680px;
+}
+body.run-mode #run-eyebrow {
+  display: block;
+  color: #cfb992;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+body.run-mode footer {
+  padding: 7px 14px;
+}
+body.run-mode #health {
+  margin-top: 4px;
+  font-size: 12px;
+}
+body.run-mode #principles {
+  gap: 20px;
+}
+body.run-mode #trial-copy {
+  line-height: 1.6;
+}
+#retry-seed {
+  margin-left: 12px;
+  background: transparent;
+}
+#retry-seed[hidden] {
+  display: none;
+}
+body.run-mode #upgrades {
+  font-size: 11px;
+}
+body.run-mode #panel #art-links {
+  flex-wrap: wrap;
+}

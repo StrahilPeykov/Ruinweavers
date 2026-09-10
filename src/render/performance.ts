@@ -34,6 +34,7 @@ export function performMage(
     !previous ||
     previous.epoch !== state.party?.epoch ||
     previous.run !== state.run?.id ||
+    previous.encounter !== state.trial?.encounter ||
     previous.tick > state.tick ||
     previous.alive !== entity.hp > 0 ||
     elapsed > 0.25;
@@ -45,12 +46,14 @@ export function performMage(
     dt > 0 && distance < Math.max(0.3, dt * 12) && entity.hp > 0;
   const vx = validMotion ? dx / dt : 0,
     vz = validMotion ? dz / dt : 0;
-  const speed = Math.min(8, Math.hypot(vx, vz));
+  const motionLength = Math.hypot(vx, vz);
+  const speed = Math.min(8, motionLength);
   data.motion = {
     x: entity.pos.x,
     z: entity.pos.z,
     epoch: state.party?.epoch,
     run: state.run?.id,
+    encounter: state.trial?.encounter,
     tick: state.tick,
     alive: entity.hp > 0,
   };
@@ -67,9 +70,13 @@ export function performMage(
       : Math.sin(data.cosmeticTime * 2) * 0.008;
   const heading = (model.parent?.rotation.y ?? 0) + Math.PI;
   const forward =
-    speed > 0.1 ? (vx * Math.sin(heading) + vz * Math.cos(heading)) / speed : 1;
+    speed > 0.1
+      ? (vx * Math.sin(heading) + vz * Math.cos(heading)) / motionLength
+      : 1;
   const side =
-    speed > 0.1 ? (vx * Math.cos(heading) - vz * Math.sin(heading)) / speed : 0;
+    speed > 0.1
+      ? (vx * Math.cos(heading) - vz * Math.sin(heading)) / motionLength
+      : 0;
   joints.thighL.rotation.x = stride * 0.65 * forward;
   joints.thighR.rotation.x = -stride * 0.65 * forward;
   joints.thighL.rotation.z = stride * 0.42 * side;

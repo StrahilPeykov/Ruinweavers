@@ -11,6 +11,9 @@ import {
 import { idleInput, vec } from "../../src/simulation/types";
 import { encodeSnapshot, WireReader } from "../../src/network/wire";
 beforeAll(initPhysics);
+it("explicit zero seed remains reproducible", () => {
+  expect(configFromQuery("?scene=run&seed=0").seed).toBe(0);
+});
 it("run uses Model A; the existing Lab retains Model B", () => {
   expect(configFromQuery("?scene=run&model=weave-unweave").model).toBe(
     "primary-secondary",
@@ -302,3 +305,25 @@ it.each([
     s.dispose();
   },
 );
+
+it("replay separates seed from run identity and rejects stale/duplicate resets", () => {
+  const sim = make(true),
+    seed = sim.state.seed,
+    id = sim.state.run!.id;
+  clear(sim);
+  const offers = structuredClone(sim.state.run!.reward!.offers);
+  expect(sim.restartRun(id, seed)).toBe(true);
+  expect(sim.state.run!.id).not.toBe(id);
+  const newId = sim.state.run!.id;
+  expect(sim.restartRun(id, 999)).toBe(false);
+  sim.ready("mage-1");
+  sim.ready("mage-1");
+  expect(sim.state.trial!.status).toBe("ready");
+  sim.ready("mage-2");
+  clear(sim);
+  expect(sim.state.run!.reward!.offers).toEqual(offers);
+  expect(sim.restartRun(newId, 98765)).toBe(true);
+  expect(sim.state.seed).toBe(98765);
+  expect(sim.state.run!.upgrades).toEqual({ "mage-1": [], "mage-2": [] });
+  sim.dispose();
+});

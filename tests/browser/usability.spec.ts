@@ -1,3 +1,4 @@
+const evidenceRoot = `test-results/evidence-usability.spec-${Date.now()}`;
 import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -173,10 +174,10 @@ test("Enter joins; both camera changes preserve party fields; rejection belongs 
     await a.evaluate(() => window.__RUINWEAVERS__.setPaused(true));
     await expect(a.locator("#cast-feedback")).toHaveText("Recovering");
     await expect(b.locator("#cast-feedback")).not.toHaveText("Recovering");
-    mkdirSync("artifacts/usability", { recursive: true });
-    await b.screenshot({ path: "artifacts/usability/guest-fields.png" });
+    mkdirSync(`${evidenceRoot}/usability`, { recursive: true });
+    await b.screenshot({ path: `${evidenceRoot}/usability/guest-fields.png` });
     writeFileSync(
-      "artifacts/usability/guest-fields.json",
+      `${evidenceRoot}/usability/guest-fields.json`,
       JSON.stringify(
         {
           build: execFileSync("git", ["rev-parse", "HEAD"]).toString().trim(),

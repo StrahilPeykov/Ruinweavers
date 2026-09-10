@@ -1,0 +1,307 @@
+{
+  "conditions": "Native headless Chrome 152; one Windows PC/Intel UHD D3D11, two local WebRTC contexts for co-op; no video or encoding. Frame instrumentation and real input driver active. Not a remote laptop measurement.",
+  "runs": [
+    {
+      "label": "solo",
+      "build": "dd2cd72b56d4",
+      "combatSeconds": 54.283333333331534,
+      "wallSeconds": 56.459,
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "double-inscription"
+        ]
+      },
+      "roles": [
+        {
+          "role": "solo",
+          "frames": {
+            "n": 3243,
+            "mean": 16.68297872340367,
+            "p50": 16.69999999999709,
+            "p95": 16.80000000000109,
+            "p99": 16.900000000001455,
+            "max": 50
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 424,
+                "mean": 16.62028301886794,
+                "p50": 16.69999999999891,
+                "p95": 16.800000000000182,
+                "p99": 16.800000000000182,
+                "max": 17
+              },
+              "maxDraws": 261
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 669,
+                "mean": 16.70089686098655,
+                "p50": 16.600000000002183,
+                "p95": 16.80000000000109,
+                "p99": 16.899999999999636,
+                "max": 33.30000000000109
+              },
+              "maxDraws": 305
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 749,
+                "mean": 16.67329773030708,
+                "p50": 16.69999999999709,
+                "p95": 16.799999999999272,
+                "p99": 16.900000000001455,
+                "max": 33.29999999999927
+              },
+              "maxDraws": 326
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 640,
+                "mean": 16.70296874999999,
+                "p50": 16.69999999999709,
+                "p95": 16.80000000000291,
+                "p99": 16.900000000001455,
+                "max": 50
+              },
+              "maxDraws": 322
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 761,
+                "mean": 16.69487516425755,
+                "p50": 16.69999999999709,
+                "p95": 16.80000000000291,
+                "p99": 16.900000000001455,
+                "max": 49.900000000001455
+              },
+              "maxDraws": 392
+            }
+          ],
+          "maxFields": 2,
+          "render": {
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1440,
+              "height": 900
+            },
+            "quality": "standard",
+            "geometries": 118,
+            "textures": 5,
+            "drawCalls": 265,
+            "triangles": 44302
+          }
+        }
+      ]
+    },
+    {
+      "label": "coop",
+      "build": "dd2cd72b56d4",
+      "combatSeconds": 48.49999999999853,
+      "wallSeconds": 55.684,
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "double-inscription"
+        ],
+        "mage-2": [
+          "double-inscription",
+          "stone-echo"
+        ]
+      },
+      "roles": [
+        {
+          "role": "host",
+          "frames": {
+            "n": 1344,
+            "mean": 37.29456845238103,
+            "p50": 33.30000000000291,
+            "p95": 50.099999999998545,
+            "p99": 66.79999999999563,
+            "max": 233.20000000000437
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 189,
+                "mean": 36.05449735449734,
+                "p50": 33.30000000000018,
+                "p95": 50,
+                "p99": 133.30000000000018,
+                "max": 149.80000000000018
+              },
+              "maxDraws": 354
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 261,
+                "mean": 36.42835249042145,
+                "p50": 33.29999999999927,
+                "p95": 50,
+                "p99": 100,
+                "max": 183.20000000000073
+              },
+              "maxDraws": 460
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 315,
+                "mean": 36.262539682539696,
+                "p50": 33.29999999999927,
+                "p95": 50,
+                "p99": 66.69999999999709,
+                "max": 216.6999999999971
+              },
+              "maxDraws": 430
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 189,
+                "mean": 39.20476190476189,
+                "p50": 33.39999999999418,
+                "p95": 50.10000000000582,
+                "p99": 116.59999999999854,
+                "max": 233.20000000000437
+              },
+              "maxDraws": 487
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 390,
+                "mean": 38.38307692307693,
+                "p50": 33.30000000000291,
+                "p95": 50.099999999998545,
+                "p99": 66.79999999999563,
+                "max": 216.5
+              },
+              "maxDraws": 488
+            }
+          ],
+          "maxFields": 4,
+          "render": {
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1440,
+              "height": 900
+            },
+            "quality": "standard",
+            "geometries": 141,
+            "textures": 5,
+            "drawCalls": 387,
+            "triangles": 53824
+          }
+        },
+        {
+          "role": "guest",
+          "frames": {
+            "n": 1319,
+            "mean": 37.48051554207744,
+            "p50": 33.30000000000291,
+            "p95": 50.099999999998545,
+            "p99": 66.70000000000437,
+            "max": 249.90000000000146
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 196,
+                "mean": 34.91581632653059,
+                "p50": 33.30000000000018,
+                "p95": 50,
+                "p99": 83.30000000000018,
+                "max": 116.5
+              },
+              "maxDraws": 356
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 252,
+                "mean": 36.87063492063492,
+                "p50": 33.30000000000109,
+                "p95": 50.099999999998545,
+                "p99": 83.29999999999927,
+                "max": 183.20000000000073
+              },
+              "maxDraws": 447
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 305,
+                "mean": 36.95967213114754,
+                "p50": 33.30000000000291,
+                "p95": 50.099999999998545,
+                "p99": 66.60000000000218,
+                "max": 233.20000000000073
+              },
+              "maxDraws": 434
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 184,
+                "mean": 39.00271739130435,
+                "p50": 33.30000000000291,
+                "p95": 66.29999999999563,
+                "p99": 83.40000000000146,
+                "max": 233
+              },
+              "maxDraws": 477
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 382,
+                "mean": 38.88141361256544,
+                "p50": 33.39999999999418,
+                "p95": 50.099999999998545,
+                "p99": 66.69999999999709,
+                "max": 249.90000000000146
+              },
+              "maxDraws": 478
+            }
+          ],
+          "maxFields": 4,
+          "render": {
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1440,
+              "height": 900
+            },
+            "quality": "standard",
+            "geometries": 141,
+            "textures": 5,
+            "drawCalls": 388,
+            "triangles": 54080
+          }
+        }
+      ]
+    }
+  ]
+}

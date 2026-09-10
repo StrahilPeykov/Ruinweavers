@@ -26,9 +26,11 @@ async function boot() {
   canvas.setAttribute("aria-label", "Ruinweavers Magic Lab");
   root.replaceChildren(canvas);
   const entryQuery = new URLSearchParams(location.search);
-  // Art study entry only. Explicit old scene links remain unmodified.
-  if (!entryQuery.has("scene")) entryQuery.set("scene", "trial/mixed");
+  // Ordinary entry is the complete run; explicit diagnostic scenes remain available.
+  if (!entryQuery.has("scene")) entryQuery.set("scene", "run");
   const config = configFromQuery(entryQuery.toString());
+  if (config.scene === "run" && !entryQuery.has("seed"))
+    config.seed = crypto.getRandomValues(new Uint32Array(1))[0];
   const sim = new Simulation(config),
     input = new Input(canvas),
     view = new View(canvas, config, sim);
@@ -179,7 +181,20 @@ async function boot() {
     else sim.advanceTrial();
     ui.last = 0;
   };
+  const replay = (fresh: boolean) => {
+    input.clear();
+    if (net?.active) net.replay(fresh);
+    else if (sim.state.run) {
+      const seed = fresh
+        ? crypto.getRandomValues(new Uint32Array(1))[0]
+        : sim.state.seed;
+      sim.restartRun(sim.state.run.id, seed);
+      sim.ready("mage-1");
+      paused = false;
+    }
+  };
   const ui = new UI(config, input, {
+    replay,
     choose: (runId, rewardId, upgrade) => {
       input.clear();
       if (net?.active) net.choose(runId, rewardId, upgrade);

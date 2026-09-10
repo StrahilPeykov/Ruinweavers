@@ -352,6 +352,8 @@ export class CoopSession {
               data.upgrade,
             );
           if (data.type === "ready") this.sim.ready("mage-2");
+          if (data.type === "replay" && typeof data.fresh === "boolean")
+            this.replayRequest("mage-2", data.runId, data.fresh);
           if (data.type === "restart") this.restartRequest("mage-2");
           if (data.type === "pause") this.togglePause();
         }
@@ -712,6 +714,36 @@ export class CoopSession {
       this.clearLocal();
     }
     this.sim.ready(id);
+  }
+  replayRequest(actor: string, runId: string, fresh: boolean) {
+    if (
+      this.role !== "host" ||
+      this.sim.state.run?.id !== runId ||
+      !["victory", "defeat"].includes(this.sim.state.trial?.status ?? "")
+    )
+      return;
+    const seed = fresh
+      ? crypto.getRandomValues(new Uint32Array(1))[0]
+      : this.sim.state.seed;
+    if (!this.sim.restartRun(runId, seed)) return;
+    this.epoch = this.sim.state.party!.epoch;
+    this.remoteEventAck = 0;
+    this.remoteMetaAck = -1;
+    this.local.clear();
+    this.remote.clear();
+    this.clearLocal();
+    this.paused = false;
+    this.sim.ready(actor);
+  }
+  replay(fresh: boolean) {
+    if (!this.connected || !this.sim.state.run) return;
+    const runId = this.sim.state.run.id;
+    if (this.role === "host") this.replayRequest(this.actorId, runId, fresh);
+    else
+      void this.controlAction?.send(
+        { type: "replay", epoch: this.epoch, runId, fresh },
+        { target: this.peerId },
+      );
   }
   restart() {
     if (!this.connected) return;

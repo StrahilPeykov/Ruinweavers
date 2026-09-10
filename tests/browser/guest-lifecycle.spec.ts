@@ -1,3 +1,4 @@
+const evidenceRoot = `test-results/evidence-guest-lifecycle.spec-${Date.now()}`;
 import { test, expect } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
 test("guest keeps held W and LMB after a non-final enemy dies", async ({
@@ -85,10 +86,12 @@ test("guest keeps held W and LMB after a non-final enemy dies", async ({
     );
     await b.mouse.up();
     await b.keyboard.up("w");
-    mkdirSync("artifacts/run-0.1", { recursive: true });
-    await b.screenshot({ path: "artifacts/run-0.1/held-input-current.png" });
+    mkdirSync(`${evidenceRoot}/run-0.1`, { recursive: true });
+    await b.screenshot({
+      path: `${evidenceRoot}/run-0.1/held-input-current.png`,
+    });
     writeFileSync(
-      "artifacts/run-0.1/held-input-current.json",
+      `${evidenceRoot}/run-0.1/held-input-current.json`,
       JSON.stringify(
         {
           build: await b.evaluate(

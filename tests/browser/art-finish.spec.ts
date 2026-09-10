@@ -1,6 +1,7 @@
+const evidenceRoot = `test-results/evidence-art-finish.spec-${Date.now()}`;
 import { test, expect } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
-const dir = process.env.RUIN_ART_CAPTURE_ROOT ?? "artifacts/art-finish";
+const dir = process.env.RUIN_ART_CAPTURE_ROOT ?? `${evidenceRoot}/art-finish`;
 mkdirSync(dir, { recursive: true });
 test("finished benchmark frame and movement", async ({ page }) => {
   await page.goto("/?scene=trial/mixed&art=illustrated&quality=lightweight");

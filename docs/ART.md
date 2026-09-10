@@ -1,6 +1,12 @@
-# Illustrated benchmark — current bounded study
+# The Broken Court — complete illustrated run
 
-Prefer the **bright illustrated painted court** for this one benchmark. Root startup opens it; `?scene=trial/mixed&art=illustrated` is explicit. The previous proofs remain at `art=storybook|ink`; `?scene=run` remains unmodified. `?scene=run&art=illustrated` dresses only the third court and its reward stop. No five-room rollout.
+The **bright illustrated painted court** now extends across the existing run. Root and `?scene=run` use it; `art=off` keeps a greybox comparison. Historical Storybook/Ink and the isolated benchmark remain explicit developer links. This is the working direction, not a permanent restriction on future art decisions.
+
+`render/rooms.ts` maps authored encounter names to five composition roles: Threshold (entrance, right lens, sage trim), Footsteps (painted colonnade), Divided hall (left lens, muted violet repairs), Closing circle (short fractured approach columns, warm repairs, larger right lens), Last ward (paired colonnade, enlarged left lens, fitted wall crest). Existing terrain, props, enemies and cover colliders are unchanged. One ten-GLB library is loaded per client; room instances are disposed/rebuilt at transitions, never five live scenes. Final bindings fold down and the crest settles only on authoritative victory; terminal framing returns toward court center. A quiet local synthesized completion chord supports the resolution.
+
+Mage motion follows displayed displacement/render time, including predicted guest and interpolated partner motion. Authoritative events begin casts; recovery advances between packets without changing simulation time. Bounds handle pause, long frames, teleportation, reset and life transitions. No IK, whole-world prediction or changed attack timing.
+
+Normal play keeps health, partner, Principle and casting feedback concise; settings contain controls and old proof links. Both quality modes retain the full kit and important effects. Full-run rollout measurements are in TESTING.md; the short historical samples below are not full-run measurements.
 
 The d72ae3e Storybook preference was provisional. Its comparison bundled geometry, palette and shading; it did not isolate illustration. The corrective pair (`art=storybook&treatment=original|illustrated`) uses identical GLBs, footprint, camera and actors. Brighter value-grouped graphic shading remained readable. This corrects the old inference about illustration; it still compares palette plus shading together, not a shader in isolation. Historical evidence and both old source sets are retained below and in `artifacts/art-proof`.
 
@@ -26,9 +32,9 @@ Ten GLBs total **1,375,180 raw bytes**, each independently validates with zero e
 
 The new treatment is preferred by visual judgment: more human movement, clearer crafted repairs, better foreground/background grouping and a visible landmark, without covering danger. It is substantially more coherent than the old primitive costume, but remains a small stylized benchmark: no foot IK, authored skeletal clips, facial performance or hand contact solver. Low-angle cast silhouettes and feet can still feel procedural. This does not demonstrate commercial illustration finish or prove physical laptop comfort. The generic prior concept sheet contains detail/composition absent from the engine; it is not an achieved target.
 
-Small later rollout: reuse the mage hierarchy/material vocabulary, fit boundary modules to each existing collider arrangement, and compose one landmark per camera view. Recheck the existing paired alteration/reward/reset sequence per arrangement. Do not clone this whole court five times or add gameplay to compensate for art. Stop after this benchmark.
+The bounded rollout described by the prior study is now implemented above. Further expansion is outside this milestone.
 
-### Current measured conditions
+### Historical 731c1ec benchmark measurements
 
 Build **3e5e03333abb / protocol 3**, Windows, installed Chrome 152 headless, **ANGLE Intel UHD / Direct3D 11** (actual reported renderer). Two same-machine WebRTC contexts, 1440×900 CSS / 1152×720 Lightweight buffer. Four enemies with AI disabled for the matched load; two normally cast fields receive a labelled 120-second lifetime fixture so slow rendering cannot expire the load. Actual held Ember/Stone inputs, 60 rAF intervals/client, no video/encoding during the sample. Active AI and normal-lifetime effects are exercised separately in the motion clips.
 

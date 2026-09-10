@@ -1,0 +1,35 @@
+{
+  "standard": [
+    {
+      "geometries": 76,
+      "textures": 5,
+      "drawCalls": 266,
+      "art": true
+    },
+    {
+      "geometries": 76,
+      "textures": 5,
+      "drawCalls": 266,
+      "art": true
+    },
+    {
+      "geometries": 76,
+      "textures": 5,
+      "drawCalls": 266,
+      "art": true
+    },
+    {
+      "geometries": 76,
+      "textures": 5,
+      "drawCalls": 266,
+      "art": true
+    }
+  ],
+  "lightweight": {
+    "cycles": 4,
+    "geometries": 76,
+    "textures": 3,
+    "drawCalls": 169
+  },
+  "conditions": "Native Chrome 152/Intel UHD; same-machine paired replay lifecycle fixtures. Normal combat full runs measured separately."
+}
