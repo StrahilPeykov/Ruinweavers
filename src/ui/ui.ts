@@ -78,6 +78,12 @@ export class UI {
       <div id="upgrades"></div><footer><div id="principles">${PRINCIPLES.map((p, i) => `<div data-principle="${p}"><kbd>${i + 1}</kbd><span>${p}</span></div>`).join("")}</div><div id="spell"></div><div id="control-hint" class="hint">WASD move · LMB / J cast · RMB / F secondary · Space dodge · Tab / Q cycle</div><div id="health"></div></footer>`;
     const byId = (id: string) =>
       this.root.querySelector<HTMLElement>(`#${id}`)!;
+    const boss = document.createElement("div");
+    boss.id = "guardian-status";
+    boss.hidden = true;
+    boss.innerHTML =
+      '<span>The Bound Warden</span><progress max="1" value="1" aria-label="Guardian health"></progress><small></small>';
+    this.root.append(boss);
     byId("trial-action").onclick = () => {
       input.clear();
       if (byId("trial-action").dataset.replay === "true") actions.replay(true);
@@ -247,7 +253,11 @@ export class UI {
       );
       (get("room-code") as HTMLInputElement).value = code;
       // Keep the selected isolated art-proof footprint when creating a party.
-      if (this.config.scene !== "run" && this.config.scene !== "trial/mixed")
+      if (
+        !["run", "run-legacy", "guardian", "trial/mixed"].includes(
+          this.config.scene,
+        )
+      )
         this.config.scene = "trial";
       this.config.model = "primary-secondary";
       void net.connect(
@@ -258,7 +268,11 @@ export class UI {
       this.unfocus();
     };
     const join = () => {
-      if (this.config.scene !== "run" && this.config.scene !== "trial/mixed")
+      if (
+        !["run", "run-legacy", "guardian", "trial/mixed"].includes(
+          this.config.scene,
+        )
+      )
         this.config.scene = "trial";
       this.config.model = "primary-secondary";
       void net.connect(
@@ -298,6 +312,21 @@ export class UI {
     const get = (id: string) => this.root.querySelector<HTMLElement>(`#${id}`)!;
     // Compose final labels first: intermediate solo/party labels must not replace text nodes.
     const labels: Record<string, string> = {};
+    const boss = get("guardian-status"),
+      guardian = s.entities.find((e) => e.id === s.guardian?.core);
+    boss.hidden = !guardian || s.trial?.status !== "active";
+    if (guardian && s.guardian) {
+      boss.querySelector("progress")!.value = Math.max(
+        0,
+        guardian.hp / guardian.maxHp,
+      );
+      boss.querySelector("small")!.textContent =
+        s.guardian.stage === "shift"
+          ? "The outer binding gives way"
+          : s.guardian.phase === 2
+            ? "Loosened construction"
+            : "Bound construction";
+    }
     const pretty = (keys: string[]) =>
       keys
         .map((k) =>
@@ -504,6 +533,12 @@ export class UI {
           : trial.status === "between"
             ? "Continue"
             : "Run again";
+    }
+    if (s.guardian && trial?.status === "ready") {
+      labels["trial-title"] = "The Bound Warden";
+      labels["trial-copy"] =
+        "An ancient construction still guards the last court. Watch its shard lanes, leave its committed march, and read the furnace ring. Its fitted plates obey the same magic as its body.";
+      if (!s.party) labels["trial-action"] = "Face the Warden";
     }
     if (s.run && trial?.status === "between") {
       const next = RUN_BEATS[trial.encounter + 1];

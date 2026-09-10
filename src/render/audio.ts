@@ -76,6 +76,13 @@ export class LabAudio {
         "vapour-link": [580, 850, 0.12],
         "seal-release": [110, 420, 0.18],
         "inscription-drift": [170, 350, 0.15],
+        "warden-windup": [90, 170, 0.35],
+        "warden-volley": [180, 55, 0.2],
+        "warden-march": [85, 45, 0.3],
+        "warden-furnace": [140, 400, 0.4],
+        "warden-shift": [240, 65, 0.6],
+        "warden-unbind": [220, 90, 0.16],
+        "warden-fall": [130, 35, 0.8],
       };
       const spec = cue[e.type];
       if (!spec) continue;

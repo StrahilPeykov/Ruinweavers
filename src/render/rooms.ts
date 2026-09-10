@@ -41,7 +41,7 @@ export const COURT_ROOMS = {
     landmark: [-12.84, 1.5, -3],
     scale: 0.85,
     columns: [-8, -4, 4, 8],
-    copy: "Quiet the court's guardians. Let the ancient construction settle.",
+    copy: "The Bound Warden wakes. Break its purpose, and let the court settle.",
   },
 } as const;
 export function roomPresentation(s: State) {

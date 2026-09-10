@@ -62,6 +62,7 @@ export function encodeSnapshot(
       pending: s.pending,
       trial: s.trial,
       run: s.run ?? null,
+      guardian: s.guardian ?? null,
       party: s.party,
       serial: s.serial,
       sentinel: s.sentinel,
@@ -122,6 +123,7 @@ export class WireReader {
       ...previous,
       ...p.live,
       run: p.live.run ?? undefined,
+      guardian: p.live.guardian ?? undefined,
       seed: base.seed,
       terrain: base.terrain,
       entities: p.live.entities.map((e) => ({

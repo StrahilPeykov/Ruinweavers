@@ -8,6 +8,7 @@ import {
   RUN_BEATS,
 } from "./run";
 import { actorState, legacyActorAccessors } from "./actors";
+import { tickGuardian } from "./guardian";
 import { entity } from "./lab";
 import {
   CAST,
@@ -84,8 +85,13 @@ export class Simulation {
   physics: Physics;
   constructor(public config: Config) {
     this.state = legacyActorAccessors(createState(config));
-    if (config.scene === "run") initializeRun(this.state, ++this.runGeneration);
-    if (config.scene.startsWith("trial") || config.scene === "run")
+    if (config.scene.startsWith("run") || config.scene === "guardian")
+      initializeRun(this.state, ++this.runGeneration);
+    if (
+      config.scene.startsWith("trial") ||
+      config.scene.startsWith("run") ||
+      config.scene === "guardian"
+    )
       initializeTrial(this.state, config);
     this.physics = new Physics(this.state);
   }
@@ -112,9 +118,13 @@ export class Simulation {
       );
       this.state.party = { ready: [], epoch };
     }
-    if (this.config.scene === "run")
+    if (this.config.scene.startsWith("run") || this.config.scene === "guardian")
       initializeRun(this.state, ++this.runGeneration);
-    if (this.config.scene.startsWith("trial") || this.config.scene === "run")
+    if (
+      this.config.scene.startsWith("trial") ||
+      this.config.scene.startsWith("run") ||
+      this.config.scene === "guardian"
+    )
       initializeTrial(this.state, this.config);
     this.physics = new Physics(this.state);
   }
@@ -1131,7 +1141,12 @@ export class Simulation {
         if ((b.pierce ?? 0) > 0) b.pierce!--;
         else b.life = 0;
         if (b.principle === "hostile")
-          this.damage(e, 14, b.source, "sentinel bolt");
+          this.damage(
+            e,
+            14,
+            b.source,
+            b.originalSource === "warden" ? "warden shard" : "sentinel bolt",
+          );
         else this.apply(e, { heat: 48, damage: 9 }, b.source, "heat bolt");
         this.event("impact", b.source, e.pos, {
           principle: b.principle === "hostile" ? "Ember" : b.principle,
@@ -1172,10 +1187,15 @@ export class Simulation {
       }
     }
     this.tickEnemies(dt);
+    tickGuardian(this, dt);
     this.physics.step(s, moves);
     // Material/momentum interaction: loose fast bodies can damage structural targets.
     for (const e of s.entities.filter(
-      (e) => ["loose", "heavy"].includes(e.kind) && e.hp > 0,
+      (e) =>
+        (["loose", "heavy"].includes(e.kind) ||
+          (e.kind === "wardplate" &&
+            !s.guardian?.plates.find((p) => p.id === e.id)?.attached)) &&
+        e.hp > 0,
     )) {
       const speed = Math.hypot(e.velocity.x, e.velocity.z);
       if (speed < 2) continue;
@@ -1195,6 +1215,13 @@ export class Simulation {
           inc(s.metrics.transformations, "physical impact");
         }
     }
+    // A loose-body impact can kill the core after its maneuver tick this frame.
+    // Resolve its lifecycle before the trial freezes on victory.
+    if (
+      s.guardian &&
+      s.entities.find((e) => e.id === s.guardian!.core)!.hp <= 0
+    )
+      tickGuardian(this, 0);
     s.mechanism =
       !s.trial &&
       s.entities.some(
@@ -1280,6 +1307,7 @@ export class Simulation {
     const s = this.state,
       tuning = TRIAL_TUNING[this.config.encounterVersion];
     for (const e of s.entities) {
+      if (e.kind === "warden") continue;
       const ai = e.ai ?? (e.id === "sentinel" ? s.sentinel : undefined);
       const living = this.players.filter((p) => p.hp > 0);
       const target =

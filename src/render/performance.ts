@@ -1,6 +1,72 @@
 import type { Object3D } from "three";
 import type { Entity, State } from "../simulation/types";
 
+/** Continuous cosmetic movement; authoritative stage changes only select poses. */
+export function performWarden(
+  model: Object3D,
+  e: Entity,
+  s: State,
+  elapsed: number,
+  paused: boolean,
+) {
+  const g = s.guardian;
+  if (!g) return;
+  const d = model.userData,
+    previous = d.wardenPosition;
+  const dt = paused || elapsed > 0.25 ? 0 : Math.min(0.05, elapsed);
+  const travel = previous
+    ? Math.hypot(e.pos.x - previous.x, e.pos.z - previous.z)
+    : 0;
+  d.wardenPosition = { ...e.pos };
+  d.wardenGait =
+    (d.wardenGait ?? 0) + (travel < 0.5 && dt > 0 ? travel * 2.8 : 0);
+  if (d.wardenSerial !== g.serial) {
+    d.wardenAge = 0;
+    d.wardenSerial = g.serial;
+  } else d.wardenAge = (d.wardenAge ?? 0) + dt;
+  const joints: Record<string, Object3D> = (d.wardenJoints ??=
+    Object.fromEntries(
+      ["torso", "head", "legL", "legR", "armL", "armR"].map((n) => [
+        n,
+        model.getObjectByName(n)!,
+      ]),
+    ));
+  if (!joints.torso) return;
+  for (const j of Object.values(joints)) j.rotation.set(0, 0, 0);
+  const walking = travel > 0.0001 && travel < 0.5;
+  const stride = walking ? Math.sin(d.wardenGait) * 0.3 : 0;
+  joints.legL.rotation.x = stride;
+  joints.legR.rotation.x = -stride;
+  const preparing = ["telegraph", "commit"].includes(g.stage);
+  const amount = preparing
+    ? Math.min(1, 0.3 + d.wardenAge * 1.5)
+    : g.stage === "attack"
+      ? 1
+      : Math.max(0, 1 - d.wardenAge * 2);
+  if (g.maneuver === "volley") {
+    joints.armL.rotation.x = -1.1 * amount;
+    joints.armR.rotation.x = -1.1 * amount;
+  }
+  if (g.maneuver === "march") {
+    joints.torso.rotation.x = 0.18 * amount;
+    joints.armL.rotation.x = -0.45 * amount;
+    joints.armR.rotation.x = -0.45 * amount;
+  }
+  if (g.maneuver === "furnace") {
+    joints.armL.rotation.z = -0.65 * amount;
+    joints.armR.rotation.z = 0.65 * amount;
+    joints.head.rotation.x = -0.15 * amount;
+  }
+  model.position.y = -e.height / 2;
+  if (e.hp <= 0) {
+    joints.torso.rotation.x = 0.75;
+    joints.legL.rotation.x = -0.8;
+    joints.legR.rotation.x = -0.8;
+    model.position.y -= 0.55;
+  }
+  d.pose = { stride, stage: g.stage, age: d.wardenAge };
+}
+
 /** Cosmetic joint performance only. No input, gameplay clocks or outcome writes. */
 export function performMage(
   model: Object3D,

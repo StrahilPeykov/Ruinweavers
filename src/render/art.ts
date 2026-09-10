@@ -1,6 +1,6 @@
 import { roomPresentation } from "./rooms";
 import { BUILD_ID } from "../network/protocol";
-import { performMage } from "./performance";
+import { performMage, performWarden } from "./performance";
 import * as T from "three";
 import { GLTFLoader, type GLTF } from "three/addons/loaders/GLTFLoader.js";
 import type { Entity, State } from "../simulation/types";
@@ -62,7 +62,10 @@ export class ArtStudy {
     const q = new URLSearchParams(location.search);
     const value =
       q.get("art") ??
-      (!q.has("scene") || q.get("scene") === "run" ? "illustrated" : "off");
+      (!q.has("scene") ||
+      ["run", "run-legacy", "guardian"].includes(q.get("scene")!)
+        ? "illustrated"
+        : "off");
     this.mode =
       value === "storybook" || value === "ink" || value === "illustrated"
         ? value
@@ -98,6 +101,12 @@ export class ArtStudy {
           "ballast",
           "loose",
           ...(this.mode === "illustrated" ? ["surround"] : []),
+          ...(this.mode === "illustrated" &&
+          [null, "run", "guardian"].includes(
+            new URLSearchParams(location.search).get("scene"),
+          )
+            ? ["warden", "wardplate"]
+            : []),
         ].map(async (name) => {
           const response = await fetch(
             `/art/${this.mode}/${name}.glb?v=${BUILD_ID}`,
@@ -285,15 +294,17 @@ export class ArtStudy {
     if (!model) return;
     if (this.mode === "illustrated" && e.kind === "player")
       performMage(model, e, s, delta, paused);
+    if (e.kind === "warden") performWarden(model, e, s, delta, paused);
     const mixer = this.mixers.get(model);
     if (mixer)
       mixer.setTime(
         s.time * (Math.hypot(e.velocity.x, e.velocity.z) > 0.2 ? 2.5 : 1),
       );
     // Bounded root tilt leaves feet/hurt volume stable; attacks are still state-driven.
-    model.rotation.x =
-      e.kind === "pursuer" && e.ai?.phase === "telegraph" ? -0.13 : 0;
-    if (this.mode === "illustrated" && e.ai) {
+    if (e.kind !== "warden")
+      model.rotation.x =
+        e.kind === "pursuer" && e.ai?.phase === "telegraph" ? -0.13 : 0;
+    if (this.mode === "illustrated" && e.ai && e.kind !== "warden") {
       const moving = Math.min(1, Math.hypot(e.velocity.x, e.velocity.z) / 4);
       model.position.y =
         -e.height / 2 +

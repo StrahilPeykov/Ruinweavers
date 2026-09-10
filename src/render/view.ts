@@ -1,4 +1,5 @@
 import * as T from "three";
+import { GuardianDanger } from "./guardian";
 import { hasUpgrade } from "../simulation/run";
 import { ArtStudy } from "./art";
 import { CAST, type Config, type Principle } from "../experiments/config";
@@ -28,6 +29,7 @@ export class View {
   previewAim?: import("../simulation/types").AimPoint;
   aim = new T.Group();
   dangers = new Map<string, T.Group>();
+  guardianDanger = new GuardianDanger();
   terrainGroup = new T.Group();
   terrainKey = "";
   labDecor = new T.Group();
@@ -58,6 +60,7 @@ export class View {
       antialias: true,
       powerPreference: "high-performance",
     });
+    this.scene.add(this.guardianDanger);
     const gl = this.renderer.getContext();
     const rendererInfo = gl.getExtension("WEBGL_debug_renderer_info");
     this.rendererIdentity = rendererInfo
@@ -536,7 +539,7 @@ export class View {
     this.camera.lookAt(this.center);
     for (const e of s.entities) {
       const g = this.entities.get(e.id) || this.makeEntity(e);
-      g.visible = e.hp > 0 || e.kind === "player";
+      g.visible = e.hp > 0 || e.kind === "player" || e.kind === "warden";
       const flattenDown =
         !(this.art.active && this.art.mode === "illustrated") &&
         e.kind === "player" &&
@@ -552,6 +555,7 @@ export class View {
           e.pos.x - s.actors[e.id].aim.x,
           e.pos.z - s.actors[e.id].aim.z,
         );
+      else if (e.kind === "warden") g.rotation.y = s.guardian?.heading ?? 0;
       else if (e.ai) {
         g.rotation.y = Math.atan2(
           e.ai.locked.x - e.pos.x,
@@ -559,7 +563,7 @@ export class View {
         );
         const hp = g.getObjectByName("hp");
         if (hp) hp.scale.x = 1.28 * Math.max(0, e.hp / e.maxHp);
-      } else if (["heavy", "loose"].includes(e.kind))
+      } else if (["heavy", "loose", "wardplate"].includes(e.kind))
         g.quaternion.set(
           e.rotation.x,
           e.rotation.y,
@@ -934,7 +938,7 @@ export class View {
         : 0;
     for (const e of s.entities) {
       const ai = e.ai ?? (e.id === "sentinel" ? s.sentinel : undefined);
-      if (!ai) continue;
+      if (!ai || e.kind === "warden") continue;
       let g = this.dangers.get(e.id);
       if (!g) {
         g = new T.Group();
@@ -996,6 +1000,7 @@ export class View {
     (this.pad.material as T.MeshBasicMaterial).color.setHex(
       s.mechanism ? 0xdbe8a0 : 0x718485,
     );
+    this.guardianDanger.update(s);
     if (!this.contextLost) this.renderer.render(this.scene, this.camera);
     if (delta > 0) {
       this.intervals.push(delta * 1000);

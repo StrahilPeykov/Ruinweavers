@@ -1,4 +1,4 @@
-import { fieldCapacity } from "./simulation/run";
+import { fieldCapacity, UPGRADES, type UpgradeId } from "./simulation/run";
 import { CoopSession } from "./network/session";
 import "./ui/style.css";
 import {
@@ -288,6 +288,7 @@ async function boot() {
     }),
     // Setup only: actions under test must still arrive through real inputs.
     setupTestState: (patch: {
+      guardianBuilds?: Record<string, UpgradeId[]>;
       entities?: {
         id: string;
         pos?: { x: number; y: number; z: number };
@@ -305,6 +306,19 @@ async function boot() {
       if (net.role === "guest") throw Error("Only host can arrange test state");
       if (!(net.active ? net.paused : paused))
         throw Error("Pause before test setup");
+      if (patch.guardianBuilds) {
+        if (config.scene !== "guardian" || !sim.state.run)
+          throw Error("Build fixtures require the isolated Guardian scene");
+        for (const [id, ids] of Object.entries(patch.guardianBuilds)) {
+          if (
+            !sim.state.actors[id] ||
+            ids.length > 3 ||
+            ids.some((u) => !UPGRADES[u])
+          )
+            throw Error("Invalid build fixture");
+          sim.state.run.upgrades[id] = [...new Set(ids)];
+        }
+      }
       if (patch.enemyEnabled !== undefined)
         sim.state.entities.forEach((e) => {
           if (e.ai) e.ai.enabled = patch.enemyEnabled!;

@@ -1,0 +1,27 @@
+{
+  "tool": "Blender 5.2 / glTF Transform / Khronos validator",
+  "assets": [
+    {
+      "path": "public/art/illustrated/warden.glb",
+      "bytes": 188084,
+      "sourceBytes": 227168,
+      "meshes": 6,
+      "materials": 5,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/illustrated/wardplate.glb",
+      "bytes": 80436,
+      "sourceBytes": 70784,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 1,
+      "errors": 0,
+      "warnings": 0
+    }
+  ]
+}

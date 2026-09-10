@@ -262,14 +262,21 @@ test("co-op fields, cross-player reaction, allied safety, stale inputs and delay
   await b.keyboard.press("1");
   await aim(b, { x: -8, y: 0.75, z: 6 });
   await b.keyboard.down("j");
-  await a.waitForFunction(
-    () =>
-      Object.keys(window.__RUINWEAVERS__.getState().metrics.outcomes).some(
-        (k) => k.startsWith("allied-damage-suppressed:mage-2:mage-1"),
-      ),
-    undefined,
-    { timeout: 5000 },
-  );
+  // A fixture teleport moves the guest's following camera. Keep actual pointer
+  // aim on the partner while it settles, rather than firing at a stale pixel.
+  await expect
+    .poll(
+      async () => {
+        await aim(b, { x: -8, y: 0.75, z: 6 });
+        return a.evaluate(() =>
+          Object.keys(window.__RUINWEAVERS__.getState().metrics.outcomes).some(
+            (k) => k.startsWith("allied-damage-suppressed:mage-2:mage-1"),
+          ),
+        );
+      },
+      { timeout: 5000 },
+    )
+    .toBe(true);
   await b.keyboard.up("j");
   expect((await state(a)).entities.find((e: any) => e.id === "mage-1").hp).toBe(
     100,

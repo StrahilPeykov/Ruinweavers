@@ -1,4 +1,8 @@
-# Build Identity 0.2 — The Broken Court
+# The Broken Court — Guardian 0.1
+
+Current run: courts 1–4, three personal choices, controls and ten-Alteration/three-Theorem pool are unchanged. Court five now contains **The Bound Warden**, a core with two physical ward plates and three readable maneuvers. [Guardian rules/evidence](GUARDIAN.md). Root is the complete illustrated run; `?scene=guardian` isolates the finale and `?scene=run-legacy` preserves the former five-normal-lineup sequence. Solo/revive/readiness/fresh seed/retry rules remain unchanged. The old final normal lineup described below is historical.
+
+## Build Identity 0.2 baseline
 
 Current changes supersede the historical six-card/two-choice evidence below. Rewards now follow courts **1, 3 and 4**. First two stops offer Alterations; the last offers one eligible Theorem and two unowned Alterations. Seed and prior personal choices determine offers; eligibility is revalidated by the host. Three upgrades maximum per actor. No health, damage, enemy or cadence retuning. Settings show the equipped build.
 

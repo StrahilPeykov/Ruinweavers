@@ -15,6 +15,8 @@ export type Kind =
   | "moving"
   | "sentinel"
   | "pursuer"
+  | "warden"
+  | "wardplate"
   | "wood"
   | "brittle"
   | "heavy"
@@ -154,6 +156,7 @@ export interface ActorState {
   reviveProgress: number;
 }
 export interface State extends ActorState {
+  guardian?: import("./guardian").GuardianState;
   run?: import("./run").RunState;
   actors: Record<string, ActorState>;
   party?: { ready: string[]; epoch: number };

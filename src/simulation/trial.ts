@@ -1,4 +1,5 @@
 import { RUN_BEATS } from "./run";
+import { createGuardian } from "./guardian";
 import { entity, type TerrainBox } from "./lab";
 import { vec, type State } from "./types";
 import type { Config } from "../experiments/config";
@@ -115,7 +116,9 @@ export function arenaTerrain(name: string): TerrainBox[] {
   return floor;
 }
 export function prepareEncounter(s: State, config: Config) {
-  if (s.run) s.trial!.scenario = RUN_BEATS[s.trial!.encounter].scenario;
+  s.guardian = undefined;
+  if (s.run && config.scene !== "guardian")
+    s.trial!.scenario = RUN_BEATS[s.trial!.encounter].scenario;
   const trial = s.trial!,
     layout =
       SCENARIOS[trial.scenario as ScenarioName] ?? SCENARIOS["cross-cover"],
@@ -205,6 +208,14 @@ export function prepareEncounter(s: State, config: Config) {
     s.entities.push(e);
   });
   s.terrain = arenaTerrain(trial.scenario);
+  if (s.run && trial.encounter === 4 && config.scene !== "run-legacy") {
+    // The normal-enemy court gap is narrower than the fitted Guardian. Keep the
+    // same two cover pieces but let the constructed body traverse the middle.
+    for (const box of s.terrain)
+      if (box.name === "Cover") box.x += Math.sign(box.x) * 0.8;
+    s.entities = s.entities.filter((e) => !e.ai);
+    createGuardian(s);
+  }
   s.fields = [];
   s.bolts = [];
   s.pending = [];
@@ -225,8 +236,8 @@ export function initializeTrial(s: State, config: Config) {
   );
   s.trial = {
     status: "ready",
-    encounter: Math.max(0, encounter),
-    isolated: encounter >= 0,
+    encounter: config.scene === "guardian" ? 4 : Math.max(0, encounter),
+    isolated: encounter >= 0 || config.scene === "guardian",
     scenario: config.scenario,
     elapsed: 0,
     started: 0,

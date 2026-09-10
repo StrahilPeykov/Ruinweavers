@@ -125,6 +125,16 @@ async function release(p: Page) {
 }
 async function installPolicy(p: Page) {
   await p.evaluate(async (build) => {
+    const { GuardianPolicy } = await import(
+      "/src/diagnostics/guardian-policy.ts" as string
+    );
+    (window as any).guardianPolicy = new GuardianPolicy(
+      build === "pair"
+        ? window.__RUINWEAVERS__.getPlayerState().id === "mage-2"
+          ? "structure"
+          : "reaction"
+        : (build ?? "basin"),
+    );
     // Import the same transparent policy used by fast simulation batches. Its output
     // is translated to real Playwright keyboard/mouse actions outside the page.
     const { ScriptedPolicy } = await import(
@@ -162,7 +172,9 @@ async function drive(p: Page) {
       player,
       physics: { terrainHit: (a: any, b: any) => api.isPathBlocked(a, b) },
     };
-    const input = (window as any).runPolicy.input(fake);
+    const input = (
+      s.guardian ? (window as any).guardianPolicy : (window as any).runPolicy
+    ).input(fake);
     return {
       input,
       pixel: api.projectWorld(input.aim),

@@ -1,4 +1,12 @@
-# Build Identity 0.2 validation (2026-09-10)
+# Guardian 0.1 validation (2026-09-10)
+
+Current checkpoint: **113 units and production build pass**. Baseline 3ddebb2 had 96 passing units/build; its browser sweep passed 48, skipped one live TURN probe and failed the allied-contact timeout once. The unchanged isolated rerun passed. The fixture now re-aims through real pointer input while the guest camera settles; it does not change damage rules or replace the assertion.
+
+Guardian browser development sweep: five real-input solo builds reached victory, Stone placement blocked shards and a real Gale tap redirected them. One paired attempt exposed Create/Join falling back to `trial`; the scene allowlist was corrected, and the actual two-client fight/revive/retry passed. After widening the physical cover gap, base solo and paired reaction/field journeys passed again. Current final full-suite and held-out evidence will be recorded in [GUARDIAN.md](GUARDIAN.md). Isolated build/lifecycle fixtures are labelled; attacks and the revive use actual inputs. No remote-laptop or new TURN claim.
+
+An intermediate all-maneuver unit timed out during a heavily loaded run because it continued simulating 40 seconds after already observing the three attacks. It now stops when those three assertions become observable, with the same bounded failure cap; the complete 113-unit suite passes. Prior captures/logs remain under ignored `artifacts/guardian-0.1/raw`; compact results stay tracked.
+
+## Historical Build Identity 0.2 validation
 
 Starting tree c74769f was clean. Baseline: 78 units and production build passed; browser sweep **47 passed, one live TURN probe skipped, one failed**. Failure: `coop.spec.ts` expected residual wetness after an Ember hold that can consume all water through steam. The reaction assertion passed. Replacement now gets its own explicit .7 wet/0 heat fixture, so it tests preservation rather than an incidental reaction remainder. No game rule changed for this repair. Candidate simulation batches overlapped part of this baseline sweep, so its frame samples are not used as performance evidence.
 

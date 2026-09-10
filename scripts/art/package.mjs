@@ -3,6 +3,7 @@ import { dedup, prune, weld } from "@gltf-transform/functions";
 import validator from "gltf-validator";
 import { readFile, writeFile, mkdir, readdir } from "node:fs/promises";
 const io = new NodeIO();
+const guardian = process.argv[3] === "guardian";
 const report = {
   tool: "Blender 5.2 / glTF Transform / Khronos validator",
   assets: [],
@@ -12,7 +13,11 @@ for (const style of process.argv[2]
   : ["storybook", "ink"]) {
   await mkdir(`public/art/${style}`, { recursive: true });
   for (const file of (await readdir(`assets/art-source/${style}`))
-    .filter((f) => f.endsWith(".glb"))
+    .filter(
+      (f) =>
+        f.endsWith(".glb") &&
+        (!guardian || ["warden.glb", "wardplate.glb"].includes(f)),
+    )
     .sort()) {
     const input = `assets/art-source/${style}/${file}`,
       output = `public/art/${style}/${file}`;
@@ -49,10 +54,13 @@ for (const style of process.argv[2]
     });
   }
 }
+if (guardian) await mkdir("artifacts/guardian-0.1", { recursive: true });
 await writeFile(
-  process.argv[2]
-    ? "artifacts/art-finish/assets.json"
-    : "artifacts/art-proof/assets.json",
+  guardian
+    ? "artifacts/guardian-0.1/assets.json"
+    : process.argv[2]
+      ? "artifacts/art-finish/assets.json"
+      : "artifacts/art-proof/assets.json",
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(JSON.stringify(report, null, 2));

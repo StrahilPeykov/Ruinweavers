@@ -13,7 +13,7 @@ for (const seed of [123, 456])
       "basin-ember",
       "state-aware",
     ] as PolicyName[]) {
-      const sim = new Simulation(configFromQuery(`?scene=run&seed=${seed}`));
+      const sim = new Simulation(configFromQuery(`?scene=run-legacy&seed=${seed}`));
       if (count === 2) sim.addPartner();
       const ids = Object.keys(sim.state.actors),
         agents = ids.map(

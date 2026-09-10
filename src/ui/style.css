@@ -710,3 +710,28 @@ body.run-mode #upgrades {
 body.run-mode #panel #art-links {
   flex-wrap: wrap;
 }
+#guardian-status {
+  position: absolute;
+  top: 78px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(340px, 42vw);
+  text-align: center;
+  color: #ffe5bd;
+  background: #263945de;
+  padding: 8px 14px;
+  border: 1px solid #b49971;
+  border-radius: 5px;
+  pointer-events: none;
+}
+#guardian-status progress {
+  display: block;
+  width: 100%;
+  height: 8px;
+  margin: 5px 0;
+  accent-color: #d79b69;
+}
+#guardian-status small {
+  font-size: 11px;
+  color: #d5d3c1;
+}

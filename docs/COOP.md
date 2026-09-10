@@ -1,5 +1,7 @@
 # Solo/co-op connection - current illustrated Broken Court
 
+Guardian 0.1 changes only the finale: the Warden alternates living targets at maneuver selection, locks committed routes and retains the normal risky revive. Central durability is 1.35× in a party; plate HP and attack damage/count are unchanged. This does not alter normal enemy targeting or TURN/provider scope. Current Guardian tests and limitations: [GUARDIAN](GUARDIAN.md).
+
 ## Play and connect
 
 Run `npm install` once, then `npm run dev`. Root http://127.0.0.1:5173/ opens the complete illustrated five-beat run. Begin run plays solo. Explicit `?scene=trial` and Lab scenes retain their diagnostics. See [run structure and personal rewards](RUN.md). Model A, balanced camera/tempo, 120 ms Secondary buffer and one base field per mage remain. Controls/settings start collapsed.

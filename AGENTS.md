@@ -1,6 +1,6 @@
 # Ruinweavers
 
-Active milestone: Build Identity 0.2, using the complete illustrated five-court solo/co-op run. Three personal rewards after courts 1, 3 and 4; actor-owned Alterations and prerequisite-gated Theorems. Criteria/catalogue/evidence: `docs/BUILD-DESIGN.md`. No further content/Guardian milestone without authorization. `npm run evaluate:builds` writes fresh evidence; preserve historical evaluators/results.
+Active milestone: Guardian 0.1 — The Bound Warden replaces the ordinary fifth-court culmination. Preserve the illustrated five-court run, three personal rewards, ten Alterations, three Theorems, tuning and co-op authority. Guardian design/evidence: `docs/GUARDIAN.md`; build catalogue/evidence: `docs/BUILD-DESIGN.md`. No additional boss/content/systems phase without authorization. Preserve historical evaluators/results and explicit regression scenes.
 
 Current baseline: The Broken Court, a complete illustrated five-beat solo/co-op run with ten Alterations and three Theorems in its pool. Root opens the run; explicit Lab/trial scenes and both historical art proofs remain available. Bright illustrated art is the working direction. Art/asset rules: `docs/ART.md`; run/replay authority: `docs/RUN.md`; connection/provider scope: `docs/COOP.md` and `docs/TURN.md`. Preserve controls, four families, tuning, collision and co-op authority. No new systems/content phase without authorization. Free Blender/background authoring remains available.
 

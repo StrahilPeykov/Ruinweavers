@@ -9,6 +9,7 @@ export class Physics {
   colliders = new Map<string, RAPIER.Collider>();
   actorColliders = new Set<number>();
   slabs = new Map<string, RAPIER.RigidBody>();
+  wardenJoints = new Map<string, RAPIER.ImpulseJoint>();
   controllers = new Map<string, RAPIER.KinematicCharacterController>();
   get verticalSpeed() {
     return this.state.actors["mage-1"].verticalSpeed;
@@ -31,6 +32,7 @@ export class Physics {
       );
     }
     for (const e of state.entities) this.add(e);
+    this.syncGuardian(state);
     // Populate broad-phase queries before the first character-controller move.
     this.world.step();
   }
@@ -46,16 +48,24 @@ export class Physics {
       .setTranslation(e.pos.x, e.pos.y, e.pos.z)
       .setLinearDamping(3)
       .setAngularDamping(4);
-    if (e.kind === "sentinel" || e.kind === "pursuer") desc.lockRotations();
+    if (["sentinel", "pursuer", "warden"].includes(e.kind))
+      desc.lockRotations();
     const b = this.world.createRigidBody(desc);
     const shape =
       e.kind === "player"
         ? RAPIER.ColliderDesc.capsule(0.32, e.radius)
         : RAPIER.ColliderDesc.cuboid(e.radius, e.height / 2, e.radius);
     const c = this.world.createCollider(
-      shape.setMass(e.mass).setFriction(0.6),
+      // Fitted bronze feet slide on the court; mass and cohesion still resist force.
+      shape
+        .setMass(e.mass)
+        .setFriction(
+          e.kind === "warden" || e.kind === "wardplate" ? 0.08 : 0.6,
+        ),
       b,
     );
+    if (e.kind === "warden" || e.kind === "wardplate")
+      c.setFrictionCombineRule(RAPIER.CoefficientCombineRule.Min);
     if (e.kind === "player" && !this.controllers.has(e.id) && !this.queryOnly) {
       const controller = this.world.createCharacterController(0.02);
       controller.enableAutostep(0.95, 0.2, true);
@@ -163,8 +173,43 @@ export class Physics {
     const b = this.bodies.get(e.id);
     if (b) {
       b.setTranslation(e.pos, true);
+      if (this.queryOnly) b.setRotation(e.rotation, true);
       b.setLinvel({ x: 0, y: 0, z: 0 }, true);
       if (b.isKinematic()) b.setNextKinematicTranslation(e.pos);
+    }
+  }
+  syncGuardian(state: State) {
+    if (this.queryOnly) return;
+    const g = state.guardian;
+    for (const [id, joint] of this.wardenJoints) {
+      if (!g?.plates.some((p) => p.id === id && p.attached)) {
+        if (joint.isValid()) this.world.removeImpulseJoint(joint, true);
+        this.wardenJoints.delete(id);
+      }
+    }
+    if (!g) return;
+    const core = this.bodies.get(g.core);
+    const entity = state.entities.find((e) => e.id === g.core);
+    if (!core || !entity || entity.hp <= 0) return;
+    for (const plate of g.plates) {
+      const body = this.bodies.get(plate.id),
+        e = state.entities.find((e) => e.id === plate.id);
+      if (!plate.attached || !body || !e || this.wardenJoints.has(plate.id))
+        continue;
+      const identity = { x: 0, y: 0, z: 0, w: 1 };
+      const joint = this.world.createImpulseJoint(
+        RAPIER.JointData.fixed(
+          { x: plate.side * 1.65, y: (e.height - entity.height) / 2, z: 0.2 },
+          identity,
+          { x: 0, y: 0, z: 0 },
+          identity,
+        ),
+        core,
+        body,
+        true,
+      );
+      joint.setContactsEnabled(false);
+      this.wardenJoints.set(plate.id, joint);
     }
   }
   syncFields(fields: Field[]) {
