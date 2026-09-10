@@ -70,9 +70,12 @@ for (const seed of [123, 456])
       });
       sim.dispose();
     }
-mkdirSync("artifacts/run-0.1", { recursive: true });
+const output =
+  process.argv.find((a) => a.startsWith("--output="))?.slice(9) ??
+  `artifacts/build-0.2/whole-run-${Date.now()}.json`;
+mkdirSync(output.slice(0, output.lastIndexOf("/")), { recursive: true });
 writeFileSync(
-  "artifacts/run-0.1/evaluation.json",
+  output,
   JSON.stringify(
     {
       method:

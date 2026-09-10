@@ -109,6 +109,7 @@ export interface Bolt {
   radius: number;
 }
 export interface Pending {
+  hitIds?: string[];
   source: string;
   pos: Vec;
   at: number;

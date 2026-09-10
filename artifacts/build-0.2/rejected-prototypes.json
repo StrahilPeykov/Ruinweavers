@@ -1,0 +1,164 @@
+{
+  "method": "prototype wrappers-1, real Simulation/Rapier; cross-cover seed123; 200ms observation delay; no production rules changed; converging-gust uses control-cover, other candidates matched basin-ember",
+  "rows": [
+    {
+      "candidate": "baseline",
+      "scene": "trial/ranged",
+      "policy": "basin-ember",
+      "activations": 0,
+      "status": "victory",
+      "time": 7.43,
+      "damage": 0,
+      "reactions": {
+        "vaporize": 21,
+        "thermal fracture": 21,
+        "shatter impulse": 19
+      }
+    },
+    {
+      "candidate": "baseline",
+      "scene": "trial/pursuit",
+      "policy": "basin-ember",
+      "activations": 0,
+      "status": "victory",
+      "time": 6.37,
+      "damage": 0,
+      "reactions": {
+        "vaporize": 15,
+        "thermal fracture": 12,
+        "shatter impulse": 9
+      }
+    },
+    {
+      "candidate": "baseline",
+      "scene": "trial/mixed",
+      "policy": "basin-ember",
+      "activations": 0,
+      "status": "victory",
+      "time": 10.7,
+      "damage": 0,
+      "reactions": {
+        "vaporize": 28,
+        "thermal fracture": 28,
+        "shatter impulse": 26
+      }
+    },
+    {
+      "candidate": "converging-gust",
+      "scene": "trial/ranged",
+      "policy": "control-cover",
+      "activations": 5,
+      "status": "victory",
+      "time": 16.92,
+      "damage": 0,
+      "reactions": {}
+    },
+    {
+      "candidate": "converging-gust",
+      "scene": "trial/pursuit",
+      "policy": "control-cover",
+      "activations": 51,
+      "status": "victory",
+      "time": 17.75,
+      "damage": 24,
+      "reactions": {}
+    },
+    {
+      "candidate": "converging-gust",
+      "scene": "trial/mixed",
+      "policy": "control-cover",
+      "activations": 37,
+      "status": "victory",
+      "time": 44.72,
+      "damage": 14,
+      "reactions": {
+        "deflect": 3,
+        "physical impact": 1
+      }
+    },
+    {
+      "candidate": "impact-splash",
+      "scene": "trial/ranged",
+      "policy": "basin-ember",
+      "activations": 0,
+      "status": "victory",
+      "time": 7.43,
+      "damage": 0,
+      "reactions": {
+        "vaporize": 21,
+        "thermal fracture": 21,
+        "shatter impulse": 19
+      }
+    },
+    {
+      "candidate": "impact-splash",
+      "scene": "trial/pursuit",
+      "policy": "basin-ember",
+      "activations": 1,
+      "status": "victory",
+      "time": 6.37,
+      "damage": 0,
+      "reactions": {
+        "vaporize": 15,
+        "thermal fracture": 12,
+        "shatter impulse": 9
+      }
+    },
+    {
+      "candidate": "impact-splash",
+      "scene": "trial/mixed",
+      "policy": "basin-ember",
+      "activations": 1,
+      "status": "victory",
+      "time": 10.7,
+      "damage": 0,
+      "reactions": {
+        "vaporize": 28,
+        "thermal fracture": 28,
+        "shatter impulse": 26
+      }
+    },
+    {
+      "candidate": "automatic-infusion",
+      "scene": "trial/ranged",
+      "policy": "basin-ember",
+      "activations": 14,
+      "status": "victory",
+      "time": 6.65,
+      "damage": 0,
+      "reactions": {
+        "vaporize": 14,
+        "thermal fracture": 14,
+        "shatter impulse": 14
+      }
+    },
+    {
+      "candidate": "automatic-infusion",
+      "scene": "trial/pursuit",
+      "policy": "basin-ember",
+      "activations": 10,
+      "status": "victory",
+      "time": 6.37,
+      "damage": 0,
+      "reactions": {
+        "vaporize": 15,
+        "thermal fracture": 12,
+        "shatter impulse": 9
+      }
+    },
+    {
+      "candidate": "automatic-infusion",
+      "scene": "trial/mixed",
+      "policy": "basin-ember",
+      "activations": 20,
+      "status": "victory",
+      "time": 8.83,
+      "damage": 0,
+      "reactions": {
+        "vaporize": 23,
+        "thermal fracture": 22,
+        "shatter impulse": 19
+      }
+    }
+  ]
+}

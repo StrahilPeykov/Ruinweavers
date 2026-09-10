@@ -15,6 +15,7 @@
     "evaluate:coop": "tsx scripts/evaluate-coop.ts",
     "measure:pursuit": "tsx scripts/measure-pursuit.ts",
     "evaluate:run": "tsx scripts/evaluate-run.ts",
+    "evaluate:builds": "tsx scripts/evaluate-builds.ts",
     "art:package": "node scripts/art/package.mjs",
     "art:build": "node scripts/art/build.mjs",
     "art:finish": "node scripts/art/build.mjs --finish",

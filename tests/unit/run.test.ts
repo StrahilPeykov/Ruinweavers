@@ -114,7 +114,7 @@ it("five beats carry builds and health, recover a downed ally, synchronize victo
     s.ready("mage-2");
   }
   expect(s.state.trial!.status).toBe("victory");
-  expect(s.state.run!.upgrades["mage-1"]).toHaveLength(2);
+  expect(s.state.run!.upgrades["mage-1"]).toHaveLength(3);
   s.ready("mage-1");
   s.ready("mage-2");
   expect(s.state.trial!.status).toBe("active");

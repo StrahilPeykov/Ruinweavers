@@ -1,4 +1,9 @@
-import { RUN_BEATS, UPGRADES, fieldCapacity } from "../simulation/run";
+import {
+  RUN_BEATS,
+  UPGRADES,
+  fieldCapacity,
+  requirementText,
+} from "../simulation/run";
 import { COURT_ROOMS } from "../render/rooms";
 import type { CoopSession } from "../network/session";
 import { ENCOUNTERS } from "../simulation/trial";
@@ -11,6 +16,7 @@ export class UI {
   root: HTMLElement;
   last = 0;
   rewardKey = "";
+  buildKey = "";
   phaseKey = "";
   pointerButtons = 0;
   freshPointerPress = false;
@@ -443,6 +449,29 @@ export class UI {
     labels["upgrades"] = (s.run?.upgrades[player.id] ?? [])
       .map((id) => UPGRADES[id].name)
       .join("  ·  ");
+    let buildNotes = this.root.querySelector(
+      "#build-notes",
+    ) as HTMLElement | null;
+    if (!buildNotes) {
+      buildNotes = document.createElement("section");
+      buildNotes.id = "build-notes";
+      get("panel").prepend(buildNotes);
+    }
+    const buildKey = `${s.run?.id}:${player.id}:${(s.run?.upgrades[player.id] ?? []).join(",")}`;
+    if (buildKey !== this.buildKey) {
+      this.buildKey = buildKey;
+      buildNotes.innerHTML =
+        "<h3>Your build</h3>" +
+        (s.run?.upgrades[player.id] ?? [])
+          .map((id) => {
+            const u = UPGRADES[id];
+            return `<p><strong>${u.name}</strong><small>${u.kind} / ${u.family}</small>${u.description}</p>`;
+          })
+          .join("");
+      if (!s.run?.upgrades[player.id]?.length)
+        buildNotes.innerHTML +=
+          "<p>Personal choices after courts 1, 3 and 4. Alterations change an action; Theorems change a relationship.</p>";
+    }
     document.body.classList.toggle("run-mode", !!s.run);
     labels["run-eyebrow"] = s.run
       ? "RUN PROTOTYPE 0.1 · THE BROKEN COURT"
@@ -464,8 +493,8 @@ export class UI {
               : "The court claims another attempt";
       labels["trial-copy"] =
         trial.status === "ready"
-          ? "Five encounters. One health bar. Discover a personal alteration after the first and third. Play solo, or enter together."
-          : `${Math.ceil(player.hp)} integrity · ${trial.elapsed.toFixed(1)} seconds fighting. ${reward ? (s.party ? "Choose one alteration. Your partner chooses independently; both then ready up." : "Choose one alteration, then continue into the court.") : trial.status === "between" ? "Health and alterations carry forward." : "New run draws a fresh seed. Retry same seed repeats the offers. Both clear your alterations."}`;
+          ? "Five courts. Three personal choices, after courts 1, 3 and 4. Shape your actions with Alterations; discover a compatible Theorem at the final choice. Play solo, or enter together."
+          : `${Math.ceil(player.hp)} integrity · ${trial.elapsed.toFixed(1)} seconds fighting. ${reward ? (s.party ? "Choose one. Your partner chooses independently; both then ready up." : "Choose one, then continue into the court.") : trial.status === "between" ? "Health and your build carry forward." : "New run draws a fresh seed. Retry same seed repeats the offers given the same choices. Both clear your build."}`;
       labels["trial-action"] = s.party
         ? s.party.ready.includes(player.id)
           ? "Waiting for partner"
@@ -522,7 +551,8 @@ export class UI {
         const upgrade = UPGRADES[id],
           button = document.createElement("button");
         button.dataset.upgrade = id;
-        button.innerHTML = `<small>${upgrade.family}</small><strong>${upgrade.name}</strong><span>${upgrade.description}</span>`;
+        button.dataset.kind = upgrade.kind;
+        button.innerHTML = `<small>${upgrade.kind} / ${upgrade.family}</small><strong>${upgrade.name}</strong><span>${upgrade.description}</span>${upgrade.kind === "Theorem" ? `<em>${requirementText(id)}</em>` : ""}`;
         button.disabled = !!reward?.choices[player.id];
         button.classList.toggle("chosen", reward?.choices[player.id] === id);
         let deliberate = false;

@@ -441,6 +441,29 @@ select:disabled {
   font-size: 13px;
   line-height: 1.5;
 }
+#reward-cards em {
+  font-style: normal;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #e7d7b2;
+}
+#reward-cards button[data-kind="Theorem"] {
+  border-top-style: double;
+  border-top-width: 7px;
+}
+#build-notes {
+  border-bottom: 1px solid #9f9768;
+  margin-bottom: 12px;
+}
+#build-notes p {
+  font-size: 12px;
+  line-height: 1.45;
+}
+#build-notes small {
+  display: block;
+  color: #d2c497;
+  margin: 3px 0;
+}
 #reward-cards button:hover:not(:disabled),
 #reward-cards button:focus-visible {
   border-color: #efda9a;

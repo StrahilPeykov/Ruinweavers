@@ -225,6 +225,8 @@ test("co-op fields, cross-player reaction, allied safety, stale inputs and delay
       k.startsWith("cross-reaction:mage-1:mage-2:encounter-"),
     ),
   );
+  // Steam consumes wetness. Establish residual state independently before testing replacement.
+  await arrange(a, b, { entities: [{ id: ids[0], wet: 0.7, heat: 0 }] });
   await a.keyboard.press("3");
   await aim(a, { x: -3, y: 0, z: 1 });
   await a.keyboard.press("f");

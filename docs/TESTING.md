@@ -1,4 +1,12 @@
-# Broken Court complete-run validation (2026-09-10)
+# Build Identity 0.2 validation (2026-09-10)
+
+Starting tree c74769f was clean. Baseline: 78 units and production build passed; browser sweep **47 passed, one live TURN probe skipped, one failed**. Failure: `coop.spec.ts` expected residual wetness after an Ember hold that can consume all water through steam. The reaction assertion passed. Replacement now gets its own explicit .7 wet/0 heat fixture, so it tests preservation rather than an incidental reaction remainder. No game rule changed for this repair. Candidate simulation batches overlapped part of this baseline sweep, so its frame samples are not used as performance evidence.
+
+Initial prototype units/build: 88 passed. After removing the ineffective returning-bolt candidate and adding duplicate-partner bounded-build tests: 91 units passed. Current full-suite and graphical results follow when complete. Prototype measurements and retention rationale: BUILD-DESIGN.md.
+
+First normal-input reaction run: all five courts and all three chosen rewards passed, 76.32 s combat, 92 Tide / 106 Ember Primaries, 87 vaporize events. Native installed headless Chrome 152, Intel UHD ANGLE/D3D11, 1440x900 CSS, Lightweight 1152x720 buffer; 4,568 active frames mean 16.66 ms / p95 16.8. Not a human duration or remote-laptop claim. Screenshot/state inspected together. Original Storybook paired flow/echo sequence passed with seed 156 (same original choices, expanded offer pool). Fixture repair initially placed selection before pause/reset and lost that key press; moving the real selection after setup made the focused co-op regression pass. This was a test sequencing error, not a new game-input defect.
+
+## Historical complete-run validation
 
 Current entry is the illustrated run, not the historical study below. Baseline 731c1ec had 75 passing units/build. Animation checkpoint 7c97493 was checked, pushed immediately, verified on origin/main and its Cloudflare Workers build succeeded. Current run additions preserve mechanics and accepted relay/provider scope.
 

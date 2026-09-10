@@ -1,4 +1,5 @@
 import * as T from "three";
+import { hasUpgrade } from "../simulation/run";
 import { ArtStudy } from "./art";
 import { CAST, type Config, type Principle } from "../experiments/config";
 import { PAD, TERRAIN, WATER } from "../simulation/lab";
@@ -760,22 +761,31 @@ export class View {
           );
         } else if (e.type === "empty") {
           g.add(this.ring(0.2, 0x879597, 0.3));
-        } else if (e.type === "jet" && e.end) {
+        } else if (
+          ["jet", "vapour-link", "inscription-drift"].includes(e.type) &&
+          e.end
+        ) {
           g.add(
             this.line(
               vec(),
               vec(e.end.x - e.pos.x, e.end.y - e.pos.y, e.end.z - e.pos.z),
               color,
-              0.32,
+              e.type === "jet" ? 0.32 : 0.1,
             ),
           );
         } else if (e.type === "fan" && e.end) {
           for (let i = -2; i <= 2; i++) {
-            const a = Math.atan2(e.end.x, e.end.z) + i * (Math.acos(0.72) / 2);
+            const a =
+              Math.atan2(e.end.x, e.end.z) +
+              i * (Math.acos(Number(e.target) || 0.72) / 2);
             g.add(
               this.line(
                 vec(),
-                vec(Math.sin(a) * 6, 0, Math.cos(a) * 6),
+                vec(
+                  Math.sin(a) * (e.value ?? 6),
+                  0,
+                  Math.cos(a) * (e.value ?? 6),
+                ),
                 color,
                 0.07,
               ),
@@ -919,7 +929,8 @@ export class View {
     this.placement.children[0].scale.setScalar(inverse ? 2.8 : 2.5);
     this.placement.rotation.y =
       actor.activePrinciple === "Ember" && !inverse
-        ? Math.atan2(target.pos.x - p.pos.x, target.pos.z - p.pos.z)
+        ? Math.atan2(target.pos.x - p.pos.x, target.pos.z - p.pos.z) +
+          (hasUpgrade(s, p.id, "cross-seam") ? Math.PI / 2 : 0)
         : 0;
     for (const e of s.entities) {
       const ai = e.ai ?? (e.id === "sentinel" ? s.sentinel : undefined);

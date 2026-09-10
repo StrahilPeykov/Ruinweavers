@@ -73,6 +73,9 @@ export class LabAudio {
         rejected: [100, 85, 0.06],
         dissolve: [260, 80, 0.18],
         manifestation: [pitch * 0.8, pitch * 1.5, 0.16],
+        "vapour-link": [580, 850, 0.12],
+        "seal-release": [110, 420, 0.18],
+        "inscription-drift": [170, 350, 0.15],
       };
       const spec = cue[e.type];
       if (!spec) continue;

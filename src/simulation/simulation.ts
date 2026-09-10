@@ -282,7 +282,13 @@ export class Simulation {
       }
     }
   }
-  apply(e: Entity, op: Operation, source: string, reason: string) {
+  apply(
+    e: Entity,
+    op: Operation,
+    source: string,
+    reason: string,
+    transferred = false,
+  ) {
     if (e.hp <= 0) return;
     const s = this.state;
     const priorWetSource = e.sources.wet,
@@ -319,6 +325,27 @@ export class Simulation {
         duration: 1.2,
       });
       this.damage(e, consumed * 28, source, "steam");
+      if (!transferred && hasUpgrade(s, source, "shared-vapour")) {
+        const neighbors = this.nearby(e.pos, 2, source).filter(
+          (other) =>
+            other.id !== e.id && !this.physics.terrainHit(e.pos, other.pos),
+        );
+        for (const other of neighbors) {
+          this.apply(
+            other,
+            { water: Math.min(0.22, consumed / 2) },
+            source,
+            "shared vapour",
+            true,
+          );
+          this.event("vapour-link", source, e.pos, {
+            end: { ...other.pos },
+            principle: "Tide",
+            duration: 0.35,
+          });
+          this.outcome(`upgrade:${source}:shared-vapour`);
+        }
+      }
       if (e.material.structural && (oldHeat >= 35 || oldWet > 0.16)) {
         e.cohesion = Math.max(-1, e.cohesion - 0.5);
         e.sources.cohesion = source;
@@ -326,6 +353,21 @@ export class Simulation {
       }
     }
     if (op.force) {
+      if (
+        e.material.structural &&
+        oldCohesion >= 0.25 &&
+        e.cohesion >= 0.25 &&
+        Math.hypot(op.force.x, op.force.z) > 1 &&
+        hasUpgrade(s, source, "break-seal")
+      ) {
+        e.cohesion = -0.5;
+        e.sources.cohesion = source;
+        this.event("seal-release", source, e.pos, {
+          principle: "Stone",
+          duration: 0.5,
+        });
+        this.outcome(`upgrade:${source}:break-seal`);
+      }
       const resistance = 1 + Math.max(0, e.cohesion) * 5;
       const f = {
         x: op.force.x / resistance,
@@ -379,7 +421,10 @@ export class Simulation {
     aim = this.actor.aim,
   ) {
     const p = this.player.pos,
-      range = CAST[principle].range;
+      range =
+        action === "primary" && principle === "Gale"
+          ? this.gustShape().range
+          : CAST[principle].range;
     const d = distance(p, aim),
       ratio = Math.min(1, range / (d || 1));
     const ground = action === "secondary" || principle === "Stone";
@@ -442,13 +487,23 @@ export class Simulation {
       ground,
     };
   }
+  gustShape() {
+    return hasUpgrade(this.state, this.actorId, "focused-gale")
+      ? { range: 9, cosine: Math.cos(Math.PI / 9) }
+      : { range: 6, cosine: 0.72 };
+  }
+  seamDirection(dir: Vec) {
+    return hasUpgrade(this.state, this.actorId, "cross-seam")
+      ? vec(-dir.z, 0, dir.x)
+      : dir;
+  }
   inGust(point: Vec, dir: Vec, radius = 0) {
     const p = this.player.pos,
       d = normalize(vec(point.x - p.x, 0, point.z - p.z));
     return (
-      distance(point, p) < 6 + radius &&
+      distance(point, p) < this.gustShape().range + radius &&
       Math.abs(point.y - p.y) < 3 &&
-      d.x * dir.x + d.z * dir.z > 0.72 &&
+      d.x * dir.x + d.z * dir.z > this.gustShape().cosine &&
       !this.physics.terrainHit(p, point)
     );
   }
@@ -529,6 +584,8 @@ export class Simulation {
     else this.actor.secondaryReady = s.time + 0.65 * this.config.castRecovery;
     this.actor.castUntil = s.time + 0.12;
     const applicationsBefore = s.metrics.stateApplications;
+    const migrationBefore =
+      s.metrics.outcomes[`upgrade:${p.id}:migrating-inscriptions`] || 0;
     const deflectionsBefore = s.metrics.transformations.deflect || 0;
     inc(s.metrics.casts, `${principle}:${action}`);
     this.outcome(`${p.id}:cast:${principle}:${action}`);
@@ -572,12 +629,13 @@ export class Simulation {
         s.fields = s.fields.filter((f) => f.id !== old.id);
         this.event("dissolve", p.id, old.pos, { principle: old.principle });
       }
+      const axis = principle === "Ember" ? this.seamDirection(dir) : dir;
       const end = ["Ember", "Tide"].includes(principle)
-        ? vec(pos.x + dir.x * 2, pos.y, pos.z + dir.z * 2)
+        ? vec(pos.x + axis.x * 2, pos.y, pos.z + axis.z * 2)
         : { ...pos };
       const start =
         principle === "Ember"
-          ? vec(pos.x - dir.x * 2, pos.y, pos.z - dir.z * 2)
+          ? vec(pos.x - axis.x * 2, pos.y, pos.z - axis.z * 2)
           : pos;
       s.fields.push({
         id: `field-${++s.serial}`,
@@ -628,75 +686,113 @@ export class Simulation {
         hitIds: [],
       });
     } else if (principle === "Tide") {
-      const jetEnd =
-        this.physics.terrainHit(
-          p.pos,
+      const hit = new Set<string>();
+      const forked = hasUpgrade(s, this.actorId, "forked-tide");
+      for (const angle of forked ? [-0.22, 0.22] : [0]) {
+        const branch = Math.atan2(dir.x, dir.z) + angle;
+        const direction = vec(Math.sin(branch), 0, Math.cos(branch));
+        const jetEnd =
+          this.physics.terrainHit(
+            p.pos,
+            vec(
+              p.pos.x + direction.x * 8,
+              p.pos.y +
+                ((pos.y - p.pos.y) * 8) / Math.max(1, distance(pos, p.pos)),
+              p.pos.z + direction.z * 8,
+            ),
+          ) ||
           vec(
-            p.pos.x + dir.x * 8,
+            p.pos.x + direction.x * 8,
             p.pos.y +
               ((pos.y - p.pos.y) * 8) / Math.max(1, distance(pos, p.pos)),
-            p.pos.z + dir.z * 8,
-          ),
-        ) ||
-        vec(
-          p.pos.x + dir.x * 8,
-          p.pos.y + ((pos.y - p.pos.y) * 8) / Math.max(1, distance(pos, p.pos)),
-          p.pos.z + dir.z * 8,
-        );
-      this.event("jet", p.id, vec(p.pos.x, p.pos.y, p.pos.z), {
-        principle,
-        end: jetEnd,
-        duration: 0.22,
-      });
-      const jetHeightAt = (point: Vec) => {
-        const dx = jetEnd.x - p.pos.x,
-          dz = jetEnd.z - p.pos.z;
-        const t =
-          ((point.x - p.pos.x) * dx + (point.z - p.pos.z) * dz) /
-          (dx * dx + dz * dz || 1);
-        return p.pos.y + (jetEnd.y - p.pos.y) * t;
-      };
-      for (const e of s.entities)
-        if (
-          e.id !== p.id &&
-          e.hp > 0 &&
-          segmentDistance(e.pos, p.pos, jetEnd) < e.radius + 0.4 &&
-          Math.abs(e.pos.y - jetHeightAt(e.pos)) < e.height / 2 + 0.4 &&
-          !this.physics.terrainHit(
-            p.pos,
-            vec(e.pos.x, jetHeightAt(e.pos), e.pos.z),
-          )
-        )
-          this.apply(
-            e,
-            {
-              water: 0.7,
-              damage: 6,
-              force: vec(
-                dir.x * (hasUpgrade(s, this.actorId, "undertow") ? -8 : 8),
-                0,
-                dir.z * (hasUpgrade(s, this.actorId, "undertow") ? -8 : 8),
-              ),
-            },
-            p.id,
-            "jet",
+            p.pos.z + direction.z * 8,
           );
+        this.event("jet", p.id, vec(p.pos.x, p.pos.y, p.pos.z), {
+          principle,
+          end: jetEnd,
+          duration: 0.22,
+        });
+        const jetHeightAt = (point: Vec) => {
+          const dx = jetEnd.x - p.pos.x,
+            dz = jetEnd.z - p.pos.z;
+          const t =
+            ((point.x - p.pos.x) * dx + (point.z - p.pos.z) * dz) /
+            (dx * dx + dz * dz || 1);
+          return p.pos.y + (jetEnd.y - p.pos.y) * t;
+        };
+        for (const e of s.entities)
+          if (
+            e.id !== p.id &&
+            !hit.has(e.id) &&
+            e.hp > 0 &&
+            segmentDistance(e.pos, p.pos, jetEnd) < e.radius + 0.4 &&
+            Math.abs(e.pos.y - jetHeightAt(e.pos)) < e.height / 2 + 0.4 &&
+            !this.physics.terrainHit(
+              p.pos,
+              vec(e.pos.x, jetHeightAt(e.pos), e.pos.z),
+            )
+          ) {
+            hit.add(e.id);
+            if (forked) this.outcome(`upgrade:${p.id}:forked-tide`);
+            this.apply(
+              e,
+              {
+                water: 0.7,
+                damage: 6,
+                force: vec(
+                  dir.x * (hasUpgrade(s, this.actorId, "undertow") ? -8 : 8),
+                  0,
+                  dir.z * (hasUpgrade(s, this.actorId, "undertow") ? -8 : 8),
+                ),
+              },
+              p.id,
+              "jet",
+            );
+          }
+      }
     } else if (principle === "Gale") {
       this.event("fan", p.id, p.pos, {
         principle,
         end: vec(dir.x, 0, dir.z),
         duration: 0.3,
+        value: this.gustShape().range,
+        target: String(this.gustShape().cosine),
       });
-      for (const e of this.nearby(p.pos, 6)) {
+      for (const e of this.nearby(p.pos, this.gustShape().range, p.id)) {
         const d = normalize(vec(e.pos.x - p.pos.x, 0, e.pos.z - p.pos.z));
-        if (this.inGust(e.pos, dir, e.radius))
+        if (this.inGust(e.pos, dir, e.radius)) {
+          if (hasUpgrade(s, p.id, "focused-gale"))
+            this.outcome(`upgrade:${p.id}:focused-gale`);
           this.apply(
             e,
             { force: vec(d.x * 42, 7, d.z * 42), damage: 5 },
             p.id,
             "pressure",
           );
+        }
       }
+      if (hasUpgrade(s, p.id, "migrating-inscriptions"))
+        for (const f of s.fields) {
+          const center = vec(
+            f.principle === "Ember" ? (f.pos.x + f.end.x) / 2 : f.pos.x,
+            f.pos.y + 0.3,
+            f.principle === "Ember" ? (f.pos.z + f.end.z) / 2 : f.pos.z,
+          );
+          if (
+            f.source !== p.id ||
+            f.principle === "Stone" ||
+            !this.inGust(center, dir)
+          )
+            continue;
+          f.travel = vec(dir.x * 2.4, 0, dir.z * 2.4);
+          f.tethered = false;
+          this.outcome(`upgrade:${p.id}:migrating-inscriptions`);
+          this.event("inscription-drift", p.id, center, {
+            end: vec(center.x + dir.x * 2, center.y, center.z + dir.z * 2),
+            principle: f.principle,
+            duration: 0.4,
+          });
+        }
       for (const b of s.bolts)
         if (b.source !== p.id && this.inGust(b.pos, dir)) {
           b.originalSource ??= b.source;
@@ -706,19 +802,55 @@ export class Simulation {
           inc(s.metrics.transformations, "deflect");
         }
     } else {
-      this.event("eruption-warning", p.id, pos, { principle, duration: 0.22 });
-      s.pending.push({ source: p.id, pos, at: s.time + 0.18, principle });
-      if (hasUpgrade(s, this.actorId, "stone-echo")) {
+      const fault = hasUpgrade(s, p.id, "fault-line");
+      const hitIds: string[] = [],
+        echoHits: string[] = [];
+      for (let i = 0; i < (fault ? 3 : 1); i++) {
+        const offset = fault ? (i - 1) * 2 : 0;
+        const point = vec(
+          pos.x + dir.x * offset,
+          pos.y,
+          pos.z + dir.z * offset,
+        );
+        const surface = this.physics.surfaceAt(
+          vec(point.x, pos.y + 0.3, point.z),
+        );
+        if (
+          !surface ||
+          Math.abs(surface.y - pos.y) > 0.3 ||
+          this.physics.terrainHit(
+            vec(pos.x, pos.y + 0.15, pos.z),
+            vec(point.x, pos.y + 0.15, point.z),
+          )
+        )
+          continue;
+        point.y = surface.y;
+        const delay = 0.18 + i * 0.16;
+        this.event("eruption-warning", p.id, point, {
+          principle,
+          duration: delay,
+        });
         s.pending.push({
           source: p.id,
-          pos: { ...pos },
-          at: s.time + 0.83,
+          pos: point,
+          at: s.time + delay,
           principle,
+          hitIds: fault ? hitIds : undefined,
         });
-        this.event("eruption-warning", p.id, pos, {
-          principle,
-          duration: 0.83,
-        });
+        if (fault) this.outcome(`upgrade:${p.id}:fault-line`);
+        if (hasUpgrade(s, this.actorId, "stone-echo")) {
+          s.pending.push({
+            source: p.id,
+            pos: { ...point },
+            at: s.time + delay + 0.65,
+            principle,
+            hitIds: fault ? echoHits : undefined,
+          });
+          this.event("eruption-warning", p.id, point, {
+            principle,
+            duration: delay + 0.65,
+          });
+        }
       }
     }
     if (principle === "Tide" || principle === "Gale")
@@ -728,7 +860,9 @@ export class Simulation {
     if (
       (principle === "Tide" || principle === "Gale") &&
       applicationsBefore === s.metrics.stateApplications &&
-      deflectionsBefore === (s.metrics.transformations.deflect || 0)
+      deflectionsBefore === (s.metrics.transformations.deflect || 0) &&
+      migrationBefore ===
+        (s.metrics.outcomes[`upgrade:${p.id}:migrating-inscriptions`] || 0)
     )
       this.event("empty", p.id, pos, { duration: 0.3 });
   }
@@ -845,6 +979,7 @@ export class Simulation {
       const before = s.metrics.stateApplications;
       for (const e of this.nearby(pending.pos, 1.25, pending.source).filter(
         (e) =>
+          !pending.hitIds?.includes(e.id) &&
           this.contact(e, pending.pos, 1.6) &&
           !this.physics.terrainHit(
             vec(pending.pos.x, pending.pos.y + 0.15, pending.pos.z),
@@ -855,6 +990,9 @@ export class Simulation {
             ),
           ),
       )) {
+        pending.hitIds?.push(e.id);
+        if (pending.hitIds)
+          this.outcome(`upgrade:${pending.source}:fault-hit:${e.id}`);
         this.apply(
           e,
           { cohesion: 0.6, damage: 20, force: vec(0, 8, 0) },
@@ -917,6 +1055,8 @@ export class Simulation {
         );
         if (!this.fieldReaches(base, target, height)) continue;
         this.outcome(`field:${f.principle}:contact:${e.id}`);
+        if (f.principle === "Ember" && hasUpgrade(s, f.source, "cross-seam"))
+          this.outcome(`upgrade:${f.source}:cross-seam:${e.id}`);
         if (f.principle === "Ember")
           this.apply(e, { heat: 18, damage: 2 }, f.source, "seam");
         if (f.principle === "Tide")

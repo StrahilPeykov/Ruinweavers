@@ -3,6 +3,17 @@ import { test, expect, type Page } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
 const dir = process.env.RUIN_RUN_CAPTURE_ROOT ?? `${evidenceRoot}/run-0.1`;
 const primaryHeld = new WeakMap<Page, boolean>();
+const buildDirection = process.env.RUIN_BUILD_RUN;
+const buildChoices: Record<string, string[]> = {
+  reaction: ["forked-tide", "undertow", "shared-vapour"],
+  field: ["double-inscription", "cross-seam", "migrating-inscriptions"],
+  structure: ["stone-echo", "fault-line", "break-seal"],
+};
+test.use({
+  video: process.env.RUIN_RUN_VIDEO
+    ? { mode: "on", size: { width: 1440, height: 900 } }
+    : "off",
+});
 test("a held combat press cannot choose a reward; a fresh card press can", async ({
   page,
 }) => {
@@ -49,7 +60,7 @@ test("a held combat press cannot choose a reward; a fresh card press can", async
 });
 async function boot(p: Page) {
   await p.goto(
-    `/?scene=run&seed=123&quality=${process.env.RUIN_RUN_QUALITY ?? "lightweight"}`,
+    `/?scene=run&seed=${buildDirection === "pair" ? 415 : buildDirection === "reaction" ? 143 : buildDirection ? 0 : 123}&quality=${process.env.RUIN_RUN_QUALITY ?? "lightweight"}`,
   );
   await p.waitForFunction(() => !!window.__RUINWEAVERS__);
 }
@@ -113,7 +124,7 @@ async function release(p: Page) {
   primaryHeld.set(p, false);
 }
 async function installPolicy(p: Page) {
-  await p.evaluate(async () => {
+  await p.evaluate(async (build) => {
     // Import the same transparent policy used by fast simulation batches. Its output
     // is translated to real Playwright keyboard/mouse actions outside the page.
     const { ScriptedPolicy } = await import(
@@ -126,7 +137,19 @@ async function installPolicy(p: Page) {
       undefined,
       "keyboard",
     );
-  });
+    if (build) {
+      const { BuildPolicy } = await import(
+        "/src/diagnostics/build-policies.ts" as string
+      );
+      const direction =
+        build === "pair"
+          ? window.__RUINWEAVERS__.getPlayerState().id === "mage-2"
+            ? "structure"
+            : "reaction"
+          : build;
+      (window as any).runPolicy = new BuildPolicy(direction);
+    }
+  }, buildDirection);
 }
 async function drive(p: Page) {
   const command = await p.evaluate(() => {
@@ -176,7 +199,8 @@ async function capture(p: Page, name: string) {
 async function complete(pages: Page[], label: string) {
   const started = Date.now();
   const menus = new Set<number>(),
-    rooms = new Set<number>();
+    rooms = new Set<number>(),
+    actions = new Set<number>();
   for (const p of pages)
     await p.evaluate(() => {
       const w = window as any;
@@ -278,6 +302,7 @@ async function complete(pages: Page[], label: string) {
       );
       expect(s.trial.status).toBe("victory");
       expect(rooms.size).toBe(5);
+      expect(menus.size).toBe(3);
       for (const p of pages)
         await p.waitForFunction(
           () => window.__RUINWEAVERS__.getMetrics().render.courtResolved,
@@ -293,7 +318,7 @@ async function complete(pages: Page[], label: string) {
               ? "mage-2"
               : "mage-1"
           ],
-        ).toHaveLength(2);
+        ).toHaveLength(3);
       }
       return;
     }
@@ -311,7 +336,19 @@ async function complete(pages: Page[], label: string) {
               return state.run.reward.choices[api.getPlayerState().id];
             }),
           ).toBeUndefined();
-          await p.locator("#reward-cards button").first().click();
+          if (buildDirection) {
+            const direction =
+              buildDirection === "pair"
+                ? pages.indexOf(p) === 1
+                  ? "structure"
+                  : "reaction"
+                : buildDirection;
+            const choice =
+              buildChoices[direction][[0, 2, 3].indexOf(s.trial.encounter)];
+            await p
+              .locator(`#reward-cards button[data-upgrade="${choice}"]`)
+              .click();
+          } else await p.locator("#reward-cards button").first().click();
           await expect(p.locator("#reward-cards .chosen")).toBeVisible();
         }
       }
@@ -327,6 +364,15 @@ async function complete(pages: Page[], label: string) {
         () => window.__RUINWEAVERS__.getState().trial.status === "active",
       );
     } else {
+      if (
+        buildDirection &&
+        !actions.has(s.trial.encounter) &&
+        s.time - s.trial.started > 2
+      ) {
+        actions.add(s.trial.encounter);
+        if (s.trial.encounter === 4)
+          await capture(pages.at(-1)!, `${buildDirection}-last-ward-combat`);
+      }
       if (!rooms.has(s.trial.encounter)) {
         for (const p of pages)
           await p.waitForFunction(

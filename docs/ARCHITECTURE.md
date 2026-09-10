@@ -1,5 +1,7 @@
 # Architecture
 
+Build Identity 0.2: `run.ts` owns typed Alteration/Theorem metadata, explicit any-of prerequisites, three-stop deterministic offers, idempotent generation and revalidation on choice. No global CAST mutation. Existing compact `live.run`, `live.fields` and `live.pending` intentionally carry personal IDs/choices, directed field travel and per-wave hit IDs; full catalogue prose and evaluation counters stay local. JSON roundtrip tests cover this contract. Protocol 3 retains exact-build compatibility checks. Vapour transfer has one explicit non-propagating descendant flag; no generic trigger engine. Render/audio consume source-owned events only.
+
 Current illustrated-run additions: cosmetic mage pose accepts render delta and paused state; displayed displacement supplies locomotion, bounded against correction strides. Snapshot time remains authoritative. `render/rooms.ts` maps authored room identity to presentation; shared GLBs survive room replacement and instance resources are disposed. Victory presentation reads trial status only.
 
 Terminal `replay` controls carry epoch, run ID and fresh/same choice. Host alone generates fresh seeds; old messages fail epoch/run validation. The requester readies in the new run, partner must still ready. Static wire seed/config refresh on the epoch boundary; run identity remains separately generated. Legacy deterministic reset APIs remain available.
@@ -8,7 +10,7 @@ Terminal `replay` controls carry epoch, run ID and fresh/same choice. Host alone
 
 `trial.ts` defines six reproducible arena configurations, two small enemy lineups plus their mixed encounter, and baseline/candidate enemy tuning. Trial enemies each own `Entity.ai`; the legacy singleton is retained only for the old Lab sentinel. `State.trial` owns ready/active/between/victory/defeat, stage results and elapsed combat time. Between encounters, positions and temporary manifestations reset while player health carries. Physics is rebuilt only at that boundary. Lab-only water/plate behavior is excluded from the trial.
 
-Simulation configuration defaults to `run`; the browser root entry currently selects the art proof on `trial/mixed`. `State.run` owns actor upgrades and validated personal rewards, explicitly replicated in Protocol 3. See [run contract](RUN.md). The old `trial` remains unchanged; isolated scenes are `trial/ranged`, `trial/pursuit`, `trial/mixed`. Query `scenario=cross-cover` and `encounterVersion=baseline|candidate` reproduce variations. Changing either through the inspection API validates and resets the encounter. `ready(actorId)` gates party transitions on both actors; `advanceTrial()` is the internal transition primitive; paused `setupTestState` also accepts existing-entity HP for explicitly labelled lifecycle fixtures.
+Simulation configuration defaults to `run`; explicit historical study links can select `trial/mixed`. `State.run` owns actor upgrades and validated personal rewards, explicitly replicated in Protocol 3. See [run contract](RUN.md). The old `trial` remains unchanged; isolated scenes are `trial/ranged`, `trial/pursuit`, `trial/mixed`. Query `scenario=cross-cover` and `encounterVersion=baseline|candidate` reproduce variations. Changing either through the inspection API validates and resets the encounter. `ready(actorId)` gates party transitions on both actors; `advanceTrial()` is the internal transition primitive; paused `setupTestState` also accepts existing-entity HP for explicitly labelled lifecycle fixtures.
 
 `diagnostics/policies.ts` supplies local scripted inputs; `scripts/evaluate-encounters.ts` steps the actual Simulation/Rapier without rendering. Damage routes retain source, recipient and reason. Projectile counters distinguish original emitter from current damage owner after deflection. These counters are observations, not counterfactual damage prevention.
 
@@ -52,7 +54,7 @@ Body cursor queries intersect the displayed body hulls, terrain queries use curr
 
 Application delay queues are capped at 24; input generations and epochs cancel obsolete work. Snapshot scheduling does not wait for the synthetic propagation timer. An actual busy transport drops an overlapping snapshot; the next sends fresh truth. Rolling measurements distinguish host ticks/steps, encoding, arrival/application, input acknowledgements and rendering. The Trystero action API does not expose a reliable transport buffered-byte backlog; app queue depth is labelled separately.
 
-## Art proof presentation
+## Historical art proof presentation (superseded by the current room mapping and continuous pose above)
 
 `render/art.ts` loads device-local GLB assets and adapts models/materials/animation only on the third/mixed encounter. Root startup opens the proof; explicit run/Lab/trial links keep their existing simulation. No art nodes enter picking or Rapier. Source/export/ownership rules: ART.md. Asset bytes join source bytes in the build identifier.
 

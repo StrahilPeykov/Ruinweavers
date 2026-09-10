@@ -1,6 +1,6 @@
 # Magic: baseline catalogue and run alterations
 
-The table below remains the unmodified Lab/trial baseline. Run Prototype 0.1 adds six actor-owned behavioral alterations described in [RUN.md](RUN.md); no global damage or cadence changes.
+The table below remains the unmodified Lab/trial baseline. Build Identity 0.2 adds ten actor-owned Alterations and three prerequisite-gated Theorems described in [RUN.md](RUN.md); no global damage or cadence changes. New outcomes are run-owned and absent from baseline scenes.
 
 ## Operations and delivery
 

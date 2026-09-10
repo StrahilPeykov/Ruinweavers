@@ -129,7 +129,8 @@ for (const art of finish ? ["storybook", "illustrated"] : ["storybook", "ink"])
       }
       try {
         for (const p of [a, b]) {
-          await p.goto(`/?scene=run&art=${art}&quality=lightweight&seed=3`);
+          // Expanded pool: seed 156 offers the same original alterations to each actor.
+          await p.goto(`/?scene=run&art=${art}&quality=lightweight&seed=156`);
           await p.waitForFunction(() => !!window.__RUINWEAVERS__);
           if (finish) await p.addStyleTag({ content: "h1{display:none}" });
           await p.getByText("Connection options", { exact: true }).click();
