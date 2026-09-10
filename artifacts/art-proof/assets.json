@@ -1,0 +1,203 @@
+{
+  "tool": "Blender 5.2 / glTF Transform / Khronos validator",
+  "assets": [
+    {
+      "path": "public/art/storybook/ballast.glb",
+      "bytes": 15176,
+      "sourceBytes": 23056,
+      "meshes": 1,
+      "materials": 3,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/storybook/cover.glb",
+      "bytes": 34408,
+      "sourceBytes": 48160,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/storybook/landmark.glb",
+      "bytes": 50564,
+      "sourceBytes": 65144,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/storybook/loose.glb",
+      "bytes": 3456,
+      "sourceBytes": 4272,
+      "meshes": 1,
+      "materials": 2,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/storybook/mage.glb",
+      "bytes": 66880,
+      "sourceBytes": 82960,
+      "meshes": 2,
+      "materials": 5,
+      "animations": 1,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/storybook/pursuer.glb",
+      "bytes": 45032,
+      "sourceBytes": 57772,
+      "meshes": 1,
+      "materials": 5,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/storybook/sentinel.glb",
+      "bytes": 25584,
+      "sourceBytes": 32452,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/storybook/timber.glb",
+      "bytes": 22020,
+      "sourceBytes": 28324,
+      "meshes": 1,
+      "materials": 3,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/storybook/vessel.glb",
+      "bytes": 17740,
+      "sourceBytes": 22996,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/ink/ballast.glb",
+      "bytes": 11700,
+      "sourceBytes": 14984,
+      "meshes": 1,
+      "materials": 3,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/ink/cover.glb",
+      "bytes": 17112,
+      "sourceBytes": 22036,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/ink/landmark.glb",
+      "bytes": 38096,
+      "sourceBytes": 49216,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/ink/loose.glb",
+      "bytes": 3464,
+      "sourceBytes": 4280,
+      "meshes": 1,
+      "materials": 2,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/ink/mage.glb",
+      "bytes": 43916,
+      "sourceBytes": 55032,
+      "meshes": 2,
+      "materials": 5,
+      "animations": 1,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/ink/pursuer.glb",
+      "bytes": 24736,
+      "sourceBytes": 31828,
+      "meshes": 1,
+      "materials": 5,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/ink/sentinel.glb",
+      "bytes": 9512,
+      "sourceBytes": 12276,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/ink/timber.glb",
+      "bytes": 12224,
+      "sourceBytes": 15648,
+      "meshes": 1,
+      "materials": 3,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "path": "public/art/ink/vessel.glb",
+      "bytes": 13372,
+      "sourceBytes": 17288,
+      "meshes": 1,
+      "materials": 4,
+      "animations": 0,
+      "textures": 0,
+      "errors": 0,
+      "warnings": 0
+    }
+  ]
+}

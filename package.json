@@ -14,7 +14,8 @@
     "evaluate": "tsx scripts/evaluate-encounters.ts",
     "evaluate:coop": "tsx scripts/evaluate-coop.ts",
     "measure:pursuit": "tsx scripts/measure-pursuit.ts",
-    "evaluate:run": "tsx scripts/evaluate-run.ts"
+    "evaluate:run": "tsx scripts/evaluate-run.ts",
+    "art:package": "node scripts/art/package.mjs"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.20.0",
@@ -28,9 +29,12 @@
     }
   },
   "devDependencies": {
+    "@gltf-transform/core": "^4.5.0",
+    "@gltf-transform/functions": "^4.5.0",
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.5.0",
     "@types/three": "^0.185.4",
+    "gltf-validator": "^2.0.0-dev.3.10",
     "prettier": "^3.9.6",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2",

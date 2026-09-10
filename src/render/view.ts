@@ -1,4 +1,5 @@
 import * as T from "three";
+import { ArtStudy } from "./art";
 import { CAST, type Config, type Principle } from "../experiments/config";
 import { PAD, TERRAIN, WATER } from "../simulation/lab";
 import { distance, Simulation } from "../simulation/simulation";
@@ -14,6 +15,7 @@ const material = (
   extra: Partial<T.MeshStandardMaterialParameters> = {},
 ) => new T.MeshStandardMaterial({ color, roughness: 0.8, ...extra });
 export class View {
+  art = new ArtStudy();
   renderer: T.WebGLRenderer;
   scene = new T.Scene();
   camera = new T.PerspectiveCamera(43, 1, 0.1, 140);
@@ -339,6 +341,7 @@ export class View {
       group.add(hp);
     }
     this.scene.add(group);
+    if (this.art.active) this.art.dressEntity(group, e);
     this.entities.set(e.id, group);
     return group;
   }
@@ -391,9 +394,14 @@ export class View {
     return m;
   }
   destroy(group: T.Object3D) {
+    this.art.release(group);
     group.traverse((o) => {
       if (o instanceof T.Mesh || o instanceof T.LineSegments) {
-        if (!Object.values(this.geometries).includes(o.geometry as never))
+        if (o instanceof T.InstancedMesh) o.dispose();
+        if (
+          !Object.values(this.geometries).includes(o.geometry as never) &&
+          !this.art.geometry.has(o.geometry)
+        )
           o.geometry.dispose();
         const mats = Array.isArray(o.material) ? o.material : [o.material];
         mats.forEach((m) => m.dispose());
@@ -411,6 +419,26 @@ export class View {
     this.dangers.clear();
   }
   render(s: State, delta: number) {
+    const artActive = this.art.enabled(s);
+    if (artActive !== this.art.active) {
+      this.reset();
+      this.terrainKey = "";
+      this.art.active = artActive;
+      document.body.dataset.art = artActive ? this.art.mode : "off";
+      this.renderer.setClearColor(artActive ? this.art.palette.sky : 0x18252b);
+      this.scene.fog = artActive ? null : new T.Fog(0x18252b, 38, 85);
+      this.scene.children.forEach((o) => {
+        if (o instanceof T.HemisphereLight) {
+          o.intensity = artActive ? 1.8 : 2.1;
+          o.color.setHex(artActive ? 0xd9e4e0 : 0xd9ecf0);
+          o.groundColor.setHex(artActive ? this.art.palette.dark : 0x61706a);
+        }
+        if (o instanceof T.DirectionalLight) {
+          o.intensity = artActive ? 2 : 2.8;
+          o.color.setHex(artActive ? this.art.palette.sun : 0xffe1b9);
+        }
+      });
+    }
     this.displayedState = s;
     const p =
         s.entities.find((e) => e.id === this.actorId) ??
@@ -428,20 +456,26 @@ export class View {
           box.w,
           box.h,
           box.d,
-          s.run
-            ? box.name
-              ? 0x827e6a
-              : box.h <= 1
-                ? 0x374947
-                : 0x59665e
-            : box.name
-              ? 0x667675
-              : 0x43545a,
+          this.art.active
+            ? box.h <= 1
+              ? this.art.palette.floor
+              : this.art.palette.wall
+            : s.run
+              ? box.name
+                ? 0x827e6a
+                : box.h <= 1
+                  ? 0x374947
+                  : 0x59665e
+              : box.name
+                ? 0x667675
+                : 0x43545a,
         );
         mesh.position.set(box.x, box.y, box.z);
+        if (this.art.active && box.name === "Cover") mesh.visible = false;
         this.terrainGroup.add(mesh);
       }
-      if (s.run) {
+      if (this.art.active) this.art.decorate(this.terrainGroup, s);
+      if (s.run && !this.art.active) {
         // Non-colliding inlaid court markings, outside the aim/physics queries.
         for (const radius of [4.5, 9.5]) {
           const ring = new T.Mesh(
@@ -523,7 +557,7 @@ export class View {
         T.MeshBasicMaterial
       >;
       heat.scale.setScalar(e.burning ? 1 + Math.sin(t * 15) * 0.1 : 0.65);
-      heat.material.opacity = e.burning ? 0.4 : 0.16;
+      heat.material.opacity = e.burning ? (this.art.active ? 0.24 : 0.4) : 0.16;
       g.getObjectByName("crack")!.visible = e.cohesion < -0.25;
       g.getObjectByName("anchor")!.visible = e.cohesion > 0.25;
       const body = g.getObjectByName("body") as T.Mesh<
@@ -544,6 +578,7 @@ export class View {
         body.material.color.setHex(e.id === "mage-1" ? 0xe4e8cf : 0xb6cbea);
         orb.material.emissive.setHex(COLORS[s.actors[e.id].activePrinciple]);
       }
+      if (this.art.active) this.art.updateEntity(g, e, s);
     }
     for (const f of s.fields) {
       let g = this.fields.get(f.id);
@@ -581,6 +616,50 @@ export class View {
               g.add(r);
             }
         }
+        if (this.art.active) {
+          // Fitted, open strokes: boundaries remain exact; nothing hides bodies.
+          if (f.principle === "Tide" || f.principle === "Gale") {
+            for (let i = 0; i < 3; i++) {
+              const stroke = new T.Mesh(
+                new T.RingGeometry(
+                  1.1 + i * 0.38,
+                  1.15 + i * 0.38,
+                  28,
+                  1,
+                  i * 1.9,
+                  1.35,
+                ),
+                new T.MeshBasicMaterial({
+                  color,
+                  transparent: true,
+                  opacity: 0.6,
+                  depthWrite: false,
+                  side: T.DoubleSide,
+                }),
+              );
+              stroke.rotation.x = -Math.PI / 2;
+              stroke.position.y =
+                0.025 + i * (f.principle === "Gale" ? 0.33 : 0);
+              g.add(stroke);
+            }
+          }
+          if (f.principle === "Stone") {
+            const joint = new T.LineSegments(
+              new T.EdgesGeometry(new T.BoxGeometry(4.36, 0.89, 4.36)),
+              new T.LineBasicMaterial({ color: 0xe5d2f4 }),
+            );
+            joint.position.y = 0.33;
+            g.add(joint);
+          }
+          const owner = this.disc(0.1, 0xffeac4, 0.8);
+          owner.position.set(-0.18, 0.12, 0);
+          g.add(owner);
+          if (f.source === "mage-2") {
+            const second = this.disc(0.1, 0xffeac4, 0.8);
+            second.position.set(0.18, 0.12, 0);
+            g.add(second);
+          }
+        }
         this.fields.set(f.id, g);
         this.scene.add(g);
       }
@@ -601,16 +680,34 @@ export class View {
       let mesh = this.bolts.get(b.id);
       if (!mesh) {
         mesh = new T.Mesh(
-          this.geometries.sphere,
+          this.art.active && b.principle !== "hostile"
+            ? new T.ConeGeometry(0.16, 0.75, 5)
+            : this.geometries.sphere,
           new T.MeshBasicMaterial({
             color: b.principle === "hostile" ? 0xff5345 : COLORS[b.principle],
           }),
         );
-        mesh.scale.setScalar(b.radius);
+        mesh.scale.setScalar(
+          this.art.active && b.principle !== "hostile" ? 1 : b.radius,
+        );
+        if (this.art.active && b.principle === "hostile") {
+          const core = new T.Mesh(
+            this.geometries.sphere,
+            new T.MeshBasicMaterial({ color: 0xffedcc, depthTest: false }),
+          );
+          core.scale.setScalar(0.58);
+          core.renderOrder = 21;
+          mesh.add(core);
+        }
         this.scene.add(mesh);
         this.bolts.set(b.id, mesh);
       }
       mesh.position.set(b.pos.x, b.pos.y, b.pos.z);
+      if (this.art.active && b.principle !== "hostile")
+        mesh.quaternion.setFromUnitVectors(
+          new T.Vector3(0, 1, 0),
+          new T.Vector3(b.velocity.x, b.velocity.y, b.velocity.z).normalize(),
+        );
     }
     for (const [id, m] of this.bolts)
       if (!s.bolts.some((b) => b.id === id)) {
@@ -674,24 +771,48 @@ export class View {
             g.add(spike);
           }
         } else if (e.type === "steam") {
-          for (let i = 0; i < 5; i++) {
-            const puff = new T.Mesh(
-              this.geometries.sphere,
-              new T.MeshBasicMaterial({
-                color,
-                transparent: true,
-                opacity: 0.24,
-                depthWrite: false,
-              }),
-            );
-            puff.position.set(
-              Math.sin(i * 3) * 0.55,
-              i * 0.25,
-              Math.cos(i * 3) * 0.55,
-            );
-            puff.scale.setScalar(0.6);
-            g.add(puff);
-          }
+          if (this.art.active) {
+            for (let i = 0; i < 3; i++) {
+              const stroke = new T.Mesh(
+                new T.RingGeometry(
+                  0.45 + i * 0.1,
+                  0.5 + i * 0.1,
+                  24,
+                  1,
+                  i * 1.8,
+                  2.8,
+                ),
+                new T.MeshBasicMaterial({
+                  color: 0xf6eedb,
+                  transparent: true,
+                  opacity: 0.65,
+                  depthWrite: false,
+                  side: T.DoubleSide,
+                }),
+              );
+              stroke.position.y = i * 0.3;
+              stroke.rotation.set(-Math.PI / 2 + 0.3, 0, i * 0.5);
+              g.add(stroke);
+            }
+          } else
+            for (let i = 0; i < 5; i++) {
+              const puff = new T.Mesh(
+                this.geometries.sphere,
+                new T.MeshBasicMaterial({
+                  color,
+                  transparent: true,
+                  opacity: 0.24,
+                  depthWrite: false,
+                }),
+              );
+              puff.position.set(
+                Math.sin(i * 3) * 0.55,
+                i * 0.25,
+                Math.cos(i * 3) * 0.55,
+              );
+              puff.scale.setScalar(0.6);
+              g.add(puff);
+            }
         } else
           g.add(
             this.ring(
@@ -786,6 +907,24 @@ export class View {
           this.line(vec(), vec(0, 0, 1), 0xff6657, 0.18),
           this.ring(e.kind === "pursuer" ? 1.45 : 0.9, 0xff7864),
         );
+        if (this.art.active) {
+          const edge = this.ring(e.kind === "pursuer" ? 1.49 : 0.94, 0x221e29);
+          g.add(edge);
+          const teeth = new T.Mesh(
+            new T.RingGeometry(
+              e.kind === "pursuer" ? 1.3 : 0.75,
+              e.kind === "pursuer" ? 1.44 : 0.89,
+              12,
+            ),
+            new T.MeshBasicMaterial({
+              color: 0xffe5bd,
+              depthTest: false,
+              side: T.DoubleSide,
+            }),
+          );
+          teeth.rotation.x = -Math.PI / 2;
+          g.add(teeth);
+        }
         g.traverse((o) => {
           if (o instanceof T.Mesh) {
             o.material.depthTest = false;
@@ -810,6 +949,8 @@ export class View {
         line.position.set((a.x + b.x) / 2, 0.08, (a.z + b.z) / 2);
         line.rotation.y = Math.atan2(b.x - a.x, b.z - a.z);
         g.children[1].position.set(b.x, 0.09, b.z);
+        for (let i = 2; i < g.children.length; i++)
+          g.children[i].position.set(b.x, 0.09 + i * 0.001, b.z);
       }
     }
     for (const [id, g] of this.dangers)
@@ -861,6 +1002,7 @@ export class View {
       geometries: this.renderer.info.memory.geometries,
       textures: this.renderer.info.memory.textures,
       contextLost: this.contextLost,
+      art: this.art.metrics(),
     };
   }
 }

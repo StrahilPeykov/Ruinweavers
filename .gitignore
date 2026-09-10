@@ -12,3 +12,10 @@ playwright-report/
 # Full local regression captures; selected sanitized run evidence is tracked.
 artifacts/run-0.1/regression-coop/
 artifacts/smoothness/candidate-*
+
+# Reproducible Blender intermediates; editable .blend and final GLB are tracked.
+assets/art-source/*/*.glb
+*.blend1
+
+# Full art study videos stay local; selected short clips are tracked.
+artifacts/art-proof/raw/

@@ -47,7 +47,7 @@ test("a held combat press cannot choose a reward; a fresh card press can", async
   await expect(page.locator("#reward-cards .chosen")).toBeVisible();
 });
 async function boot(p: Page) {
-  await p.goto("/?quality=lightweight");
+  await p.goto("/?scene=run&quality=lightweight");
   await p.waitForFunction(() => !!window.__RUINWEAVERS__);
 }
 test("guest opening the default run can join an unchanged trial host", async ({

@@ -47,3 +47,7 @@ Snapshot sequence/tick/time drive a 12-frame remote timeline; no extrapolation. 
 Body cursor queries intersect the displayed body hulls, terrain queries use current real colliders, and host cast range/occlusion stays authoritative. See SMOOTHNESS.md for moving-cover/dodge and visual-latency limits. Device-local rendering quality and all balance values are unchanged.
 
 Application delay queues are capped at 24; input generations and epochs cancel obsolete work. Snapshot scheduling does not wait for the synthetic propagation timer. An actual busy transport drops an overlapping snapshot; the next sends fresh truth. Rolling measurements distinguish host ticks/steps, encoding, arrival/application, input acknowledgements and rendering. The Trystero action API does not expose a reliable transport buffered-byte backlog; app queue depth is labelled separately.
+
+## Art proof presentation
+
+`render/art.ts` loads device-local GLB assets and adapts models/materials/animation only on the third/mixed encounter. Root startup opens the proof; explicit run/Lab/trial links keep their existing simulation. No art nodes enter picking or Rapier. Source/export/ownership rules: ART.md. Asset bytes join source bytes in the build identifier.

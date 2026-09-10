@@ -25,10 +25,14 @@ async function boot() {
   canvas.tabIndex = 0;
   canvas.setAttribute("aria-label", "Ruinweavers Magic Lab");
   root.replaceChildren(canvas);
-  const config = configFromQuery(location.search);
+  const entryQuery = new URLSearchParams(location.search);
+  // Art study entry only. Explicit old scene links remain unmodified.
+  if (!entryQuery.has("scene")) entryQuery.set("scene", "trial/mixed");
+  const config = configFromQuery(entryQuery.toString());
   const sim = new Simulation(config),
     input = new Input(canvas),
     view = new View(canvas, config, sim);
+  await view.art.load();
   let net: CoopSession;
   input.onClear = () => {
     if (net?.active) net.release();

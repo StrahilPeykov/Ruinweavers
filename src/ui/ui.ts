@@ -418,6 +418,15 @@ export class UI {
           ` Both players must be ready (${s.party.ready.length}/2).`;
     }
     const reward = s.run?.reward;
+    let artLinks = this.root.querySelector("#art-links") as HTMLElement | null;
+    if (!artLinks) {
+      artLinks = document.createElement("nav");
+      artLinks.id = "art-links";
+      artLinks.innerHTML =
+        '<a href="/?scene=trial/mixed&art=storybook">Fitted court</a><a href="/?scene=trial/mixed&art=ink">Folded court</a><a href="/?scene=run">Play the run</a>';
+      get("trial-card").append(artLinks);
+    }
+    artLinks.hidden = !view.art.active;
     const rewardCards = get("reward-cards");
     rewardCards.hidden = !reward || trial?.status !== "between";
     labels["upgrades"] = (s.run?.upgrades[player.id] ?? [])
@@ -455,6 +464,19 @@ export class UI {
           : trial.status === "between"
             ? "Continue"
             : "Run again";
+    }
+    if (view.art.active) {
+      labels["mode-title"] = "/ ART DIRECTION PROOF";
+      labels["run-eyebrow"] =
+        view.art.mode === "ink"
+          ? "B · INK & PIGMENT"
+          : "A · SCULPTURAL STORYBOOK";
+      if (trial?.status === "ready") {
+        labels["trial-title"] = view.art.palette.title;
+        labels["trial-copy"] =
+          "One familiar mixed encounter. Explore, cast, or enter together. Same combat and cover; a different visual language.";
+        if (!s.party) labels["trial-action"] = "Enter the court";
+      }
     }
     const rewardKey = reward
       ? `${reward.id}:${player.id}:${reward.choices[player.id] ?? ""}`

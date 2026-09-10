@@ -481,3 +481,106 @@ select:disabled {
   text-align: right;
   pointer-events: none;
 }
+
+/* Device-local art proof: the playfield owns the center; marks are inscriptions,
+   not dashboard chrome. Baseline scenes retain their existing UI. */
+body[data-art="storybook"],
+body[data-art="ink"] {
+  --art-paper: #e9dbb9;
+  --art-ink: #233b3d;
+  --art-gold: #c8a46a;
+}
+body[data-art="ink"] {
+  --art-paper: #d6c6a3;
+  --art-ink: #203441;
+  --art-gold: #dfa74e;
+}
+body[data-art="storybook"] #trial-card,
+body[data-art="ink"] #trial-card {
+  background: var(--art-ink);
+  border: 1px solid var(--art-gold);
+  color: var(--art-paper);
+  box-shadow: 0 12px 45px #14262970;
+  border-radius: 2px 30px 2px 30px;
+}
+body[data-art="ink"] #trial-card {
+  border-radius: 0;
+  border-width: 3px 1px 1px 5px;
+}
+body[data-art="storybook"] #trial-title,
+body[data-art="ink"] #trial-title {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: 32px;
+  letter-spacing: 0.02em;
+}
+body[data-art="storybook"] #reward-cards button,
+body[data-art="ink"] #reward-cards button {
+  border-radius: 2px 18px 2px 18px;
+  border-color: var(--art-gold);
+  background: #34504e;
+  border-top: 5px double var(--art-gold);
+  color: var(--art-paper);
+}
+body[data-art="ink"] #reward-cards button {
+  border-radius: 0;
+  background: #294451;
+  border-top: 6px solid var(--art-gold);
+}
+body[data-art="storybook"] #reward-cards strong,
+body[data-art="ink"] #reward-cards strong {
+  font-family: Georgia, serif;
+}
+body[data-art="storybook"] header,
+body[data-art="ink"] header {
+  top: 16px;
+  left: 22px;
+  text-shadow: 0 1px 4px #182d32;
+}
+body[data-art="storybook"] h1,
+body[data-art="ink"] h1 {
+  font-family: Georgia, serif;
+  font-size: 17px;
+  letter-spacing: 2px;
+}
+body[data-art="storybook"] .eyebrow,
+body[data-art="ink"] .eyebrow {
+  display: none;
+}
+body[data-art="storybook"] footer,
+body[data-art="ink"] footer {
+  background: #203c3ee8;
+  border-top: 1px solid var(--art-gold);
+  border-radius: 3px;
+  padding: 6px 12px;
+}
+body[data-art="storybook"] .top-actions button,
+body[data-art="ink"] .top-actions button {
+  background: #243c3ddc;
+  padding: 6px 9px;
+}
+#art-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+  font-size: 11px;
+}
+#art-links[hidden] {
+  display: none;
+}
+#art-links a {
+  pointer-events: auto;
+  color: var(--art-paper);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+@media (max-width: 900px) {
+  #art-links {
+    gap: 14px;
+  }
+  body[data-art="storybook"] #trial-title,
+  body[data-art="ink"] #trial-title {
+    font-size: 24px;
+  }
+}
