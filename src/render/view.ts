@@ -479,8 +479,14 @@ export class View {
                 : 0x43545a,
         );
         mesh.position.set(box.x, box.y, box.z);
+        mesh.rotation.x = box.pitch ?? 0;
         if (this.art.active && box.name === "Cover") mesh.visible = false;
-        if (this.art.active && this.art.mode === "illustrated" && box.h === 2.6)
+        if (
+          !s.roomId &&
+          this.art.active &&
+          this.art.mode === "illustrated" &&
+          box.h === 2.6
+        )
           mesh.visible = false;
         this.terrainGroup.add(mesh);
       }

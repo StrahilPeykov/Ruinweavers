@@ -1,5 +1,6 @@
 import { RUN_BEATS } from "./run";
 import { createGuardian } from "./guardian";
+import { roomSpec } from "./rooms";
 import { entity, type TerrainBox } from "./lab";
 import { vec, type State } from "./types";
 import type { Config } from "../experiments/config";
@@ -117,6 +118,7 @@ export function arenaTerrain(name: string): TerrainBox[] {
 }
 export function prepareEncounter(s: State, config: Config) {
   s.guardian = undefined;
+  s.roomId = undefined;
   if (s.run && config.scene !== "guardian")
     s.trial!.scenario = RUN_BEATS[s.trial!.encounter].scenario;
   const trial = s.trial!,
@@ -215,6 +217,61 @@ export function prepareEncounter(s: State, config: Config) {
       if (box.name === "Cover") box.x += Math.sign(box.x) * 0.8;
     s.entities = s.entities.filter((e) => !e.ai);
     createGuardian(s);
+  }
+  const room = roomSpec(config.room);
+  if (room) {
+    s.roomId = room.id;
+    s.terrain = structuredClone(room.terrain);
+    players.forEach((p, i) => {
+      const start = room.starts[i];
+      p.pos = vec(start.x, 0.75 + start.y, start.z);
+    });
+    const enemies = s.entities.filter((e) => e.ai);
+    if (s.guardian) {
+      const origin = room.anchors[0];
+      for (const e of s.entities.filter(
+        (e) => e.kind === "warden" || e.kind === "wardplate",
+      )) {
+        e.pos.x += origin.x;
+        e.pos.z += origin.z + 5;
+        e.pos.y += origin.y;
+      }
+    } else
+      enemies.forEach((e, i) => {
+        const a = room.anchors[i % room.anchors.length];
+        e.pos = vec(a.x, e.height / 2 + 0.05 + a.y, a.z);
+      });
+    s.entities = s.entities.filter(
+      (e) => s.actors[e.id] || e.ai || e.kind === "wardplate",
+    );
+    for (const prop of room.props) {
+      const [radius, height, mass] =
+        prop.kind === "heavy"
+          ? [0.8, 1.6, 18]
+          : prop.kind === "loose"
+            ? [0.38, 0.75, 1]
+            : prop.kind === "brittle"
+              ? [0.65, 2, 5]
+              : [0.6, 1.6, 5];
+      const p = entity(
+        prop.id,
+        prop.kind,
+        prop.kind === "wood"
+          ? "Dry timber"
+          : prop.kind === "heavy"
+            ? "Heavy ballast"
+            : prop.kind === "brittle"
+              ? "Brittle column"
+              : "Loose stone",
+        prop.x,
+        prop.z,
+        radius,
+        height,
+        mass,
+      );
+      p.pos.y += prop.y ?? 0;
+      s.entities.push(p);
+    }
   }
   s.fields = [];
   s.bolts = [];

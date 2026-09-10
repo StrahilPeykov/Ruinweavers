@@ -10,6 +10,7 @@ import {
 import { actorState, legacyActorAccessors } from "./actors";
 import { tickGuardian } from "./guardian";
 import { entity } from "./lab";
+import { bridgeAt } from "./rooms";
 import {
   CAST,
   PRINCIPLES,
@@ -480,9 +481,7 @@ export class Simulation {
       principle === "Stone" &&
       action === "secondary" &&
       this.config.model === "primary-secondary" &&
-      point.x >= 8 &&
-      point.x <= 11 &&
-      Math.abs(point.z) < 4;
+      bridgeAt(this.state.roomId, point, !this.state.trial);
     point.y = surface?.y ?? 0;
     const valid = !aim.invalid && (!!surface || bridge);
     return {
@@ -1168,8 +1167,12 @@ export class Simulation {
       e.wet = Math.max(0, e.wet - dt * 0.025);
       if (e.ai && e.stagger > 0)
         this.outcome(`control:stagger-seconds:${e.id}`, dt);
-      if (e.ai && e.pos.y - e.height / 2 > 0.3)
-        this.outcome(`control:airborne-seconds:${e.id}`, dt);
+      if (e.ai) {
+        const feet = vec(e.pos.x, e.pos.y - e.height / 2, e.pos.z);
+        const support = this.physics.surfaceAt(feet);
+        if (!support || feet.y - support.y > 0.3)
+          this.outcome(`control:airborne-seconds:${e.id}`, dt);
+      }
       e.stagger = Math.max(0, e.stagger - dt);
       e.burning = e.material.flammable && e.heat > 65 && e.wet < 0.15;
       if (e.burning) {
@@ -1269,7 +1272,9 @@ export class Simulation {
       .slice(-180);
   }
   steerEnemy(e: Entity, target: Vec, speed: number, dt: number) {
-    if (e.stagger > 0 || e.pos.y - e.height / 2 > 0.3) return;
+    const feet = vec(e.pos.x, e.pos.y - e.height / 2, e.pos.z);
+    const support = this.physics.surfaceAt(feet);
+    if (e.stagger > 0 || !support || feet.y - support.y > 0.3) return;
     const goal = normalize(vec(target.x - e.pos.x, 0, target.z - e.pos.z));
     const base = Math.atan2(goal.x, goal.z);
     let best = vec(),

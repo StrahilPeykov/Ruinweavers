@@ -48,6 +48,7 @@ export interface Config {
   cameraPitch: number;
   inputBuffer: number;
   scenario: string;
+  room?: string;
   encounterVersion: "baseline" | "candidate";
 }
 export const CAMERAS = {
@@ -85,6 +86,7 @@ export function configFromQuery(query = ""): Config {
     tempo: tempo in TEMPOS ? tempo : "balanced",
     scene,
     scenario: q.get("scenario") || "cross-cover",
+    room: q.get("room") || undefined,
     encounterVersion:
       q.get("encounterVersion") === "baseline" ? "baseline" : "candidate",
     seed:

@@ -1,5 +1,6 @@
 import RAPIER from "@dimforge/rapier3d-compat";
 import { TERRAIN } from "../simulation/lab";
+import { bridgeAt } from "../simulation/rooms";
 import type { Entity, State, Vec, Field, AimPoint } from "../simulation/types";
 let ready: Promise<void> | undefined;
 export const initPhysics = () => (ready ??= RAPIER.init());
@@ -24,7 +25,14 @@ export class Physics {
     this.world.timestep = 1 / 60;
     for (const t of state.terrain ?? TERRAIN) {
       const b = this.world.createRigidBody(
-        RAPIER.RigidBodyDesc.fixed().setTranslation(t.x, t.y, t.z),
+        RAPIER.RigidBodyDesc.fixed()
+          .setTranslation(t.x, t.y, t.z)
+          .setRotation({
+            x: Math.sin((t.pitch ?? 0) / 2),
+            y: 0,
+            z: 0,
+            w: Math.cos((t.pitch ?? 0) / 2),
+          }),
       );
       this.world.createCollider(
         RAPIER.ColliderDesc.cuboid(t.w / 2, t.h / 2, t.d / 2),
@@ -142,7 +150,7 @@ export class Physics {
     const point = ray.pointAt(-origin.y / direction.y);
     return {
       ...point,
-      invalid: !(point.x >= 8 && point.x <= 11 && Math.abs(point.z) < 4),
+      invalid: !bridgeAt(this.state.roomId, point, !this.state.trial),
     };
   }
   surfaceAt(point: Vec, excludedFields: string[] = []): Vec | null {

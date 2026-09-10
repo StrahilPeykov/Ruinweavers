@@ -9,6 +9,7 @@ export interface TerrainBox {
   h: number;
   d: number;
   name?: string;
+  pitch?: number;
 }
 export const TERRAIN: TerrainBox[] = [
   { x: -3.5, y: -0.5, z: 0, w: 23, h: 1, d: 28 },

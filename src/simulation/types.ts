@@ -156,6 +156,7 @@ export interface ActorState {
   reviveProgress: number;
 }
 export interface State extends ActorState {
+  roomId?: string;
   guardian?: import("./guardian").GuardianState;
   run?: import("./run").RunState;
   actors: Record<string, ActorState>;

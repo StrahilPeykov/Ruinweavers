@@ -39,6 +39,7 @@ export function encodeSnapshot(
       ? {
           config,
           terrain: s.terrain,
+          roomId: s.roomId,
           seed: s.seed,
           entities: s.entities.map((e) => ({
             id: e.id,
@@ -126,6 +127,7 @@ export class WireReader {
       guardian: p.live.guardian ?? undefined,
       seed: base.seed,
       terrain: base.terrain,
+      roomId: base.roomId,
       entities: p.live.entities.map((e) => ({
         ...base.entities.find((t) => t.id === e.id)!,
         ...e,
