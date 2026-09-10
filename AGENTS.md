@@ -1,9 +1,9 @@
 # Ruinweavers
 
-Run Prototype 0.1 is authorized: a small five-beat solo/co-op run with personal behavioral upgrades. Preserve the old Lab/trial regression scenes, accepted controls, four families, damage and co-op architecture. No classes, new Principles, economy or broad content expansion. Co-op rules, connection steps and evidence: `docs/COOP.md`.
+Run Prototype 0.1 is authorized: a small five-beat solo/co-op run with personal behavioral upgrades. Preserve the old Lab/trial regression scenes, accepted controls, four families, damage and co-op architecture. No classes, new Principles, economy or broad content expansion. Run structure/authority/evidence: `docs/RUN.md`. Co-op connection steps: `docs/COOP.md`.
 
 - Stack: TypeScript, Vite, vanilla Three.js WebGL, Rapier, DOM UI, Vitest, Playwright. Free tooling; existing GitHub/Cloudflare integration.
-- Commands: `npm install`, `npm run dev`, `npm run build`, `npm test`, `npm run test:e2e`, `npm run benchmark`, `npm run evaluate`, `npm run evaluate:coop`, `npm run measure:pursuit`. Evaluation method/results: `docs/EVALUATION.md`. Preserve historical benchmark evidence.
+- Commands: `npm install`, `npm run dev`, `npm run build`, `npm test`, `npm run test:e2e`, `npm run benchmark`, `npm run evaluate`, `npm run evaluate:coop`, `npm run measure:pursuit`, `npm run evaluate:run`. Evaluation method/results: `docs/EVALUATION.md`. Preserve historical benchmark evidence.
 - Design authority: `docs/VISION.md`, `docs/MAGIC.md`. Boundaries: `docs/ARCHITECTURE.md`. Current evidence and recommendations: `docs/EXPERIMENTS.md`, `docs/TESTING.md`. Research and decisions have their own focused docs.
 - Cloudflare build setup: `docs/DEPLOYMENT.md`. `npm run deploy:check` builds and validates a dry run without publishing. After EVERY checked, coherent commit, immediately push to the existing upstream (`origin/main`) and verify the remote contains it. Authorized pushes may trigger the existing Cloudflare pipeline; inspect status where accessible. No force-push, history rewrite, new remote/provider or unrelated direct deployment.
 - Simulation owns serializable state, stable IDs and actor provenance. Three.js and DOM never own rules. Fixed 60 Hz host-authoritative simulation; physics through its adapter. Actor-owned state; guest collider mirror is query-only.

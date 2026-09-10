@@ -1,3 +1,4 @@
+import { PROTOCOL } from "../../src/network/protocol";
 import { it, expect } from "vitest";
 import { InputMailbox, validateInput } from "../../src/network/input-mailbox";
 import { idleInput, vec } from "../../src/simulation/types";
@@ -10,7 +11,7 @@ it("wire inputs validate finite eight-direction commands and reject invalid cont
 it("mailbox rejects replay/old epochs, captures discrete aim and stops stale holds", () => {
   const m = new InputMailbox();
   const packet = (seq: number, input = idleInput()) => ({
-    version: 2,
+    version: PROTOCOL,
     epoch: 3,
     seq,
     input,
@@ -53,7 +54,7 @@ it("focus release clears a pending cast even before the stale timeout", () => {
   const m = new InputMailbox();
   m.receive(
     {
-      version: 2,
+      version: PROTOCOL,
       epoch: 0,
       seq: 1,
       input: { ...idleInput(), secondary: true },
@@ -62,7 +63,7 @@ it("focus release clears a pending cast even before the stale timeout", () => {
     0,
   );
   m.receive(
-    { version: 2, epoch: 0, seq: 2, input: idleInput(), clear: true },
+    { version: PROTOCOL, epoch: 0, seq: 2, input: idleInput(), clear: true },
     0,
     1,
   );

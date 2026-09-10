@@ -85,6 +85,8 @@ export interface MagicEvent {
   duration: number;
 }
 export interface Field {
+  travel?: Vec;
+  tethered?: boolean;
   id: string;
   source: string;
   principle: Principle;
@@ -95,6 +97,8 @@ export interface Field {
   nextPulse: number;
 }
 export interface Bolt {
+  pierce?: number;
+  hitIds?: string[];
   originalSource?: string;
   id: string;
   source: string;
@@ -149,6 +153,7 @@ export interface ActorState {
   reviveProgress: number;
 }
 export interface State extends ActorState {
+  run?: import("./run").RunState;
   actors: Record<string, ActorState>;
   party?: { ready: string[]; epoch: number };
   trial?: TrialState;

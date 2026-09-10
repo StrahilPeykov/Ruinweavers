@@ -56,6 +56,7 @@ export const CAMERAS = {
   cinematic: { cameraDistance: 22, cameraPitch: 37 },
 };
 export const SCENES = [
+  "run",
   "trial",
   "trial/ranged",
   "trial/pursuit",
@@ -80,7 +81,7 @@ export function configFromQuery(query = ""): Config {
     tempo: tempo in TEMPOS ? tempo : "balanced",
     scene: SCENES.includes((q.get("scene") || "").replace("magic-lab/", ""))
       ? q.get("scene")!.replace("magic-lab/", "")
-      : "trial",
+      : "run",
     scenario: q.get("scenario") || "cross-cover",
     encounterVersion:
       q.get("encounterVersion") === "baseline" ? "baseline" : "candidate",

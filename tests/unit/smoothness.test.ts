@@ -1,3 +1,4 @@
+import { PROTOCOL } from "../../src/network/protocol";
 import { beforeAll, it, expect, vi } from "vitest";
 import { initPhysics } from "../../src/physics/world";
 import { Simulation } from "../../src/simulation/simulation";
@@ -84,7 +85,7 @@ it("tap intent never bypasses cooldown or survives clear/stale boundaries; holds
   const receive = (primary: boolean, now: number, clear = false) =>
     box.receive(
       {
-        version: 2,
+        version: PROTOCOL,
         seq: ++seq,
         epoch: 0,
         input: { ...idleInput(), primary },

@@ -1,4 +1,6 @@
-# Magic in the Lab
+# Magic: baseline catalogue and run alterations
+
+The table below remains the unmodified Lab/trial baseline. Run Prototype 0.1 adds six actor-owned behavioral alterations described in [RUN.md](RUN.md); no global damage or cadence changes.
 
 ## Operations and delivery
 

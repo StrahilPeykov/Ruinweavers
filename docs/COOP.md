@@ -1,10 +1,10 @@
-# Co-op Trial 0.1
+# Solo/co-op connection — current Run Prototype 0.1
 
 ## Play and connect
 
-Run `npm install` once, then `npm run dev`. Open http://127.0.0.1:5173/. **Start trial / E** plays solo. Defaults remain Model A, balanced camera/tempo, 120 ms Secondary buffer, one field per mage. Instruments start collapsed.
+Run `npm install` once, then `npm run dev`. Open http://127.0.0.1:5173/. **Begin run / E** plays the five-beat run solo. `?scene=trial` retains the old trial. See [run structure and personal rewards](RUN.md). Defaults remain Model A, balanced camera/tempo, 120 ms Secondary buffer, one field per mage. Instruments start collapsed.
 
-For two people on separate computers, open the same deployed build, or run this checkout locally on each computer. Leave **Connection options → Public Nostr · internet** selected on both. One clicks **Create co-op**, clicks **Copy code** and shares the six-character code privately, and the other enters it and presses **Enter** or clicks **Join co-op**. Both press **Ready**. Both must be ready again between encounters and to restart after victory/defeat. The top Restart button during combat abandons the attempt and waits for the partner's readiness. Joining an active attempt is not supported.
+For two people on separate computers, open the same deployed build, or run this checkout locally on each computer. Leave **Connection options → Public Nostr · internet** selected on both. One clicks **Create co-op**, clicks **Copy code** and shares the six-character code privately, and the other enters it and presses **Enter** or clicks **Join co-op**. Both press **Ready**. After encounters 1 and 3, each chooses a personal alteration before readiness. Both must be ready again between encounters and to restart after victory/defeat. The top Restart button during combat abandons the attempt and waits for the partner's readiness. Joining an active attempt is not supported.
 
 For two windows on this computer, the same public path works, or choose **Local relay · same machine test** on both. `npm run dev` starts the official Trystero WebSocket signaling relay on loopback port 4174 alongside Vite on 5173. Local relay is not an internet/LAN hosting service. New rooms use six characters, without easily confused I/O/0/1. The join field accepts lowercase and whitespace, and still accepts legacy RW codes. The read-only share field supports native selection/copy; if clipboard permission is denied, Copy code selects it and shows the keyboard shortcut.
 
@@ -24,7 +24,7 @@ Direct damage attributed to the other mage is suppressed, including their heat/s
 
 ## Authority and limitations
 
-Host alone advances gameplay/Rapier at 60 Hz. Guest sends validated semantic inputs at a target of about 30 Hz; host snapshots remain capped at about 20 Hz. Main-thread stalls can lower both effective rates. Protocol 2 requires matching source build IDs. Compact snapshots carry live state and acknowledged events; terrain, materials and configuration bootstrap each epoch until acknowledged. Full balance telemetry stays on the host.
+Host alone advances gameplay/Rapier at 60 Hz. Guest sends validated semantic inputs at a target of about 30 Hz; host snapshots remain capped at about 20 Hz. Main-thread stalls can lower both effective rates. Protocol 3 requires matching source build IDs and explicitly includes personal run offers/upgrades. Compact snapshots carry live state and acknowledged events; terrain, materials and configuration bootstrap each epoch until acknowledged. Full balance telemetry stays on the host.
 
 Guest remote bodies and projectiles use a bounded 75 ms presentation timeline. The local guest instead previews walking with the query-only Rapier controller and reconciles against processed-input acknowledgements (at most 32 samples / 350 ms). Aim and selection respond locally. Damage, collision outcomes, casts, dodge success, death, revival and victory remain authoritative. No gameplay world rollback exists. See [smoothness evidence and limits](SMOOTHNESS.md).
 
@@ -60,4 +60,4 @@ Party damage sums both recipients; it is not a normalized solo difficulty score.
 
 Current synthetic browser sensitivity uses 80 ms ±20 ms deterministic application delay on outgoing input and snapshot messages (seed 42), over a real WebRTC channel. It can reorder scheduled inputs; sequence checks reject old packets. Control/readiness messages are not delayed. This is not an emulated network link, packet-loss study or measured human reaction delay.
 
-The original delay harness also held the snapshot send gate while waiting, reducing frequency. Protocol 2 schedules bounded messages independently of that delay, retaining the existing 50 ms minimum send interval. Compare arrival measurements, not the delay label alone. This finite pass ends before the next intended small roguelite run/build loop.
+The original delay harness also held the snapshot send gate while waiting, reducing frequency. Protocol 2 schedules bounded messages independently of that delay, retaining the existing 50 ms minimum send interval. Compare arrival measurements, not the delay label alone. That historical smoothness pass preceded the now-authorized Run Prototype 0.1. The next intended milestone is visual distinction for this compact slice.

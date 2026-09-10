@@ -344,6 +344,13 @@ export class CoopSession {
           this.role === "host" &&
           data?.epoch === this.sim.state.party?.epoch
         ) {
+          if (data.type === "choose")
+            this.sim.chooseUpgrade(
+              "mage-2",
+              data.runId,
+              data.rewardId,
+              data.upgrade,
+            );
           if (data.type === "ready") this.sim.ready("mage-2");
           if (data.type === "restart") this.restartRequest("mage-2");
           if (data.type === "pause") this.togglePause();
@@ -674,6 +681,16 @@ export class CoopSession {
         },
       },
     };
+  }
+  choose(runId: string, rewardId: string, upgrade: string) {
+    if (!this.connected) return;
+    if (this.role === "host")
+      this.sim.chooseUpgrade(this.actorId, runId, rewardId, upgrade);
+    else
+      void this.controlAction?.send(
+        { type: "choose", epoch: this.epoch, runId, rewardId, upgrade },
+        { target: this.peerId },
+      );
   }
   ready() {
     if (!this.connected) return;

@@ -4,7 +4,7 @@
 
 `trial.ts` defines six reproducible arena configurations, two small enemy lineups plus their mixed encounter, and baseline/candidate enemy tuning. Trial enemies each own `Entity.ai`; the legacy singleton is retained only for the old Lab sentinel. `State.trial` owns ready/active/between/victory/defeat, stage results and elapsed combat time. Between encounters, positions and temporary manifestations reset while player health carries. Physics is rebuilt only at that boundary. Lab-only water/plate behavior is excluded from the trial.
 
-Default scene is `trial`; isolated scenes are `trial/ranged`, `trial/pursuit`, `trial/mixed`. Query `scenario=cross-cover` and `encounterVersion=baseline|candidate` reproduce variations. Changing either through the inspection API validates and resets the encounter. `ready(actorId)` gates party transitions on both actors; `advanceTrial()` is the internal transition primitive; paused `setupTestState` also accepts existing-entity HP for explicitly labelled lifecycle fixtures.
+Default scene is `run`; `State.run` owns actor upgrades and validated personal rewards, explicitly replicated in Protocol 3. See [run contract](RUN.md). The old `trial` remains unchanged; isolated scenes are `trial/ranged`, `trial/pursuit`, `trial/mixed`. Query `scenario=cross-cover` and `encounterVersion=baseline|candidate` reproduce variations. Changing either through the inspection API validates and resets the encounter. `ready(actorId)` gates party transitions on both actors; `advanceTrial()` is the internal transition primitive; paused `setupTestState` also accepts existing-entity HP for explicitly labelled lifecycle fixtures.
 
 `diagnostics/policies.ts` supplies local scripted inputs; `scripts/evaluate-encounters.ts` steps the actual Simulation/Rapier without rendering. Damage routes retain source, recipient and reason. Projectile counters distinguish original emitter from current damage owner after deflection. These counters are observations, not counterfactual damage prevention.
 
@@ -40,9 +40,9 @@ Network inspection: `getNetworkState`, `getNetworkDiagnostics`, `getPresentation
 
 No external art assets. Cloudflare TURN uses the separately authorized existing account; see TURN.md. The largest bundle dependency is embedded Rapier WASM. Dependencies are pinned by the lockfile.
 
-## Protocol 2 presentation contract
+## Current presentation contract (Protocol 3)
 
-Snapshot sequence/tick/time drive a 12-frame remote timeline; no extrapolation. Spawn/despawn and HP/state changes use latest truth. Epoch/pause/death/revive/teleport reset history. Local aim/selection are immediate; local walking preview reconciles using host processed-sample acknowledgements. Focus loss, disconnect and temporary-field changes clear prediction. A 350 ms authority gap freezes prediction. `Physics.previewMove` temporarily positions the query capsule, runs the existing Rapier controller without impulses, then restores the collider; it never steps a second gameplay world.
+Snapshot sequence/tick/time drive a 12-frame remote timeline; no extrapolation. Spawn/despawn and HP/state changes use latest truth. Epoch/pause reset all history. Death/revive/teleport reset only the affected entity. Only genuine local-player lifecycle or epoch/pause transitions clear local held intent. Local aim/selection are immediate; local walking preview reconciles using host processed-sample acknowledgements. Focus loss, disconnect and temporary-field changes clear prediction. A 350 ms authority gap freezes prediction. `Physics.previewMove` temporarily positions the query capsule, runs the existing Rapier controller without impulses, then restores the collider; it never steps a second gameplay world.
 
 Body cursor queries intersect the displayed body hulls, terrain queries use current real colliders, and host cast range/occlusion stays authoritative. See SMOOTHNESS.md for moving-cover/dodge and visual-latency limits. Device-local rendering quality and all balance values are unchanged.
 

@@ -1,3 +1,12 @@
+import {
+  initializeRun,
+  offerRewards,
+  chooseUpgrade,
+  rewardsChosen,
+  hasUpgrade,
+  fieldCapacity,
+  RUN_BEATS,
+} from "./run";
 import { actorState, legacyActorAccessors } from "./actors";
 import { entity } from "./lab";
 import {
@@ -43,6 +52,7 @@ export class Simulation {
   state: State;
   actorId = "mage-1";
   replica = false;
+  runGeneration = 0;
   acceptSnapshot(snapshot: State) {
     const rebuild =
       !this.replica ||
@@ -74,7 +84,9 @@ export class Simulation {
   physics: Physics;
   constructor(public config: Config) {
     this.state = legacyActorAccessors(createState(config));
-    if (config.scene.startsWith("trial")) initializeTrial(this.state, config);
+    if (config.scene === "run") initializeRun(this.state, ++this.runGeneration);
+    if (config.scene.startsWith("trial") || config.scene === "run")
+      initializeTrial(this.state, config);
     this.physics = new Physics(this.state);
   }
   get player() {
@@ -100,7 +112,9 @@ export class Simulation {
       );
       this.state.party = { ready: [], epoch };
     }
-    if (this.config.scene.startsWith("trial"))
+    if (this.config.scene === "run")
+      initializeRun(this.state, ++this.runGeneration);
+    if (this.config.scene.startsWith("trial") || this.config.scene === "run")
       initializeTrial(this.state, this.config);
     this.physics = new Physics(this.state);
   }
@@ -116,6 +130,7 @@ export class Simulation {
       entity("mage-2", "player", "Partner", 2, 6, 0.38, 1.4, 2),
     );
     this.state.party = { ready: [], epoch: 1 };
+    if (this.state.run) this.state.run.upgrades["mage-2"] = [];
     prepareEncounter(this.state, this.config);
     this.physics.dispose();
     this.physics = new Physics(this.state);
@@ -123,6 +138,7 @@ export class Simulation {
   ready(id: string) {
     const s = this.state;
     if (!s.actors[id] || s.trial?.status === "active") return;
+    if (s.run?.reward && !s.run.reward.choices[id]) return;
     if (!s.party) {
       this.advanceTrial();
       return;
@@ -152,6 +168,14 @@ export class Simulation {
     this.event("revive", source, p.pos, { target: id, duration: 1 });
     this.outcome(`revive:${source}:${id}`);
   }
+  chooseUpgrade(
+    actor: string,
+    runId: string,
+    rewardId: string,
+    upgrade: string,
+  ) {
+    return chooseUpgrade(this.state, actor, runId, rewardId, upgrade);
+  }
   advanceTrial() {
     const s = this.state,
       t = s.trial;
@@ -162,6 +186,8 @@ export class Simulation {
       return;
     }
     if (t.status === "between") {
+      if (!rewardsChosen(s)) return;
+      if (s.run) s.run.reward = undefined;
       t.encounter++;
       prepareEncounter(s, this.config);
       this.physics.dispose();
@@ -365,7 +391,16 @@ export class Simulation {
         ? own
             .slice(
               0,
-              Math.max(0, own.length - this.config.secondaryCapacity + 1),
+              Math.max(
+                0,
+                own.length -
+                  fieldCapacity(
+                    this.state,
+                    this.actorId,
+                    this.config.secondaryCapacity,
+                  ) +
+                  1,
+              ),
             )
             .map((f) => f.id)
         : [];
@@ -515,7 +550,10 @@ export class Simulation {
         return;
       }
       const own = s.fields.filter((f) => f.source === p.id);
-      while (own.length >= this.config.secondaryCapacity) {
+      while (
+        own.length >=
+        fieldCapacity(s, this.actorId, this.config.secondaryCapacity)
+      ) {
         this.outcome("field:replaced");
         const old = own.shift()!;
         s.fields = s.fields.filter((f) => f.id !== old.id);
@@ -537,6 +575,15 @@ export class Simulation {
         radius: principle === "Stone" ? 2.2 : 2.5,
         life: 12,
         nextPulse: 0,
+        travel:
+          principle === "Tide" &&
+          hasUpgrade(s, this.actorId, "travelling-basin")
+            ? vec(dir.x * 1.2, 0, dir.z * 1.2)
+            : undefined,
+        tethered:
+          principle === "Gale" &&
+          hasUpgrade(s, this.actorId, "tethered-updraft") &&
+          distance(pos, p.pos) <= 3,
       });
       this.event("manifestation", p.id, pos, { principle, duration: 0.6 });
       this.physics.syncFields(s.fields);
@@ -564,6 +611,8 @@ export class Simulation {
         ),
         life: 0.56,
         radius: 0.22,
+        pierce: hasUpgrade(s, this.actorId, "piercing-ember") ? 1 : 0,
+        hitIds: [],
       });
     } else if (principle === "Tide") {
       const jetEnd =
@@ -607,7 +656,15 @@ export class Simulation {
         )
           this.apply(
             e,
-            { water: 0.7, damage: 6, force: vec(dir.x * 8, 0, dir.z * 8) },
+            {
+              water: 0.7,
+              damage: 6,
+              force: vec(
+                dir.x * (hasUpgrade(s, this.actorId, "undertow") ? -8 : 8),
+                0,
+                dir.z * (hasUpgrade(s, this.actorId, "undertow") ? -8 : 8),
+              ),
+            },
             p.id,
             "jet",
           );
@@ -638,6 +695,18 @@ export class Simulation {
     } else {
       this.event("eruption-warning", p.id, pos, { principle, duration: 0.22 });
       s.pending.push({ source: p.id, pos, at: s.time + 0.18, principle });
+      if (hasUpgrade(s, this.actorId, "stone-echo")) {
+        s.pending.push({
+          source: p.id,
+          pos: { ...pos },
+          at: s.time + 0.83,
+          principle,
+        });
+        this.event("eruption-warning", p.id, pos, {
+          principle,
+          duration: 0.83,
+        });
+      }
     }
     if (principle === "Tide" || principle === "Gale")
       this.outcome(
@@ -787,6 +856,31 @@ export class Simulation {
     }
     s.pending = s.pending.filter((a) => a.at > s.time);
     for (const f of s.fields) {
+      // Moving manifestations stay grounded and stop at solid terrain. No gameplay prediction.
+      const owner = s.entities.find((e) => e.id === f.source);
+      const next =
+        f.tethered && owner && owner.hp > 0
+          ? vec(owner.pos.x, f.pos.y, owner.pos.z)
+          : f.travel
+            ? vec(f.pos.x + f.travel.x * dt, f.pos.y, f.pos.z + f.travel.z * dt)
+            : undefined;
+      if (next) {
+        const surface = this.physics.surfaceAt(
+          vec(next.x, f.pos.y + 0.3, next.z),
+        );
+        if (
+          surface &&
+          Math.abs(surface.y - f.pos.y) < 0.3 &&
+          !this.physics.terrainHit(
+            vec(f.pos.x, f.pos.y + 0.15, f.pos.z),
+            vec(next.x, f.pos.y + 0.15, next.z),
+          )
+        ) {
+          f.end.x += next.x - f.pos.x;
+          f.end.z += next.z - f.pos.z;
+          f.pos = { ...next, y: surface.y };
+        } else if (f.travel) f.travel = undefined;
+      }
       f.life -= dt;
       f.nextPulse -= dt;
       if (f.nextPulse > 0) continue;
@@ -871,6 +965,7 @@ export class Simulation {
         .filter(
           (e) =>
             e.id !== b.source &&
+            !b.hitIds?.includes(e.id) &&
             e.hp > 0 &&
             segmentDistance(e.pos, old, b.pos) < e.radius + b.radius &&
             Math.abs(e.pos.y - b.pos.y) < e.height / 2 + 0.3,
@@ -879,7 +974,9 @@ export class Simulation {
       if (hits.length) {
         const e = hits[0];
         this.outcome(`projectile:${b.originalSource ?? b.source}:hit:${e.id}`);
-        b.life = 0;
+        (b.hitIds ??= []).push(e.id);
+        if ((b.pierce ?? 0) > 0) b.pierce!--;
+        else b.life = 0;
         if (b.principle === "hostile")
           this.damage(e, 14, b.source, "sentinel bolt");
         else this.apply(e, { heat: 48, damage: 9 }, b.source, "heat bolt");
@@ -971,7 +1068,11 @@ export class Simulation {
           health: p.hp,
         });
         s.trial.status =
-          s.trial.isolated || s.trial.encounter === 2 ? "victory" : "between";
+          s.trial.isolated ||
+          s.trial.encounter === (s.run ? RUN_BEATS.length - 1 : 2)
+            ? "victory"
+            : "between";
+        if (s.trial.status === "between") offerRewards(s);
         s.bolts = [];
         s.pending = [];
         if (s.party) {

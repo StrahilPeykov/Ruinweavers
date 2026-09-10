@@ -8,3 +8,7 @@ playwright-report/
 
 .dev.vars*
 .env*
+
+# Full local regression captures; selected sanitized run evidence is tracked.
+artifacts/run-0.1/regression-coop/
+artifacts/smoothness/candidate-*

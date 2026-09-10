@@ -48,12 +48,12 @@ async function capture(p: Page, name: string, fixture = false) {
     ),
   );
 }
-test("default trial starts explicitly and supports normal mixed-pressure controls", async ({
+test("baseline trial starts explicitly and supports normal mixed-pressure controls", async ({
   page,
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("/");
+  await page.goto("/?scene=trial");
   await page.waitForFunction(() => !!window.__RUINWEAVERS__);
   expect((await state(page)).trial.status).toBe("ready");
   await expect(page.locator("#panel")).toBeHidden();

@@ -1,8 +1,18 @@
+## Run Prototype 0.1 validation (2026-09-10)
+
+Started clean at reviewed 9bfaa68. Baseline: 59 unit tests and production build passed. Correction a0cffdf was checked, pushed and confirmed on origin/main; existing Cloudflare Workers build succeeded.
+
+Run checkpoint: 73 unit tests and production build pass (existing Rapier chunk warning). A complete headless Chromium/SwiftShader sweep passed 29 browser tests, with only the opt-in live TURN probe skipped. That sweep included full solo and two-client real-input runs, both personal rewards, restart, held guest input, shared cover/reactions, revive/lifecycle, Lab controls/aiming and unchanged trial regressions. A subsequent focused JSON regression found default-run state leaking into an old-trial guest when an absent field was omitted; Protocol 3 now sends explicit null and clears it on decode. The new real two-browser default-run-to-trial join test also passes.
+
+Graphical journeys used normal enemy HP and active AI, actual keyboard/mouse and DOM reward choices. No combat fixture or direct cast injection. Separate labelled lifecycle fixtures cover death/revive, stale choices and victory/defeat cleanup. Unit tests exercise each modifier and four bounded pairs, including duplicate partner builds and attributed Stone aftershock damage. Renderer/viewport/build and durations accompany sanitized captures in artifacts/run-0.1. Software rendering under automation is not a laptop GPU performance or remote TURN claim.
+
+Historical benchmark artifacts are preserved. The 12-case seeded run evaluation is separate; it does not establish human duration, fun, balance or equal upgrade value. No remote laptop or fresh live relay session was tested during this milestone.
+
 Current milestone: Run Prototype 0.1. Baseline at 9bfaa68: 59 unit tests and build passed. Reproduced guest held-input cancellation on a non-final enemy death in the actual two-client browser and snapshot-handler unit regression. The fix scopes intent cancellation to the local actor/session and presentation discontinuities to each affected entity.
 
 # Validation and limits
 
-Current pass: [Co-op smoothness evidence](SMOOTHNESS.md). Sections below retain dated milestone history; older statements about full snapshots, missing interpolation or inactive TURN do not describe Protocol 2 / the currently authorized provider.
+Current pass: [Run Prototype 0.1](RUN.md). Historical [co-op smoothness evidence](SMOOTHNESS.md) follows. Sections below retain dated milestone history; older statements about full snapshots, missing interpolation or inactive TURN do not describe Protocol 3 / the currently authorized provider.
 
 ## Co-op Trial 0.1
 

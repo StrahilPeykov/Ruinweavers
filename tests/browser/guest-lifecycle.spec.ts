@@ -86,9 +86,9 @@ test("guest keeps held W and LMB after a non-final enemy dies", async ({
     await b.mouse.up();
     await b.keyboard.up("w");
     mkdirSync("artifacts/run-0.1", { recursive: true });
-    await b.screenshot({ path: "artifacts/run-0.1/held-input.png" });
+    await b.screenshot({ path: "artifacts/run-0.1/held-input-current.png" });
     writeFileSync(
-      "artifacts/run-0.1/held-input.json",
+      "artifacts/run-0.1/held-input-current.json",
       JSON.stringify(
         {
           build: await b.evaluate(

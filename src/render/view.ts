@@ -419,7 +419,8 @@ export class View {
       aim = this.previewAim ?? actor.aim,
       t = s.time;
     const terrain = s.terrain ?? TERRAIN,
-      key = JSON.stringify(terrain);
+      key =
+        JSON.stringify(terrain) + (s.run ? `run:${s.trial?.encounter}` : "");
     if (key !== this.terrainKey) {
       for (const child of [...this.terrainGroup.children]) this.destroy(child);
       for (const box of terrain) {
@@ -427,10 +428,44 @@ export class View {
           box.w,
           box.h,
           box.d,
-          box.name ? 0x667675 : 0x43545a,
+          s.run
+            ? box.name
+              ? 0x827e6a
+              : box.h <= 1
+                ? 0x374947
+                : 0x59665e
+            : box.name
+              ? 0x667675
+              : 0x43545a,
         );
         mesh.position.set(box.x, box.y, box.z);
         this.terrainGroup.add(mesh);
+      }
+      if (s.run) {
+        // Non-colliding inlaid court markings, outside the aim/physics queries.
+        for (const radius of [4.5, 9.5]) {
+          const ring = new T.Mesh(
+            new T.RingGeometry(radius - 0.025, radius, 64),
+            new T.MeshBasicMaterial({
+              color: 0xa79d71,
+              transparent: true,
+              opacity: 0.28,
+            }),
+          );
+          ring.rotation.x = -Math.PI / 2;
+          ring.position.y = 0.015;
+          this.terrainGroup.add(ring);
+        }
+        for (let i = 0; i < 5; i++) {
+          const mark = this.box(
+            0.8,
+            0.025,
+            0.15,
+            i <= s.trial!.encounter ? 0xcbb575 : 0x5b6961,
+          );
+          mark.position.set((i - 2) * 1.2, 0.025, 8.8);
+          this.terrainGroup.add(mark);
+        }
       }
       this.terrainKey = key;
     }

@@ -396,3 +396,88 @@ select:disabled {
 #copy-feedback:empty {
   display: none;
 }
+
+/* Quiet brass and slate, with the playfield left clear. */
+.run-mode #trial-card {
+  width: min(800px, 90vw);
+  background: #142624f2;
+  border: 1px solid #9b9164;
+  box-shadow: 0 18px 70px #0008;
+}
+.run-mode #trial-card h2 {
+  color: #ece1b7;
+}
+.run-mode #trial-action {
+  border-color: #b9a974;
+  background: #3e5141;
+}
+#reward-cards:not([hidden]) {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 22px 0;
+}
+#reward-cards button {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  padding: 18px;
+  min-height: 205px;
+  background: #233a35;
+  border: 1px solid #6d7f66;
+}
+#reward-cards small {
+  color: #afbead;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+#reward-cards strong {
+  font-size: 19px;
+  color: #f0e0b1;
+}
+#reward-cards span {
+  font-size: 13px;
+  line-height: 1.5;
+}
+#reward-cards button:hover:not(:disabled),
+#reward-cards button:focus-visible {
+  border-color: #efda9a;
+  background: #344d40;
+}
+#reward-cards button.chosen {
+  opacity: 1;
+  border-color: #efda9a;
+}
+#reward-cards button.chosen strong::after {
+  content: " (chosen)";
+}
+#upgrades {
+  font-size: 11px;
+  color: #dccb94;
+  margin-bottom: 8px;
+}
+#upgrades:empty {
+  display: none;
+}
+@media (max-width: 650px) {
+  #reward-cards:not([hidden]) {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  #reward-cards button {
+    min-height: 0;
+    padding: 10px;
+    gap: 5px;
+  }
+}
+
+.run-mode #upgrades {
+  position: fixed;
+  top: 74px;
+  right: 24px;
+  max-width: 42vw;
+  text-align: right;
+  pointer-events: none;
+}

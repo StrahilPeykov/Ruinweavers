@@ -1,3 +1,4 @@
+import { fieldCapacity } from "./simulation/run";
 import { CoopSession } from "./network/session";
 import "./ui/style.css";
 import {
@@ -123,7 +124,10 @@ async function boot() {
         .filter((field) => {
           const count = (counts.get(field.source) ?? 0) + 1;
           counts.set(field.source, count);
-          return count <= config.secondaryCapacity;
+          return (
+            count <=
+            fieldCapacity(sim.state, field.source, config.secondaryCapacity)
+          );
         })
         .reverse();
       sim.physics.syncFields(sim.state.fields);
@@ -171,6 +175,12 @@ async function boot() {
     ui.last = 0;
   };
   const ui = new UI(config, input, {
+    choose: (runId, rewardId, upgrade) => {
+      input.clear();
+      if (net?.active) net.choose(runId, rewardId, upgrade);
+      else sim.chooseUpgrade("mage-1", runId, rewardId, upgrade);
+      ui.last = 0;
+    },
     advance,
     reset,
     combat: combatReset,
@@ -247,6 +257,11 @@ async function boot() {
       net.silenceUntil = performance.now() + ms;
     },
     getState: () => structuredClone(sim.state),
+    // Read-only collision probe for the existing scripted playtest policies.
+    isPathBlocked: (
+      start: import("./simulation/types").Vec,
+      end: import("./simulation/types").Vec,
+    ) => !!sim.physics.terrainHit(start, end),
     getTargeting: () => ({
       primary: sim.withActor(view.actorId, () => sim.targeting("primary")),
       secondary: sim.withActor(view.actorId, () => sim.targeting("secondary")),

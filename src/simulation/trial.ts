@@ -1,3 +1,4 @@
+import { RUN_BEATS } from "./run";
 import { entity, type TerrainBox } from "./lab";
 import { vec, type State } from "./types";
 import type { Config } from "../experiments/config";
@@ -114,6 +115,7 @@ export function arenaTerrain(name: string): TerrainBox[] {
   return floor;
 }
 export function prepareEncounter(s: State, config: Config) {
+  if (s.run) s.trial!.scenario = RUN_BEATS[s.trial!.encounter].scenario;
   const trial = s.trial!,
     layout =
       SCENARIOS[trial.scenario as ScenarioName] ?? SCENARIOS["cross-cover"],
@@ -152,8 +154,9 @@ export function prepareEncounter(s: State, config: Config) {
     entity("ballast", "heavy", "Heavy ballast", 7, 1, 0.8, 1.6, 18),
     entity("loose-1", "loose", "Loose stone", -1, 3, 0.38, 0.75, 1),
   ];
-  const lineup =
-    trial.encounter === 0
+  const lineup = s.run
+    ? RUN_BEATS[trial.encounter].enemies
+    : trial.encounter === 0
       ? [
           ["sentinel", -5, -5],
           ["sentinel", 5, -6],

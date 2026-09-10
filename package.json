@@ -13,7 +13,8 @@
     "benchmark": "tsx scripts/benchmark.ts",
     "evaluate": "tsx scripts/evaluate-encounters.ts",
     "evaluate:coop": "tsx scripts/evaluate-coop.ts",
-    "measure:pursuit": "tsx scripts/measure-pursuit.ts"
+    "measure:pursuit": "tsx scripts/measure-pursuit.ts",
+    "evaluate:run": "tsx scripts/evaluate-run.ts"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.20.0",

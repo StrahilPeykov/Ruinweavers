@@ -1,3 +1,12 @@
+## 2026-09-10 — Run Prototype 0.1
+
+- Accepted the existing combat/co-op baseline. New default is five authored beats; old trial/Lab remain unchanged. Two personal seeded reward stops, six asymmetric behavioral alterations, no global damage/HP changes or new enemy archetypes.
+- Host owns offers and choices; actor IDs are derived from the connection. Epoch plus run/reward identifiers reject old or duplicate requests. Personal choice and party readiness are separate.
+- Protocol 3 explicitly carries the run state. Full telemetry stays local. New snapshot properties are never assumed to replicate automatically.
+- Fixed guest cancellation first and pushed a0cffdf: unrelated entity changes only reset that entity's presentation, not local held input. The existing Cloudflare pipeline succeeded.
+- Standing user workflow supersedes historical no-push notes: check each coherent commit, push immediately to origin/main, verify remote, inspect the existing pipeline. No force-push or direct deployment/provider/billing changes.
+- Stop at this run prototype. Next milestone: a visually distinctive compact slice, not broad content/system growth. Detailed behavior and limits: RUN.md.
+
 # Decisions
 
 - **Co-op Trial 0.1:** Explicitly authorized two-player work supersedes earlier solo-only phase restrictions. Preserve spells, controls, enemy HP and tuning. Use Trystero 0.25.4 public Nostr discovery plus an optional loopback relay; one authoritative host, one input-only guest with query colliders. Both ready at boundaries; no migration or reconnect continuation.

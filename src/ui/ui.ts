@@ -1,3 +1,4 @@
+import { RUN_BEATS, UPGRADES, fieldCapacity } from "../simulation/run";
 import type { CoopSession } from "../network/session";
 import { ENCOUNTERS } from "../simulation/trial";
 import { CAST, PRINCIPLES, SCENES, type Config } from "../experiments/config";
@@ -8,12 +9,14 @@ import { localCastFeedback } from "./cast-feedback";
 export class UI {
   root: HTMLElement;
   last = 0;
+  rewardKey = "";
   network?: CoopSession;
   constructor(
     public config: Config,
     public input: Input,
     public actions: {
       advance: () => void;
+      choose: (runId: string, rewardId: string, upgrade: string) => void;
       reset: () => void;
       combat: () => void;
       configure: (patch: Partial<Config>) => void;
@@ -40,8 +43,8 @@ export class UI {
       <details><summary>Selected tunables</summary><label>Move speed<input id="moveSpeed" type="range" min="3" max="8" step=".1"></label><label>Dodge distance<input id="dodgeDistance" type="range" min="2" max="5" step=".1"></label><label>Dodge recovery<input id="dodgeRecovery" type="range" min=".4" max="1.4" step=".05"></label><label>Cast recovery multiplier<input id="castRecovery" type="range" min=".65" max="1.5" step=".05"></label><label>Secondary buffer (seconds; 0 disables)<input id="inputBuffer" type="range" min="0" max=".15" step=".01"></label><label>Secondary capacity<input id="secondaryCapacity" type="number" min="1" max="3"></label><label>Secondary fallback<select id="fallback"><option value="KeyF">F</option><option value="KeyR">R</option><option value="ShiftLeft">Left Shift</option></select></label><label>Next Principle<select id="cycle"><option value="Tab">Tab</option><option value="KeyC">C</option><option value="KeyR">R</option></select></label><label class="check"><input id="wheel" type="checkbox"> Optional wheel cycling</label></details>
       <details><summary>Controls & rules</summary><p>WASD moves; pointer aims independently. Hold LMB or J for Primary. RMB, F or K for discrete Secondary. 1–4 select; Tab next; Q previous. Space dodges. E toggles pressure near the ballast plate.</p><p>Heat + moisture → steam. Thermal shock weakens structure. Force moves mass and exploits fracture. Stone binds and stabilizes. The plate responds to weight.</p><p>Trackpad: aim with one finger, cast using J / F or K. Palm rejection and keyboard rollover require testing on your hardware. Both mouse bindings stay available.</p><p>One major field at a time. A new Secondary dissolves the old; residual target states remain. Stone slabs bridge the gap and obstruct low bolts. No mana.</p></details>
       <button id="combat-reset">Reset combat station</button> <button id="export">Export observations</button><pre id="metrics"></pre><p id="feedback" role="status"></p></aside>
-      <section id="trial-card" hidden><div class="eyebrow">CO-OP TRIAL 0.1</div><h2 id="trial-title"></h2><p id="trial-copy"></p><button id="trial-action">Start trial</button><div id="net-setup"><hr><p>Or share this trial with one partner</p><label>Room code<input id="room-code" placeholder="e.g. K7M9Q2" maxlength="15" autocomplete="off" spellcheck="false" autocapitalize="characters"></label><div class="net-buttons"><button id="create-room">Create co-op</button><button id="join-room">Join co-op</button></div><details><summary>Connection options</summary><label>Signaling<select id="signaling"><option value="public">Public Nostr · internet</option><option value="local">Local relay · same machine test</option></select></label><small>Both players use the same build and signaling option. Internet play uses TURN fallback when configured by the site owner.</small></details></div><div id="room-share" hidden><label for="share-code">Share this room code</label><div class="room-share-row"><input id="share-code" aria-label="Your room code" readonly spellcheck="false"><button id="copy-code">Copy code</button></div><p id="copy-feedback" role="status" aria-live="polite"></p></div><p id="room-status" role="status"></p><button id="leave-room" hidden>Return to solo</button><p class="trial-keys">E to continue · WASD move · LMB cast · RMB / F secondary · Space dodge</p></section><div id="inspect"></div><div id="cast-feedback" role="status"></div><div id="notice" hidden></div>
-      <footer><div id="principles">${PRINCIPLES.map((p, i) => `<div data-principle="${p}"><kbd>${i + 1}</kbd><span>${p}</span></div>`).join("")}</div><div id="spell"></div><div id="control-hint" class="hint">WASD move · LMB / J cast · RMB / F secondary · Space dodge · Tab / Q cycle</div><div id="health"></div></footer>`;
+      <section id="trial-card" hidden><div class="eyebrow" id="run-eyebrow">CO-OP TRIAL 0.1</div><h2 id="trial-title"></h2><p id="trial-copy"></p><div id="reward-cards" hidden></div><button id="trial-action">Start trial</button><div id="net-setup"><hr><p>Or share this trial with one partner</p><label>Room code<input id="room-code" placeholder="e.g. K7M9Q2" maxlength="15" autocomplete="off" spellcheck="false" autocapitalize="characters"></label><div class="net-buttons"><button id="create-room">Create co-op</button><button id="join-room">Join co-op</button></div><details><summary>Connection options</summary><label>Signaling<select id="signaling"><option value="public">Public Nostr · internet</option><option value="local">Local relay · same machine test</option></select></label><small>Both players use the same build and signaling option. Internet play uses TURN fallback when configured by the site owner.</small></details></div><div id="room-share" hidden><label for="share-code">Share this room code</label><div class="room-share-row"><input id="share-code" aria-label="Your room code" readonly spellcheck="false"><button id="copy-code">Copy code</button></div><p id="copy-feedback" role="status" aria-live="polite"></p></div><p id="room-status" role="status"></p><button id="leave-room" hidden>Return to solo</button><p class="trial-keys">E to continue · WASD move · LMB cast · RMB / F secondary · Space dodge</p></section><div id="inspect"></div><div id="cast-feedback" role="status"></div><div id="notice" hidden></div>
+      <div id="upgrades"></div><footer><div id="principles">${PRINCIPLES.map((p, i) => `<div data-principle="${p}"><kbd>${i + 1}</kbd><span>${p}</span></div>`).join("")}</div><div id="spell"></div><div id="control-hint" class="hint">WASD move · LMB / J cast · RMB / F secondary · Space dodge · Tab / Q cycle</div><div id="health"></div></footer>`;
     const byId = (id: string) =>
       this.root.querySelector<HTMLElement>(`#${id}`)!;
     byId("trial-action").onclick = () => {
@@ -206,7 +209,7 @@ export class UI {
         "",
       );
       (get("room-code") as HTMLInputElement).value = code;
-      this.config.scene = "trial";
+      if (this.config.scene !== "run") this.config.scene = "trial";
       this.config.model = "primary-secondary";
       void net.connect(
         "host",
@@ -216,7 +219,7 @@ export class UI {
       this.unfocus();
     };
     const join = () => {
-      this.config.scene = "trial";
+      if (this.config.scene !== "run") this.config.scene = "trial";
       this.config.model = "primary-secondary";
       void net.connect(
         "guest",
@@ -283,7 +286,7 @@ export class UI {
     labels["spell"] =
       `${p.primary}  /  ${this.config.model === "weave-unweave" ? p.inverse : p.secondary}`;
     labels["health"] =
-      `Integrity ${Math.ceil(player.hp)} / 100  ·  Dodge ${s.time >= actor.dodgeReady ? "ready" : (actor.dodgeReady - s.time).toFixed(1) + "s"}  ·  Fields ${s.fields.filter((f) => f.source === player.id).length}/${this.config.secondaryCapacity}`;
+      `Integrity ${Math.ceil(player.hp)} / 100  ·  Dodge ${s.time >= actor.dodgeReady ? "ready" : (actor.dodgeReady - s.time).toFixed(1) + "s"}  ·  Fields ${s.fields.filter((f) => f.source === player.id).length}/${fieldCapacity(s, player.id, this.config.secondaryCapacity)}`;
     labels["status"] =
       `${this.config.model === "primary-secondary" ? "A · Primary / Secondary" : "B · Weave / Unweave"}  ·  ${this.config.camera}  ·  ${this.config.tempo}  ·  ${this.config.scene}`;
     labels["metrics"] =
@@ -330,9 +333,17 @@ export class UI {
       (!placement.valid
         ? placement.reason
         : `${placement.clamped ? "Range-limited footprint · " : ""}RMB / F footprint${field ? ` · replaces ${field.principle} (${field.life.toFixed(1)}s)` : ""}`);
+    const capacity = fieldCapacity(s, player.id, this.config.secondaryCapacity);
+    if (s.fields.filter((f) => f.source === player.id).length < capacity)
+      labels["cast-feedback"] = labels["cast-feedback"]?.replace(
+        / · replaces.*$/,
+        "",
+      );
     const trial = s.trial,
       card = get("trial-card");
     card.hidden = !trial || trial.status === "active" || paused;
+    get("cast-feedback").hidden = !!trial && trial.status !== "active";
+    get("inspect").hidden = !!trial && trial.status !== "active";
     labels["reset"] = trial ? "Restart trial" : "Reset lab";
     labels["mode-title"] = trial ? "/ COMBAT TRIAL" : "/ MAGIC LAB";
     if (trial) {
@@ -376,6 +387,67 @@ export class UI {
         labels["trial-copy"] +=
           ` Both players must be ready (${s.party.ready.length}/2).`;
     }
+    const reward = s.run?.reward;
+    const rewardCards = get("reward-cards");
+    rewardCards.hidden = !reward || trial?.status !== "between";
+    labels["upgrades"] = (s.run?.upgrades[player.id] ?? [])
+      .map((id) => UPGRADES[id].name)
+      .join("  ·  ");
+    document.body.classList.toggle("run-mode", !!s.run);
+    labels["run-eyebrow"] = s.run
+      ? "RUN PROTOTYPE 0.1 · THE BROKEN COURT"
+      : "CO-OP TRIAL 0.1";
+    if (s.run && trial) {
+      labels["reset"] = "Restart run";
+      labels["mode-title"] = "/ THE BROKEN COURT";
+      labels["status"] =
+        `${trial.encounter + 1} / 5 · ${RUN_BEATS[trial.encounter].name} · ${enemies.length} remaining`;
+      labels["trial-title"] =
+        trial.status === "ready"
+          ? "Enter the broken court"
+          : trial.status === "between"
+            ? reward
+              ? "Choose what you carry forward"
+              : `${RUN_BEATS[trial.encounter].name} cleared`
+            : trial.status === "victory"
+              ? "The last ward is silent"
+              : "The court claims another attempt";
+      labels["trial-copy"] =
+        trial.status === "ready"
+          ? "Five encounters. One health bar. Discover a personal alteration after the first and third. Play solo, or enter together."
+          : `${Math.ceil(player.hp)} integrity · ${trial.elapsed.toFixed(1)} seconds fighting. ${reward ? (s.party ? "Choose one alteration. Your partner chooses independently; both then ready up." : "Choose one alteration, then continue into the court.") : trial.status === "between" ? "Health and alterations carry forward." : "Restart to try a new path. All alterations will be cleared."}`;
+      labels["trial-action"] = s.party
+        ? s.party.ready.includes(player.id)
+          ? "Waiting for partner"
+          : "Ready"
+        : trial.status === "ready"
+          ? "Begin run"
+          : trial.status === "between"
+            ? "Continue"
+            : "Run again";
+    }
+    const rewardKey = reward
+      ? `${reward.id}:${player.id}:${reward.choices[player.id] ?? ""}`
+      : "";
+    if (rewardKey !== this.rewardKey) {
+      this.rewardKey = rewardKey;
+      rewardCards.replaceChildren();
+      for (const id of reward?.offers[player.id] ?? []) {
+        const upgrade = UPGRADES[id],
+          button = document.createElement("button");
+        button.dataset.upgrade = id;
+        button.innerHTML = `<small>${upgrade.family}</small><strong>${upgrade.name}</strong><span>${upgrade.description}</span>`;
+        button.disabled = !!reward?.choices[player.id];
+        button.classList.toggle("chosen", reward?.choices[player.id] === id);
+        button.onclick = () => {
+          this.actions.choose(s.run!.id, reward!.id, id);
+          this.unfocus();
+        };
+        rewardCards.append(button);
+      }
+    }
+    (get("trial-action") as HTMLButtonElement).disabled =
+      !!reward && !reward.choices[player.id];
     const net = this.network;
     if (net) {
       get("net-setup").hidden =

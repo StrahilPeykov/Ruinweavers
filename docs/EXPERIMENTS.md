@@ -1,3 +1,5 @@
+Current milestone: [Run Prototype 0.1](RUN.md). Default is the five-beat run; previous trial and networking sections below are dated evidence, not restrictions on this authorized milestone. Current controls remain accepted; no claim of solved balance.
+
 # Experiments / current recommendation
 
 **Current: Co-op Trial 0.1.** Solo remains the default Start path; Create/Join adds one independent mage using host-authoritative WebRTC. Model A, balanced camera/tempo, capacity 1 per mage and 120 ms buffer remain unchanged. Public and loopback signaling passed same-machine real-browser tests, not remote-network validation. [COOP](COOP.md) records shared-world rules, connection steps and matched exploratory results. No tuning was changed. Earlier Lab and Combat Trial evidence below is historical.
