@@ -60,7 +60,9 @@ for (const candidate of [
       }
     };
     const agent = new ScriptedPolicy(
-      ['converging-gust','baseline-control'].includes(candidate) ? "control-cover" : "basin-ember",
+      ["converging-gust", "baseline-control"].includes(candidate)
+        ? "control-cover"
+        : "basin-ember",
       "delayed-aim",
       123,
       undefined,

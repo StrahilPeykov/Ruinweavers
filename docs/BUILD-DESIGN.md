@@ -37,3 +37,54 @@ Rejected prototypes (actual Simulation/Rapier, results preserved in artifacts/bu
 Two corrections before retention: v1's fork policy aimed into its own gap; v2 offsets aim so one branch meets the observed target. This is a policy repair, not a Tide buff. The initial Walking fault allowed overlapping points to multiply hits on one body; it now shares a per-wave hit list, with an independent echo-wave list. A vertical Stone lift alone cannot release its own new binding. Existing spell damage and cadence remain unchanged. These changes and the rejected return are labelled separately in v1/v2 summaries.
 
 No human ergonomics, fun, remote-laptop performance or universal dominance is inferred from these synthetic policies. Final matched/held-out evidence and graphical checks follow below.
+
+## Frozen encounter comparisons
+
+`build-policies-3`, real Simulation/Rapier, 10 Hz decisions, eight-direction keyboard motor, same visible-danger dodge/probes. Exact-state diagnostic and 200 ms delayed-observation/imperfect-aim results remain separate. Two development layouts plus two held-out layouts, each ranged/pursuit/mixed; four incremental upgrade counts plus unchanged Basin/Ember comparator. **312 cases**, all complete within 90 s. Identical deterministic repetition is not counted as coverage. The held-out layouts were checked after rule/policy changes stopped; no tuning followed their outcomes.
+
+Delayed-observation means across six matched cases per column, **seconds / player HP lost**:
+
+| Three-choice build | Development | Held-out | Observed change |
+| --- | ---: | ---: | --- |
+| Divided stream + Undertow + Shared vapour | 11.24 / 0 | 12.49 / 0 | Spread/draw moisture, then transform; 86/91 fork applications, 16/32 moisture transfers. |
+| Double inscription + Crosswise inscription + Migrating inscriptions | 13.54 / 0 | 13.67 / .67 | Maintain two areas and redirect them; 54/43 field redirections, at a time cost. |
+| Stone remembers + Walking fault + Break the seal | 6.88 / 2.33 | 8.25 / 0 | Anticipate lanes, echo, then release bindings; 19/14 seal releases. |
+| Original Basin + Ember, no upgrades | 7.83 / 0 | 9.44 / 2.33 | Remains a strong low-effort baseline; not nerfed. |
+| Basin + Ember with Travelling basin, Through the embers, Shared vapour | 7.36 / 0 | 8.62 / 0 | Compatible three-choice comparator; still competitive, no new routine required. |
+
+These are different deliberate policies, not a controlled estimate of every individual card's power. Same-policy incremental ablations are retained: structure's held-out times 17.67 -> 12.57 -> 9.82 -> 8.25 s; field's 10.03 -> 9.63 -> 10.16 -> 13.67 s, with final damage 3.67 -> .67. Redirection improves this policy's safety at a substantial time cost, not every metric. Reaction's held-out time barely changes (12.50 -> 12.49), so Shared vapour's marginal payoff is the least supported despite genuine state transfer. Counts include relevant props; damage records distinguish source and recipient, and blocks/deflections are not called damage prevented.
+
+The old first-offer whole-run heuristic is preserved: all 12 current cases clear five rooms (solo 49.65-99.15 s; paired 30.67-59.98 s). It remains regression evidence, not the primary build test. An additional compatible-upgrade Basin comparison is reported separately, so three-choice builds are not judged only against an unupgraded routine.
+
+The compatible Basin extension adds 48 matched exact/delayed cases across development and held-out layouts, all complete. It narrows the gap to structure. Neither policy is simultaneously established best at damage, safety, control and human effort.
+
+## Playable catalogue
+
+| Alteration | Action changed |
+| --- | --- |
+| Double inscription | Keep two simultaneous owned manifestations. |
+| Through the embers | Ember bolt pierces one additional body, never cover. |
+| Stone remembers | Eruption repeats once after .65 s. |
+| Undertow | Tide draws targets toward the mage instead of pushing. |
+| Travelling basin | Basin moves outward until terrain stops it. |
+| Tethered updraft | A close updraft follows the mage. |
+| Crosswise inscription | Cinder seam lies across the aim direction. |
+| Divided stream | Two diverging jets; each body hit once, gap at distance. |
+| Long breath | Gust trades fan width for reach; deflection follows the same area. |
+| Walking fault | Three timed eruption points, one hit per body per wave. |
+
+Theorems appear only at the third choice and require **any one** listed compatible Alteration already owned:
+
+| Theorem | Reusable rule | Eligible with |
+| --- | --- | --- |
+| Shared vapour | Steam transfers moisture to nearby visible bodies once; no recursive spread. | Divided stream, Through the embers, Undertow |
+| Break the seal | Later horizontal force releases positive structural cohesion into fracture. | Stone remembers, Walking fault, Long breath, Undertow |
+| Migrating inscriptions | Gale redirects owned non-solid fields, preserving capacity and lifetime. | Double inscription, Crosswise inscription, Travelling basin, Tethered updraft |
+
+All ten Alterations stay for this milestone. Keep the three Theorems provisionally: seal and migration add clear cross-action decisions; vapour demonstrates a coherent bounded relationship but does not yet establish a strong enough tactical payoff. A larger pool is not the next remedy. Future Guardian work should test these rules before expanding them.
+
+## Bounds and scope
+
+Fork branches share a per-cast target set; fault points share a per-wave set, echo uses one separate wave. Steam transfers cannot propagate themselves. Migration never creates a field and excludes Stone. Actor ownership, existing ally damage, host validation, lifecycle cancellation and compact wire contract remain authoritative. Unit soaks use durable targets and duplicate partner builds rather than relying on quick enemy death to bound work. Gale moving only a field is useful feedback, not an empty cast. Review restored the pre-existing Gale nearby exclusion so this milestone does not silently revise party interference.
+
+The fast evaluator's largest sampled live packet was about 7.3 KB for structure versus 5.6 KB for the baseline, with at most nine pending points observed. This is a solo diagnostic snapshot excluding bootstrap/events, not a two-client bandwidth measurement. Graphical and transport evidence is recorded separately in TESTING.md.

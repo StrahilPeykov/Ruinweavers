@@ -1,0 +1,406 @@
+{
+  "method": "run-policies-1; existing policies-1 delayed-aim, keyboard motor, 360s cap, first offered choice; synthetic diagnostics, not human skill",
+  "sourceHash": "b9d3bebd56132d1ef2aed7ecb7a0ce71f7d9504760550c7516007db8c1d553d2",
+  "rows": [
+    {
+      "seed": 123,
+      "players": 1,
+      "policy": "attack-move",
+      "result": "victory",
+      "seconds": 89.07,
+      "clears": 5,
+      "health": [
+        62
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "casts": {
+        "Ember:primary": 260
+      },
+      "damage": 38,
+      "reactions": {
+        "physical impact": 1
+      }
+    },
+    {
+      "seed": 123,
+      "players": 1,
+      "policy": "basin-ember",
+      "result": "victory",
+      "seconds": 50.88,
+      "clears": 5,
+      "health": [
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "casts": {
+        "Tide:secondary": 37,
+        "Ember:primary": 148
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 117,
+        "thermal fracture": 113,
+        "shatter impulse": 96
+      }
+    },
+    {
+      "seed": 123,
+      "players": 1,
+      "policy": "state-aware",
+      "result": "victory",
+      "seconds": 49.65,
+      "clears": 5,
+      "health": [
+        72
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "casts": {
+        "Tide:secondary": 21,
+        "Tide:primary": 25,
+        "Ember:primary": 98,
+        "Gale:primary": 11
+      },
+      "damage": 28,
+      "reactions": {
+        "vaporize": 91,
+        "thermal fracture": 90,
+        "shatter impulse": 75,
+        "deflect": 1,
+        "physical impact": 2
+      }
+    },
+    {
+      "seed": 123,
+      "players": 2,
+      "policy": "attack-move",
+      "result": "victory",
+      "seconds": 59.98,
+      "clears": 5,
+      "health": [
+        72,
+        44
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "casts": {
+        "Ember:primary": 349
+      },
+      "damage": 84,
+      "reactions": {}
+    },
+    {
+      "seed": 123,
+      "players": 2,
+      "policy": "basin-ember",
+      "result": "victory",
+      "seconds": 34.1,
+      "clears": 5,
+      "health": [
+        79,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "maxFields": 2,
+      "maxPending": 0,
+      "casts": {
+        "Tide:secondary": 52,
+        "Ember:primary": 196
+      },
+      "damage": 21,
+      "reactions": {
+        "vaporize": 118,
+        "thermal fracture": 107,
+        "shatter impulse": 72,
+        "physical impact": 1
+      }
+    },
+    {
+      "seed": 123,
+      "players": 2,
+      "policy": "state-aware",
+      "result": "victory",
+      "seconds": 35.92,
+      "clears": 5,
+      "health": [
+        74,
+        88
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "maxFields": 2,
+      "maxPending": 1,
+      "casts": {
+        "Tide:secondary": 40,
+        "Tide:primary": 17,
+        "Ember:primary": 166,
+        "Gale:primary": 12,
+        "Stone:primary": 1
+      },
+      "damage": 38,
+      "reactions": {
+        "vaporize": 99,
+        "thermal fracture": 96,
+        "shatter impulse": 64,
+        "deflect": 3,
+        "physical impact": 1
+      }
+    },
+    {
+      "seed": 456,
+      "players": 1,
+      "policy": "attack-move",
+      "result": "victory",
+      "seconds": 99.15,
+      "clears": 5,
+      "health": [
+        72
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "casts": {
+        "Ember:primary": 289
+      },
+      "damage": 28,
+      "reactions": {
+        "physical impact": 4
+      }
+    },
+    {
+      "seed": 456,
+      "players": 1,
+      "policy": "basin-ember",
+      "result": "victory",
+      "seconds": 51.22,
+      "clears": 5,
+      "health": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "casts": {
+        "Tide:secondary": 39,
+        "Ember:primary": 147
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 116,
+        "thermal fracture": 116,
+        "shatter impulse": 96,
+        "physical impact": 3
+      }
+    },
+    {
+      "seed": 456,
+      "players": 1,
+      "policy": "state-aware",
+      "result": "victory",
+      "seconds": 56.48,
+      "clears": 5,
+      "health": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "casts": {
+        "Tide:secondary": 23,
+        "Tide:primary": 28,
+        "Ember:primary": 110,
+        "Gale:primary": 12
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 86,
+        "thermal fracture": 85,
+        "shatter impulse": 63,
+        "physical impact": 1
+      }
+    },
+    {
+      "seed": 456,
+      "players": 2,
+      "policy": "attack-move",
+      "result": "victory",
+      "seconds": 59.65,
+      "clears": 5,
+      "health": [
+        74,
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ],
+        "mage-2": [
+          "piercing-ember",
+          "double-inscription",
+          "shared-vapour"
+        ]
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "casts": {
+        "Ember:primary": 345
+      },
+      "damage": 40,
+      "reactions": {}
+    },
+    {
+      "seed": 456,
+      "players": 2,
+      "policy": "basin-ember",
+      "result": "victory",
+      "seconds": 30.67,
+      "clears": 5,
+      "health": [
+        86,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ],
+        "mage-2": [
+          "piercing-ember",
+          "double-inscription",
+          "shared-vapour"
+        ]
+      },
+      "maxFields": 3,
+      "maxPending": 0,
+      "casts": {
+        "Tide:secondary": 51,
+        "Ember:primary": 176
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 115,
+        "thermal fracture": 110,
+        "shatter impulse": 76,
+        "physical impact": 1
+      }
+    },
+    {
+      "seed": 456,
+      "players": 2,
+      "policy": "state-aware",
+      "result": "victory",
+      "seconds": 38.95,
+      "clears": 5,
+      "health": [
+        88,
+        46
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ],
+        "mage-2": [
+          "piercing-ember",
+          "double-inscription",
+          "shared-vapour"
+        ]
+      },
+      "maxFields": 3,
+      "maxPending": 1,
+      "casts": {
+        "Tide:secondary": 53,
+        "Tide:primary": 34,
+        "Ember:primary": 169,
+        "Gale:primary": 8,
+        "Stone:primary": 1
+      },
+      "damage": 66,
+      "reactions": {
+        "vaporize": 113,
+        "thermal fracture": 104,
+        "shatter impulse": 70,
+        "deflect": 2,
+        "physical impact": 2
+      }
+    }
+  ]
+}

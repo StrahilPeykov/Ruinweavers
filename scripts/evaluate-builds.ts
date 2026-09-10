@@ -13,11 +13,13 @@ import { ScriptedPolicy } from "../src/diagnostics/policies";
 import { encodeSnapshot } from "../src/network/wire";
 await initPhysics();
 const builds: Record<string, string[]> = {
+  "basin-ember": ["travelling-basin", "piercing-ember", "shared-vapour"],
   reaction: ["forked-tide", "undertow", "shared-vapour"],
   field: ["double-inscription", "cross-seam", "migrating-inscriptions"],
   structure: ["stone-echo", "fault-line", "break-seal"],
 };
 const held = process.argv.includes("--held-out");
+const routine = process.argv.includes("--routine-check");
 const output =
   process.argv.find((a) => a.startsWith("--output="))?.slice(9) ??
   `artifacts/build-0.2/evaluation-${Date.now()}.json`;
@@ -27,8 +29,14 @@ for (const scenario of held
   : ["open-near", "cross-cover"])
   for (const encounter of ["ranged", "pursuit", "mixed"])
     for (const mode of ["delayed-aim", "exact-state"] as const)
-      for (const name of [...BUILD_NAMES, "basin-ember"] as const)
-        for (const count of name === "basin-ember" ? [0] : [0, 1, 2, 3]) {
+      for (const name of routine
+        ? (["basin-ember"] as const)
+        : ([...BUILD_NAMES, "basin-ember"] as const))
+        for (const count of routine
+          ? [0, 3]
+          : name === "basin-ember"
+            ? [0]
+            : [0, 1, 2, 3]) {
           const sim = new Simulation(
             configFromQuery(
               `?scene=trial/${encounter}&scenario=${scenario}&seed=123`,

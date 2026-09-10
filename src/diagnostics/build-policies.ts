@@ -2,7 +2,7 @@ import { ScriptedPolicy, type ObservationMode } from "./policies";
 import { distance, type Simulation } from "../simulation/simulation";
 import { vec } from "../simulation/types";
 
-export const BUILD_POLICY_VERSION = "build-policies-2";
+export const BUILD_POLICY_VERSION = "build-policies-3";
 export const BUILD_NAMES = ["reaction", "field", "structure"] as const;
 export type BuildName = (typeof BUILD_NAMES)[number];
 // Transparent intent generator. Shares the existing delayed observations, keyboard
@@ -60,11 +60,34 @@ export class BuildPolicy extends ScriptedPolicy {
         (!seam || seam.life < 1 || distance(seam.pos, target.pos) > 5)
       )
         secondary("Ember");
-      else if (o.time >= this.nextField && !updraft)
+      else if (
+        o.time >= this.nextField &&
+        !updraft &&
+        sim.state.run?.upgrades[sim.actorId]?.includes("double-inscription")
+      )
         secondary("Gale", input.aim);
       else {
-        // Gust redirects fields; wetting targets in the seam produces real reactions.
-        input.select = target.heat >= 35 ? "Tide" : d < 5.8 ? "Gale" : "Ember";
+        // Redirect only a field lying between us and the target, not one already
+        // beyond it. Otherwise feed moisture into heat or erupt to hold the lane.
+        const transferable = owned.find(
+          (f) =>
+            f.principle !== "Stone" &&
+            distance(f.pos, o.player.pos) < 5.7 &&
+            distance(f.pos, target.pos) > 1.3 &&
+            distance(f.pos, target.pos) < d &&
+            (f.pos.x - o.player.pos.x) * (target.pos.x - f.pos.x) +
+              (f.pos.z - o.player.pos.z) * (target.pos.z - f.pos.z) >
+              0,
+        );
+        if (
+          transferable &&
+          sim.state.run?.upgrades[sim.actorId]?.includes(
+            "migrating-inscriptions",
+          )
+        ) {
+          input.select = "Gale";
+          input.aim = { ...transferable.pos };
+        } else input.select = target.heat >= 25 ? "Tide" : "Stone";
       }
     }
     return input;

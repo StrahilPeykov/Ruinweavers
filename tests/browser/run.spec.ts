@@ -294,7 +294,15 @@ async function complete(pages: Page[], label: string) {
             upgrades: s.run.upgrades,
             casts: s.metrics.casts,
             reactions: s.metrics.transformations,
+            outcomes: s.metrics.outcomes,
             damageRoutes: s.metrics.damageRoutes,
+            transport: await Promise.all(
+              pages.map((p) =>
+                p.evaluate(() =>
+                  window.__RUINWEAVERS__.getNetworkDiagnostics(),
+                ),
+              ),
+            ),
           },
           null,
           2,

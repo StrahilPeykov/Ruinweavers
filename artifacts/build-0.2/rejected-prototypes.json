@@ -44,6 +44,42 @@
       }
     },
     {
+      "candidate": "baseline-control",
+      "scene": "trial/ranged",
+      "policy": "control-cover",
+      "activations": 0,
+      "status": "victory",
+      "time": 17.62,
+      "damage": 0,
+      "reactions": {
+        "deflect": 1
+      }
+    },
+    {
+      "candidate": "baseline-control",
+      "scene": "trial/pursuit",
+      "policy": "control-cover",
+      "activations": 0,
+      "status": "victory",
+      "time": 14.83,
+      "damage": 0,
+      "reactions": {
+        "physical impact": 2
+      }
+    },
+    {
+      "candidate": "baseline-control",
+      "scene": "trial/mixed",
+      "policy": "control-cover",
+      "activations": 0,
+      "status": "victory",
+      "time": 35.43,
+      "damage": 28,
+      "reactions": {
+        "deflect": 3
+      }
+    },
+    {
       "candidate": "converging-gust",
       "scene": "trial/ranged",
       "policy": "control-cover",

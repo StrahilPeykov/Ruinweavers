@@ -1,8 +1,8 @@
 # Ruinweavers — The Broken Court
 
-The default is the complete illustrated five-encounter solo/co-op run. [Play](https://ruinweavers.strahil-peykov.workers.dev/). Personal alterations arrive after encounters one and three.
+The default is the complete illustrated five-encounter solo/co-op run. [Play](https://ruinweavers.strahil-peykov.workers.dev/). Build Identity 0.2 gives three personal choices after encounters one, three and four: ten Alterations and three prerequisite-gated Theorems. [Build design and catalogue](docs/BUILD-DESIGN.md).
 
-[Actual five-room frames and a short co-op gameplay clip](https://ruinweavers.strahil-peykov.workers.dev/broken-court/index.html). These are engine captures from normal-health input-driven play, not concept art.
+[Three builds in the same final encounter: actual frames and clips](https://ruinweavers.strahil-peykov.workers.dev/build-identity/index.html). These are normal-health input-driven runs, not concept art. [Historical five-room/co-op captures](https://ruinweavers.strahil-peykov.workers.dev/broken-court/index.html) remain available.
 
 `npm install` then `npm run dev` → http://127.0.0.1:5173/. New run obtains a fresh host-owned seed; Retry same seed reproduces offers given the same choices. Both clear health/build/effects and retain fresh run identity. Explicit `?scene=run&seed=123` remains reproducible. Co-op readies together again.
 
@@ -18,4 +18,4 @@ Validation: `npm test`, `npm run test:e2e`, `npm run build`. Run tests and histo
 
 After every checked coherent commit, immediately push to the existing upstream and verify it. Existing Cloudflare integration may deploy that push. No force-push, new providers/accounts, billing changes or unrelated direct deployment. See AGENTS.md.
 
-Stop at the complete small illustrated run. Further systems or content expansion require a separate milestone.
+Stop at Build Identity 0.2. A systemic Guardian is a possible next milestone, not authorization to add one now.

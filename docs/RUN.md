@@ -6,7 +6,7 @@ Four retained new Alterations: **Crosswise inscription** rotates the Ember seam 
 
 Three Theorems: **Shared vapour** redistributes moisture from steam once to nearby visible bodies; **Break the seal** releases positive cohesion into fracture on subsequent horizontal force; **Migrating inscriptions** lets gusts redirect owned non-solid fields. Prerequisite alternatives appear on cards. Full criteria, catalogue and decisions: [BUILD-DESIGN](BUILD-DESIGN.md).
 
-Bounds: default maximum two fields per owner; unchanged 12 s life. Fault/echo schedules at most six points per cast, with shared per-wave hit IDs; no recursive descendants. Vapour descendants may react but never spread again. Duplicate offer generation cannot reset a choice. Protocol 3's explicit run/field/pending state carries these additions, covered by JSON roundtrip tests. Baseline Lab/trial has no upgrades.
+Bounds: one base field per owner, two with Double inscription under default settings; unchanged 12 s life. Fault/echo schedules at most six points per cast, with shared per-wave hit IDs; no recursive descendants. Vapour descendants may react but never spread again. Duplicate offer generation cannot reset a choice. Protocol 3's explicit run/field/pending state carries these additions, covered by JSON roundtrip tests. Baseline Lab/trial has no upgrades.
 
 ## Historical Run Prototype 0.1 contract and evidence
 

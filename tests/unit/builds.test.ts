@@ -11,6 +11,15 @@ import {
 import { idleInput, vec } from "../../src/simulation/types";
 import { encodeSnapshot, WireReader } from "../../src/network/wire";
 beforeAll(initPhysics);
+it("a gust that only redirects an inscription reports useful contact rather than empty/miss", () => {
+  const s = make(["migrating-inscriptions"]);
+  for (const e of s.state.entities) if (e.id !== "mage-1") e.hp = 0;
+  s.cast("secondary", "test", "Tide", vec(0, 0, 2));
+  s.cast("primary", "test", "Gale", vec(0, 0, 0));
+  expect(s.state.metrics.outcomes["mage-1:Gale:primary:hit"]).toBe(1);
+  expect(s.state.events.some((e) => e.type === "empty")).toBe(false);
+  s.dispose();
+});
 function make(upgrades: UpgradeId[] = [], pair = false) {
   const s = new Simulation(configFromQuery("?scene=run&seed=123"));
   if (pair) s.addPartner();
@@ -139,6 +148,8 @@ it.each([
   "three-choice duplicate partner build %s remains bounded and cleans up",
   (...upgrades) => {
     const s = make(upgrades, true);
+    // A soak fixture, not an encounter result: keep all recipients alive for 20 s.
+    for (const e of s.state.entities) e.hp = e.maxHp = 1000000;
     for (let tick = 0; tick < 1200; tick++) {
       const input = {
         ...idleInput(vec(0, 0, -2)),
@@ -172,6 +183,63 @@ it("Shared vapour transfers moisture with provenance once, without recursive spr
   expect(s.state.events.filter((e) => e.type === "vapour-link")).toHaveLength(
     1,
   );
+  s.dispose();
+});
+it("reissuing an offer cannot erase an accepted personal choice", () => {
+  const s = make();
+  s.state.trial!.status = "between";
+  offerRewards(s.state);
+  const r = s.state.run!.reward!;
+  const choice = r.offers["mage-1"][0];
+  expect(s.chooseUpgrade("mage-1", s.state.run!.id, r.id, choice)).toBe(true);
+  offerRewards(s.state);
+  expect(s.state.run!.reward).toBe(r);
+  expect(r.choices["mage-1"]).toBe(choice);
+  expect(s.state.run!.upgrades["mage-1"]).toEqual([choice]);
+  s.dispose();
+});
+it("long breath deflects the extended forward bolt but not a peripheral bolt", () => {
+  const s = make(["focused-gale"]);
+  for (const [id, pos] of [
+    ["forward", vec(0, 0.75, -3)],
+    ["side", vec(3, 0.75, 1)],
+  ] as const)
+    s.state.bolts.push({
+      id,
+      source: "sentinel",
+      principle: "hostile",
+      pos,
+      velocity: vec(0, 0, 7),
+      life: 2,
+      radius: 0.2,
+    });
+  s.step({ ...idleInput(vec(0, 0, -3)), select: "Gale", primary: true });
+  expect(s.state.bolts.find((b) => b.id === "forward")?.source).toBe("mage-1");
+  expect(s.state.bolts.find((b) => b.id === "side")?.source).toBe("sentinel");
+  s.dispose();
+});
+it("fault points do not cross the arena wall or create unsupported eruptions", () => {
+  const s = make(["fault-line"]);
+  s.player.pos = vec(0, 0.75, -5);
+  s.physics.teleport(s.player);
+  s.physics.world.step();
+  s.cast("primary", "test", "Stone", vec(0, 0, -10));
+  expect(s.state.pending).toHaveLength(2);
+  expect(s.state.pending.every((p) => p.pos.z >= -11)).toBe(true);
+  s.dispose();
+});
+it("shared vapour respects solid obstruction despite nearby XZ coordinates", () => {
+  const s = make(["shared-vapour"]);
+  const [a, b] = s.state.entities.filter((e) => e.ai);
+  a.pos = vec(0, 0.8, -10.5);
+  b.pos = vec(0, 0.8, -12);
+  a.wet = 0.8;
+  s.physics.teleport(a);
+  s.physics.teleport(b);
+  s.physics.world.step();
+  s.apply(a, { heat: 60 }, "mage-1", "test");
+  expect(b.wet).toBe(0);
+  expect(s.state.events.some((e) => e.type === "vapour-link")).toBe(false);
   s.dispose();
 });
 it("Break the seal consumes binding through any force operation and retains recipient/source attribution", () => {

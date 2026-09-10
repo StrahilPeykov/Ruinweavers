@@ -1,4 +1,8 @@
-## Current: complete illustrated Broken Court
+## Current: Build Identity 0.2
+
+Three personal choices after courts 1, 3 and 4, ten Alterations and three prerequisite-gated Theorems. Keep the illustrated five-room run, controls, base tuning and co-op authority. BUILD-DESIGN.md records retained/rejected candidates and matched evidence. Structure has the clearest demonstrated payoff; field migration offers control at a time cost; Shared vapour remains provisional with weak marginal benefit. No automatic Basin nerf or next content phase. Push every checked coherent commit immediately and verify it.
+
+## Historical: complete illustrated Broken Court
 
 Bright illustrated treatment now covers the existing five-beat run through an explicit room-presentation map and one shared asset library. Normal entry is the run; old proofs remain developer links. New run uses a fresh host-owned seed, Retry same seed preserves offers with fresh run identity and party readiness. Cosmetic clocks are separate from simulation time. No tuning, mechanics or provider changes. Stop at this complete small run; every checked commit is immediately pushed and verified.
 

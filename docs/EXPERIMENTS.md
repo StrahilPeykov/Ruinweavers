@@ -1,4 +1,4 @@
-Current baseline: the complete illustrated [Broken Court](ART.md). Root opens the five-beat run. Model A, balanced camera/tempo, accepted controls, spells, six alterations and party tuning remain unchanged. New run draws a fresh host-owned seed; Retry same seed repeats offers given the same choices. TESTING.md records current whole-run evidence. This is not proof of balance or subjective fun.
+Current milestone: Build Identity 0.2 on the complete illustrated [Broken Court](ART.md). Root opens the same five-beat run; personal choices follow courts 1, 3 and 4. Ten Alterations and three prerequisite-gated Theorems are tested in [BUILD-DESIGN](BUILD-DESIGN.md). Model A, camera/tempo, controls, base spells, enemy and party tuning remain unchanged. New run draws a fresh host-owned seed; Retry repeats offers given the same choices. TESTING.md separates current evidence from historical work. Completion is not proof of balance or subjective fun.
 
 Gameplay rules: [RUN.md](RUN.md). The previous trial/networking sections below are dated evidence, not restrictions on the illustrated rollout.
 

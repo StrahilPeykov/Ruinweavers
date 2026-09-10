@@ -4,7 +4,7 @@
 
 Run `npm install` once, then `npm run dev`. Root http://127.0.0.1:5173/ opens the complete illustrated five-beat run. Begin run plays solo. Explicit `?scene=trial` and Lab scenes retain their diagnostics. See [run structure and personal rewards](RUN.md). Model A, balanced camera/tempo, 120 ms Secondary buffer and one base field per mage remain. Controls/settings start collapsed.
 
-For separate computers, open the same deployed build and keep Public Nostr selected. One player chooses Create co-op and copies the six-character room code; the partner enters it and presses Enter or Join co-op. Both Ready. After encounters one and three, each chooses an alteration before party readiness. Both ready again between encounters. Joining an active attempt is not supported.
+For separate computers, open the same deployed build and keep Public Nostr selected. One player chooses Create co-op and copies the six-character room code; the partner enters it and presses Enter or Join co-op. Both Ready. After encounters one, three and four, each chooses a personal upgrade before party readiness. The final offer can include a compatible Theorem with its prerequisite printed on the card. Both ready again between encounters. Joining an active attempt is not supported.
 
 After victory/defeat, New run requests a fresh host-owned seed; Retry same seed preserves the offer sequence given the same choices. Both clear the previous build and health, create fresh run identity and wait for party readiness. Top Restart same seed abandons the attempt under the existing reset/readiness rules. The accepted TURN setup, TLS/443 fallback and one-hour credential lifetime without in-session renewal are unchanged. This milestone makes no new remote-laptop relay claim.
 

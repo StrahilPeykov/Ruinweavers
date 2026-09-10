@@ -1,5 +1,9 @@
 # Encounter evaluation
 
+Current Build Identity 0.2 comparisons: `docs/BUILD-DESIGN.md`, `npm run evaluate:builds`, and `artifacts/build-0.2`. These add deliberate build policies, incremental ablations and held-out layouts. The first-offer run evaluator and the encounter methods/results below remain regression/historical evidence, not the current player-facing entry.
+
+## Historical Combat Trial baseline
+
 Default: Model A, balanced camera/tempo, 120 ms buffer, one manifestation, `scenario=cross-cover`. Three encounters: two sentinels; three pursuers; two of each. HP carries; between encounters positions, fields, projectiles and transient combat state reset. E/the card continues; Restart trial restores 100 HP. No rewards or progression.
 
 ## Method

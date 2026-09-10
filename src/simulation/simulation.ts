@@ -758,7 +758,7 @@ export class Simulation {
         value: this.gustShape().range,
         target: String(this.gustShape().cosine),
       });
-      for (const e of this.nearby(p.pos, this.gustShape().range, p.id)) {
+      for (const e of this.nearby(p.pos, this.gustShape().range)) {
         const d = normalize(vec(e.pos.x - p.pos.x, 0, e.pos.z - p.pos.z));
         if (this.inGust(e.pos, dir, e.radius)) {
           if (hasUpgrade(s, p.id, "focused-gale"))
@@ -855,7 +855,7 @@ export class Simulation {
     }
     if (principle === "Tide" || principle === "Gale")
       this.outcome(
-        `${p.id}:${principle}:primary:${s.metrics.stateApplications > applicationsBefore || (s.metrics.transformations.deflect || 0) > deflectionsBefore ? "hit" : "miss"}`,
+        `${p.id}:${principle}:primary:${s.metrics.stateApplications > applicationsBefore || (s.metrics.transformations.deflect || 0) > deflectionsBefore || (s.metrics.outcomes[`upgrade:${p.id}:migrating-inscriptions`] || 0) > migrationBefore ? "hit" : "miss"}`,
       );
     if (
       (principle === "Tide" || principle === "Gale") &&
