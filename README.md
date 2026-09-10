@@ -18,4 +18,6 @@ Validation: `npm test`, `npm run test:e2e`, `npm run build`. Run tests and histo
 
 After every checked coherent commit, immediately push to the existing upstream and verify it. Existing Cloudflare integration may deploy that push. No force-push, new providers/accounts, billing changes or unrelated direct deployment. See AGENTS.md.
 
-Stop at Build Identity 0.2. A systemic Guardian is a possible next milestone, not authorization to add one now.
+The fifth court now culminates in **The Bound Warden**, with physical ward plates, Shard Volley, Bound March and Furnace Pulse. [Guardian rules and validation](docs/GUARDIAN.md); [actual Guardian clips](https://ruinweavers.strahil-peykov.workers.dev/guardian/index.html). `?scene=guardian` opens the isolated fight; `?scene=run-legacy` preserves the ordinary-enemy five-court regression.
+
+Guardian 0.1 is closed at 4deeb7a: 117 unit tests, production build and 58 browser tests pass; one opt-in live TURN probe was skipped. Matched development/held-out results and limitations are recorded. Spatial Design 0.3 is the authorized next milestone: improve authored physical spaces while preserving this combat and fixed five-beat sequence.

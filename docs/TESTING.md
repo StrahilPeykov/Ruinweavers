@@ -1,5 +1,7 @@
 # Guardian 0.1 validation (2026-09-10)
 
+Closure before Spatial Design 0.3: inspected clean upstream 4deeb7a, newer than reviewed baec1fc. Final evidence below was already completed and committed, not still pending. Re-ran all 117 units and production build successfully before the documentation-only closure; the 58-pass full browser sweep and held-out dataset remain the unchanged runtime baseline. No Guardian tuning or layout changes are included in this closure.
+
 Current runtime **9dd14b9dcd8f / protocol 3**: **117 units and production build pass**. Baseline 3ddebb2 had 96 passing units/build; its browser sweep passed 48, skipped one live TURN probe and failed the allied-contact timeout once. The unchanged isolated rerun passed. The fixture now re-aims through real pointer input while the guest camera settles; it does not change damage rules or replace the assertion.
 
 Guardian browser development sweep: five real-input solo builds reached victory, Stone placement blocked shards and a real Gale tap redirected them. One paired attempt exposed Create/Join falling back to `trial`; the scene allowlist was corrected, and the actual two-client fight/revive/retry passed. After widening the physical cover gap, base solo and paired reaction/field journeys passed again. Isolated build/lifecycle fixtures are labelled; attacks and the revive use actual inputs. No remote-laptop or new TURN claim.
