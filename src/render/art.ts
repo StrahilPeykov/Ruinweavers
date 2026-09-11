@@ -533,7 +533,9 @@ export class ArtStudy {
     boundaries.forEach((b, i) => {
       for (let band = 0; band < 2; band++) {
         matrix.compose(
-          new T.Vector3(b.x, band ? 0.18 : b.y + b.h / 2 - 0.06, b.z),
+          // Top face clears the wall by 2cm. Coplanar faces flicker as the
+          // camera moves, even though both meshes themselves are stationary.
+          new T.Vector3(b.x, band ? 0.18 : b.y + b.h / 2 - 0.04, b.z),
           new T.Quaternion(),
           new T.Vector3(b.w + 0.018, band ? 0.13 : 0.12, b.d + 0.018),
         );

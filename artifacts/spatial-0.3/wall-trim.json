@@ -1,0 +1,214 @@
+{
+  "defect": "Wall and cap top faces were coplanar; real geometry regression failed before correction. Cap top now clears wall by 0.02m; no physics or camera change.",
+  "method": "Real W movement and three captured frames per room, Split/Rotunda in both qualities; visual inspection plus mesh geometry regression, not a performance benchmark.",
+  "cases": [
+    {
+      "version": "before",
+      "room": "split",
+      "quality": "lightweight",
+      "build": "615bdffc0d55",
+      "before": {
+        "x": -2,
+        "y": 0.7198325395584106,
+        "z": 6.499998569488525
+      },
+      "after": {
+        "x": -2.00177001953125,
+        "y": 0.7200860381126404,
+        "z": -1.90349543094635
+      },
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "drawingBuffer": {
+        "width": 1152,
+        "height": 720
+      },
+      "contextLost": false
+    },
+    {
+      "version": "before",
+      "room": "rotunda",
+      "quality": "lightweight",
+      "build": "615bdffc0d55",
+      "before": {
+        "x": -3,
+        "y": 0.7198790907859802,
+        "z": 8
+      },
+      "after": {
+        "x": -3.0000545978546143,
+        "y": 0.720099925994873,
+        "z": -0.00012336671352386475
+      },
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "drawingBuffer": {
+        "width": 1152,
+        "height": 720
+      },
+      "contextLost": false
+    },
+    {
+      "version": "before",
+      "room": "split",
+      "quality": "standard",
+      "build": "615bdffc0d55",
+      "before": {
+        "x": -1.9999995231628418,
+        "y": 0.719576895236969,
+        "z": 6.499999046325684
+      },
+      "after": {
+        "x": -1.9995721578598022,
+        "y": 0.7199172973632812,
+        "z": -8.599950790405273
+      },
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "drawingBuffer": {
+        "width": 1440,
+        "height": 900
+      },
+      "contextLost": false
+    },
+    {
+      "version": "before",
+      "room": "rotunda",
+      "quality": "standard",
+      "build": "615bdffc0d55",
+      "before": {
+        "x": -3.0000030994415283,
+        "y": 0.7195790410041809,
+        "z": 8
+      },
+      "after": {
+        "x": -2.999856472015381,
+        "y": 0.7190296053886414,
+        "z": -4.688183784484863
+      },
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "drawingBuffer": {
+        "width": 1440,
+        "height": 900
+      },
+      "contextLost": false
+    },
+    {
+      "version": "after",
+      "room": "split",
+      "quality": "lightweight",
+      "build": "8dd5cc592eb3",
+      "before": {
+        "x": -2.000000238418579,
+        "y": 0.7196768522262573,
+        "z": 6.499998092651367
+      },
+      "after": {
+        "x": -1.9999985694885254,
+        "y": 0.7199727296829224,
+        "z": -7.127725124359131
+      },
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "drawingBuffer": {
+        "width": 1152,
+        "height": 720
+      },
+      "contextLost": false
+    },
+    {
+      "version": "after",
+      "room": "rotunda",
+      "quality": "lightweight",
+      "build": "8dd5cc592eb3",
+      "before": {
+        "x": -3.0000011920928955,
+        "y": 0.7198057770729065,
+        "z": 8
+      },
+      "after": {
+        "x": -2.9991254806518555,
+        "y": 0.7191907167434692,
+        "z": -3.0139267444610596
+      },
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "drawingBuffer": {
+        "width": 1152,
+        "height": 720
+      },
+      "contextLost": false
+    },
+    {
+      "version": "after",
+      "room": "split",
+      "quality": "standard",
+      "build": "8dd5cc592eb3",
+      "before": {
+        "x": -1.9999995231628418,
+        "y": 0.7196769118309021,
+        "z": 6.499999046325684
+      },
+      "after": {
+        "x": -2.0003535747528076,
+        "y": 0.7189813852310181,
+        "z": -6.5053019523620605
+      },
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "drawingBuffer": {
+        "width": 1440,
+        "height": 900
+      },
+      "contextLost": false
+    },
+    {
+      "version": "after",
+      "room": "rotunda",
+      "quality": "standard",
+      "build": "8dd5cc592eb3",
+      "before": {
+        "x": -3.0000011920928955,
+        "y": 0.7198057770729065,
+        "z": 8
+      },
+      "after": {
+        "x": -2.9995124340057373,
+        "y": 0.7199596166610718,
+        "z": -10.3865385055542
+      },
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "drawingBuffer": {
+        "width": 1440,
+        "height": 900
+      },
+      "contextLost": false
+    }
+  ]
+}
