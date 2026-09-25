@@ -235,3 +235,55 @@ it("explicit wire state carries host graph, personal rewards and shared votes ac
   expect(STAGES.filter((s) => s.reward)).toHaveLength(3);
   s.dispose();
 });
+
+it("final safe boundary rebuilds the Warden with carried personal builds and no stale fields", () => {
+  const s = make(true);
+  ready(s);
+  for (let stage = 0; stage < 4; stage++) {
+    if (stage === 2) s.players[1].hp = 0;
+    clear(s);
+    if (stage === 3) {
+      // The fixed Warden destination is already known while personal rewards wait.
+      // This is a legitimate pending checkpoint, not an early fork agreement.
+      const pending = captureCheckpoint(s.state);
+      expect(pending.phase).toBe("REWARD_PENDING");
+      expect(pending.next).toBe("ward");
+      const recovered = restoreCheckpoint(
+        JSON.parse(JSON.stringify(pending)), s.config,
+        { runId: pending.runId, boundary: pending.boundary },
+      );
+      expect(recovered.state.run!.reward).toEqual(s.state.run!.reward);
+      ready(recovered);
+      expect(recovered.state.trial!.status).toBe("between");
+      choose(recovered);
+      ready(recovered);
+      expect(recovered.state.roomId).toBe("warden");
+      recovered.dispose();
+    }
+    choose(s);
+    if (!s.state.run!.route!.decision!.selected)
+      for (const p of s.players) vote(s, p.id, 1);
+    if (stage < 3) ready(s);
+  }
+  s.state.fields.push({ id: "discard-me" } as any);
+  const c = captureCheckpoint(s.state);
+  expect(c.phase).toBe("NEXT_ENCOUNTER_READY");
+  const restored = restoreCheckpoint(JSON.parse(JSON.stringify(c)), s.config, {
+    runId: c.runId,
+    boundary: c.boundary,
+  });
+  expect(
+    restored.state.entities.filter((e) => e.ai).every((e) => e.hp === 0),
+  ).toBe(true);
+  ready(restored);
+  expect(restored.state.roomId).toBe("warden");
+  expect(restored.state.guardian).toBeDefined();
+  expect(restored.state.fields).toEqual([]);
+  expect(restored.players[1].hp).toBe(35);
+  expect(restored.state.run!.upgrades).toEqual(s.state.run!.upgrades);
+  expect(
+    restored.state.entities.find((e) => e.kind === "warden")!.hp,
+  ).toBeGreaterThan(0);
+  s.dispose();
+  restored.dispose();
+});

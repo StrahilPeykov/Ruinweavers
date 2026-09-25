@@ -54,7 +54,15 @@ test("selected illustrated rooms retain art and bounded repeated reset resources
   test.setTimeout(120000);
   mkdirSync(out, { recursive: true });
   const evidence = [];
-  for (const room of ["split", "gallery", "rotunda", "yard", "warden"]) {
+  for (const room of [
+    "split",
+    "gallery",
+    "rotunda",
+    "yard",
+    "warden",
+    "approach",
+    "diagonal",
+  ]) {
     await page.goto(
       `/?scene=${room === "warden" ? "guardian" : "trial/mixed"}&room=${room}&art=illustrated&quality=lightweight&seed=123`,
     );
@@ -238,6 +246,8 @@ test("candidate greyboxes: actual movement, independent aim, casting and reset",
     "yard",
     "warden",
     "archive",
+    "approach",
+    "diagonal",
   ]) {
     await page.goto(
       `/?scene=${room === "warden" ? "guardian" : "trial/mixed"}&room=${room}&art=off&quality=lightweight&seed=123`,
@@ -249,9 +259,18 @@ test("candidate greyboxes: actual movement, independent aim, casting and reset",
     await page.locator("#trial-action").click();
     await page.keyboard.down("d");
     const point = await page.evaluate(() => {
-      const api = window.__RUINWEAVERS__,
-        e = api.getState().entities.find((e: any) => e.ai && e.hp > 0);
-      return api.projectWorld(e.pos);
+      const api = window.__RUINWEAVERS__;
+      const candidates = api
+        .getState()
+        .entities.filter((e: any) => e.ai && e.hp > 0)
+        .map((e: any) => api.projectWorld(e.pos));
+      candidates.push(api.projectWorld({ x: 0, y: 0, z: 0 }));
+      // A projected far enemy can lie under Pause. Exercise the canvas, not a HUD button.
+      const point = candidates.find(
+        (p: any) => document.elementFromPoint(p.x, p.y)?.tagName === "CANVAS",
+      );
+      if (!point) throw Error("No visible canvas aiming point");
+      return point;
     });
     await page.mouse.move(point.x, point.y);
     await page.mouse.down();

@@ -220,12 +220,12 @@ export function prepareEncounter(s: State, config: Config) {
     createGuardian(s);
   }
   const room = roomSpec(
-    config.room ??
-      (config.scene === "run"
-        ? currentNode(s)?.room
-        : config.scene === "run-spatial"
-          ? RUN_ROOMS[trial.encounter]
-          : undefined),
+    config.scene === "run"
+      ? currentNode(s)?.room
+      : (config.room ??
+          (config.scene === "run-spatial"
+            ? RUN_ROOMS[trial.encounter]
+            : undefined)),
   );
   if (room) {
     s.roomId = room.id;

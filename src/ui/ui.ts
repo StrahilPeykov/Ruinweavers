@@ -673,7 +673,7 @@ export class UI {
             const votes = Object.keys(s.actors)
               .filter((a) => decision.votes[a] === id)
               .map((a) => (a === player.id ? "You" : "Partner"));
-            button.innerHTML = `<small>${STAGES[dest.stage].pressure}</small><strong>${spec.name}</strong><span>${spec.thesis}</span><em>${spec.props.length ? "Materials: " + [...new Set(spec.props.map((p) => ({ wood: "timber", heavy: "movable ballast", brittle: "fracturable stone", loose: "loose stone" })[p.kind as "wood"] ?? p.kind))].join(", ") : "Open circulation around solid masonry"}</em><b>${votes.join(" + ") || "Select this path"}</b>`;
+            button.innerHTML = `<small>${STAGES[dest.stage].pressure}</small><strong>${spec.name}</strong><span>${spec.thesis}</span><em>${spec.props.length ? "Materials: " + [...new Set(spec.props.map((p) => ({ wood: "timber", heavy: "movable ballast", brittle: "fracturable stone", loose: "loose stone" })[p.kind as "wood"] ?? p.kind))].join(", ") : "Open circulation around solid masonry"}</em><b>${votes.join(" + ") || (decision.selected === id ? "Destination agreed" : "Select this path")}</b>`;
             button.disabled = !!decision.selected;
             button.classList.toggle(
               "chosen",

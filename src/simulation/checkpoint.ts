@@ -179,7 +179,9 @@ export function restoreCheckpoint(
           throw Error("Invalid checkpoint choice");
       }
       openRoute(s);
-      if (c.next && !rewardsChosen(s))
+      // The sole Warden destination is known even while its personal reward waits.
+      // A genuine multi-option fork still requires completed rewards before agreement.
+      if (c.next && node.next.length > 1 && !rewardsChosen(s))
         throw Error("Selection before rewards complete");
       if (c.next) route.decision!.selected = c.next;
     } else if (c.reward || c.next)
@@ -193,6 +195,7 @@ export function restoreCheckpoint(
     }
     for (const a of c.actors) s.entities.find((e) => e.id === a.id)!.hp = a.hp;
     prepareEncounter(s, sim.config);
+    if (!ready) for (const e of s.entities) if (e.ai) e.hp = 0;
     sim.physics.dispose();
     sim.physics = new Physics(s);
     return sim;

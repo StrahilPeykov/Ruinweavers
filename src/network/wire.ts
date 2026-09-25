@@ -1,3 +1,4 @@
+import { ROUTE_VERSION } from "../simulation/topology";
 import type { Config } from "../experiments/config";
 import type { Entity, State } from "../simulation/types";
 import { createState } from "../simulation/lab";
@@ -124,7 +125,7 @@ export class WireReader {
         (!base.routeNodes ||
           base.routeNodes.length !== 16 ||
           p.live.run.route.visited.length > 5 ||
-          p.live.run.route.version !== 1)) ||
+          p.live.run.route.version !== ROUTE_VERSION)) ||
       p.live.entities.some((e) => !base.entities.some((t) => t.id === e.id))
     )
       return null;

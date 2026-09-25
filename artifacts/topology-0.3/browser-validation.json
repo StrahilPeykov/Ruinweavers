@@ -1,0 +1,1316 @@
+{
+  "date": "2026-09-25",
+  "units": {
+    "passed": 131,
+    "files": 18
+  },
+  "build": "passed; existing large Rapier/client bundle warning",
+  "browserSweep": {
+    "startTime": "2026-09-25T08:47:49.440Z",
+    "duration": 667014.7379999999,
+    "expected": 67,
+    "skipped": 1,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "checkpointFollowup": {
+    "change": "After the clean browser sweep, a new unit assertion reproduced rejection of REWARD_PENDING before the fixed Warden destination. Restore now permits the single derived destination while still requiring personal choices before readiness. The offline module is not imported by the browser runtime, but its source change updates the exact-build fingerprint.",
+    "unitBuild": "131 units and production build pass after correction",
+    "browser": {
+      "startTime": "2026-09-25T09:00:20.944Z",
+      "duration": 72497.098,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "conditions": "Installed headless Chrome 153, Windows Intel UHD ANGLE D3D11. Local WebRTC, no remote TURN claim. No recording, encoding or simulation batch overlapped these performance samples.",
+  "earlierExceptions": [
+    "One initial focused browser failed at Chrome launch before page navigation; unchanged rerun passed.",
+    "First broad sweep: 65 passed, one opt-in live TURN skipped, one greybox movement failure. The harness clicked the Pause button over a projected enemy. It now selects an unobstructed canvas aim; unchanged movement/cast assertions pass in all ten diagnostic rooms."
+  ],
+  "runs": {
+    "solo": {
+      "build": "1ae34c7d29ad",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "status": "victory",
+      "combatSeconds": 54.283333333331534,
+      "wallSeconds": 56.652,
+      "routeVersion": 2,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "casts": {
+        "Tide:secondary": 28,
+        "Ember:primary": 155,
+        "Tide:primary": 1
+      },
+      "reactions": {
+        "vaporize": 155,
+        "thermal fracture": 151,
+        "shatter impulse": 123,
+        "physical impact": 1
+      },
+      "measurements": [
+        {
+          "role": "solo",
+          "frames": {
+            "n": 3248,
+            "mean": 16.667179802955104,
+            "p50": 16.69999999999709,
+            "p95": 16.80000000000291,
+            "p99": 16.900000000001455,
+            "max": 33.400000000001455
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 500,
+                "mean": 16.622200000000387,
+                "p50": 16.600000000000364,
+                "p95": 16.800000000000182,
+                "p99": 16.899999999999636,
+                "max": 17.40000000000009
+              },
+              "maxDraws": 187
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 486,
+                "mean": 16.685802469135805,
+                "p50": 16.69999999999891,
+                "p95": 16.799999999999272,
+                "p99": 16.80000000000109,
+                "max": 33.19999999999891
+              },
+              "maxDraws": 213
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 681,
+                "mean": 16.675624082232016,
+                "p50": 16.69999999999709,
+                "p95": 16.799999999999272,
+                "p99": 16.900000000001455,
+                "max": 33.400000000001455
+              },
+              "maxDraws": 194
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 720,
+                "mean": 16.674166666666668,
+                "p50": 16.69999999999709,
+                "p95": 16.80000000000291,
+                "p99": 16.900000000001455,
+                "max": 33.20000000000073
+              },
+              "maxDraws": 242
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 861,
+                "mean": 16.67026713124274,
+                "p50": 16.60000000000582,
+                "p95": 16.80000000000291,
+                "p99": 16.900000000001455,
+                "max": 33.19999999999709
+              },
+              "maxDraws": 255
+            }
+          ],
+          "maxFields": 1,
+          "render": {
+            "quality": "lightweight",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "geometries": 127,
+            "textures": 3,
+            "contextLost": false
+          }
+        }
+      ],
+      "transport": [
+        {
+          "role": "solo",
+          "protocol": 4,
+          "snapshotsSent": 0,
+          "snapshotsReceived": 0,
+          "snapshotIntervals": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "snapshotApply": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostTickPacing": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostStep": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "serialization": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "wireBytes": {
+            "samples": 0,
+            "mean": null,
+            "max": null
+          },
+          "inputAcknowledgement": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "peakScheduled": 0,
+          "droppedSnapshots": 0
+        }
+      ]
+    },
+    "solo-retry": {
+      "build": "1ae34c7d29ad",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "status": "victory",
+      "combatSeconds": 57.59999999999801,
+      "wallSeconds": 60.069,
+      "routeVersion": 2,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "casts": {
+        "Tide:secondary": 32,
+        "Ember:primary": 163,
+        "Tide:primary": 2
+      },
+      "reactions": {
+        "vaporize": 164,
+        "thermal fracture": 161,
+        "shatter impulse": 130
+      },
+      "measurements": [
+        {
+          "role": "solo",
+          "frames": {
+            "n": 3448,
+            "mean": 16.67601508120655,
+            "p50": 16.69999999999709,
+            "p95": 16.80000000000291,
+            "p99": 16.90000000000873,
+            "max": 49.900000000001455
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 505,
+                "mean": 16.690099009901363,
+                "p50": 16.60000000000582,
+                "p95": 16.89999999999418,
+                "p99": 16.900000000001455,
+                "max": 49.900000000001455
+              },
+              "maxDraws": 187
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 516,
+                "mean": 16.682945736434096,
+                "p50": 16.69999999999709,
+                "p95": 16.80000000000291,
+                "p99": 16.90000000000873,
+                "max": 33.29999999998836
+              },
+              "maxDraws": 215
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 744,
+                "mean": 16.673252688172035,
+                "p50": 16.60000000000582,
+                "p95": 16.80000000000291,
+                "p99": 16.90000000000873,
+                "max": 33.19999999999709
+              },
+              "maxDraws": 196
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 709,
+                "mean": 16.674330042313127,
+                "p50": 16.69999999999709,
+                "p95": 16.80000000000291,
+                "p99": 16.90000000000873,
+                "max": 33.39999999999418
+              },
+              "maxDraws": 234
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 974,
+                "mean": 16.668377823408623,
+                "p50": 16.60000000000582,
+                "p95": 16.80000000000291,
+                "p99": 16.90000000000873,
+                "max": 33.19999999999709
+              },
+              "maxDraws": 250
+            }
+          ],
+          "maxFields": 1,
+          "render": {
+            "quality": "lightweight",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "geometries": 126,
+            "textures": 3,
+            "contextLost": false
+          }
+        }
+      ],
+      "transport": [
+        {
+          "role": "solo",
+          "protocol": 4,
+          "snapshotsSent": 0,
+          "snapshotsReceived": 0,
+          "snapshotIntervals": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "snapshotApply": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostTickPacing": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostStep": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "serialization": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "wireBytes": {
+            "samples": 0,
+            "mean": null,
+            "max": null
+          },
+          "inputAcknowledgement": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "peakScheduled": 0,
+          "droppedSnapshots": 0
+        }
+      ]
+    },
+    "coop": {
+      "build": "1ae34c7d29ad",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "status": "victory",
+      "combatSeconds": 36.84999999999919,
+      "wallSeconds": 41.163,
+      "routeVersion": 2,
+      "rooms": [
+        "split",
+        "approach",
+        "diagonal",
+        "gallery",
+        "warden"
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "casts": {
+        "Tide:secondary": 47,
+        "Ember:primary": 197,
+        "Tide:primary": 7
+      },
+      "reactions": {
+        "vaporize": 168,
+        "thermal fracture": 165,
+        "shatter impulse": 131
+      },
+      "measurements": [
+        {
+          "role": "host",
+          "frames": {
+            "n": 2206,
+            "mean": 16.697461468721635,
+            "p50": 16.69999999999709,
+            "p95": 16.799999999999272,
+            "p99": 16.80000000000291,
+            "max": 49.899999999999636
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 273,
+                "mean": 16.59890109889905,
+                "p50": 16.699999999999818,
+                "p95": 16.799999999999727,
+                "p99": 16.800000000000182,
+                "max": 16.800000000000182
+              },
+              "maxDraws": 300
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 259,
+                "mean": 16.779536679536683,
+                "p50": 16.600000000000364,
+                "p95": 16.800000000000182,
+                "p99": 16.899999999999636,
+                "max": 49.899999999999636
+              },
+              "maxDraws": 281
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 514,
+                "mean": 16.715953307392997,
+                "p50": 16.600000000002183,
+                "p95": 16.80000000000109,
+                "p99": 16.899999999997817,
+                "max": 33.29999999999927
+              },
+              "maxDraws": 324
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 437,
+                "mean": 16.689244851258582,
+                "p50": 16.69999999999709,
+                "p95": 16.799999999999272,
+                "p99": 16.80000000000291,
+                "max": 33.29999999999927
+              },
+              "maxDraws": 292
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 723,
+                "mean": 16.69709543568464,
+                "p50": 16.69999999999709,
+                "p95": 16.80000000000291,
+                "p99": 16.80000000000291,
+                "max": 49.79999999999927
+              },
+              "maxDraws": 361
+            }
+          ],
+          "maxFields": 2,
+          "render": {
+            "quality": "lightweight",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "geometries": 138,
+            "textures": 3,
+            "contextLost": false
+          }
+        },
+        {
+          "role": "guest",
+          "frames": {
+            "n": 2196,
+            "mean": 16.696675774134995,
+            "p50": 16.69999999999709,
+            "p95": 16.800000000000182,
+            "p99": 16.80000000000291,
+            "max": 50
+          },
+          "rooms": [
+            {
+              "room": 0,
+              "frames": {
+                "n": 271,
+                "mean": 16.650922509225072,
+                "p50": 16.600000000000364,
+                "p95": 16.800000000000182,
+                "p99": 16.800000000000182,
+                "max": 16.90000000000009
+              },
+              "maxDraws": 278
+            },
+            {
+              "room": 1,
+              "frames": {
+                "n": 256,
+                "mean": 16.780859375,
+                "p50": 16.69999999999891,
+                "p95": 16.800000000000182,
+                "p99": 16.900000000000546,
+                "max": 49.900000000000546
+              },
+              "maxDraws": 281
+            },
+            {
+              "room": 2,
+              "frames": {
+                "n": 515,
+                "mean": 16.683495145631067,
+                "p50": 16.69999999999709,
+                "p95": 16.799999999999272,
+                "p99": 16.80000000000291,
+                "max": 33.30000000000109
+              },
+              "maxDraws": 323
+            },
+            {
+              "room": 3,
+              "frames": {
+                "n": 434,
+                "mean": 16.69009216589862,
+                "p50": 16.69999999999709,
+                "p95": 16.799999999999272,
+                "p99": 16.899999999997817,
+                "max": 33.29999999999927
+              },
+              "maxDraws": 290
+            },
+            {
+              "room": 4,
+              "frames": {
+                "n": 720,
+                "mean": 16.69736111111111,
+                "p50": 16.60000000000582,
+                "p95": 16.80000000000291,
+                "p99": 16.80000000000291,
+                "max": 50
+              },
+              "maxDraws": 368
+            }
+          ],
+          "maxFields": 2,
+          "render": {
+            "quality": "lightweight",
+            "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "drawingBuffer": {
+              "width": 1152,
+              "height": 720
+            },
+            "geometries": 137,
+            "textures": 3,
+            "contextLost": false
+          }
+        }
+      ],
+      "transport": [
+        {
+          "role": "host",
+          "protocol": 4,
+          "snapshotsSent": 671,
+          "snapshotsReceived": 0,
+          "snapshotIntervals": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "snapshotApply": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostTickPacing": {
+            "samples": 180,
+            "meanMs": 17.49666666666356,
+            "p95Ms": 33.09999999962747
+          },
+          "hostStep": {
+            "samples": 180,
+            "meanMs": 0.2505555555431379,
+            "p95Ms": 0.7999999998137355
+          },
+          "serialization": {
+            "samples": 180,
+            "meanMs": 0.23277777779536943,
+            "p95Ms": 0.40000000037252903
+          },
+          "wireBytes": {
+            "samples": 180,
+            "mean": 7521.438888888889,
+            "max": 20825
+          },
+          "inputAcknowledgement": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "peakScheduled": 1,
+          "droppedSnapshots": 0
+        },
+        {
+          "role": "guest",
+          "protocol": 4,
+          "snapshotsSent": 0,
+          "snapshotsReceived": 671,
+          "snapshotIntervals": {
+            "samples": 180,
+            "meanMs": 62.483333333333334,
+            "p95Ms": 82.40000000037253
+          },
+          "snapshotApply": {
+            "samples": 180,
+            "meanMs": 0.2766666666811539,
+            "p95Ms": 0.5
+          },
+          "hostTickPacing": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "hostStep": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "serialization": {
+            "samples": 0,
+            "meanMs": null,
+            "p95Ms": null
+          },
+          "wireBytes": {
+            "samples": 0,
+            "mean": null,
+            "max": null
+          },
+          "inputAcknowledgement": {
+            "samples": 180,
+            "meanMs": 33.9433333333323,
+            "p95Ms": 65.70000000018626
+          },
+          "peakScheduled": 2,
+          "droppedSnapshots": 0
+        }
+      ]
+    }
+  },
+  "focusedNewRooms": [
+    {
+      "room": "approach",
+      "quality": "lightweight",
+      "build": "5bb3a08e74c4",
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 218,
+        "frameMs": 17.056422018347753,
+        "p95FrameMs": 16.800000000000182,
+        "drawCalls": 144,
+        "triangles": 19192,
+        "activeVfx": 0,
+        "geometries": 63,
+        "textures": 3,
+        "contextLost": false,
+        "art": {
+          "mode": "illustrated",
+          "treatment": "illustrated",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 52.59999999962747,
+          "downloadBytes": 1375180,
+          "assets": 10,
+          "animationMixers": 0,
+          "sharedGeometries": 57,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "mage": [
+              -0.3999999761581421,
+              -0.0027415672797301838,
+              -0.33594143249002595,
+              0.425424724817276,
+              1.9623212004186916,
+              0.4959413935550534
+            ],
+            "landmark": [
+              -2.450000047683716,
+              -2.299999952316284,
+              -0.6000000238418579,
+              2.450000047683716,
+              3.5495243072509766,
+              0.6119999885559082
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.125391960144043,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.125391960144043
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "surround": [
+              -21.5,
+              -2.6500000953674316,
+              -20.5,
+              21.5,
+              3.6999998092651367,
+              13.5
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ]
+          },
+          "articulated": true
+        },
+        "courtResolved": false,
+        "performances": [
+          {
+            "id": "mage-1",
+            "pose": {
+              "stride": 0,
+              "cosmeticTime": 0,
+              "speed": 0,
+              "castAge": 99,
+              "secondary": false,
+              "downed": false
+            },
+            "bodyScale": 0.7368421052631579
+          }
+        ],
+        "fieldFeedback": []
+      },
+      "resources": [
+        {
+          "geometries": 63,
+          "textures": 3
+        },
+        {
+          "geometries": 63,
+          "textures": 3
+        },
+        {
+          "geometries": 63,
+          "textures": 3
+        },
+        {
+          "geometries": 63,
+          "textures": 3
+        }
+      ]
+    },
+    {
+      "room": "diagonal",
+      "quality": "lightweight",
+      "build": "5bb3a08e74c4",
+      "render": {
+        "quality": "lightweight",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1152,
+          "height": 720
+        },
+        "pixelRatio": 0.8,
+        "shadows": false,
+        "samples": 213,
+        "frameMs": 16.97464788732217,
+        "p95FrameMs": 16.800000000000182,
+        "drawCalls": 143,
+        "triangles": 19016,
+        "activeVfx": 0,
+        "geometries": 62,
+        "textures": 3,
+        "contextLost": false,
+        "art": {
+          "mode": "illustrated",
+          "treatment": "illustrated",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 46.200000000186265,
+          "downloadBytes": 1375180,
+          "assets": 10,
+          "animationMixers": 0,
+          "sharedGeometries": 57,
+          "bounds": {
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "mage": [
+              -0.3999999761581421,
+              -0.0027415672797301838,
+              -0.33594143249002595,
+              0.425424724817276,
+              1.9623212004186916,
+              0.4959413935550534
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.125391960144043,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.125391960144043
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "landmark": [
+              -2.450000047683716,
+              -2.299999952316284,
+              -0.6000000238418579,
+              2.450000047683716,
+              3.5495243072509766,
+              0.6119999885559082
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "surround": [
+              -21.5,
+              -2.6500000953674316,
+              -20.5,
+              21.5,
+              3.6999998092651367,
+              13.5
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ]
+          },
+          "articulated": true
+        },
+        "courtResolved": false,
+        "performances": [
+          {
+            "id": "mage-1",
+            "pose": {
+              "stride": 0,
+              "cosmeticTime": 0,
+              "speed": 0,
+              "castAge": 99,
+              "secondary": false,
+              "downed": false
+            },
+            "bodyScale": 0.7368421052631579
+          }
+        ],
+        "fieldFeedback": []
+      },
+      "resources": [
+        {
+          "geometries": 62,
+          "textures": 3
+        },
+        {
+          "geometries": 62,
+          "textures": 3
+        },
+        {
+          "geometries": 62,
+          "textures": 3
+        },
+        {
+          "geometries": 62,
+          "textures": 3
+        }
+      ]
+    },
+    {
+      "room": "approach",
+      "quality": "standard",
+      "build": "5bb3a08e74c4",
+      "render": {
+        "quality": "standard",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1440,
+          "height": 900
+        },
+        "pixelRatio": 1,
+        "shadows": true,
+        "samples": 214,
+        "frameMs": 18.20700934579437,
+        "p95FrameMs": 16.800000000000182,
+        "drawCalls": 225,
+        "triangles": 30548,
+        "activeVfx": 0,
+        "geometries": 63,
+        "textures": 5,
+        "contextLost": false,
+        "art": {
+          "mode": "illustrated",
+          "treatment": "illustrated",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 41.5,
+          "downloadBytes": 1375180,
+          "assets": 10,
+          "animationMixers": 0,
+          "sharedGeometries": 57,
+          "bounds": {
+            "mage": [
+              -0.3999999761581421,
+              -0.0027415672797301838,
+              -0.33594143249002595,
+              0.425424724817276,
+              1.9623212004186916,
+              0.4959413935550534
+            ],
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.125391960144043,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.125391960144043
+            ],
+            "landmark": [
+              -2.450000047683716,
+              -2.299999952316284,
+              -0.6000000238418579,
+              2.450000047683716,
+              3.5495243072509766,
+              0.6119999885559082
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "surround": [
+              -21.5,
+              -2.6500000953674316,
+              -20.5,
+              21.5,
+              3.6999998092651367,
+              13.5
+            ]
+          },
+          "articulated": true
+        },
+        "courtResolved": false,
+        "performances": [
+          {
+            "id": "mage-1",
+            "pose": {
+              "stride": 0,
+              "cosmeticTime": 0,
+              "speed": 0,
+              "castAge": 99,
+              "secondary": false,
+              "downed": false
+            },
+            "bodyScale": 0.7368421052631579
+          }
+        ],
+        "fieldFeedback": []
+      },
+      "resources": [
+        {
+          "geometries": 63,
+          "textures": 5
+        },
+        {
+          "geometries": 63,
+          "textures": 5
+        },
+        {
+          "geometries": 63,
+          "textures": 5
+        },
+        {
+          "geometries": 63,
+          "textures": 5
+        }
+      ]
+    },
+    {
+      "room": "diagonal",
+      "quality": "standard",
+      "build": "5bb3a08e74c4",
+      "render": {
+        "quality": "standard",
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "drawingBuffer": {
+          "width": 1440,
+          "height": 900
+        },
+        "pixelRatio": 1,
+        "shadows": true,
+        "samples": 213,
+        "frameMs": 16.987323943660197,
+        "p95FrameMs": 16.800000000000182,
+        "drawCalls": 224,
+        "triangles": 30100,
+        "activeVfx": 0,
+        "geometries": 62,
+        "textures": 5,
+        "contextLost": false,
+        "art": {
+          "mode": "illustrated",
+          "treatment": "illustrated",
+          "active": true,
+          "ready": true,
+          "error": "",
+          "loadMs": 39.700000000186265,
+          "downloadBytes": 1375180,
+          "assets": 10,
+          "animationMixers": 0,
+          "sharedGeometries": 57,
+          "bounds": {
+            "sentinel": [
+              -0.6000000238418579,
+              0,
+              -0.5400000214576721,
+              0.6000000238418579,
+              1.659999966621399,
+              0.5400000214576721
+            ],
+            "pursuer": [
+              -0.5174112915992737,
+              0.02499997615814209,
+              -0.5699999928474426,
+              0.5174112915992737,
+              0.949999988079071,
+              0.5600000023841858
+            ],
+            "cover": [
+              -0.8999999761581421,
+              0,
+              -1.125391960144043,
+              0.8999999761581421,
+              1.7000000476837158,
+              1.125391960144043
+            ],
+            "landmark": [
+              -2.450000047683716,
+              -2.299999952316284,
+              -0.6000000238418579,
+              2.450000047683716,
+              3.5495243072509766,
+              0.6119999885559082
+            ],
+            "vessel": [
+              -0.5299999713897705,
+              0,
+              -0.36000001430511475,
+              0.5299999713897705,
+              0.8739999532699585,
+              0.36000001430511475
+            ],
+            "mage": [
+              -0.3999999761581421,
+              -0.0027415672797301838,
+              -0.33594143249002595,
+              0.425424724817276,
+              1.9623212004186916,
+              0.4959413935550534
+            ],
+            "ballast": [
+              -0.7850000262260437,
+              0,
+              -0.7950000166893005,
+              0.7850000262260437,
+              1.7200000286102295,
+              0.7950000166893005
+            ],
+            "timber": [
+              -0.5950000286102295,
+              0,
+              -0.5950000286102295,
+              0.5950000286102295,
+              1.5800000429153442,
+              0.5950000286102295
+            ],
+            "loose": [
+              -0.31176915764808655,
+              0,
+              -0.36000001430511475,
+              0.31176915764808655,
+              0.699999988079071,
+              0.36000001430511475
+            ],
+            "surround": [
+              -21.5,
+              -2.6500000953674316,
+              -20.5,
+              21.5,
+              3.6999998092651367,
+              13.5
+            ]
+          },
+          "articulated": true
+        },
+        "courtResolved": false,
+        "performances": [
+          {
+            "id": "mage-1",
+            "pose": {
+              "stride": 0,
+              "cosmeticTime": 0,
+              "speed": 0,
+              "castAge": 99,
+              "secondary": false,
+              "downed": false
+            },
+            "bodyScale": 0.7368421052631579
+          }
+        ],
+        "fieldFeedback": []
+      },
+      "resources": [
+        {
+          "geometries": 62,
+          "textures": 5
+        },
+        {
+          "geometries": 62,
+          "textures": 5
+        },
+        {
+          "geometries": 62,
+          "textures": 5
+        },
+        {
+          "geometries": 62,
+          "textures": 5
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Fast scripted inputs are not human run-duration or comfort estimates.",
+    "Down/revive and fresh-click edge cases use labelled lifecycle fixtures; complete run journeys retain active enemies and normal health.",
+    "Hardware data covers this laptop only. Remote laptops, current TURN and physical trackpad behavior were not exercised."
+  ]
+}

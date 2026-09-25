@@ -1,0 +1,90 @@
+{
+  "seeds": 5000,
+  "pathsChecked": 40000,
+  "uniqueGraphs": 4338,
+  "uniqueVisitedSequences": 60,
+  "frequencies": {
+    "split": [
+      40000,
+      0,
+      0,
+      0,
+      0
+    ],
+    "gallery": [
+      0,
+      8192,
+      9114,
+      7547,
+      0
+    ],
+    "rotunda": [
+      0,
+      9984,
+      7050,
+      7704,
+      0
+    ],
+    "yard": [
+      0,
+      9992,
+      6480,
+      7769,
+      0
+    ],
+    "approach": [
+      0,
+      5004,
+      8806,
+      8772,
+      0
+    ],
+    "diagonal": [
+      0,
+      6828,
+      8550,
+      8208,
+      0
+    ],
+    "warden": [
+      0,
+      0,
+      0,
+      0,
+      40000
+    ]
+  },
+  "transitions": {
+    "split -> approach": 5004,
+    "approach -> gallery": 3700,
+    "gallery -> rotunda": 2838,
+    "rotunda -> warden": 7704,
+    "gallery -> diagonal": 5207,
+    "diagonal -> warden": 8208,
+    "approach -> rotunda": 3528,
+    "rotunda -> gallery": 5406,
+    "gallery -> warden": 7547,
+    "rotunda -> yard": 2694,
+    "yard -> warden": 7769,
+    "split -> gallery": 8192,
+    "gallery -> approach": 4429,
+    "approach -> diagonal": 3301,
+    "diagonal -> approach": 4030,
+    "approach -> warden": 8772,
+    "diagonal -> rotunda": 4365,
+    "gallery -> yard": 4832,
+    "yard -> approach": 3992,
+    "yard -> rotunda": 4023,
+    "approach -> yard": 3281,
+    "split -> rotunda": 9984,
+    "rotunda -> approach": 5127,
+    "rotunda -> diagonal": 3807,
+    "diagonal -> gallery": 3541,
+    "split -> yard": 9992,
+    "yard -> gallery": 4014,
+    "yard -> diagonal": 4443,
+    "diagonal -> yard": 3442,
+    "split -> diagonal": 6828
+  },
+  "errors": 0
+}

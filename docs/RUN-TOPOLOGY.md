@@ -1,6 +1,6 @@
 # Run Topology 0.3
 
-Working implementation; final browser/evaluation evidence is being collected. No session coordinator or recovery service is implemented.
+Current authored-route implementation, build `5bb3a08e74c4` / protocol 4 / route generator 2. No session coordinator or recovery service is implemented. Current checks are recorded in TESTING; historical intermediate results are retained below.
 
 ## Research translated into decisions
 
@@ -22,7 +22,7 @@ Split -> choose 1 of 2 -> choose 1 of 2 -> choose 1 of 2 -> Warden
 reward 1                reward 2         reward 3
 ```
 
-The graph has 16 nodes (1 + 2 + 4 + 8 ordinary nodes + one shared finale), eight possible paths per seed. `ROUTE_VERSION=1` plus uint32 seed determines the entire graph. A fixed PRNG/shuffle traverses the binary tree in a fixed order; every child excludes its ancestors' room IDs. Display names are not protocol IDs. There is no reroll based on builds, HP or votes. Room IDs may exist in different branches, never twice on a visited path. Seeds need not produce unique graphs.
+The graph has 16 nodes (1 + 2 + 4 + 8 ordinary nodes + one shared finale), eight possible paths per seed. `ROUTE_VERSION=2` plus uint32 seed determines the entire graph. A fixed PRNG/shuffle traverses the binary tree in a fixed order; every child excludes its ancestors' room IDs. Display names are not protocol IDs. There is no reroll based on builds, HP or votes. Room IDs may exist in different branches, never twice on a visited path. Seeds need not produce unique graphs.
 
 Stages have stable identities (`threshold`, `pursuit`, `convergence`, `approach`, `warden`), encounter-package references and reward boundary keys (`first`, `second`, `final`). The final choice retains existing Theorem eligibility. Reward randomness stays independent of route randomness; same seed, route choices and personal choices reproduce the same offers. No additional RNG cursor is needed.
 
@@ -54,6 +54,41 @@ Active combat, victory and defeat are not checkpoint capture phases. A coordinat
 
 Baseline e3985cc: 124 unit tests and production build passed. New deterministic coverage includes every path across 500 seeds, personal reward ownership, changed votes/disagreement, stale controls, JSON wire transport and safe checkpoint round trips. Candidate navigation v1 found a diagonal prop snag and a lower cover crowding pocket; moving the props and shortening/repositioning that cover yielded all 18 pursuer approaches at six tested positions. No AI, spell or enemy-stat tuning.
 
-Final seed distribution, matched-route simulations, browser journeys and resource evidence will be summarized here after validation. Synthetic policies are diagnostic, not models of human skill; local WebRTC does not validate remote laptops or TURN.
+Seed distribution and matched-route simulations are summarized below. Browser journeys and resource evidence are recorded in TESTING. Synthetic policies are diagnostic, not models of human skill; local WebRTC does not validate remote laptops or TURN.
 
-Initial integration: 130 units and build pass; complete solo and local WebRTC pair runs reached victory on different paths, with three rewards and route disagreement/agreement. Chrome 153 / Intel UHD D3D11, 1440x900 CSS, Lightweight 1152x720. A separate held-input test initially failed at browser launch before navigation; unchanged focused rerun passed. Final broader sweep remains pending.
+Historical initial integration: 130 units and build passed; complete solo and local WebRTC pair runs reached victory on different paths, with three rewards and route disagreement/agreement. Chrome 153 / Intel UHD D3D11, 1440x900 CSS, Lightweight 1152x720. A separate held-input test initially failed at browser launch before navigation; unchanged focused rerun passed. This is superseded by the final sweep in TESTING.
+
+Generator v1 sample found unintended first-fork bias (Approach 12.5% versus Yard/Rotunda about 25% each). Version 2 mixes the full PRNG word before shuffle selection. This corrects accidental availability bias, not a rule that room frequencies must be equal. The fixed Split opening remains intentionally weighted. Old v1 evidence is retained and v1 checkpoints are rejected by v2.
+
+## Current simulation evidence
+
+Generator 2: 5,000 seeds, 40,000 complete paths, 4,997 distinct graphs and all 60 possible ordered physical sequences with the fixed Split opening. Zero repeats/invalid endings. Other rooms account for 19.49-20.32% of positions at each variable stage in this sample. This is a coverage check, not a quality score. Seed/transition counts are in `artifacts/topology-0.3/seeds-v2.json`.
+
+Ninety real Simulation/Rapier run probes (3 seeds x 3 path choices x 5 existing policies x solo/pair) all completed. Offers were legal and prioritized toward the named policy, not forced showcase builds. The simple/base policy still receives normal upgrades; independent new-room baseline probes use a genuinely unupgraded mage. Three reward stops and unchanged HP carry apply. Diagnostics use 200ms observations, imperfect aim and identical motor capability. These fast policies do not model human skill or prove routes equally difficult.
+
+| Policy | Solo combat seconds (range) | Pair combat seconds (range) | Solo mean damage taken |
+| --- | ---: | ---: | ---: |
+| Simple attack/move | 111-129 | 73-91 | 37.1 |
+| Reaction-oriented | 76-90 | 48-61 | 5.8 |
+| Field-oriented | 64-75 | 36-50 | 18.0 |
+| Structure-oriented | 104-127 | 47-60 | 28.9 |
+| Basin/Ember | 51-57 | 30-39 | 6.2 |
+
+Basin/Ember remains fast and safe in these policies; unchanged from the accepted interaction, not solved by topology. Structure's slow solo run is partly a policy/offer-fit problem: a policy name is not a guaranteed three-card build. No route failed all builds or produced an unwinnable Guardian entry. The simple solo policy sometimes reached the Guardian with 32 HP and finished with 4, so route damage can matter. No spell/enemy/Warden tuning was changed.
+
+Two accepted new rooms: 20/20 moving build probes won across solo/pair, including the base mage. Negative controls (stationary/back-wall/corner) won 8/30 in Approach and 1/30 in Oblique. Zero falls. Static successes are not automatically exploits; they were slower than the moving probes. The legacy motor favours a central 18x16 area, so unused perimeter in traces is partly policy bias. Selected paths/field placements are shown on the handoff page. Final summary, source hashes and v1 evidence are retained under `artifacts/topology-0.3`.
+
+Effect bounds in complete run probes: at most 4 fields and 12 pending operations; maximum sampled co-op live packet 8,624 JSON bytes (no unacknowledged event backlog). Route graph is bootstrap-only. This is not a bandwidth/latency claim for remote TURN sessions.
+
+## Reproduce and inspect
+
+- `npx tsx scripts/evaluate-topology.ts --structure-only --output=artifacts/topology-0.3/raw/new-seeds` checks 5,000 seeded graphs; omit `--structure-only` for the 90 matched real-physics run probes. Use a fresh output directory.
+- `npx tsx scripts/probe-room-navigation.ts artifacts/topology-0.3/raw/new-navigation.json --rooms=approach,diagonal` repeats the bounded pursuit-access checks. The existing spatial evaluator remains the source of build/negative-control traces.
+- `npx playwright test tests/browser/run.spec.ts tests/browser/topology.spec.ts` exercises complete solo/retry and actual local two-client runs, shared votes and the new rooms. Set `RUIN_RUN_CAPTURE_ROOT` to a fresh ignored directory. `RUIN_ROUTE_CHOICE=1` selects the other solo path; the paired journey deliberately disagrees before selecting the right branch.
+- `/topology/index.html` contains actual captures, a short real gameplay clip, pool plans and two selected field-placement traces. The plans are diagnostics; the clip uses ordinary keyboard/mouse and reward/route card presses. `scripts/topology-report.ts`, `topology-captures.py` and `topology-validation.py` retain the report/packaging recipes. Encoding must follow, not overlap, performance measurements.
+
+## Limits and next boundary
+
+The opening and pressure-package order remain fixed. Variety currently comes from the three subsequent physical-room choices, not new enemy content or rewards tied to a destination. Flat floors avoid the earlier vertical-navigation failures; local reactive steering still cannot guarantee access around arbitrary moving-prop arrangements. Approach permits some slower stationary wins; no tested position defeated every pressure configuration without movement. These are bounded probes, not an exhaustive cheese proof.
+
+The recommendation is to retain the six-room pool and three compact forks. The next intended milestone is **Session Control Plane 0.1**, with hosted coordination/signaling, reconnect identity, authority leases and safe-checkpoint persistence. That work needs its own authorization and design. This milestone provides the offline contract only; public Nostr, current disconnect behavior and the narrowly authorized TURN arrangement remain unchanged.

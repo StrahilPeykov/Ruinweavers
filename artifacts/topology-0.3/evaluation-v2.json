@@ -1,0 +1,3581 @@
+{
+  "version": "topology-policies-1",
+  "sourceHash": "b9690f79dce24dd99ecc19b48f2141d410ffa54495657f5a5ee11b75d633e92a",
+  "method": "Real Simulation/Rapier; existing guardian-policy-1 with 200ms observations and imperfect aim, same motor. Normal HP, legal offers prioritized toward build. Base is a simple policy with legal upgrades, not an unupgraded fixture. Three matched paths per seed; 300s cap. Synthetic diagnostics, not human skill.",
+  "rows": [
+    {
+      "seed": 123,
+      "path": "000",
+      "party": 1,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 114.88,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "health": [
+        60
+      ],
+      "guardianEntryHp": [
+        74
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "damage": 40,
+      "reactions": {
+        "physical impact": 7
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "000",
+      "party": 1,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 80.27,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "undertow",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 103,
+        "thermal fracture": 102,
+        "shatter impulse": 42
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "000",
+      "party": 1,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 69.25,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "health": [
+        80
+      ],
+      "guardianEntryHp": [
+        82
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "double-inscription",
+          "cross-seam"
+        ]
+      },
+      "damage": 20,
+      "reactions": {
+        "vaporize": 54,
+        "thermal fracture": 54,
+        "shatter impulse": 11
+      },
+      "maxFields": 2,
+      "maxPending": 1,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "000",
+      "party": 1,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 118.27,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "health": [
+        74
+      ],
+      "guardianEntryHp": [
+        88
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "damage": 26,
+      "reactions": {
+        "deflect": 14
+      },
+      "maxFields": 1,
+      "maxPending": 1,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "000",
+      "party": 1,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 56.58,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "stone-echo",
+          "break-seal"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 148,
+        "thermal fracture": 146,
+        "shatter impulse": 133
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "000",
+      "party": 2,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 88.82,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "health": [
+        86,
+        74
+      ],
+      "guardianEntryHp": [
+        86,
+        88
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 40,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 7318
+    },
+    {
+      "seed": 123,
+      "path": "000",
+      "party": 2,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 53.95,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "health": [
+        100,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "undertow",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "forked-tide",
+          "undertow"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 116,
+        "thermal fracture": 103,
+        "shatter impulse": 44,
+        "physical impact": 1
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 7093
+    },
+    {
+      "seed": 123,
+      "path": "000",
+      "party": 2,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 50.2,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "health": [
+        96,
+        96
+      ],
+      "guardianEntryHp": [
+        96,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "double-inscription",
+          "cross-seam"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 8,
+      "reactions": {
+        "vaporize": 46,
+        "thermal fracture": 45,
+        "shatter impulse": 8
+      },
+      "maxFields": 3,
+      "maxPending": 2,
+      "maxLivePacketBytes": 8253
+    },
+    {
+      "seed": 123,
+      "path": "000",
+      "party": 2,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 54.38,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "health": [
+        100,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "cross-seam",
+          "break-seal"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "deflect": 9,
+        "shatter impulse": 15
+      },
+      "maxFields": 2,
+      "maxPending": 4,
+      "maxLivePacketBytes": 7490
+    },
+    {
+      "seed": 123,
+      "path": "000",
+      "party": 2,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 38.82,
+      "rooms": [
+        "split",
+        "diagonal",
+        "rotunda",
+        "yard",
+        "warden"
+      ],
+      "health": [
+        100,
+        86
+      ],
+      "guardianEntryHp": [
+        100,
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "stone-echo",
+          "break-seal"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 171,
+        "thermal fracture": 161,
+        "shatter impulse": 133,
+        "physical impact": 2
+      },
+      "maxFields": 2,
+      "maxPending": 0,
+      "maxLivePacketBytes": 8624
+    },
+    {
+      "seed": 123,
+      "path": "111",
+      "party": 1,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 111.13,
+      "rooms": [
+        "split",
+        "approach",
+        "diagonal",
+        "gallery",
+        "warden"
+      ],
+      "health": [
+        4
+      ],
+      "guardianEntryHp": [
+        32
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "damage": 96,
+      "reactions": {
+        "physical impact": 4
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "111",
+      "party": 1,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 77.82,
+      "rooms": [
+        "split",
+        "approach",
+        "diagonal",
+        "gallery",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "undertow",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 96,
+        "thermal fracture": 96,
+        "shatter impulse": 39,
+        "physical impact": 1
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "111",
+      "party": 1,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 73.47,
+      "rooms": [
+        "split",
+        "approach",
+        "diagonal",
+        "gallery",
+        "warden"
+      ],
+      "health": [
+        52
+      ],
+      "guardianEntryHp": [
+        80
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "double-inscription",
+          "cross-seam"
+        ]
+      },
+      "damage": 48,
+      "reactions": {
+        "vaporize": 44,
+        "thermal fracture": 44,
+        "shatter impulse": 11
+      },
+      "maxFields": 2,
+      "maxPending": 1,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "111",
+      "party": 1,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 127.07,
+      "rooms": [
+        "split",
+        "approach",
+        "diagonal",
+        "gallery",
+        "warden"
+      ],
+      "health": [
+        52
+      ],
+      "guardianEntryHp": [
+        52
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "damage": 48,
+      "reactions": {
+        "deflect": 6
+      },
+      "maxFields": 1,
+      "maxPending": 1,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "111",
+      "party": 1,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 51.25,
+      "rooms": [
+        "split",
+        "approach",
+        "diagonal",
+        "gallery",
+        "warden"
+      ],
+      "health": [
+        86
+      ],
+      "guardianEntryHp": [
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "stone-echo",
+          "break-seal"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 151,
+        "thermal fracture": 151,
+        "shatter impulse": 139
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "111",
+      "party": 2,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 86.75,
+      "rooms": [
+        "split",
+        "approach",
+        "diagonal",
+        "gallery",
+        "warden"
+      ],
+      "health": [
+        86,
+        44
+      ],
+      "guardianEntryHp": [
+        86,
+        72
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 70,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6862
+    },
+    {
+      "seed": 123,
+      "path": "111",
+      "party": 2,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 50.52,
+      "rooms": [
+        "split",
+        "approach",
+        "diagonal",
+        "gallery",
+        "warden"
+      ],
+      "health": [
+        86,
+        100
+      ],
+      "guardianEntryHp": [
+        86,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "undertow",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "forked-tide",
+          "undertow"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 112,
+        "thermal fracture": 109,
+        "shatter impulse": 44
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6687
+    },
+    {
+      "seed": 123,
+      "path": "111",
+      "party": 2,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 41.53,
+      "rooms": [
+        "split",
+        "approach",
+        "diagonal",
+        "gallery",
+        "warden"
+      ],
+      "health": [
+        96,
+        96
+      ],
+      "guardianEntryHp": [
+        96,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "double-inscription",
+          "cross-seam"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 8,
+      "reactions": {
+        "vaporize": 55,
+        "thermal fracture": 55,
+        "shatter impulse": 23
+      },
+      "maxFields": 3,
+      "maxPending": 2,
+      "maxLivePacketBytes": 7346
+    },
+    {
+      "seed": 123,
+      "path": "111",
+      "party": 2,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 59.75,
+      "rooms": [
+        "split",
+        "approach",
+        "diagonal",
+        "gallery",
+        "warden"
+      ],
+      "health": [
+        100,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "cross-seam",
+          "break-seal"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "deflect": 7,
+        "shatter impulse": 8
+      },
+      "maxFields": 2,
+      "maxPending": 4,
+      "maxLivePacketBytes": 6436
+    },
+    {
+      "seed": 123,
+      "path": "111",
+      "party": 2,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 37.82,
+      "rooms": [
+        "split",
+        "approach",
+        "diagonal",
+        "gallery",
+        "warden"
+      ],
+      "health": [
+        100,
+        72
+      ],
+      "guardianEntryHp": [
+        100,
+        72
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "stone-echo",
+          "break-seal"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 28,
+      "reactions": {
+        "vaporize": 161,
+        "thermal fracture": 157,
+        "shatter impulse": 130
+      },
+      "maxFields": 2,
+      "maxPending": 0,
+      "maxLivePacketBytes": 7612
+    },
+    {
+      "seed": 123,
+      "path": "010",
+      "party": 1,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 113.8,
+      "rooms": [
+        "split",
+        "diagonal",
+        "yard",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        58
+      ],
+      "guardianEntryHp": [
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "damage": 42,
+      "reactions": {
+        "physical impact": 1
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "010",
+      "party": 1,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 90.07,
+      "rooms": [
+        "split",
+        "diagonal",
+        "yard",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "undertow",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 97,
+        "thermal fracture": 97,
+        "shatter impulse": 42,
+        "physical impact": 2
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "010",
+      "party": 1,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 64.27,
+      "rooms": [
+        "split",
+        "diagonal",
+        "yard",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        92
+      ],
+      "guardianEntryHp": [
+        96
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "double-inscription",
+          "cross-seam"
+        ]
+      },
+      "damage": 8,
+      "reactions": {
+        "vaporize": 57,
+        "thermal fracture": 57,
+        "shatter impulse": 21
+      },
+      "maxFields": 2,
+      "maxPending": 1,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "010",
+      "party": 1,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 123.83,
+      "rooms": [
+        "split",
+        "diagonal",
+        "yard",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        74
+      ],
+      "guardianEntryHp": [
+        74
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "damage": 26,
+      "reactions": {
+        "deflect": 15
+      },
+      "maxFields": 1,
+      "maxPending": 1,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "010",
+      "party": 1,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 55.98,
+      "rooms": [
+        "split",
+        "diagonal",
+        "yard",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "stone-echo",
+          "break-seal"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 151,
+        "thermal fracture": 151,
+        "shatter impulse": 133
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 123,
+      "path": "010",
+      "party": 2,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 72.57,
+      "rooms": [
+        "split",
+        "diagonal",
+        "yard",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        44,
+        74
+      ],
+      "guardianEntryHp": [
+        100,
+        88
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 82,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 7322
+    },
+    {
+      "seed": 123,
+      "path": "010",
+      "party": 2,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 49.25,
+      "rooms": [
+        "split",
+        "diagonal",
+        "yard",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        100,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "undertow",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "forked-tide",
+          "undertow"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 112,
+        "thermal fracture": 103,
+        "shatter impulse": 41,
+        "physical impact": 2
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6994
+    },
+    {
+      "seed": 123,
+      "path": "010",
+      "party": 2,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 40.72,
+      "rooms": [
+        "split",
+        "diagonal",
+        "yard",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        94,
+        100
+      ],
+      "guardianEntryHp": [
+        96,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "double-inscription",
+          "cross-seam"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 6,
+      "reactions": {
+        "vaporize": 60,
+        "thermal fracture": 60,
+        "shatter impulse": 19
+      },
+      "maxFields": 3,
+      "maxPending": 2,
+      "maxLivePacketBytes": 7627
+    },
+    {
+      "seed": 123,
+      "path": "010",
+      "party": 2,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 49.77,
+      "rooms": [
+        "split",
+        "diagonal",
+        "yard",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        100,
+        88
+      ],
+      "guardianEntryHp": [
+        100,
+        88
+      ],
+      "upgrades": {
+        "mage-1": [
+          "piercing-ember",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "cross-seam",
+          "break-seal"
+        ]
+      },
+      "damage": 12,
+      "reactions": {
+        "deflect": 4,
+        "shatter impulse": 5
+      },
+      "maxFields": 2,
+      "maxPending": 4,
+      "maxLivePacketBytes": 7003
+    },
+    {
+      "seed": 123,
+      "path": "010",
+      "party": 2,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 39.1,
+      "rooms": [
+        "split",
+        "diagonal",
+        "yard",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        93,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "travelling-basin",
+          "stone-echo",
+          "break-seal"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "tethered-updraft",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 7,
+      "reactions": {
+        "vaporize": 156,
+        "thermal fracture": 152,
+        "shatter impulse": 137
+      },
+      "maxFields": 2,
+      "maxPending": 0,
+      "maxLivePacketBytes": 8214
+    },
+    {
+      "seed": 415,
+      "path": "000",
+      "party": 1,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 121.37,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        62
+      ],
+      "guardianEntryHp": [
+        76
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 38,
+      "reactions": {
+        "physical impact": 3
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "000",
+      "party": 1,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 81.97,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        86
+      ],
+      "guardianEntryHp": [
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 104,
+        "thermal fracture": 104,
+        "shatter impulse": 41,
+        "physical impact": 1
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "000",
+      "party": 1,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 68.63,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "double-inscription",
+          "cross-seam"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 48,
+        "thermal fracture": 48,
+        "shatter impulse": 18
+      },
+      "maxFields": 2,
+      "maxPending": 1,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "000",
+      "party": 1,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 112.7,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        76
+      ],
+      "guardianEntryHp": [
+        76
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "stone-echo"
+        ]
+      },
+      "damage": 24,
+      "reactions": {
+        "deflect": 9
+      },
+      "maxFields": 1,
+      "maxPending": 3,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "000",
+      "party": 1,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 52.72,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "piercing-ember"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 151,
+        "thermal fracture": 151,
+        "shatter impulse": 134
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "000",
+      "party": 2,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 91.13,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        72,
+        58
+      ],
+      "guardianEntryHp": [
+        72,
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "double-inscription",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 70,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6853
+    },
+    {
+      "seed": 415,
+      "path": "000",
+      "party": 2,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 60.77,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100,
+        86
+      ],
+      "guardianEntryHp": [
+        100,
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "undertow",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 119,
+        "thermal fracture": 105,
+        "shatter impulse": 42
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 7648
+    },
+    {
+      "seed": 415,
+      "path": "000",
+      "party": 2,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 39.47,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100,
+        77.2
+      ],
+      "guardianEntryHp": [
+        100,
+        79.17866666666667
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "double-inscription",
+          "cross-seam"
+        ],
+        "mage-2": [
+          "double-inscription",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 22.821333333333335,
+      "reactions": {
+        "vaporize": 69,
+        "thermal fracture": 67,
+        "shatter impulse": 17
+      },
+      "maxFields": 4,
+      "maxPending": 2,
+      "maxLivePacketBytes": 7997
+    },
+    {
+      "seed": 415,
+      "path": "000",
+      "party": 2,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 47.65,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        88,
+        100
+      ],
+      "guardianEntryHp": [
+        88,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "stone-echo"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "fault-line",
+          "break-seal"
+        ]
+      },
+      "damage": 12,
+      "reactions": {
+        "deflect": 3,
+        "shatter impulse": 2
+      },
+      "maxFields": 2,
+      "maxPending": 12,
+      "maxLivePacketBytes": 8125
+    },
+    {
+      "seed": 415,
+      "path": "000",
+      "party": 2,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 35.48,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        86,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "piercing-ember"
+        ],
+        "mage-2": [
+          "double-inscription",
+          "forked-tide",
+          "travelling-basin"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 162,
+        "thermal fracture": 156,
+        "shatter impulse": 126,
+        "physical impact": 1
+      },
+      "maxFields": 3,
+      "maxPending": 0,
+      "maxLivePacketBytes": 8353
+    },
+    {
+      "seed": 415,
+      "path": "111",
+      "party": 1,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 126.13,
+      "rooms": [
+        "split",
+        "yard",
+        "approach",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        86
+      ],
+      "guardianEntryHp": [
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 14,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "111",
+      "party": 1,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 75.7,
+      "rooms": [
+        "split",
+        "yard",
+        "approach",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 99,
+        "thermal fracture": 99,
+        "shatter impulse": 40,
+        "physical impact": 2
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "111",
+      "party": 1,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 74.5,
+      "rooms": [
+        "split",
+        "yard",
+        "approach",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        64
+      ],
+      "guardianEntryHp": [
+        78
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "double-inscription",
+          "cross-seam"
+        ]
+      },
+      "damage": 36,
+      "reactions": {
+        "vaporize": 49,
+        "thermal fracture": 49,
+        "shatter impulse": 13,
+        "physical impact": 1
+      },
+      "maxFields": 2,
+      "maxPending": 1,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "111",
+      "party": 1,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 112.37,
+      "rooms": [
+        "split",
+        "yard",
+        "approach",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        76
+      ],
+      "guardianEntryHp": [
+        76
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "stone-echo"
+        ]
+      },
+      "damage": 24,
+      "reactions": {
+        "deflect": 11
+      },
+      "maxFields": 1,
+      "maxPending": 3,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "111",
+      "party": 1,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 52.87,
+      "rooms": [
+        "split",
+        "yard",
+        "approach",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        86
+      ],
+      "guardianEntryHp": [
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "piercing-ember"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 146,
+        "thermal fracture": 145,
+        "shatter impulse": 130
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "111",
+      "party": 2,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 78.13,
+      "rooms": [
+        "split",
+        "yard",
+        "approach",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        60,
+        24
+      ],
+      "guardianEntryHp": [
+        88,
+        50
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "double-inscription",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 116,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6394
+    },
+    {
+      "seed": 415,
+      "path": "111",
+      "party": 2,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 50.72,
+      "rooms": [
+        "split",
+        "yard",
+        "approach",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        86,
+        72
+      ],
+      "guardianEntryHp": [
+        86,
+        72
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "undertow",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 42,
+      "reactions": {
+        "vaporize": 104,
+        "thermal fracture": 98,
+        "shatter impulse": 45,
+        "physical impact": 1
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6945
+    },
+    {
+      "seed": 415,
+      "path": "111",
+      "party": 2,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 36.05,
+      "rooms": [
+        "split",
+        "yard",
+        "approach",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        96,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "double-inscription",
+          "cross-seam"
+        ],
+        "mage-2": [
+          "double-inscription",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 4,
+      "reactions": {
+        "vaporize": 78,
+        "thermal fracture": 78,
+        "shatter impulse": 36
+      },
+      "maxFields": 4,
+      "maxPending": 2,
+      "maxLivePacketBytes": 7539
+    },
+    {
+      "seed": 415,
+      "path": "111",
+      "party": 2,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 46.7,
+      "rooms": [
+        "split",
+        "yard",
+        "approach",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        88,
+        86
+      ],
+      "guardianEntryHp": [
+        88,
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "stone-echo"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "fault-line",
+          "break-seal"
+        ]
+      },
+      "damage": 26,
+      "reactions": {
+        "deflect": 5,
+        "shatter impulse": 3
+      },
+      "maxFields": 1,
+      "maxPending": 12,
+      "maxLivePacketBytes": 7461
+    },
+    {
+      "seed": 415,
+      "path": "111",
+      "party": 2,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 29.52,
+      "rooms": [
+        "split",
+        "yard",
+        "approach",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "piercing-ember"
+        ],
+        "mage-2": [
+          "double-inscription",
+          "forked-tide",
+          "travelling-basin"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 174,
+        "thermal fracture": 171,
+        "shatter impulse": 151,
+        "physical impact": 1
+      },
+      "maxFields": 3,
+      "maxPending": 0,
+      "maxLivePacketBytes": 7581
+    },
+    {
+      "seed": 415,
+      "path": "010",
+      "party": 1,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 129.4,
+      "rooms": [
+        "split",
+        "gallery",
+        "diagonal",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        72
+      ],
+      "guardianEntryHp": [
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 28,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "010",
+      "party": 1,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 85.08,
+      "rooms": [
+        "split",
+        "gallery",
+        "diagonal",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        76
+      ],
+      "guardianEntryHp": [
+        76
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "undertow",
+          "shared-vapour"
+        ]
+      },
+      "damage": 24,
+      "reactions": {
+        "vaporize": 97,
+        "thermal fracture": 97,
+        "shatter impulse": 40
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "010",
+      "party": 1,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 64.95,
+      "rooms": [
+        "split",
+        "gallery",
+        "diagonal",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        76
+      ],
+      "guardianEntryHp": [
+        76
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "double-inscription",
+          "cross-seam"
+        ]
+      },
+      "damage": 24,
+      "reactions": {
+        "vaporize": 53,
+        "thermal fracture": 53,
+        "shatter impulse": 15
+      },
+      "maxFields": 2,
+      "maxPending": 1,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "010",
+      "party": 1,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 106.97,
+      "rooms": [
+        "split",
+        "gallery",
+        "diagonal",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        52
+      ],
+      "guardianEntryHp": [
+        52
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "stone-echo"
+        ]
+      },
+      "damage": 48,
+      "reactions": {
+        "deflect": 8
+      },
+      "maxFields": 1,
+      "maxPending": 3,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "010",
+      "party": 1,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 54.23,
+      "rooms": [
+        "split",
+        "gallery",
+        "diagonal",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "piercing-ember"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 152,
+        "thermal fracture": 152,
+        "shatter impulse": 138
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 415,
+      "path": "010",
+      "party": 2,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 80.38,
+      "rooms": [
+        "split",
+        "gallery",
+        "diagonal",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        100,
+        72
+      ],
+      "guardianEntryHp": [
+        100,
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "double-inscription",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 28,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6526
+    },
+    {
+      "seed": 415,
+      "path": "010",
+      "party": 2,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 47.52,
+      "rooms": [
+        "split",
+        "gallery",
+        "diagonal",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        100,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "undertow",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "undertow",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 110,
+        "thermal fracture": 104,
+        "shatter impulse": 38,
+        "physical impact": 1
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6531
+    },
+    {
+      "seed": 415,
+      "path": "010",
+      "party": 2,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 38.37,
+      "rooms": [
+        "split",
+        "gallery",
+        "diagonal",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        86,
+        100
+      ],
+      "guardianEntryHp": [
+        90,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "double-inscription",
+          "cross-seam"
+        ],
+        "mage-2": [
+          "double-inscription",
+          "forked-tide",
+          "shared-vapour"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 71,
+        "thermal fracture": 71,
+        "shatter impulse": 25
+      },
+      "maxFields": 4,
+      "maxPending": 2,
+      "maxLivePacketBytes": 7559
+    },
+    {
+      "seed": 415,
+      "path": "010",
+      "party": 2,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 53.32,
+      "rooms": [
+        "split",
+        "gallery",
+        "diagonal",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        100,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "stone-echo"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "fault-line",
+          "break-seal"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "deflect": 5,
+        "shatter impulse": 1
+      },
+      "maxFields": 2,
+      "maxPending": 12,
+      "maxLivePacketBytes": 7436
+    },
+    {
+      "seed": 415,
+      "path": "010",
+      "party": 2,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 30.12,
+      "rooms": [
+        "split",
+        "gallery",
+        "diagonal",
+        "approach",
+        "warden"
+      ],
+      "health": [
+        93,
+        100
+      ],
+      "guardianEntryHp": [
+        93,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "tethered-updraft",
+          "forked-tide",
+          "piercing-ember"
+        ],
+        "mage-2": [
+          "double-inscription",
+          "forked-tide",
+          "travelling-basin"
+        ]
+      },
+      "damage": 7,
+      "reactions": {
+        "vaporize": 169,
+        "thermal fracture": 165,
+        "shatter impulse": 148,
+        "physical impact": 1
+      },
+      "maxFields": 3,
+      "maxPending": 0,
+      "maxLivePacketBytes": 7748
+    },
+    {
+      "seed": 777,
+      "path": "000",
+      "party": 1,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 120.77,
+      "rooms": [
+        "split",
+        "gallery",
+        "rotunda",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        38
+      ],
+      "guardianEntryHp": [
+        38
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 62,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "000",
+      "party": 1,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 75.62,
+      "rooms": [
+        "split",
+        "gallery",
+        "rotunda",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 98,
+        "thermal fracture": 98,
+        "shatter impulse": 41
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "000",
+      "party": 1,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 67.62,
+      "rooms": [
+        "split",
+        "gallery",
+        "rotunda",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        94
+      ],
+      "guardianEntryHp": [
+        96
+      ],
+      "upgrades": {
+        "mage-1": [
+          "cross-seam",
+          "stone-echo",
+          "break-seal"
+        ]
+      },
+      "damage": 6,
+      "reactions": {
+        "vaporize": 26,
+        "thermal fracture": 26,
+        "shatter impulse": 9
+      },
+      "maxFields": 1,
+      "maxPending": 3,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "000",
+      "party": 1,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 108.78,
+      "rooms": [
+        "split",
+        "gallery",
+        "rotunda",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        62
+      ],
+      "guardianEntryHp": [
+        62
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 38,
+      "reactions": {
+        "deflect": 10
+      },
+      "maxFields": 1,
+      "maxPending": 3,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "000",
+      "party": 1,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 53.22,
+      "rooms": [
+        "split",
+        "gallery",
+        "rotunda",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "piercing-ember"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 150,
+        "thermal fracture": 150,
+        "shatter impulse": 132
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "000",
+      "party": 2,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 79.2,
+      "rooms": [
+        "split",
+        "gallery",
+        "rotunda",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100,
+        60
+      ],
+      "guardianEntryHp": [
+        100,
+        88
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "piercing-ember",
+          "break-seal"
+        ]
+      },
+      "damage": 40,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6623
+    },
+    {
+      "seed": 777,
+      "path": "000",
+      "party": 2,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 51.43,
+      "rooms": [
+        "split",
+        "gallery",
+        "rotunda",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        86,
+        86
+      ],
+      "guardianEntryHp": [
+        100,
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "piercing-ember",
+          "break-seal"
+        ]
+      },
+      "damage": 28,
+      "reactions": {
+        "vaporize": 111,
+        "thermal fracture": 99,
+        "shatter impulse": 45
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6730
+    },
+    {
+      "seed": 777,
+      "path": "000",
+      "party": 2,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 41.32,
+      "rooms": [
+        "split",
+        "gallery",
+        "rotunda",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        88,
+        100
+      ],
+      "guardianEntryHp": [
+        90,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "cross-seam",
+          "stone-echo",
+          "break-seal"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "piercing-ember",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 12,
+      "reactions": {
+        "vaporize": 55,
+        "thermal fracture": 55,
+        "shatter impulse": 18
+      },
+      "maxFields": 2,
+      "maxPending": 4,
+      "maxLivePacketBytes": 6996
+    },
+    {
+      "seed": 777,
+      "path": "000",
+      "party": 2,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 53.68,
+      "rooms": [
+        "split",
+        "gallery",
+        "rotunda",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "piercing-ember",
+          "break-seal"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "deflect": 5,
+        "shatter impulse": 3
+      },
+      "maxFields": 2,
+      "maxPending": 6,
+      "maxLivePacketBytes": 6943
+    },
+    {
+      "seed": 777,
+      "path": "000",
+      "party": 2,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 34.52,
+      "rooms": [
+        "split",
+        "gallery",
+        "rotunda",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100,
+        86
+      ],
+      "guardianEntryHp": [
+        100,
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "piercing-ember"
+        ],
+        "mage-2": [
+          "piercing-ember",
+          "stone-echo",
+          "break-seal"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 169,
+        "thermal fracture": 167,
+        "shatter impulse": 146
+      },
+      "maxFields": 2,
+      "maxPending": 0,
+      "maxLivePacketBytes": 7406
+    },
+    {
+      "seed": 777,
+      "path": "111",
+      "party": 1,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 116.65,
+      "rooms": [
+        "split",
+        "diagonal",
+        "gallery",
+        "rotunda",
+        "warden"
+      ],
+      "health": [
+        86
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "physical impact": 3
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "111",
+      "party": 1,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 86.65,
+      "rooms": [
+        "split",
+        "diagonal",
+        "gallery",
+        "rotunda",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 98,
+        "thermal fracture": 98,
+        "shatter impulse": 40,
+        "physical impact": 1
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "111",
+      "party": 1,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 68.75,
+      "rooms": [
+        "split",
+        "diagonal",
+        "gallery",
+        "rotunda",
+        "warden"
+      ],
+      "health": [
+        80
+      ],
+      "guardianEntryHp": [
+        80
+      ],
+      "upgrades": {
+        "mage-1": [
+          "cross-seam",
+          "stone-echo",
+          "break-seal"
+        ]
+      },
+      "damage": 20,
+      "reactions": {
+        "vaporize": 39,
+        "thermal fracture": 39,
+        "shatter impulse": 12
+      },
+      "maxFields": 1,
+      "maxPending": 3,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "111",
+      "party": 1,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 109.2,
+      "rooms": [
+        "split",
+        "diagonal",
+        "gallery",
+        "rotunda",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "deflect": 11
+      },
+      "maxFields": 1,
+      "maxPending": 3,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "111",
+      "party": 1,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 53.97,
+      "rooms": [
+        "split",
+        "diagonal",
+        "gallery",
+        "rotunda",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "piercing-ember"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 151,
+        "thermal fracture": 151,
+        "shatter impulse": 130
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "111",
+      "party": 2,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 72.77,
+      "rooms": [
+        "split",
+        "diagonal",
+        "gallery",
+        "rotunda",
+        "warden"
+      ],
+      "health": [
+        88,
+        76
+      ],
+      "guardianEntryHp": [
+        88,
+        76
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "piercing-ember",
+          "break-seal"
+        ]
+      },
+      "damage": 36,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6837
+    },
+    {
+      "seed": 777,
+      "path": "111",
+      "party": 2,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 53.38,
+      "rooms": [
+        "split",
+        "diagonal",
+        "gallery",
+        "rotunda",
+        "warden"
+      ],
+      "health": [
+        100,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "piercing-ember",
+          "break-seal"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 117,
+        "thermal fracture": 109,
+        "shatter impulse": 48
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 6653
+    },
+    {
+      "seed": 777,
+      "path": "111",
+      "party": 2,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 43.88,
+      "rooms": [
+        "split",
+        "diagonal",
+        "gallery",
+        "rotunda",
+        "warden"
+      ],
+      "health": [
+        96,
+        98
+      ],
+      "guardianEntryHp": [
+        96,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "cross-seam",
+          "stone-echo",
+          "break-seal"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "piercing-ember",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 6,
+      "reactions": {
+        "vaporize": 45,
+        "thermal fracture": 45,
+        "shatter impulse": 16,
+        "deflect": 2
+      },
+      "maxFields": 2,
+      "maxPending": 4,
+      "maxLivePacketBytes": 7004
+    },
+    {
+      "seed": 777,
+      "path": "111",
+      "party": 2,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 57.37,
+      "rooms": [
+        "split",
+        "diagonal",
+        "gallery",
+        "rotunda",
+        "warden"
+      ],
+      "health": [
+        100,
+        88
+      ],
+      "guardianEntryHp": [
+        100,
+        88
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "piercing-ember",
+          "break-seal"
+        ]
+      },
+      "damage": 12,
+      "reactions": {
+        "deflect": 5,
+        "shatter impulse": 1
+      },
+      "maxFields": 1,
+      "maxPending": 6,
+      "maxLivePacketBytes": 6421
+    },
+    {
+      "seed": 777,
+      "path": "111",
+      "party": 2,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 36.78,
+      "rooms": [
+        "split",
+        "diagonal",
+        "gallery",
+        "rotunda",
+        "warden"
+      ],
+      "health": [
+        100,
+        72
+      ],
+      "guardianEntryHp": [
+        100,
+        72
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "piercing-ember"
+        ],
+        "mage-2": [
+          "piercing-ember",
+          "stone-echo",
+          "break-seal"
+        ]
+      },
+      "damage": 28,
+      "reactions": {
+        "vaporize": 169,
+        "thermal fracture": 165,
+        "shatter impulse": 148
+      },
+      "maxFields": 2,
+      "maxPending": 0,
+      "maxLivePacketBytes": 8209
+    },
+    {
+      "seed": 777,
+      "path": "010",
+      "party": 1,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 124.22,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "physical impact": 1
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "010",
+      "party": 1,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 80.37,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        86
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "vaporize": 101,
+        "thermal fracture": 101,
+        "shatter impulse": 40
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "010",
+      "party": 1,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 70.6,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100
+      ],
+      "guardianEntryHp": [
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "cross-seam",
+          "stone-echo",
+          "break-seal"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 25,
+        "thermal fracture": 25,
+        "shatter impulse": 8
+      },
+      "maxFields": 1,
+      "maxPending": 3,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "010",
+      "party": 1,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 104.4,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        74
+      ],
+      "guardianEntryHp": [
+        74
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ]
+      },
+      "damage": 26,
+      "reactions": {
+        "deflect": 9
+      },
+      "maxFields": 1,
+      "maxPending": 3,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "010",
+      "party": 1,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 56.35,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        72
+      ],
+      "guardianEntryHp": [
+        72
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "piercing-ember"
+        ]
+      },
+      "damage": 28,
+      "reactions": {
+        "vaporize": 151,
+        "thermal fracture": 151,
+        "shatter impulse": 129
+      },
+      "maxFields": 1,
+      "maxPending": 0,
+      "maxLivePacketBytes": 0
+    },
+    {
+      "seed": 777,
+      "path": "010",
+      "party": 2,
+      "policy": "base",
+      "status": "victory",
+      "seconds": 78.77,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        86,
+        86
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "piercing-ember",
+          "break-seal"
+        ]
+      },
+      "damage": 28,
+      "reactions": {},
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 7025
+    },
+    {
+      "seed": 777,
+      "path": "010",
+      "party": 2,
+      "policy": "reaction",
+      "status": "victory",
+      "seconds": 49.23,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "piercing-ember",
+          "break-seal"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 109,
+        "thermal fracture": 105,
+        "shatter impulse": 47,
+        "physical impact": 3
+      },
+      "maxFields": 0,
+      "maxPending": 0,
+      "maxLivePacketBytes": 7213
+    },
+    {
+      "seed": 777,
+      "path": "010",
+      "party": 2,
+      "policy": "field",
+      "status": "victory",
+      "seconds": 40.52,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100,
+        100
+      ],
+      "guardianEntryHp": [
+        100,
+        100
+      ],
+      "upgrades": {
+        "mage-1": [
+          "cross-seam",
+          "stone-echo",
+          "break-seal"
+        ],
+        "mage-2": [
+          "cross-seam",
+          "piercing-ember",
+          "migrating-inscriptions"
+        ]
+      },
+      "damage": 0,
+      "reactions": {
+        "vaporize": 55,
+        "thermal fracture": 55,
+        "shatter impulse": 21
+      },
+      "maxFields": 2,
+      "maxPending": 4,
+      "maxLivePacketBytes": 7652
+    },
+    {
+      "seed": 777,
+      "path": "010",
+      "party": 2,
+      "policy": "structure",
+      "status": "victory",
+      "seconds": 47.88,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100,
+        86
+      ],
+      "guardianEntryHp": [
+        100,
+        86
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "shared-vapour"
+        ],
+        "mage-2": [
+          "stone-echo",
+          "piercing-ember",
+          "break-seal"
+        ]
+      },
+      "damage": 14,
+      "reactions": {
+        "deflect": 3,
+        "shatter impulse": 2
+      },
+      "maxFields": 2,
+      "maxPending": 6,
+      "maxLivePacketBytes": 6755
+    },
+    {
+      "seed": 777,
+      "path": "010",
+      "party": 2,
+      "policy": "basin",
+      "status": "victory",
+      "seconds": 36.68,
+      "rooms": [
+        "split",
+        "gallery",
+        "yard",
+        "diagonal",
+        "warden"
+      ],
+      "health": [
+        100,
+        93
+      ],
+      "guardianEntryHp": [
+        100,
+        93
+      ],
+      "upgrades": {
+        "mage-1": [
+          "forked-tide",
+          "stone-echo",
+          "piercing-ember"
+        ],
+        "mage-2": [
+          "piercing-ember",
+          "stone-echo",
+          "break-seal"
+        ]
+      },
+      "damage": 7,
+      "reactions": {
+        "vaporize": 176,
+        "thermal fracture": 172,
+        "shatter impulse": 155
+      },
+      "maxFields": 2,
+      "maxPending": 0,
+      "maxLivePacketBytes": 8342
+    }
+  ]
+}

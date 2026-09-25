@@ -47,6 +47,14 @@ test("personal replay seed, synchronized readiness and bounded room cleanup", as
       else if (i < 3) expect(state.run.reward.offers).toEqual(original);
       for (const p of [a, b])
         await p.locator("#reward-cards button").first().click();
+      for (const p of [a, b]) {
+        await expect(p.locator("#route-cards")).toBeVisible();
+        await p.locator("#route-cards button").first().click();
+      }
+      for (const p of [a, b])
+        await p.waitForFunction(
+          () => !!window.__RUINWEAVERS__.getState().run.route.decision.selected,
+        );
       for (const p of [a, b]) await p.locator("#trial-action").click();
       await a.waitForFunction(
         () => window.__RUINWEAVERS__.getState().trial.status === "active",

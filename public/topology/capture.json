@@ -1,0 +1,22 @@
+{
+  "build": "5bb3a08e74c4",
+  "generator": 2,
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+  "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "viewport": [
+    1440,
+    900
+  ],
+  "drawingBuffer": {
+    "width": 1152,
+    "height": 720
+  },
+  "note": "Actual normal-health local two-client run, real mouse/keyboard and card clicks. Video recording affects frame cost; separate unrecorded evidence supplies performance measurements.",
+  "rooms": [
+    "split",
+    "approach",
+    "diagonal",
+    "gallery",
+    "warden"
+  ]
+}

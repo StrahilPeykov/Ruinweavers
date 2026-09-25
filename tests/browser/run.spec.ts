@@ -213,6 +213,7 @@ async function capture(p: Page, name: string) {
 }
 async function complete(pages: Page[], label: string) {
   const started = Date.now();
+  const offerHistory: unknown[] = [];
   const menus = new Set<number>(),
     rooms = new Set<number>(),
     actions = new Set<number>();
@@ -308,6 +309,7 @@ async function complete(pages: Page[], label: string) {
             results: s.trial.results,
             upgrades: s.run.upgrades,
             route: s.run.route,
+            offerHistory,
             casts: s.metrics.casts,
             reactions: s.metrics.transformations,
             outcomes: s.metrics.outcomes,
@@ -344,7 +346,7 @@ async function complete(pages: Page[], label: string) {
           ],
         ).toHaveLength(3);
       }
-      return;
+      return offerHistory;
     }
     if (s.trial.status === "between") {
       for (const p of pages) await release(p);
@@ -383,6 +385,10 @@ async function complete(pages: Page[], label: string) {
       }
       if (s.run.reward && !menus.has(s.trial.encounter)) {
         menus.add(s.trial.encounter);
+        offerHistory.push({
+          stage: s.trial.encounter,
+          offers: s.run.reward.offers,
+        });
         await capture(
           pages[pages.length - 1],
           `${label}-reward-${s.trial.encounter + 1}`,
@@ -478,11 +484,24 @@ async function complete(pages: Page[], label: string) {
 test("complete solo run through real combat inputs and personal reward cards", async ({
   page,
 }) => {
-  test.setTimeout(270000);
+  test.setTimeout(540000);
   await boot(page);
   await expect(page.locator("#panel")).toBeHidden();
   await page.locator("#trial-action").click();
-  await complete([page], "solo");
+  const offers = await complete([page], "solo");
+  const previous = await page.evaluate(() => window.__RUINWEAVERS__.getState());
+  await page.locator("#retry-seed").click();
+  const retryOffers = await complete([page], "solo-retry");
+  expect(retryOffers).toEqual(offers);
+  const retry = await page.evaluate(() => window.__RUINWEAVERS__.getState());
+  expect(retry.seed).toBe(previous.seed);
+  expect(retry.run.id).not.toBe(previous.run.id);
+  expect(retry.run.route).toEqual(
+    previous.run.route
+      ? { ...previous.run.route, boundary: retry.run.route.boundary }
+      : undefined,
+  );
+  expect(retry.run.upgrades).toEqual(previous.run.upgrades);
   await page.locator("#trial-action").click();
   const s = await page.evaluate(() => window.__RUINWEAVERS__.getState());
   expect(s.run.upgrades["mage-1"]).toEqual([]);

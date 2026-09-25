@@ -1,15 +1,15 @@
 # Ruinweavers — The Broken Court
 
-Current milestone: **Run Topology 0.3**. Play four authored courts selected through three shared route choices, then face the Bound Warden. Personal build rewards remain after fights 1, 3 and 4. Root opens the illustrated route run; `?scene=run-spatial` preserves the prior fixed sequence. [Route rules and validation](docs/RUN-TOPOLOGY.md). Session recovery is not implemented.
+Current milestone: **Run Topology 0.3**. Play four authored courts selected through three shared route choices, then face the Bound Warden. Personal build rewards remain after fights 1, 3 and 4. Root opens the illustrated route run; `?scene=run-spatial` preserves the prior fixed sequence. [Route rules and validation](docs/RUN-TOPOLOGY.md); [room plans and actual route gameplay](https://ruinweavers.strahil-peykov.workers.dev/topology/index.html). Session recovery is not implemented.
 
 
-Spatial Design 0.3 replaces the repeated physical layouts with **Split court, Offset gallery, Rotunda, Repair yard and Warden crossing**. Five beats, enemies, magic, builds and co-op rules stay fixed. [Room plans, trajectories and gameplay](https://ruinweavers.strahil-peykov.workers.dev/spatial/index.html); [spatial decisions and limitations](docs/SPATIAL-DESIGN.md). `?scene=run-classic` preserves the previous Guardian run; `?scene=guardian&room=warden` practices the new finale. Rejected candidates remain explicit greybox comparisons, never normal progression.
+Historical Spatial Design 0.3 replaced the repeated physical layouts with **Split court, Offset gallery, Rotunda, Repair yard and Warden crossing**. Five beats, enemies, magic, builds and co-op rules stay fixed. [Room plans, trajectories and gameplay](https://ruinweavers.strahil-peykov.workers.dev/spatial/index.html); [spatial decisions and limitations](docs/SPATIAL-DESIGN.md). `?scene=run-classic` preserves the previous Guardian run; `?scene=guardian&room=warden` practices the new finale. Rejected candidates remain explicit greybox comparisons, never normal progression.
 
 The default is the complete illustrated five-encounter solo/co-op run. [Play](https://ruinweavers.strahil-peykov.workers.dev/). Build Identity 0.2 gives three personal choices after encounters one, three and four: ten Alterations and three prerequisite-gated Theorems. [Build design and catalogue](docs/BUILD-DESIGN.md).
 
 [Three builds in the same final encounter: actual frames and clips](https://ruinweavers.strahil-peykov.workers.dev/build-identity/index.html). These are normal-health input-driven runs, not concept art. [Historical five-room/co-op captures](https://ruinweavers.strahil-peykov.workers.dev/broken-court/index.html) remain available.
 
-`npm install` then `npm run dev` → http://127.0.0.1:5173/. New run obtains a fresh host-owned seed; Retry same seed reproduces offers given the same choices. Both clear health/build/effects and retain fresh run identity. Explicit `?scene=run&seed=123` remains reproducible. Co-op readies together again.
+`npm install` then `npm run dev` → http://127.0.0.1:5173/. New run obtains a fresh host-owned seed; Retry same seed reproduces route options, visited rooms and offers given the same route/build choices. Both clear health/build/effects and retain fresh run identity. Explicit `?scene=run&seed=123` remains reproducible. Co-op readies together again.
 
 Development links: `?scene=free`, `?scene=trial`, `?scene=run&art=off`, `?scene=trial/mixed&art=storybook|ink|illustrated`. Historical comparison pages remain at `/art-study/index.html` and `/art-finish/index.html`. Controls/settings and instruments stay collapsed during normal play.
 
@@ -25,4 +25,4 @@ After every checked coherent commit, immediately push to the existing upstream a
 
 The fifth court now culminates in **The Bound Warden**, with physical ward plates, Shard Volley, Bound March and Furnace Pulse. [Guardian rules and validation](docs/GUARDIAN.md); [actual Guardian clips](https://ruinweavers.strahil-peykov.workers.dev/guardian/index.html). `?scene=guardian` opens the isolated fight; `?scene=run-legacy` preserves the ordinary-enemy five-court regression.
 
-Guardian 0.1 was closed at 4deeb7a: 117 unit tests, production build and 58 browser tests passed; one opt-in live TURN probe was skipped. Its historical matched development/held-out evidence remains. The current Spatial Design 0.3 run uses the five selected physical spaces above; current validation and remaining limitations are in TESTING and SPATIAL-DESIGN. No run-topology work is included.
+Guardian 0.1 was closed at 4deeb7a: 117 unit tests, production build and 58 browser tests passed; one opt-in live TURN probe was skipped. Its historical matched development/held-out evidence remains. Current validation and remaining limitations are in TESTING and RUN-TOPOLOGY; SPATIAL-DESIGN preserves the room study.

@@ -1,5 +1,8 @@
 # Solo/co-op connection - current illustrated Broken Court
 
+Run Topology 0.3: routes are shared; upgrades remain personal. After personal rewards, both players vote on the same authored destinations. Votes can change until agreement; then both ready. No countdown, override or tie-breaker. Host validates actor/run/decision/boundary and transport epoch. Protocol 4 replicates the graph in static data and path/votes in live state. Public Nostr, TURN provider and existing connection limits are unchanged. Local-only safe checkpoints are documented in [RUN-TOPOLOGY](RUN-TOPOLOGY.md); persistence/rejoin/host reassignment remain future work. A future coordinator must allocate a new authority/session epoch on restore rather than treat this offline checkpoint's local party epoch as a network lease.
+
+
 Guardian 0.1 changes only the finale: the Warden alternates living targets at maneuver selection, locks committed routes and retains the normal risky revive. Central durability is 1.35× in a party; plate HP and attack damage/count are unchanged. This does not alter normal enemy targeting or TURN/provider scope. Current Guardian tests and limitations: [GUARDIAN](GUARDIAN.md).
 
 ## Play and connect
@@ -28,7 +31,7 @@ Direct damage attributed to the other mage is suppressed, including their heat/s
 
 ## Authority and limitations
 
-Host alone advances gameplay/Rapier at 60 Hz. Guest sends validated semantic inputs at a target of about 30 Hz; host snapshots remain capped at about 20 Hz. Main-thread stalls can lower both effective rates. Protocol 3 requires matching source build IDs and explicitly includes personal run offers/upgrades. Compact snapshots carry live state and acknowledged events; terrain, materials and configuration bootstrap each epoch until acknowledged. Full balance telemetry stays on the host.
+Host alone advances gameplay/Rapier at 60 Hz. Guest sends validated semantic inputs at a target of about 30 Hz; host snapshots remain capped at about 20 Hz. Main-thread stalls can lower both effective rates. Protocol 4 requires matching source build IDs and explicitly includes personal run offers/upgrades. Compact snapshots carry live state and acknowledged events; terrain, materials and configuration bootstrap each epoch until acknowledged. Full balance telemetry stays on the host.
 
 Guest remote bodies and projectiles use a bounded 75 ms presentation timeline. The local guest instead previews walking with the query-only Rapier controller and reconciles against processed-input acknowledgements (at most 32 samples / 350 ms). Aim and selection respond locally. Damage, collision outcomes, casts, dodge success, death, revival and victory remain authoritative. No gameplay world rollback exists. See [smoothness evidence and limits](SMOOTHNESS.md).
 

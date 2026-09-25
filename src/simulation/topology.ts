@@ -1,7 +1,7 @@
 import type { State } from "./types";
 import { rewardsChosen } from "./run";
 
-export const ROUTE_VERSION = 1;
+export const ROUTE_VERSION = 2;
 export const ORDINARY_ROOMS = [
   "split",
   "gallery",
@@ -53,7 +53,13 @@ export interface RouteState {
 }
 export function generateRoute(seed: number): RouteState {
   let rng = (seed ^ 0x726f7574) >>> 0;
-  const random = () => (rng = (Math.imul(rng, 1664525) + 1013904223) >>> 0);
+  const random = () => {
+    // Mix the full uint32; using the low LCG bits biased early fork availability.
+    let t = (rng = (rng + 0x6d2b79f5) >>> 0);
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
   const nodes: RouteNode[] = [];
   function add(id: string, room: string, stage: number, used: string[]) {
     const node: RouteNode = { id, room, stage, next: [] };
@@ -64,7 +70,7 @@ export function generateRoute(seed: number): RouteState {
     }
     const pool = ORDINARY_ROOMS.filter((r) => !used.includes(r));
     for (let i = pool.length - 1; i > 0; i--) {
-      const j = random() % (i + 1);
+      const j = Math.floor(random() * (i + 1));
       [pool[i], pool[j]] = [pool[j], pool[i]];
     }
     // A whole authored room is selected. Geometry and build ownership never enter the roll.

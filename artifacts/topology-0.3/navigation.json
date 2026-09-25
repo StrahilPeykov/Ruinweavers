@@ -1,0 +1,313 @@
+{
+  "iterations": [
+    {
+      "note": "Diagnostic stationary invulnerable target, 25s; every pursuer must approach. No combat performance claim.",
+      "rows": [
+        {
+          "room": "approach",
+          "target": [
+            0,
+            0
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "approach",
+          "target": [
+            -12.5,
+            8.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "approach",
+          "target": [
+            12.5,
+            8.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "approach",
+          "target": [
+            -12.5,
+            -8.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "approach",
+          "target": [
+            12.5,
+            -8.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "approach",
+          "target": [
+            0,
+            8.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            0,
+            0
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            -11.5,
+            10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            11.5,
+            10.5
+          ],
+          "reached": 2,
+          "total": 3,
+          "falls": 0,
+          "missing": [
+            {
+              "id": "encounter-1-pursuer-1",
+              "hp": 90,
+              "pos": {
+                "x": 1.0956013202667236,
+                "y": 0.5499645471572876,
+                "z": -2.302730083465576
+              }
+            }
+          ]
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            -11.5,
+            -10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            11.5,
+            -10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            0,
+            10.5
+          ],
+          "reached": 2,
+          "total": 3,
+          "falls": 0,
+          "missing": [
+            {
+              "id": "encounter-1-pursuer-1",
+              "hp": 90,
+              "pos": {
+                "x": -0.35461071133613586,
+                "y": 0.5499644875526428,
+                "z": 7.636414527893066
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "note": "Diagnostic stationary invulnerable target, 25s; every pursuer must approach. No combat performance claim.",
+      "rows": [
+        {
+          "room": "diagonal",
+          "target": [
+            0,
+            0
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            -11.5,
+            10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            11.5,
+            10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            -11.5,
+            -10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            11.5,
+            -10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            0,
+            10.5
+          ],
+          "reached": 2,
+          "total": 3,
+          "falls": 0,
+          "missing": [
+            {
+              "id": "encounter-1-pursuer-1",
+              "hp": 90,
+              "pos": {
+                "x": -0.35461071133613586,
+                "y": 0.5499644875526428,
+                "z": 7.636414527893066
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "note": "Diagnostic stationary invulnerable target, 25s; every pursuer must approach. No combat performance claim.",
+      "rows": [
+        {
+          "room": "diagonal",
+          "target": [
+            0,
+            0
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            -11.5,
+            10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            11.5,
+            10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            -11.5,
+            -10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            11.5,
+            -10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        },
+        {
+          "room": "diagonal",
+          "target": [
+            0,
+            10.5
+          ],
+          "reached": 3,
+          "total": 3,
+          "falls": 0,
+          "missing": []
+        }
+      ]
+    }
+  ]
+}
