@@ -1,6 +1,8 @@
-# The Broken Court — Spatial Design 0.3
+# The Broken Court — Run Topology 0.3
 
-The fixed five beats now use **Split court → Offset gallery → Rotunda → Repair yard → Warden crossing**. Composition/rewards are unchanged. Geometry and placement are authored separately in RoomSpec; no procedural or branching topology. `?scene=run-classic` preserves the previous physical Guardian run; `?scene=guardian&room=warden` practices the new finale. `?scene=guardian` remains the old isolated Guardian regression. Spatial decisions/evidence: [SPATIAL-DESIGN](SPATIAL-DESIGN.md).
+Current root run: fixed Split opening, three shared two-option forks through authored rooms, then Warden crossing. Four ordinary fights, three PERSONAL rewards after stages 1/3/4, SHARED unanimous route choices. Six ordinary rooms; no repeats per path. Seed + route version + choices reproduce structure/offers. `?scene=run-spatial` preserves the fixed five-room sequence. Safe checkpoint is local-only and excludes combat physics; no reconnect/session service. Contract and evidence: [RUN-TOPOLOGY](RUN-TOPOLOGY.md).
+
+Historical Spatial Design 0.3: the fixed five beats used **Split court → Offset gallery → Rotunda → Repair yard → Warden crossing**. Composition/rewards are unchanged. Geometry and placement are authored separately in RoomSpec; no procedural or branching topology. `?scene=run-classic` preserves the previous physical Guardian run; `?scene=guardian&room=warden` practices the new finale. `?scene=guardian` remains the old isolated Guardian regression. Spatial decisions/evidence: [SPATIAL-DESIGN](SPATIAL-DESIGN.md).
 
 Current run: courts 1–4, three personal choices, controls and ten-Alteration/three-Theorem pool are unchanged. Court five now contains **The Bound Warden**, a core with two physical ward plates and three readable maneuvers. [Guardian rules/evidence](GUARDIAN.md). Root is the complete illustrated run; `?scene=guardian` isolates the finale and `?scene=run-legacy` preserves the former five-normal-lineup sequence. Solo/revive/readiness/fresh seed/retry rules remain unchanged. The old final normal lineup described below is historical.
 

@@ -1,3 +1,4 @@
+import { openRoute, voteRoute, enterSelectedRoute } from "./topology";
 import {
   initializeRun,
   offerRewards,
@@ -87,7 +88,11 @@ export class Simulation {
   constructor(public config: Config) {
     this.state = legacyActorAccessors(createState(config));
     if (config.scene.startsWith("run") || config.scene === "guardian")
-      initializeRun(this.state, ++this.runGeneration);
+      initializeRun(
+        this.state,
+        ++this.runGeneration,
+        this.config.scene === "run",
+      );
     if (
       config.scene.startsWith("trial") ||
       config.scene.startsWith("run") ||
@@ -120,7 +125,11 @@ export class Simulation {
       this.state.party = { ready: [], epoch };
     }
     if (this.config.scene.startsWith("run") || this.config.scene === "guardian")
-      initializeRun(this.state, ++this.runGeneration);
+      initializeRun(
+        this.state,
+        ++this.runGeneration,
+        this.config.scene === "run",
+      );
     if (
       this.config.scene.startsWith("trial") ||
       this.config.scene.startsWith("run") ||
@@ -163,6 +172,12 @@ export class Simulation {
     const s = this.state;
     if (!s.actors[id] || s.trial?.status === "active") return;
     if (s.run?.reward && !s.run.reward.choices[id]) return;
+    if (
+      s.trial?.status === "between" &&
+      s.run?.route &&
+      !s.run.route.decision?.selected
+    )
+      return;
     if (!s.party) {
       this.advanceTrial();
       return;
@@ -200,6 +215,15 @@ export class Simulation {
   ) {
     return chooseUpgrade(this.state, actor, runId, rewardId, upgrade);
   }
+  voteRoute(
+    actor: string,
+    runId: string,
+    decision: string,
+    boundary: number,
+    node: string,
+  ) {
+    return voteRoute(this.state, actor, runId, decision, boundary, node);
+  }
   advanceTrial() {
     const s = this.state,
       t = s.trial;
@@ -210,7 +234,7 @@ export class Simulation {
       return;
     }
     if (t.status === "between") {
-      if (!rewardsChosen(s)) return;
+      if (!rewardsChosen(s) || !enterSelectedRoute(s)) return;
       if (s.run) s.run.reward = undefined;
       t.encounter++;
       prepareEncounter(s, this.config);
@@ -1255,7 +1279,10 @@ export class Simulation {
           s.trial.encounter === (s.run ? RUN_BEATS.length - 1 : 2)
             ? "victory"
             : "between";
-        if (s.trial.status === "between") offerRewards(s);
+        if (s.trial.status === "between") {
+          offerRewards(s);
+          openRoute(s);
+        }
         s.bolts = [];
         s.pending = [];
         if (s.party) {

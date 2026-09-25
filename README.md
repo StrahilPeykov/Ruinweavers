@@ -1,5 +1,8 @@
 # Ruinweavers — The Broken Court
 
+Current milestone: **Run Topology 0.3**. Play four authored courts selected through three shared route choices, then face the Bound Warden. Personal build rewards remain after fights 1, 3 and 4. Root opens the illustrated route run; `?scene=run-spatial` preserves the prior fixed sequence. [Route rules and validation](docs/RUN-TOPOLOGY.md). Session recovery is not implemented.
+
+
 Spatial Design 0.3 replaces the repeated physical layouts with **Split court, Offset gallery, Rotunda, Repair yard and Warden crossing**. Five beats, enemies, magic, builds and co-op rules stay fixed. [Room plans, trajectories and gameplay](https://ruinweavers.strahil-peykov.workers.dev/spatial/index.html); [spatial decisions and limitations](docs/SPATIAL-DESIGN.md). `?scene=run-classic` preserves the previous Guardian run; `?scene=guardian&room=warden` practices the new finale. Rejected candidates remain explicit greybox comparisons, never normal progression.
 
 The default is the complete illustrated five-encounter solo/co-op run. [Play](https://ruinweavers.strahil-peykov.workers.dev/). Build Identity 0.2 gives three personal choices after encounters one, three and four: ten Alterations and three prerequisite-gated Theorems. [Build design and catalogue](docs/BUILD-DESIGN.md).

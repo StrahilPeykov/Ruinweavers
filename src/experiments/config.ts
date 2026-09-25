@@ -60,6 +60,7 @@ export const SCENES = [
   "run",
   "run-legacy",
   "run-classic",
+  "run-spatial",
   "guardian",
   "trial",
   "trial/ranged",

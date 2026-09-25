@@ -1,3 +1,4 @@
+import { currentNode, currentStage } from "./topology";
 import { RUN_BEATS } from "./run";
 import { createGuardian } from "./guardian";
 import { roomSpec, RUN_ROOMS } from "./rooms";
@@ -160,7 +161,7 @@ export function prepareEncounter(s: State, config: Config) {
     entity("loose-1", "loose", "Loose stone", -1, 3, 0.38, 0.75, 1),
   ];
   const lineup = s.run
-    ? RUN_BEATS[trial.encounter].enemies
+    ? RUN_BEATS[currentStage(s)?.package ?? trial.encounter].enemies
     : trial.encounter === 0
       ? [
           ["sentinel", -5, -5],
@@ -220,7 +221,11 @@ export function prepareEncounter(s: State, config: Config) {
   }
   const room = roomSpec(
     config.room ??
-      (config.scene === "run" ? RUN_ROOMS[trial.encounter] : undefined),
+      (config.scene === "run"
+        ? currentNode(s)?.room
+        : config.scene === "run-spatial"
+          ? RUN_ROOMS[trial.encounter]
+          : undefined),
   );
   if (room) {
     s.roomId = room.id;

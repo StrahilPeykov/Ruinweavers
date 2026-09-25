@@ -1,3 +1,4 @@
+import { currentStage, generateRoute, type RouteState } from "./topology";
 import type { State } from "./types";
 
 const ALTERATIONS = {
@@ -127,6 +128,7 @@ export interface RunState {
   id: string;
   upgrades: Record<string, UpgradeId[]>;
   reward?: Reward;
+  route?: RouteState;
 }
 type Enemy = ["sentinel" | "pursuer", number, number];
 export const RUN_BEATS: { name: string; scenario: string; enemies: Enemy[] }[] =
@@ -193,20 +195,29 @@ export function eligible(s: State, actor: string, id: UpgradeId): boolean {
     !hasUpgrade(s, actor, id) &&
     (s.run.upgrades[actor]?.length ?? 0) < 3 &&
     (u.kind === "Alteration" ||
-      (s.trial?.encounter === 3 &&
+      ((currentStage(s)?.reward === "final" ||
+        (!s.run.route && s.trial?.encounter === 3)) &&
         u.requires.some((key) => hasUpgrade(s, actor, key))))
   );
 }
-export function initializeRun(s: State, generation: number) {
+export function initializeRun(s: State, generation: number, topology = false) {
   s.run = {
     id: `${s.seed}:${generation}`,
+    route: topology ? generateRoute(s.seed) : undefined,
     upgrades: Object.fromEntries(Object.keys(s.actors).map((id) => [id, []])),
   };
 }
 export function offerRewards(s: State) {
-  if (!s.run || ![0, 2, 3].includes(s.trial!.encounter)) return;
+  if (
+    !s.run ||
+    (s.run.route
+      ? !currentStage(s)?.reward
+      : ![0, 2, 3].includes(s.trial!.encounter))
+  )
+    return;
   const encounter = s.trial!.encounter;
-  if (s.run.reward?.id === `${s.run.id}:reward:${encounter}`) return;
+  const boundary = currentStage(s)?.reward ?? encounter;
+  if (s.run.reward?.id === `${s.run.id}:reward:${boundary}`) return;
   const offers: Reward["offers"] = {};
   for (const [i, actor] of Object.keys(s.actors).sort().entries()) {
     let seed =
@@ -232,7 +243,7 @@ export function offerRewards(s: State) {
       : pool.slice(0, 3);
   }
   s.run.reward = {
-    id: `${s.run.id}:reward:${encounter}`,
+    id: `${s.run.id}:reward:${boundary}`,
     encounter,
     offers,
     choices: {},

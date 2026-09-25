@@ -351,6 +351,14 @@ export class CoopSession {
               data.rewardId,
               data.upgrade,
             );
+          if (data.type === "route")
+            this.sim.voteRoute(
+              "mage-2",
+              data.runId,
+              data.decisionId,
+              data.boundary,
+              data.nodeId,
+            );
           if (data.type === "ready") this.sim.ready("mage-2");
           if (data.type === "replay" && typeof data.fresh === "boolean")
             this.replayRequest("mage-2", data.runId, data.fresh);
@@ -691,6 +699,28 @@ export class CoopSession {
     else
       void this.controlAction?.send(
         { type: "choose", epoch: this.epoch, runId, rewardId, upgrade },
+        { target: this.peerId },
+      );
+  }
+  voteRoute(
+    runId: string,
+    decisionId: string,
+    boundary: number,
+    nodeId: string,
+  ) {
+    if (!this.connected) return;
+    if (this.role === "host")
+      this.sim.voteRoute(this.actorId, runId, decisionId, boundary, nodeId);
+    else
+      void this.controlAction?.send(
+        {
+          type: "route",
+          epoch: this.epoch,
+          runId,
+          decisionId,
+          boundary,
+          nodeId,
+        },
         { target: this.peerId },
       );
   }

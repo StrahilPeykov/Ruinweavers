@@ -1,3 +1,5 @@
+import { currentNode, STAGES } from "../simulation/topology";
+import { rewardsChosen } from "../simulation/run";
 import {
   RUN_BEATS,
   UPGRADES,
@@ -17,6 +19,7 @@ export class UI {
   root: HTMLElement;
   last = 0;
   rewardKey = "";
+  routeKey = "";
   buildKey = "";
   phaseKey = "";
   pointerButtons = 0;
@@ -27,6 +30,12 @@ export class UI {
     public input: Input,
     public actions: {
       advance: () => void;
+      route: (
+        runId: string,
+        decisionId: string,
+        boundary: number,
+        nodeId: string,
+      ) => void;
       replay: (fresh: boolean) => void;
       choose: (runId: string, rewardId: string, upgrade: string) => void;
       reset: () => void;
@@ -75,7 +84,7 @@ export class UI {
       <details><summary>Selected tunables</summary><label>Move speed<input id="moveSpeed" type="range" min="3" max="8" step=".1"></label><label>Dodge distance<input id="dodgeDistance" type="range" min="2" max="5" step=".1"></label><label>Dodge recovery<input id="dodgeRecovery" type="range" min=".4" max="1.4" step=".05"></label><label>Cast recovery multiplier<input id="castRecovery" type="range" min=".65" max="1.5" step=".05"></label><label>Secondary buffer (seconds; 0 disables)<input id="inputBuffer" type="range" min="0" max=".15" step=".01"></label><label>Secondary capacity<input id="secondaryCapacity" type="number" min="1" max="3"></label><label>Secondary fallback<select id="fallback"><option value="KeyF">F</option><option value="KeyR">R</option><option value="ShiftLeft">Left Shift</option></select></label><label>Next Principle<select id="cycle"><option value="Tab">Tab</option><option value="KeyC">C</option><option value="KeyR">R</option></select></label><label class="check"><input id="wheel" type="checkbox"> Optional wheel cycling</label></details>
       <details><summary>Controls & rules</summary><p>WASD moves; pointer aims independently. Hold LMB or J for Primary. RMB, F or K for discrete Secondary. 1–4 select; Tab next; Q previous. Space dodges. E toggles pressure near the ballast plate.</p><p>Heat + moisture → steam. Thermal shock weakens structure. Force moves mass and exploits fracture. Stone binds and stabilizes. The plate responds to weight.</p><p>Trackpad: aim with one finger, cast using J / F or K. Palm rejection and keyboard rollover require testing on your hardware. Both mouse bindings stay available.</p><p>One major field at a time. A new Secondary dissolves the old; residual target states remain. Stone slabs bridge the gap and obstruct low bolts. No mana.</p></details>
       <button id="combat-reset">Reset combat station</button> <button id="export">Export observations</button><pre id="metrics"></pre><p id="feedback" role="status"></p></aside>
-      <section id="trial-card" hidden><div class="eyebrow" id="run-eyebrow">CO-OP TRIAL 0.1</div><h2 id="trial-title"></h2><p id="trial-copy"></p><div id="reward-cards" hidden></div><button id="trial-action">Start trial</button><button id="retry-seed" hidden>Retry same seed</button><div id="net-setup"><hr><p>Or share this trial with one partner</p><label>Room code<input id="room-code" placeholder="e.g. K7M9Q2" maxlength="15" autocomplete="off" spellcheck="false" autocapitalize="characters"></label><div class="net-buttons"><button id="create-room">Create co-op</button><button id="join-room">Join co-op</button></div><details><summary>Connection options</summary><label>Signaling<select id="signaling"><option value="public">Public Nostr · internet</option><option value="local">Local relay · same machine test</option></select></label><small>Both players use the same build and signaling option. Internet play uses TURN fallback when configured by the site owner.</small></details></div><div id="room-share" hidden><label for="share-code">Share this room code</label><div class="room-share-row"><input id="share-code" aria-label="Your room code" readonly spellcheck="false"><button id="copy-code">Copy code</button></div><p id="copy-feedback" role="status" aria-live="polite"></p></div><p id="room-status" role="status"></p><button id="leave-room" hidden>Return to solo</button><p class="trial-keys">E to continue · WASD move · LMB cast · RMB / F secondary · Space dodge</p></section><div id="inspect"></div><div id="cast-feedback" role="status"></div><div id="notice" hidden></div>
+      <section id="trial-card" hidden><div class="eyebrow" id="run-eyebrow">CO-OP TRIAL 0.1</div><h2 id="trial-title"></h2><p id="trial-copy"></p><div id="reward-cards" hidden></div><div id="route-cards" hidden></div><p id="route-status" role="status"></p><button id="trial-action">Start trial</button><button id="retry-seed" hidden>Retry same seed</button><div id="net-setup"><hr><p>Or share this trial with one partner</p><label>Room code<input id="room-code" placeholder="e.g. K7M9Q2" maxlength="15" autocomplete="off" spellcheck="false" autocapitalize="characters"></label><div class="net-buttons"><button id="create-room">Create co-op</button><button id="join-room">Join co-op</button></div><details><summary>Connection options</summary><label>Signaling<select id="signaling"><option value="public">Public Nostr · internet</option><option value="local">Local relay · same machine test</option></select></label><small>Both players use the same build and signaling option. Internet play uses TURN fallback when configured by the site owner.</small></details></div><div id="room-share" hidden><label for="share-code">Share this room code</label><div class="room-share-row"><input id="share-code" aria-label="Your room code" readonly spellcheck="false"><button id="copy-code">Copy code</button></div><p id="copy-feedback" role="status" aria-live="polite"></p></div><p id="room-status" role="status"></p><button id="leave-room" hidden>Return to solo</button><p class="trial-keys">E to continue · WASD move · LMB cast · RMB / F secondary · Space dodge</p></section><div id="inspect"></div><div id="cast-feedback" role="status"></div><div id="notice" hidden></div>
       <div id="upgrades"></div><footer><div id="principles">${PRINCIPLES.map((p, i) => `<div data-principle="${p}"><kbd>${i + 1}</kbd><span>${p}</span></div>`).join("")}</div><div id="spell"></div><div id="control-hint" class="hint">WASD move · LMB / J cast · RMB / F secondary · Space dodge · Tab / Q cycle</div><div id="health"></div></footer>`;
     const byId = (id: string) =>
       this.root.querySelector<HTMLElement>(`#${id}`)!;
@@ -549,7 +558,7 @@ export class UI {
         "An ancient construction still guards the last court. Watch its shard lanes, leave its committed march, and read the furnace ring. Its fitted plates obey the same magic as its body.";
       if (!s.party) labels["trial-action"] = "Face the Warden";
     }
-    if (s.run && trial?.status === "between") {
+    if (s.run && !s.run.route && trial?.status === "between") {
       const next = RUN_BEATS[trial.encounter + 1];
       if (next)
         labels["trial-copy"] +=
@@ -623,6 +632,70 @@ export class UI {
     }
     (get("trial-action") as HTMLButtonElement).disabled =
       !!reward && !reward.choices[player.id];
+    const route = s.run?.route,
+      decision = route?.decision;
+    const routeCards = get("route-cards");
+    const routeVisible =
+      !!decision && trial?.status === "between" && rewardsChosen(s);
+    routeCards.hidden = !routeVisible;
+    labels["route-status"] = "";
+    if (route) {
+      const node = currentNode(s)!;
+      labels["status"] =
+        `${node.stage + 1} / 5 / ${roomSpec(node.room)!.name} / ${enemies.length} remaining`;
+      if (trial?.status === "ready")
+        labels["trial-copy"] =
+          "Four courts, a shared path, then the Bound Warden. Three personal build choices. Choose destinations together; shape your own magic.";
+      if (routeVisible) {
+        rewardCards.hidden = true;
+        labels["trial-title"] = decision.selected
+          ? "The path is agreed"
+          : "Choose your next destination";
+        labels["trial-copy"] = decision.selected
+          ? "Ready when you are. Health and your build carry forward."
+          : "Choose by space and pressure. In co-op, both mages must agree; you may change your vote.";
+        labels["route-status"] = decision.selected
+          ? `Next: ${roomSpec(route.nodes.find((n) => n.id === decision.selected)!.room)!.name}`
+          : s.party
+            ? "Waiting for agreement / no time limit."
+            : "Choose a destination, then continue.";
+      }
+      const key = routeVisible ? JSON.stringify([decision, player.id]) : "";
+      if (key !== this.routeKey) {
+        this.routeKey = key;
+        routeCards.replaceChildren();
+        if (routeVisible)
+          for (const id of decision.options) {
+            const dest = route.nodes.find((n) => n.id === id)!,
+              spec = roomSpec(dest.room)!;
+            const button = document.createElement("button");
+            button.dataset.route = id;
+            const votes = Object.keys(s.actors)
+              .filter((a) => decision.votes[a] === id)
+              .map((a) => (a === player.id ? "You" : "Partner"));
+            button.innerHTML = `<small>${STAGES[dest.stage].pressure}</small><strong>${spec.name}</strong><span>${spec.thesis}</span><em>${spec.props.length ? "Materials: " + [...new Set(spec.props.map((p) => ({ wood: "timber", heavy: "movable ballast", brittle: "fracturable stone", loose: "loose stone" })[p.kind as "wood"] ?? p.kind))].join(", ") : "Open circulation around solid masonry"}</em><b>${votes.join(" + ") || "Select this path"}</b>`;
+            button.disabled = !!decision.selected;
+            button.classList.toggle(
+              "chosen",
+              decision.selected === id || decision.votes[player.id] === id,
+            );
+            let deliberate = false;
+            button.onpointerdown = () => {
+              deliberate = this.freshPointerPress;
+            };
+            button.onclick = (e) => {
+              if (e.detail !== 0 && !deliberate) return;
+              deliberate = false;
+              this.actions.route(s.run!.id, decision.id, route.boundary, id);
+              this.unfocus();
+            };
+            routeCards.append(button);
+          }
+      }
+      if (trial?.status === "between")
+        (get("trial-action") as HTMLButtonElement).disabled =
+          !rewardsChosen(s) || !decision?.selected;
+    }
     const net = this.network;
     if (net) {
       get("net-setup").hidden =

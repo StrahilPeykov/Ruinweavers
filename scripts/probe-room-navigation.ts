@@ -6,7 +6,10 @@ import { idleInput, vec } from "../src/simulation/types";
 import { writeFileSync, mkdirSync } from "node:fs";
 await initPhysics();
 const rows = [];
-for (const room of [
+for (const room of process.argv
+  .find((x) => x.startsWith("--rooms="))
+  ?.slice(8)
+  .split(",") ?? [
   "split",
   "gallery",
   "rotunda",

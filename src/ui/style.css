@@ -735,3 +735,47 @@ body.run-mode #panel #art-links {
   font-size: 11px;
   color: #d5d3c1;
 }
+
+/* Destination cards reuse the illustrated reward vocabulary, but remain a shared choice. */
+#route-cards:not([hidden]) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+#route-cards button {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  padding: 18px;
+  background: #e4dac3;
+  color: #263c41;
+  border: 2px solid #788c83;
+}
+#route-cards strong {
+  font:
+    600 23px Georgia,
+    serif;
+}
+#route-cards small {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+}
+#route-cards em {
+  font-size: 13px;
+}
+#route-cards button.chosen {
+  border-color: #bc7f35;
+  box-shadow: inset 0 0 0 2px #bc7f35;
+  opacity: 1;
+}
+#route-status {
+  min-height: 1em;
+}
+@media (max-width: 650px) {
+  #route-cards:not([hidden]) {
+    grid-template-columns: 1fr;
+  }
+}

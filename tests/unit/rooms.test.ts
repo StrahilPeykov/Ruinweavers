@@ -25,10 +25,10 @@ it("authored bridge placement never leaks the Lab gap into other rooms", () => {
   expect(bridgeAt("broken", vec(0, 0, 0))).toBe(true);
   expect(bridgeAt("split", vec(9, 0, 0))).toBe(false);
   expect(bridgeAt(undefined, vec(9, 0, 0), true)).toBe(true);
-  expect(Object.keys(ROOMS)).toHaveLength(8);
+  expect(Object.keys(ROOMS)).toHaveLength(10);
 });
 it("every fixed run beat selects its authored room while classic regression stays available", () => {
-  const s = new Simulation(configFromQuery("?scene=run&seed=123"));
+  const s = new Simulation(configFromQuery("?scene=run-spatial&seed=123"));
   const old = new Simulation(configFromQuery("?scene=run-classic&seed=123"));
   expect(old.state.roomId).toBeUndefined();
   for (let i = 0; i < 5; i++) {

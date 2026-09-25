@@ -198,6 +198,12 @@ async function boot() {
   };
   const ui = new UI(config, input, {
     replay,
+    route: (runId, decisionId, boundary, nodeId) => {
+      input.clear();
+      if (net?.active) net.voteRoute(runId, decisionId, boundary, nodeId);
+      else sim.voteRoute("mage-1", runId, decisionId, boundary, nodeId);
+      ui.last = 0;
+    },
     choose: (runId, rewardId, upgrade) => {
       input.clear();
       if (net?.active) net.choose(runId, rewardId, upgrade);

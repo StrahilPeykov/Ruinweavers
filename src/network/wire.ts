@@ -38,6 +38,7 @@ export function encodeSnapshot(
     staticData: bootstrap
       ? {
           config,
+          routeNodes: s.run?.route?.nodes,
           terrain: s.terrain,
           roomId: s.roomId,
           seed: s.seed,
@@ -62,7 +63,21 @@ export function encodeSnapshot(
       bolts: s.bolts,
       pending: s.pending,
       trial: s.trial,
-      run: s.run ?? null,
+      run: s.run
+        ? {
+            id: s.run.id,
+            upgrades: s.run.upgrades,
+            reward: s.run.reward,
+            route: s.run.route
+              ? {
+                  version: s.run.route.version,
+                  visited: s.run.route.visited,
+                  boundary: s.run.route.boundary,
+                  decision: s.run.route.decision,
+                }
+              : undefined,
+          }
+        : null,
       guardian: s.guardian ?? null,
       party: s.party,
       serial: s.serial,
@@ -105,6 +120,11 @@ export class WireReader {
     if (
       !base ||
       base.entities.length > 64 ||
+      (p.live.run?.route &&
+        (!base.routeNodes ||
+          base.routeNodes.length !== 16 ||
+          p.live.run.route.visited.length > 5 ||
+          p.live.run.route.version !== 1)) ||
       p.live.entities.some((e) => !base.entities.some((t) => t.id === e.id))
     )
       return null;
@@ -123,7 +143,14 @@ export class WireReader {
     return {
       ...previous,
       ...p.live,
-      run: p.live.run ?? undefined,
+      run: p.live.run
+        ? {
+            ...p.live.run,
+            route: p.live.run.route
+              ? { ...p.live.run.route, nodes: base.routeNodes! }
+              : undefined,
+          }
+        : undefined,
       guardian: p.live.guardian ?? undefined,
       seed: base.seed,
       terrain: base.terrain,

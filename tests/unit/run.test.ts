@@ -12,7 +12,7 @@ import { idleInput, vec } from "../../src/simulation/types";
 import { encodeSnapshot, WireReader } from "../../src/network/wire";
 beforeAll(initPhysics);
 it("explicit zero seed remains reproducible", () => {
-  expect(configFromQuery("?scene=run&seed=0").seed).toBe(0);
+  expect(configFromQuery("?scene=run-spatial&seed=0").seed).toBe(0);
 });
 it("run uses Model A; the existing Lab retains Model B", () => {
   expect(configFromQuery("?scene=run&model=weave-unweave").model).toBe(
@@ -25,7 +25,7 @@ it("run uses Model A; the existing Lab retains Model B", () => {
 it("a guest entering the old trial discards its default-run state across JSON transport", () => {
   const host = new Simulation(configFromQuery("?scene=trial"));
   host.addPartner();
-  const guest = new Simulation(configFromQuery("?scene=run"));
+  const guest = new Simulation(configFromQuery("?scene=run-spatial"));
   const packet = JSON.parse(
     JSON.stringify(encodeSnapshot(host.state, host.config, 1, false, true)),
   );
@@ -34,7 +34,7 @@ it("a guest entering the old trial discards its default-run state across JSON tr
   guest.dispose();
 });
 const make = (coop = false) => {
-  const sim = new Simulation(configFromQuery("?scene=run"));
+  const sim = new Simulation(configFromQuery("?scene=run-spatial"));
   if (coop) sim.addPartner();
   sim.ready("mage-1");
   if (coop) sim.ready("mage-2");

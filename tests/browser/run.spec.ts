@@ -4,6 +4,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 const dir = process.env.RUIN_RUN_CAPTURE_ROOT ?? `${evidenceRoot}/run-0.1`;
 const primaryHeld = new WeakMap<Page, boolean>();
 const buildDirection = process.env.RUIN_BUILD_RUN;
+const runScene = process.env.RUIN_RUN_SCENE ?? "run";
 const buildChoices: Record<string, string[]> = {
   reaction: ["forked-tide", "undertow", "shared-vapour"],
   field: ["double-inscription", "cross-seam", "migrating-inscriptions"],
@@ -56,11 +57,13 @@ test("a held combat press cannot choose a reward; a fresh card press can", async
     ),
   ).toBeUndefined();
   await card.click();
-  await expect(page.locator("#reward-cards .chosen")).toBeVisible();
+  await page.waitForFunction(
+    () => !!window.__RUINWEAVERS__.getState().run.reward.choices["mage-1"],
+  );
 });
 async function boot(p: Page) {
   await p.goto(
-    `/?scene=run&seed=${buildDirection === "pair" ? 415 : buildDirection === "reaction" ? 143 : buildDirection ? 0 : 123}&quality=${process.env.RUIN_RUN_QUALITY ?? "lightweight"}`,
+    `/?scene=${runScene}&seed=${buildDirection === "pair" ? 415 : buildDirection === "reaction" ? 143 : buildDirection ? 0 : 123}&quality=${process.env.RUIN_RUN_QUALITY ?? "lightweight"}`,
   );
   await p.waitForFunction(() => !!window.__RUINWEAVERS__);
 }
@@ -304,6 +307,7 @@ async function complete(pages: Page[], label: string) {
             status: s.trial.status,
             results: s.trial.results,
             upgrades: s.run.upgrades,
+            route: s.run.route,
             casts: s.metrics.casts,
             reactions: s.metrics.transformations,
             outcomes: s.metrics.outcomes,
@@ -369,7 +373,12 @@ async function complete(pages: Page[], label: string) {
               .locator(`#reward-cards button[data-upgrade="${choice}"]`)
               .click();
           } else await p.locator("#reward-cards button").first().click();
-          await expect(p.locator("#reward-cards .chosen")).toBeVisible();
+          await p.waitForFunction(
+            () =>
+              !!window.__RUINWEAVERS__.getState().run.reward.choices[
+                window.__RUINWEAVERS__.getPlayerState().id
+              ],
+          );
         }
       }
       if (s.run.reward && !menus.has(s.trial.encounter)) {
@@ -377,6 +386,50 @@ async function complete(pages: Page[], label: string) {
         await capture(
           pages[pages.length - 1],
           `${label}-reward-${s.trial.encounter + 1}`,
+        );
+      }
+      if (s.run.route) {
+        for (const p of pages)
+          await expect(p.locator("#route-cards")).toBeVisible();
+        const choice =
+          pages.length === 2 ? 1 : Number(process.env.RUIN_ROUTE_CHOICE ?? 0);
+        if (!s.run.route.decision.selected) {
+          await pages[0]
+            .locator("#route-cards button")
+            .nth(pages.length === 2 ? 0 : choice)
+            .click();
+          if (pages.length === 2) {
+            await pages[1].locator("#route-cards button").nth(1).click();
+            await pages[0].waitForFunction(
+              () =>
+                Object.keys(
+                  window.__RUINWEAVERS__.getState().run.route.decision.votes,
+                ).length === 2,
+            );
+            expect(
+              await pages[0].evaluate(
+                () =>
+                  window.__RUINWEAVERS__.getState().run.route.decision.selected,
+              ),
+            ).toBeUndefined();
+            await expect(pages[0].locator("#trial-action")).toBeDisabled();
+            await capture(
+              pages[1],
+              `${label}-route-${s.trial.encounter}-disagreement`,
+            );
+            await pages[0].locator("#route-cards button").nth(choice).click();
+          }
+          // Solo selects the alternate route on the dedicated second journey.
+          // Its first vote commits immediately, so select only once (see below).
+        }
+        for (const p of pages)
+          await p.waitForFunction(
+            () =>
+              !!window.__RUINWEAVERS__.getState().run.route.decision.selected,
+          );
+        await capture(
+          pages.at(-1)!,
+          `${label}-route-${s.trial.encounter}-agreed`,
         );
       }
       for (const p of pages) await p.locator("#trial-action").click();
@@ -398,7 +451,13 @@ async function complete(pages: Page[], label: string) {
       }
       if (!rooms.has(s.trial.encounter)) {
         expect(s.roomId).toBe(
-          ["split", "gallery", "rotunda", "yard", "warden"][s.trial.encounter],
+          s.run.route
+            ? s.run.route.nodes.find(
+                (n: any) => n.id === s.run.route.visited.at(-1),
+              ).room
+            : ["split", "gallery", "rotunda", "yard", "warden"][
+                s.trial.encounter
+              ],
         );
         for (const p of pages)
           await p.waitForFunction(
