@@ -1,10 +1,12 @@
-Current milestone: **Guardian 0.1 — The Bound Warden** completes the illustrated fifth court. The first four rooms, rewards after courts 1/3/4, ten Alterations/three Theorems, controls and normal tuning remain the baseline. Guardian rules, bounded tuning, matched builds and decision gate: [GUARDIAN](GUARDIAN.md). The no-Guardian five-lineup run remains `?scene=run-legacy`; earlier Build Identity evidence below is historical. New run/retry and relay architecture remain unchanged. Completion is not proof of balance or subjective fun.
+Current milestone: **Run Topology 0.3**, with authored routes, shared votes and local safe-checkpoint semantics. See [RUN-TOPOLOGY](RUN-TOPOLOGY.md). Current gameplay media: `/topology/index.html`. Earlier milestone recommendations below are historical; retired media is recoverable through [MEDIA](MEDIA.md).
+
+Historical milestone: **Guardian 0.1 — The Bound Warden** completes the illustrated fifth court. The first four rooms, rewards after courts 1/3/4, ten Alterations/three Theorems, controls and normal tuning remain the baseline. Guardian rules, bounded tuning, matched builds and decision gate: [GUARDIAN](GUARDIAN.md). The no-Guardian five-lineup run remains `?scene=run-legacy`; earlier Build Identity evidence below is historical. New run/retry and relay architecture remain unchanged. Completion is not proof of balance or subjective fun.
 
 Gameplay rules: [RUN.md](RUN.md). The previous trial/networking sections below are dated evidence, not restrictions on the illustrated rollout.
 
 # Experiments / current recommendation
 
-**Spatial Design 0.3:** keep Model A, balanced camera/tempo and the existing build/Guardian rules. The normal run uses five authored physical spaces, not the historical repeated cover layouts. [Selection, rejected candidates and evidence](SPATIAL-DESIGN.md). Root starts the run; `/spatial/index.html` exposes plans, traces and explicit comparisons. No topology phase has begun.
+**Historical Spatial Design 0.3:** keep Model A, balanced camera/tempo and the existing build/Guardian rules. The normal run uses five authored physical spaces, not the historical repeated cover layouts. [Selection, rejected candidates and evidence](SPATIAL-DESIGN.md). Root starts the run; `/spatial/index.html` exposes plans, traces and explicit comparisons. At this historical checkpoint, topology had not begun.
 
 **Historical Co-op Trial 0.1 checkpoint.** Solo remains the default Start path; Create/Join adds one independent mage using host-authoritative WebRTC. Model A, balanced camera/tempo, capacity 1 per mage and 120 ms buffer remain unchanged. Public and loopback signaling passed same-machine real-browser tests, not remote-network validation. [COOP](COOP.md) records shared-world rules, connection steps and matched exploratory results. No tuning was changed. Earlier Lab and Combat Trial evidence below is historical.
 

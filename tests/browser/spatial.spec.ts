@@ -3,7 +3,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 const out =
   process.env.RUIN_SPATIAL_OUTPUT ??
   `artifacts/spatial-0.3/raw/browser-${Date.now()}`;
-test("spatial handoff plans, real gameplay media and normal entry are directly usable", async ({
+test("historical spatial plans retain current gameplay links and normal entry", async ({
   page,
 }) => {
   mkdirSync(out, { recursive: true });
@@ -22,24 +22,8 @@ test("spatial handoff plans, real gameplay media and normal entry are directly u
     await page.locator(`img[src="${name}.svg"]`).screenshot({
       path: `${out}/${name}.png`,
     });
-  await page.evaluate(() => {
-    const v = document.querySelector("video")!;
-    v.load();
-  });
-  await page.waitForFunction(() => {
-    const v = document.querySelector("video")!;
-    return v.readyState >= 2 && v.duration > 20;
-  });
-  for (const t of [3, 11, 20]) {
-    await page.evaluate((t) => {
-      document.querySelector("video")!.currentTime = t;
-    }, t);
-    await page.waitForFunction((t) => {
-      const v = document.querySelector("video")!;
-      return !v.seeking && Math.abs(v.currentTime - t) < 0.2;
-    }, t);
-    await page.locator("video").screenshot({ path: `${out}/clip-${t}s.png` });
-  }
+  await expect(page.locator("video")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Watch current gameplay and video" })).toHaveAttribute("href", "/topology/index.html");
   await page
     .getByRole("link", { name: "Play the five-court run", exact: true })
     .click();

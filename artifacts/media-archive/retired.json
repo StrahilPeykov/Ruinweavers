@@ -1,0 +1,454 @@
+{
+  "sourceCommit": "dc4bf509b4925ceb0c3d10bc82d5d6aecd3a7c5b",
+  "note": "Removed duplicate historical art/gallery media from current checkout; recover from the source commit. Runtime art assets and numerical evidence are untouched. Two useful comparison sheets remain in public/history.",
+  "files": [
+    {
+      "path": "artifacts/art-finish/benchmark-downed.png",
+      "bytes": 311090
+    },
+    {
+      "path": "artifacts/art-finish/benchmark-lightweight.png",
+      "bytes": 337232
+    },
+    {
+      "path": "artifacts/art-finish/benchmark-moving.png",
+      "bytes": 350645
+    },
+    {
+      "path": "artifacts/art-finish/benchmark-standard.png",
+      "bytes": 304623
+    },
+    {
+      "path": "artifacts/art-finish/shared-geometry-illustrated.png",
+      "bytes": 146558
+    },
+    {
+      "path": "artifacts/art-finish/shared-geometry-original.png",
+      "bytes": 145321
+    },
+    {
+      "path": "artifacts/art-proof/concept-targets.png",
+      "bytes": 3071430
+    },
+    {
+      "path": "artifacts/art-proof/gallery-compact.png",
+      "bytes": 51575
+    },
+    {
+      "path": "artifacts/art-proof/gallery-desktop.png",
+      "bytes": 124637
+    },
+    {
+      "path": "artifacts/art-proof/ink-entry.png",
+      "bytes": 150842
+    },
+    {
+      "path": "artifacts/art-proof/ink-landmark.png",
+      "bytes": 175368
+    },
+    {
+      "path": "artifacts/art-proof/ink-moving.png",
+      "bytes": 176599
+    },
+    {
+      "path": "artifacts/art-proof/ink-quiet.png",
+      "bytes": 175464
+    },
+    {
+      "path": "artifacts/art-proof/ink-standard.png",
+      "bytes": 197755
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-capacity-tether-alteration.png",
+      "bytes": 182529
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-capacity-tether-danger.png",
+      "bytes": 142137
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-capacity-tether-deuteranopia.png",
+      "bytes": 132155
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-capacity-tether-filmstrip.jpg",
+      "bytes": 38564
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-capacity-tether-grayscale.png",
+      "bytes": 97315
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-capacity-tether-identity.png",
+      "bytes": 153284
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-capacity-tether-reaction.png",
+      "bytes": 167875
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-capacity-tether-reward.png",
+      "bytes": 134850
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-flow-echo-alteration.png",
+      "bytes": 179948
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-flow-echo-danger.png",
+      "bytes": 146190
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-flow-echo-deuteranopia.png",
+      "bytes": 124375
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-flow-echo-filmstrip.jpg",
+      "bytes": 34695
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-flow-echo-grayscale.png",
+      "bytes": 97178
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-flow-echo-identity.png",
+      "bytes": 152961
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-flow-echo-reaction.png",
+      "bytes": 178098
+    },
+    {
+      "path": "artifacts/art-proof/motion/ink-flow-echo-reward.png",
+      "bytes": 134857
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-capacity-tether-alteration.png",
+      "bytes": 191859
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-capacity-tether-danger.png",
+      "bytes": 160468
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-capacity-tether-deuteranopia.png",
+      "bytes": 140794
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-capacity-tether-filmstrip.jpg",
+      "bytes": 35765
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-capacity-tether-grayscale.png",
+      "bytes": 107216
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-capacity-tether-identity.png",
+      "bytes": 161250
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-capacity-tether-reaction.png",
+      "bytes": 179167
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-capacity-tether-reward.png",
+      "bytes": 136883
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-flow-echo-alteration.png",
+      "bytes": 190164
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-flow-echo-danger.png",
+      "bytes": 143474
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-flow-echo-deuteranopia.png",
+      "bytes": 136846
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-flow-echo-filmstrip.jpg",
+      "bytes": 34050
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-flow-echo-grayscale.png",
+      "bytes": 93527
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-flow-echo-identity.png",
+      "bytes": 161041
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-flow-echo-reaction.png",
+      "bytes": 185043
+    },
+    {
+      "path": "artifacts/art-proof/motion/storybook-flow-echo-reward.png",
+      "bytes": 139855
+    },
+    {
+      "path": "artifacts/art-proof/storybook-entry.png",
+      "bytes": 160870
+    },
+    {
+      "path": "artifacts/art-proof/storybook-landmark.png",
+      "bytes": 182740
+    },
+    {
+      "path": "artifacts/art-proof/storybook-moving.png",
+      "bytes": 181641
+    },
+    {
+      "path": "artifacts/art-proof/storybook-quiet.png",
+      "bytes": 180673
+    },
+    {
+      "path": "artifacts/art-proof/storybook-standard.png",
+      "bytes": 220855
+    },
+    {
+      "path": "public/art-finish/alteration.png",
+      "bytes": 366059
+    },
+    {
+      "path": "public/art-finish/benchmark-comparison.jpg",
+      "bytes": 79291
+    },
+    {
+      "path": "public/art-finish/benchmark-lightweight.png",
+      "bytes": 337232
+    },
+    {
+      "path": "public/art-finish/benchmark-standard.png",
+      "bytes": 304623
+    },
+    {
+      "path": "public/art-finish/capacity-tether.png",
+      "bytes": 339504
+    },
+    {
+      "path": "public/art-finish/deuteranopia.png",
+      "bytes": 275011
+    },
+    {
+      "path": "public/art-finish/downed.png",
+      "bytes": 363609
+    },
+    {
+      "path": "public/art-finish/grayscale.png",
+      "bytes": 176782
+    },
+    {
+      "path": "public/art-finish/illustrated-capacity-tether-filmstrip.jpg",
+      "bytes": 62779
+    },
+    {
+      "path": "public/art-finish/illustrated-capacity-tether.mp4",
+      "bytes": 391085
+    },
+    {
+      "path": "public/art-finish/illustrated-flow-echo-filmstrip.jpg",
+      "bytes": 61020
+    },
+    {
+      "path": "public/art-finish/illustrated-flow-echo.mp4",
+      "bytes": 385020
+    },
+    {
+      "path": "public/art-finish/quality-comparison.jpg",
+      "bytes": 91229
+    },
+    {
+      "path": "public/art-finish/reaction.png",
+      "bytes": 337228
+    },
+    {
+      "path": "public/art-finish/reward.png",
+      "bytes": 339135
+    },
+    {
+      "path": "public/art-finish/same-principle.png",
+      "bytes": 315535
+    },
+    {
+      "path": "public/art-finish/shared-geometry-comparison.jpg",
+      "bytes": 70724
+    },
+    {
+      "path": "public/art-finish/storybook-capacity-tether-filmstrip.jpg",
+      "bytes": 48620
+    },
+    {
+      "path": "public/art-finish/storybook-capacity-tether.mp4",
+      "bytes": 328689
+    },
+    {
+      "path": "public/art-finish/storybook-flow-echo-filmstrip.jpg",
+      "bytes": 46922
+    },
+    {
+      "path": "public/art-finish/storybook-flow-echo.mp4",
+      "bytes": 287756
+    },
+    {
+      "path": "public/art-study/concept-targets.png",
+      "bytes": 3071430
+    },
+    {
+      "path": "public/art-study/ink-capacity-tether-alteration.png",
+      "bytes": 182529
+    },
+    {
+      "path": "public/art-study/ink-capacity-tether-reaction.png",
+      "bytes": 167875
+    },
+    {
+      "path": "public/art-study/ink-capacity-tether-reward.png",
+      "bytes": 134850
+    },
+    {
+      "path": "public/art-study/ink-capacity-tether.mp4",
+      "bytes": 273778
+    },
+    {
+      "path": "public/art-study/ink-flow-echo-alteration.png",
+      "bytes": 179948
+    },
+    {
+      "path": "public/art-study/ink-flow-echo-reaction.png",
+      "bytes": 178098
+    },
+    {
+      "path": "public/art-study/ink-flow-echo-reward.png",
+      "bytes": 134857
+    },
+    {
+      "path": "public/art-study/ink-flow-echo.mp4",
+      "bytes": 264070
+    },
+    {
+      "path": "public/art-study/ink-landmark.png",
+      "bytes": 175368
+    },
+    {
+      "path": "public/art-study/storybook-capacity-tether-alteration.png",
+      "bytes": 191859
+    },
+    {
+      "path": "public/art-study/storybook-capacity-tether-reaction.png",
+      "bytes": 179167
+    },
+    {
+      "path": "public/art-study/storybook-capacity-tether-reward.png",
+      "bytes": 136883
+    },
+    {
+      "path": "public/art-study/storybook-capacity-tether.mp4",
+      "bytes": 221642
+    },
+    {
+      "path": "public/art-study/storybook-flow-echo-alteration.png",
+      "bytes": 190164
+    },
+    {
+      "path": "public/art-study/storybook-flow-echo-reaction.png",
+      "bytes": 185043
+    },
+    {
+      "path": "public/art-study/storybook-flow-echo-reward.png",
+      "bytes": 139855
+    },
+    {
+      "path": "public/art-study/storybook-flow-echo.mp4",
+      "bytes": 242664
+    },
+    {
+      "path": "public/art-study/storybook-landmark.png",
+      "bytes": 182740
+    },
+    {
+      "path": "public/broken-court/five-courts-actual-gameplay.jpg",
+      "bytes": 175090
+    },
+    {
+      "path": "public/broken-court/illustrated-coop-gameplay.png",
+      "bytes": 340717
+    },
+    {
+      "path": "public/broken-court/normal-coop-combat.mp4",
+      "bytes": 1904329
+    },
+    {
+      "path": "public/build-identity/field-last-ward.jpg",
+      "bytes": 141540
+    },
+    {
+      "path": "public/build-identity/field-last-ward.mp4",
+      "bytes": 1153274
+    },
+    {
+      "path": "public/build-identity/reaction-last-ward.jpg",
+      "bytes": 157666
+    },
+    {
+      "path": "public/build-identity/reaction-last-ward.mp4",
+      "bytes": 914759
+    },
+    {
+      "path": "public/build-identity/structure-last-ward.jpg",
+      "bytes": 165376
+    },
+    {
+      "path": "public/build-identity/structure-last-ward.mp4",
+      "bytes": 1470681
+    },
+    {
+      "path": "public/build-identity/three-builds-last-ward.jpg",
+      "bytes": 192599
+    },
+    {
+      "path": "public/guardian/field-warden.jpg",
+      "bytes": 160115
+    },
+    {
+      "path": "public/guardian/field-warden.mp4",
+      "bytes": 1611720
+    },
+    {
+      "path": "public/guardian/reaction-warden.jpg",
+      "bytes": 151178
+    },
+    {
+      "path": "public/guardian/reaction-warden.mp4",
+      "bytes": 1198981
+    },
+    {
+      "path": "public/guardian/structure-warden.jpg",
+      "bytes": 156957
+    },
+    {
+      "path": "public/guardian/structure-warden.mp4",
+      "bytes": 1486375
+    },
+    {
+      "path": "public/guardian/three-builds-warden.jpg",
+      "bytes": 183696
+    },
+    {
+      "path": "public/spatial/court-3.png",
+      "bytes": 236497
+    },
+    {
+      "path": "public/spatial/court-5.png",
+      "bytes": 211859
+    },
+    {
+      "path": "public/spatial/run-contact.png",
+      "bytes": 607134
+    },
+    {
+      "path": "public/spatial/spatial-run.webm",
+      "bytes": 1397282
+    }
+  ]
+}

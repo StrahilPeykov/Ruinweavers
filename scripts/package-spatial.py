@@ -5,7 +5,7 @@ Only selected media and sanitized measurement fields enter Git; raw logs stay lo
 import json, sys, subprocess, shutil
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
-run=Path(sys.argv[1]); video=Path(sys.argv[2]); out=Path('public/spatial');out.mkdir(parents=True,exist_ok=True)
+run=Path(sys.argv[1]); video=Path(sys.argv[2]); out=Path('artifacts/media-archive/raw/spatial');out.mkdir(parents=True,exist_ok=True)
 font=ImageFont.truetype('C:/Windows/Fonts/segoeui.ttf',24)
 small=ImageFont.truetype('C:/Windows/Fonts/segoeui.ttf',19)
 sheet=Image.new('RGB',(1600,1650),'#233d44');d=ImageDraw.Draw(sheet)

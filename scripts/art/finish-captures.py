@@ -9,7 +9,7 @@ from PIL import Image, ImageDraw, ImageFont
 root=Path(__file__).resolve().parents[2]
 evidence=root/'artifacts/art-finish'
 motion=evidence/'motion'
-out=root/'public/art-finish'
+out=root/'artifacts/media-archive/raw/art-finish'
 out.mkdir(parents=True,exist_ok=True)
 font=ImageFont.truetype('C:/Windows/Fonts/segoeui.ttf',22)
 small=ImageFont.truetype('C:/Windows/Fonts/segoeui.ttf',17)

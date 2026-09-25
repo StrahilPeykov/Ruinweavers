@@ -32,3 +32,6 @@ artifacts/guardian-0.1/raw/
 artifacts/spatial-0.3/raw/
 
 artifacts/topology-0.3/raw/
+
+# Optional reconstructions of retired public galleries stay local.
+artifacts/media-archive/raw/

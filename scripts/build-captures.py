@@ -5,7 +5,7 @@ Usage: python scripts/build-captures.py artifacts/build-0.2/raw/recorded
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 import json, subprocess, sys
-root=Path(sys.argv[1]); out=Path('public/build-identity');out.mkdir(parents=True,exist_ok=True)
+root=Path(sys.argv[1]); out=Path('artifacts/media-archive/raw/build-identity');out.mkdir(parents=True,exist_ok=True)
 names={'reaction':('Gather and transform','Divided stream / Undertow / Shared vapour'),
        'field':('Move the battlefield','Double inscription / Crosswise inscription / Migrating inscriptions'),
        'structure':('Prepare and release','Stone remembers / Walking fault / Break the seal')}

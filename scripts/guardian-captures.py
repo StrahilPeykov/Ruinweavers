@@ -4,7 +4,7 @@ Usage: python scripts/guardian-captures.py artifacts/guardian-0.1/raw/recorded-f
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 import json, subprocess, sys
-root=Path(sys.argv[1]);out=Path('public/guardian');out.mkdir(parents=True,exist_ok=True)
+root=Path(sys.argv[1]);out=Path('artifacts/media-archive/raw/guardian');out.mkdir(parents=True,exist_ok=True)
 sheet=Image.new('RGB',(1920,454),'#293f4a');draw=ImageDraw.Draw(sheet)
 font=ImageFont.truetype('C:/Windows/Fonts/segoeui.ttf',20)
 small=ImageFont.truetype('C:/Windows/Fonts/segoeui.ttf',14)

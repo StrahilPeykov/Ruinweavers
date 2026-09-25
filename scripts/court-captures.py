@@ -12,7 +12,7 @@ source = Path(sys.argv[1])
 video = Path(sys.argv[2])
 start = sys.argv[3] if len(sys.argv) > 3 else '48'
 build = json.loads((source/'coop.json').read_text())['environment']['build']
-out = Path('public/broken-court')
+out = Path('artifacts/media-archive/raw/broken-court')
 out.mkdir(parents=True, exist_ok=True)
 font = ImageFont.truetype('C:/Windows/Fonts/segoeui.ttf', 19)
 sheet = Image.new('RGB', (1440, 670), '#293f4a')

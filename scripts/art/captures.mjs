@@ -2,7 +2,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync, mkdirSync, copyFileSync, writeFileSync } from "node:fs";
 const dir = "artifacts/art-proof/motion",
-  out = "public/art-study";
+  out = "artifacts/media-archive/raw/art-study";
 mkdirSync(out, { recursive: true });
 for (const art of ["storybook", "ink"])
   copyFileSync(
